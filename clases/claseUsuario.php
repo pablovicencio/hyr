@@ -41,9 +41,9 @@ class UsuarioDAO
     $this->id_usu       = $id_usu;
     $this->rut          = $rut;
     $this->nombre       = $nombre;
-    $this->ape_pat     = $ape_pat;
-    $this->ape_mat     = $ape_mat;
-    $this->mail        = $mail;
+    $this->ape_pat      = $ape_pat;
+    $this->ape_mat      = $ape_mat;
+    $this->mail         = $mail;
     $this->perfil       = $perfil;
     $this->cargo        = $cargo;
     $this->pass         = $pass;
@@ -77,7 +77,7 @@ class UsuarioDAO
 
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 
-                if ($this->pass == $row["pass"]){
+                if ($this->pass == $row["pass_usu"]){
                     session_start();
                         $_SESSION['id'] = $row['id'];
                         $_SESSION['mail'] = $row['mail_usu'];

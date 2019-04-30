@@ -35,6 +35,13 @@
 	padding: 0px; 
 	box-sizing: border-box;
 }
+#main{
+  padding: 1.5em;
+  margin-top: 2em;
+  border-radius:0.5em;
+  background-color: #d0dbe7;
+  max-width: 90%;
+}
 
 body, html {
 	height: 100%;
@@ -310,7 +317,7 @@ iframe {
   -moz-transition: all 0.6s;
   transition: all 0.6s;
 
-  background: #57b846;
+  background: #0a4f90;
 }
 
 
@@ -402,7 +409,7 @@ input.input100 {
   padding: 0 20px;
   min-width: 160px;
   height: 50px;
-  background-color: #00662b;
+  background-color: #0a4f90;
   border-radius: 25px;
 
   font-family: Poppins-Regular;

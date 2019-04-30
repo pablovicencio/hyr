@@ -7,7 +7,7 @@
 			$rut = $_POST['rut'];
 			$pwd = md5($_POST['pwd']);
 			
-			$dao = new UsuarioDAO('','','','',$rut,'','',''$pwd,'','');
+			$dao = new UsuarioDAO('',$rut,'','','','','','',$pwd,'','');
  		
 			$login = $dao->login();
 		}
