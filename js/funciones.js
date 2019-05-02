@@ -3,14 +3,18 @@ $(document).ready(function() {
           $("#formLogin").submit(function() {    
             $.ajax({
               type: "POST",
-              url: '../controles/controlLogin.php',
+              url: 'controles/controlLogin.php',
               data:$("#formLogin").serialize(),
               success: function (result) { 
               var msg = result.trim();
 
                 switch(msg) {
                         case '0':
-                            window.location='../pag_usu/inicio.php';
+                            //REVISAR ESTA RUTA CUANDO PASE A PRODUCCION
+                            var dominio = window.location.hostname;
+                            var carpeta = window.location.pathname;
+                            //console.log(dominio+carpeta+"pag_usu/inicio.php");
+                            window.location= carpeta+"pag_usu/inicio.php";
                             break;
                         case '-1':
                             swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");

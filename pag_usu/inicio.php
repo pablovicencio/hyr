@@ -1,5 +1,5 @@
 <?php 
-  //include("../includes/validaSesion.php")
+  include("../includes/validaSesion.php")
 ?>
 
 <!DOCTYPE html>

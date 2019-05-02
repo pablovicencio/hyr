@@ -58,7 +58,7 @@ class UsuarioDAO
     /*///////////////////////////////////////
     Login 
     //////////////////////////////////////*/
-    public static function login(){
+    public function login(){
 
         try{
 

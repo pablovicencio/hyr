@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="js/funciones.js"></script>
 	
@@ -32,7 +33,7 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form" action="controles/controlLogin.php" method="post" id="login" name="login">
+				<form class="login100-form validate-form" name="formLogin" id="formLogin">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Rut es Requerido">
 						<span class="label-input100">Rut</span>
 						<input class="input100" type="text" name="rut" placeholder="Ingrese Rut: '12345678-9'" id="rut" pattern="\d{3,8}-[\d|kK]{1}" name="rut">
