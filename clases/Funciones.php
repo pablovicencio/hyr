@@ -6,6 +6,36 @@ require_once '../recursos/db/db.php';
 class Funciones 
 {
 
+    /*///////////////////////////////////////
+    Cargar datos de Empresa
+    //////////////////////////////////////*/
+    public function cargar_datos_emp($id_emp,$sel){
+
+         try{
+            
+            
+            $pdo = AccesoDB::getCon();
+                    
+            if ($sel == 1) {
+                 $sql = "";
+            }else if ($sel == 2) {
+                $sql = "select *                
+                from empresa where id_emp = :id_emp";
+            }  
+                   
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":id_emp", $id_emp, PDO::PARAM_INT);
+            $stmt->execute();
+            $response = $stmt->fetchAll();
+            return $response;
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+        }
+    }
+
+
+
    
     /*///////////////////////////////////////
     Cargar lista despegable de tipos de documentos

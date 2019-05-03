@@ -52,35 +52,34 @@ class EmpresaDAO
                                 $clave_previred_emp=null,
                                 $clave_sii_emp=null,
                                 $fac_rea_emp=null,
-                                $rta_at_emp=null,
-                                ) 
+                                $rta_at_emp=null) 
                                 {
 
 
     $this->id_emp               = $id_emp;
-    $this->$razon_social_emp    = $razon_social_emp;
-    $this->$cons_soc_emp        = $cons_soc_emp;
-    $this->$monto_mensual_emp   = $monto_mensual_emp;
-    $this->$monto_renta_emp     = $monto_renta_emp;
-    $this->$ciudad_emp          = $ciudad_emp;
-    $this->$comuna_emp          = $comuna_emp;
-    $this->$dir_emp             = $dir_emp;
-    $this->$reg_trib_emp        = $reg_trib_emp;
-    $this->$fec_ini_act_emp     = $fec_ini_act_emp;
-    $this->$mail_emp            = $mail_emp;
-    $this->$nom_contacto_emp    = $nom_contacto_emp;
-    $this->$patente_comer_emp   = $patente_comer_emp;
-    $this->$evaluacion_emp      = $evaluacion_emp;
-    $this->$vig_emp             = $vig_emp;
-    $this->$fec_cre_emp         = $fec_cre_emp;
-    $this->$clave_previred_emp  = $clave_previred_emp;
-    $this->$clave_sii_emp       = $clave_sii_emp;
-    $this->$fac_rea_emp         = $fac_rea_emp;
-    $this->$rta_at_emp          = $rta_at_emp;
+    $this->razon_social_emp    = $razon_social_emp;
+    $this->cons_soc_emp        = $cons_soc_emp;
+    $this->monto_mensual_emp   = $monto_mensual_emp;
+    $this->monto_renta_emp     = $monto_renta_emp;
+    $this->ciudad_emp          = $ciudad_emp;
+    $this->comuna_emp          = $comuna_emp;
+    $this->dir_emp             = $dir_emp;
+    $this->reg_trib_emp        = $reg_trib_emp;
+    $this->fec_ini_act_emp     = $fec_ini_act_emp;
+    $this->mail_emp            = $mail_emp;
+    $this->nom_contacto_emp    = $nom_contacto_emp;
+    $this->patente_comer_emp   = $patente_comer_emp;
+    $this->evaluacion_emp      = $evaluacion_emp;
+    $this->vig_emp             = $vig_emp;
+    $this->fec_cre_emp         = $fec_cre_emp;
+    $this->clave_previred_emp  = $clave_previred_emp;
+    $this->clave_sii_emp       = $clave_sii_emp;
+    $this->fac_rea_emp         = $fac_rea_emp;
+    $this->rta_at_emp          = $rta_at_emp;
 
     }
 
-    public function getemp() {
+    public function getEmp() {
     return $this->id_emp;
     }
 

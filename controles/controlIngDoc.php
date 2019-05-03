@@ -1,7 +1,7 @@
 <?php
   session_start();
  
-  	if( isset($_SESSION['id']) and ($_SESSION['perfil_fac'] <> 0)and isset($_POST['emp']) ){
+  	if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0)and isset($_POST['emp']) ){
   		//Si la sesión esta seteada no hace nada
   		$id_usu = $_SESSION['id'];
   	}
@@ -18,33 +18,38 @@
  	try{
  		$id_emp = $_POST['emp'];
 
- 		$rut_deu = $_POST['rut_deu'];
- 		$nom_deu = $_POST['nom_deu'];
  		$num_doc = $_POST['num_doc'];
- 		$monto = $_POST['monto_doc'];
- 		$ant = $_POST['ant_doc'];
- 		$fec_ope = $_POST['fec_ope_doc'];
- 		$fec_ven = $_POST['fec_ven_doc'];
- 		$plazo = $_POST['plazo_doc'];
+ 		$afecto = $_POST['afecto'];
+ 		$fec_emi = $_POST['fec_emi'];
+ 		$tipo_doc = $_POST['tipo_doc'];
+ 		$exento = $_POST['exento'];
+ 		$fec_ven = $_POST['fec_ven'];
+ 		$iva = $_POST['iva'];
+ 		$total = $_POST['total'];
  		$fec_reg = date("Y-m-d h:m:s", time());
-		$tipo_doc = $_POST['tip_doc'];
  		$est = 1;
- 		
- 			$cli = new ClienteDAO($id_cli);
+ 		if (isset($_POST['obs_doc'])) {
+ 			$obs_doc = $_POST['obs_doc'];
+ 		}else{
+ 			$obs_doc = '';
+ 		}
 
- 			$usu = new UsuarioDAO($id);
-
- 			$dao = new DocumentoDAO('',$rut_deu, $nom_deu, $num_doc, $monto, $ant, $fec_ope, $fec_ven, $plazo, $fec_reg, $tipo_doc, $est);
  		
-			$ing_doc = $dao->ing_doc($usu->getUsu(),$cli->getCli());
+ 			$emp = new EmpresaDAO($id_emp);
+
+ 			$usu = new UsuarioDAO($id_usu);
+
+ 			$dao = new DocumentoDAO('',$num_doc, $afecto, $exento, $iva, $total, $fec_ven, $fec_emi, $tipo_doc, $est,  $fec_reg, '', $obs_doc);
+ 		
+			$ing_doc = $dao->ing_doc($usu->getUsu(),$emp->getEmp());
 			
 			if (count($ing_doc)>0){
 			
-			echo "2";    
+			echo"Documento Nro. ".$num_doc." ingresado correctamente";    
 			} else {
 				//$enviar_pass = $fun->enviar_correo_pass($nom,$correo,$nueva_pass);
 			
-			echo"Documento Nro. ".$num_doc." ingresado correctamente";  
+			echo"-2";  
 				
 					}
 		
@@ -52,6 +57,6 @@
 	salir:
  	} catch (Exception $e) {
 		
-		echo"2"; 
+		echo"-2"; 
   	}
  ?>

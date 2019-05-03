@@ -19,6 +19,7 @@ class DocumentoDAO
     private $est_doc;
     private $fec_reg_doc;
     private $periodo_doc;
+    private $obs_doc;
     
 
 
@@ -36,7 +37,7 @@ class DocumentoDAO
                                 $est_doc=null,
                                 $fec_reg_doc=null,
                                 $periodo_doc=null,
-                                ) 
+                                $obs_doc=null) 
                                 {
 
 
@@ -52,6 +53,7 @@ $this->tipo_doc    =$tipo_doc;
 $this->est_doc     =$est_doc;
 $this->fec_reg_doc =$fec_reg_doc;
 $this->periodo_doc =$periodo_doc;
+$this->obs_doc =$obs_doc;
                                     
 
     }
@@ -72,10 +74,10 @@ $this->periodo_doc =$periodo_doc;
 
                 $sql_ing_doc = "INSERT INTO `documento`
                 (`nro_doc`,`monto_afecto_doc`,`monto_exento_doc`,`monto_iva_doc`,`monto_total_doc`,
-                  `fec_ven_doc`,`fec_emi_doc`,`tipo_doc`,`est_doc`,`fec_reg_doc`,`usu_reg_doc`,`emp_doc`,`periodo_doc`)
+                  `fec_ven_doc`,`fec_emi_doc`,`tipo_doc`,`est_doc`,`fec_reg_doc`,`usu_reg_doc`,`emp_doc`, `obs_doc`)
                 VALUES
                 (:nro_doc,:afecto,:exento,:iva,:total,:fec_ven_doc,:fec_emi_doc,:tipo_doc,:est_doc,
-                :fec_reg_doc,:usu_reg_doc,:emp_doc,:periodo_doc);";
+                :fec_reg_doc,:usu_reg_doc,:emp_doc, :obs_doc);";
 
 
                 $stmt = $pdo->prepare($sql_ing_doc);
@@ -91,18 +93,17 @@ $this->periodo_doc =$periodo_doc;
                 $stmt->bindParam(":fec_reg_doc", $this->fec_reg_doc, PDO::PARAM_STR);
                 $stmt->bindParam(":usu_reg_doc", $usu, PDO::PARAM_INT);
                 $stmt->bindParam(":emp_doc", $emp, PDO::PARAM_INT);
-                $stmt->bindParam(":periodo_doc", $this->periodo_doc, PDO::PARAM_INT);
+                $stmt->bindParam(":obs_doc", $this->obs_doc, PDO::PARAM_STR);
                 $stmt->execute();
 
-                if ($stmt->rowCount() <> 0) {
-                    return 1;
-                 }else{
-                    return 2;
-                 }
+                
+                    return $stmt->rowCount();
+                 
         
 
             } catch (Exception $e) {
-                echo"2";
+                echo"-1";
+                //echo $e->getMessage();
             }
     }
 

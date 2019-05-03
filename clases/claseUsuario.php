@@ -51,7 +51,7 @@ class UsuarioDAO
     $this->nick         = $nick;
     }
 
-    public function getusu() {
+    public function getUsu() {
     return $this->id_usu;
     }
 

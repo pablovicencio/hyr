@@ -10,14 +10,16 @@
 
 <?php
   include("../includes/recursosExternos.php");
+
+?>
+</head>
+<?php
+
   include("../includes/infoLog.php");
   include("../includes/menu.php");
 ?>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-<script src="http://momentjs.com/downloads/moment.min.js"></script>
-<script src="http://momentjs.com/downloads/moment.js"></script>
-</head>
+
 
 <body>
 <div class="container" id="main">
@@ -31,11 +33,11 @@
     <div id="loading" style="display: none;">
         <center><img src="../recursos/img/load.gif"></center>
     </div>
-
+     <div  id="form">
      <form id="formIngDoc" name="formIngDoc" onsubmit="return false;">
                         <div class="col-12">
                             <label for="emp">Empresa:</label>
-                                        <select class="form-control chosen" id="emp" name="emp" style="" onchange="">
+                                        <select class="form-control chosen" id="emp" name="emp" onchange="montoEmp(this.value);">
                                         <option value="" selected disabled>Seleccione Empresa</option>
                                            <?php 
                                             $re = $fun->cargar_empresas(1);   
@@ -60,13 +62,10 @@
                               
                               <div class="form-group" >
                                 <label for="afecto">Monto Afecto:</label>
-                                <input type="number" class="form-control" id="afecto" name="afecto" min="0" required>
+                                <input type="number" class="form-control" id="afecto" name="afecto" min="0" onkeyup="calculoIva();" required>
                               </div>
 
-                              <div class="form-group">
-                                <label for="fec_emi">Fecha Emisión:</label>
-                                <input type="date" class="form-control" id="fec_emi" name="fec_emi"  required>
-                              </div>
+                             
                               
                               
                               
@@ -75,7 +74,7 @@
                         <div class="col-4">   
                               <div class="form-group">
                                 <label for="tipo_doc">Tipo Documento:</label>
-                                <select class="form-control chosen" id="emp" name="emp" style="" onchange="">
+                                <select class="form-control chosen" id="tipo_doc" name="tipo_doc" required>
                                         <option value="" selected disabled>Seleccione tipo documento</option>
                                            <?php 
                                             $re = $fun->cargar_tipo_doc(1);   
@@ -93,19 +92,16 @@
 
                               <div class="form-group" >
                                 <label for="exento">Monto Exento:</label>
-                                <input type="number" class="form-control" id="exento" name="exento" min="0" required>
+                                <input type="number" class="form-control" id="exento" name="exento" min="0" onkeyup="calculoTotal();" required>
                               </div>
 
-                              <div class="form-group">
-                                <label for="fec_ven">Fecha Vencimiento:</label>
-                                <input type="date" class="form-control" id="fec_ven" name="fec_ven" required>
-                              </div>
+                              
                               
                         </div>
                         <div class="col-4">   
                               
                         <div class="form-group">
-                                <label for="mon_men">Monto Mensual:</label>
+                                <label for="mon_men">Monto Mensual Acordado:</label>
                                 <input type="number" class="form-control" id="mon_men" name="mon_men" min="0" readonly>
                               </div>
                               
@@ -118,6 +114,35 @@
                         </div>
 
                         </div>  
+                        <div class="row" >
+                          <div class="col-12">
+                            <div class="form-group">
+                                    <label for="total">Monto Total:</label>
+                                    <input type="number" class="form-control" id="total" name="total" style="width: 500px" required readonly>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-4">
+                              <div class="form-group">
+                                    <label for="fec_emi">Fecha Emisión:</label>
+                                    <input type="date" class="form-control" id="fec_emi" name="fec_emi"  required>
+                                  </div>
+                            </div>
+                            <div class="col-4">
+                              <div class="form-group">
+                                    <label for="fec_ven">Fecha Vencimiento:</label>
+                                    <input type="date" class="form-control" id="fec_ven" name="fec_ven" required>
+                              </div>
+                            </div>
+                            <div class="col-4">
+                              
+                            </div>
+
+
+                        </div>
+                        <textarea class="form-control" rows="5" id="obs_doc" name="obs_doc" placeholder="Observación"></textarea><br><br>
+
                         <div class="container-login100-form-btn">
                      
                           <button class="login100-form-btn" type="submit">
@@ -127,7 +152,7 @@
 					</div>
      </form>
 
-    
+    </div>
 
 
 
