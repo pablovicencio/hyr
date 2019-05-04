@@ -63,6 +63,64 @@ $this->obs_doc =$obs_doc;
     }
 
     /*///////////////////////////////////////
+    Pago Documento
+    //////////////////////////////////////*/
+    public function pago_doc($usu,$monto_mov,$obs_mov,$fec_reg,$cod_formapago_mov,$est_mov) {
+
+
+        try{
+             
+                $pdo = AccesoDB::getCon();
+
+                $sql_ing_mov = "INSERT INTO `mov_documento`(`monto_mov`,`obs_mov`,`fec_reg_mov`,`usu_reg_mov`,`id_doc_mov`,`cod_formapago_mov`,`est_doc_mov`)
+                VALUES(:monto_mov,:obs_mov,:fec_mov,:usu_mov,:doc_mov,:formapago_mov,:est_mov);";
+
+
+                $stmt = $pdo->prepare($sql_ing_mov);
+                $stmt->bindParam(":monto_mov", $monto_mov, PDO::PARAM_INT);
+                $stmt->bindParam(":obs_mov", $obs_mov, PDO::PARAM_STR);
+                $stmt->bindParam(":fec_mov", $fec_reg, PDO::PARAM_STR);
+                $stmt->bindParam(":usu_mov", $usu, PDO::PARAM_INT);
+                $stmt->bindParam(":doc_mov", $this->id_doc, PDO::PARAM_INT);
+                $stmt->bindParam(":formapago_mov", $cod_formapago_mov, PDO::PARAM_INT);
+                $stmt->bindParam(":est_mov", $est_mov, PDO::PARAM_STR);
+                $stmt->execute();
+
+
+                if ($stmt->rowCount() > 0) {
+                    $sql_upd_doc = "update documento
+                                set est_doc = :est_doc
+                                where id_doc = :doc;";
+
+
+                    $stmt1 = $pdo->prepare($sql_upd_doc);
+                    $stmt1->bindParam(":est_doc", $est_mov, PDO::PARAM_STR);
+                    $stmt1->bindParam(":doc", $this->id_doc, PDO::PARAM_INT);
+                    $stmt1->execute();
+
+                    return $stmt->rowCount();
+
+                }else {
+                    echo"-1";
+                }
+
+                
+                
+                
+                 
+        
+
+            } catch (Exception $e) {
+                //echo"-1";
+                echo $e->getMessage();
+            }
+    }
+
+
+
+
+
+    /*///////////////////////////////////////
     Ingresar Documento
     //////////////////////////////////////*/
     public function ing_doc($usu,$emp) {

@@ -28,7 +28,7 @@
                       <div class="dropdown-menu">
                        <a class="dropdown-item" href="cargar_doc.php">Consulta &nbsp;<i class="fa fa-eye" aria-hidden="true"></i></a>
                        <a class="dropdown-item" href="ing_doc.php">Ingresar Documento &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                        <a class="dropdown-item" href="crear_doc.php">Ingresar Pago &nbsp;<i class="fa fa-dollar" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" href="ing_pago.php">Ingresar Pago &nbsp;<i class="fa fa-dollar" aria-hidden="true"></i></a>
                         <a class="dropdown-item" href="mod_doc.php">Parametros Alertas  &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                       </div>
                     </li>

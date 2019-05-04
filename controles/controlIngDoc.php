@@ -43,7 +43,7 @@
  		
 			$ing_doc = $dao->ing_doc($usu->getUsu(),$emp->getEmp());
 			
-			if (count($ing_doc)>0){
+			if ($ing_doc>0){
 			
 			echo"Documento Nro. ".$num_doc." ingresado correctamente";    
 			} else {

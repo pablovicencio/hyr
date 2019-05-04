@@ -1,3 +1,12 @@
+$(document).ajaxStart(function() {
+  $("#main").hide();
+  $("#loading").show();
+     }).ajaxStop(function() {
+  $("#loading").hide();
+  $("#main").show();
+  }); 
+
+
 //////////funcion login
 $(document).ready(function() {
           $("#formLogin").submit(function() {    
