@@ -36,7 +36,7 @@
 
  		
  			$emp = new EmpresaDAO($id_emp);
-
+		 	
  			$usu = new UsuarioDAO($id_usu);
 
  			$dao = new DocumentoDAO('',$num_doc, $afecto, $exento, $iva, $total, $fec_ven, $fec_emi, $tipo_doc, $est,  $fec_reg, '', $obs_doc);
