@@ -96,10 +96,6 @@ class UsuarioDAO
                    echo "-2";
                    //echo"<script type=\"text/javascript\">alert('Error, favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema.');window.location='../index.html';</script>"; 
                 }
-             
- 
-
-        
 
         } catch (Exception $e) {
                 echo"-1";
@@ -121,25 +117,27 @@ class UsuarioDAO
              
                 $pdo = AccesoDB::getCon();
 
-                $sql_crear_usu = "INSERT INTO `usuario`(`RUT`,`NOMBRE`,`APELLIDO`,`EMAIL`,`PASS`,`VIGENCIA`,`CARGO`,`PERFIL`,`NICK`)
-                            VALUES(:rut,:nombre,:apellido,:email,:pass,:vigencia,:cargo,:perfil,:nick);";
+                 $sql_crear_usu = " INSERT INTO `usuarios`(`nom_usu`,`apepat_usu`,`apemat_usu`,`rut_usu`,`mail_usu`,`id_perfil`,`fec_cre_usu`,`cargo_usu`,`pass_usu`,`vig_usu`,`nick_usu`)
+                 VALUES(:nombre,:ape_pat,:ape_mat,:rut,:mail,:perfil,CURDATE(),:cargo,:pass,:vigencia,:nick)";
 
 
                 $stmt = $pdo->prepare($sql_crear_usu);
-                $stmt->bindParam(":rut", $this->RUT, PDO::PARAM_STR);
-                $stmt->bindParam(":nombre", $this->NOMBRE, PDO::PARAM_STR);
-                $stmt->bindParam(":apellido", $this->APELLIDO, PDO::PARAM_STR);
-                $stmt->bindParam(":email", $this->EMAIL, PDO::PARAM_STR);
-                $stmt->bindParam(":pass", $this->PASS, PDO::PARAM_STR);
-                $stmt->bindParam(":vigencia", $this->VIGENCIA, PDO::PARAM_BOOL);
-                $stmt->bindParam(":cargo", $this->CARGO, PDO::PARAM_INT);
-                $stmt->bindParam(":perfil", $this->PERFIL, PDO::PARAM_INT);
-                $stmt->bindParam(":nick", $this->NICK, PDO::PARAM_STR);
+                
+                $stmt->bindParam(":nombre", $this->nombre, PDO::PARAM_STR);
+                $stmt->bindParam(":ape_pat", $this->ape_pat, PDO::PARAM_STR);
+                $stmt->bindParam(":ape_mat", $this->ape_mat, PDO::PARAM_STR);
+                $stmt->bindParam(":rut", $this->rut, PDO::PARAM_STR);
+                $stmt->bindParam(":mail", $this->mail, PDO::PARAM_STR);
+                $stmt->bindParam(":perfil", $this->perfil, PDO::PARAM_INT);
+                $stmt->bindParam(":cargo", $this->cargo, PDO::PARAM_INT);
+                $stmt->bindParam(":pass", $this->pass, PDO::PARAM_STR);
+                $stmt->bindParam(":vigencia", $this->vigencia, PDO::PARAM_BOOL);
+                $stmt->bindParam(":nick", $this->nick, PDO::PARAM_STR);
                 $stmt->execute();
         
 
             } catch (Exception $e) {
-                echo"2";
+                echo"1";
             }
     }
 
@@ -154,27 +152,28 @@ class UsuarioDAO
              
                 $pdo = AccesoDB::getCon();
 
-                $sql_mod_usu = "UPDATE `usuario`
+                $sql_mod_usu = "UPDATE `usuarios`
                                     SET
-                                    `NOMBRE` = :nombre,
-                                    `APELLIDO` = :apellido,
-                                    `EMAIL` = :email,
-                                    `VIGENCIA` = :vigencia,
-                                    `CARGO` = :cargo,
-                                    `PERFIL` = :perfil,
-                                    `NICK` = :nick
-                                    WHERE `ID_USU` = :id ";
+                                    `nom_usu` = :nombre,
+                                    `apepat_usu` = :ape_pat,
+                                    `apemat_usu` = :ape_mat,
+                                    `mail_usu` = :mail,
+                                    `id_perfil` = :perfil,
+                                    `cargo_usu` = :cargo,
+                                    `vig_usu` = :vigencia
+                                    WHERE `id_usu` = :id ";
 
 
                 $stmt = $pdo->prepare($sql_mod_usu);
-                $stmt->bindParam(":nombre", $this->NOMBRE, PDO::PARAM_STR);
-                $stmt->bindParam(":apellido", $this->APELLIDO, PDO::PARAM_STR);
-                $stmt->bindParam(":email", $this->EMAIL, PDO::PARAM_STR);
-                $stmt->bindParam(":vigencia", $this->VIGENCIA, PDO::PARAM_BOOL);
-                $stmt->bindParam(":cargo", $this->CARGO, PDO::PARAM_INT);
-                $stmt->bindParam(":perfil", $this->PERFIL, PDO::PARAM_INT);
-                $stmt->bindParam(":nick", $this->NICK, PDO::PARAM_STR);
-                $stmt->bindParam(":id", $this->ID_USU, PDO::PARAM_INT);
+                $stmt->bindParam(":nombre", $this->nombre, PDO::PARAM_STR);
+                $stmt->bindParam(":ape_pat", $this->ape_pat, PDO::PARAM_STR);
+                $stmt->bindParam(":ape_mat", $this->ape_mat, PDO::PARAM_STR);
+                $stmt->bindParam(":mail", $this->mail, PDO::PARAM_STR);
+                $stmt->bindParam(":perfil", $this->perfil, PDO::PARAM_INT);
+                $stmt->bindParam(":cargo", $this->cargo, PDO::PARAM_INT);
+                $stmt->bindParam(":vigencia", $this->vigencia, PDO::PARAM_BOOL);
+                $stmt->bindParam(":id", $this->id_usu, PDO::PARAM_INT);
+
                 $stmt->execute();
         
 

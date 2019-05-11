@@ -3,6 +3,22 @@
 require_once '../recursos/db/db.php';
 
 
+
+/* INDICE
+1°  cargar_pagos_doc
+2°  cargar_datos_doc
+3°  cargar_docs_emp
+4°  cargar_forma_pago
+5°  cargar_datos_emp
+6°  cargar_tipo_doc
+7°  cargar_empresas
+8°  cargar_usuarios
+9°  cargar_perfiles
+10° cargar_cargos
+11° validar_rut
+12° generaPass
+*/
+
 class Funciones 
 {
 
@@ -35,8 +51,6 @@ class Funciones
             echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
         }
     }
-
-
     /*///////////////////////////////////////
     Cargar datos Documento
     //////////////////////////////////////*/
@@ -61,9 +75,6 @@ class Funciones
             echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
         }
     }
-
-
-
     /*///////////////////////////////////////
     Cargar documentos de Empresa
     //////////////////////////////////////*/
@@ -103,41 +114,35 @@ class Funciones
             echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
         }
     }
-
-
-
     /*///////////////////////////////////////
     Cargar lista despegable de formas de pago
     //////////////////////////////////////*/
-        public function cargar_forma_pago($vig){
+    public function cargar_forma_pago($vig){
 
-            try{
-                
-                
-                $pdo = AccesoDB::getCon();
+        try{
+            
+            
+            $pdo = AccesoDB::getCon();
 
 
-        
-                        if ($vig == 0) {
-                                $sql = "";
-                            }else if ($vig == 1){
-                                $sql = "select id_formapago, desc_formapago from forma_pago where vig_formapago = 1";
-                            }
-                            
+    
+                    if ($vig == 0) {
+                            $sql = "";
+                        }else if ($vig == 1){
+                            $sql = "select id_formapago, desc_formapago from forma_pago where vig_formapago = 1";
+                        }
+                        
 
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute();
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
 
-                $response = $stmt->fetchAll();
-                return $response;
+            $response = $stmt->fetchAll();
+            return $response;
 
-            } catch (Exception $e) {
-                echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
-            }
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
         }
-
-
-
+    }
     /*///////////////////////////////////////
     Cargar datos de Empresa
     //////////////////////////////////////*/
@@ -165,77 +170,212 @@ class Funciones
             echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
         }
     }
-
-
-
-   
     /*///////////////////////////////////////
     Cargar lista despegable de tipos de documentos
     //////////////////////////////////////*/
-        public function cargar_tipo_doc($vig){
+    public function cargar_tipo_doc($vig){
 
-            try{
-                
-                
-                $pdo = AccesoDB::getCon();
+        try{
+            
+            
+            $pdo = AccesoDB::getCon();
 
 
-        
-                        if ($vig == 0) {
-                                $sql = "";
-                            }else if ($vig == 1){
-                                $sql = "select cod_item tipo, desc_item tipo_doc from tab_param where cod_grupo = 1 and cod_item <> 0 and vig_item = 1";
-                            }
-                            
+    
+                    if ($vig == 0) {
+                            $sql = "";
+                        }else if ($vig == 1){
+                            $sql = "select cod_item tipo, desc_item tipo_doc from tab_param where cod_grupo = 1 and cod_item <> 0 and vig_item = 1";
+                        }
+                        
 
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute();
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
 
-                $response = $stmt->fetchAll();
-                return $response;
+            $response = $stmt->fetchAll();
+            return $response;
 
-            } catch (Exception $e) {
-                echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
-            }
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
         }
-
-
-
-
-
-
+    }
     /*///////////////////////////////////////
     Cargar lista despegable de empresas
     //////////////////////////////////////*/
-        public function cargar_empresas($vig){
+    public function cargar_empresas($vig){
 
-            try{
-                
-                
-                $pdo = AccesoDB::getCon();
+        try{
+            
+            
+            $pdo = AccesoDB::getCon();
 
 
-        
-                        if ($vig == 0) {
-                                $sql = "select id_emp, razon_social_emp
-                                        from empresa order by 2";
-                            }else if ($vig == 1){
-                                $sql = "select id_emp, razon_social_emp
-                                        from empresa where vig_emp = 1 order by 2";
-                            }
-                            
+    
+                    if ($vig == 0) {
+                            $sql = "select id_emp, razon_social_emp
+                                    from empresa order by 2";
+                        }else if ($vig == 1){
+                            $sql = "select id_emp, razon_social_emp
+                                    from empresa where vig_emp = 1 order by 2";
+                        }
+                        
 
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute();
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
 
-                $response = $stmt->fetchAll();
-                return $response;
+            $response = $stmt->fetchAll();
+            return $response;
 
-            } catch (Exception $e) {
-                echo"-1";
-                //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
-            }
+        } catch (Exception $e) {
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
+    }
+    /*////////////////////////////////////////////
+    ///////////// CARGAR USUARIOS ////////////////
+    ////////////////////////////////////////////*/ 
+    public function cargar_usuarios($id_usu,$opc){
+        try {
+            
+            $pdo = AccesoDB::getCon();
+
+            if ($opc == 1)
+            {
+                $sql = "select u.id_usu,u.nom_usu,u.apepat_usu,u.apemat_usu,u.rut_usu,u.mail_usu,a.desc_item as id_perfil,u.fec_cre_usu,b.desc_item as cargo_usu,if(u.vig_usu = 1, 'VIGENTE','NO VIGENTE') as vig_usu,u.nick_usu
+                from usuarios u, tab_param a, tab_param b
+                where u.id_perfil = a.cod_item and a.cod_grupo = 2 and a.vig_item = 1
+                and u.cargo_usu =  b.cod_item and b.cod_grupo = 3 and b.vig_item = 1 ";
+            }
+            else if($opc == 2)
+            {
+                $sql = "select u.id_usu,u.nom_usu,u.apepat_usu,u.apemat_usu,u.rut_usu,u.mail_usu,u.id_perfil,u.fec_cre_usu,u.cargo_usu,if(u.vig_usu = 1, 'VIGENTE','NO VIGENTE') as vig_usu,u.nick_usu
+                from usuarios u, tab_param a, tab_param b
+                where u.id_perfil = a.cod_item and a.cod_grupo = 2 and a.vig_item = 1
+                and u.cargo_usu =  b.cod_item and b.cod_grupo = 3 and b.vig_item = 1 and u.id_usu = :id_usu";
+            }
+
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":id_usu", $id_usu, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $response = $stmt->fetchAll();
+            return $response;
+            
+        } catch (\Throwable $th) {
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+        }
+    }
+    /*////////////////////////////////////////////
+    ///////////// CARGAR PERFILES ////////////////
+    ////////////////////////////////////////////*/ 
+    public function cargar_perfiles($vig_usu){
+        try {
+            
+            $pdo = AccesoDB::getCon();
+
+
+            if ($vig_usu == 0) {
+                $sql = "select cod_item id_perfil, desc_item perfil from tab_param where cod_grupo = 2 and cod_item <> 0";
+            }else if ($vig_usu == 1) {
+                $sql = "select cod_item id_perfil, desc_item perfil from tab_param where cod_grupo = 2 and cod_item <> 0 and vig_item = 1";
+            }  
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            $response = $stmt->fetchAll();
+            return $response;
+            
+        } catch (\Throwable $th) {
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+        }
+    }
+    /*////////////////////////////////////////////
+    ///////////// CARGAR CARGOS //////////////////
+    ////////////////////////////////////////////*/ 
+    public function cargar_cargos($vig_cargo){
+        try {
+            
+            $pdo = AccesoDB::getCon();
+
+            if ($vig_cargo == 0) {
+                $sql = "select cod_item id_cargo, desc_item cargo from tab_param where cod_grupo = 3 and cod_item <> 0";
+            }else if ($vig_cargo == 1) {
+                $sql = "select cod_item id_cargo, desc_item cargo from tab_param where cod_grupo = 3 and cod_item <> 0 and vig_item = 1";
+            }  
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            $response = $stmt->fetchAll();
+            return $response;
+            
+        } catch (\Throwable $th) {
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+        }
+    }
+    /*////////////////////////////////////////////
+    ////////////// VALIDAR RUT  //////////////////
+    ////////////////////////////////////////////*/ 
+    public function validar_rut($rut,$opc){
+        try {
+            
+            $pdo = AccesoDB::getCon();
+
+            if($opc == 1){
+                $sql = "SELECT rut_usu FROM usuarios where rut_usu = :rut";
+            } else if($opc == 2){
+               //opciones adicionales
+            } else if($opc == 3){
+               //opciones adicionales
+            }
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":rut", $rut, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $response = $stmt->fetchAll();
+            return $response;
+            
+        } catch (\Throwable $th) {
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+        }
+    }
+    /*////////////////////////////////////////////
+    ////////////// GENERAR PASS //////////////////
+    ////////////////////////////////////////////*/ 
+    public function generaPass(){
+        //Se define una cadena de caractares. Te recomiendo que uses esta.
+        $cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        //Obtenemos la longitud de la cadena de caracteres
+        $longitudCadena=strlen($cadena);
+         
+        //Se define la variable que va a contener la contraseña
+        $pass = "";
+        //Se define la longitud de la contraseña, en mi caso 10, pero puedes poner la longitud que quieras
+        $longitudPass=6;
+         
+        //Creamos la contraseña
+        for($i=1 ; $i<=$longitudPass ; $i++){
+            //Definimos numero aleatorio entre 0 y la longitud de la cadena de caracteres-1
+            $pos=rand(0,$longitudCadena-1);
+         
+            //Vamos formando la contraseña en cada iteraccion del bucle, añadiendo a la cadena $pass la letra correspondiente a la posicion $pos en la cadena de caracteres definida.
+            $pass .= substr($cadena,$pos,1);
+        }
+        return $pass;
+    }
+
+
+
+
+
+
 
 
 }

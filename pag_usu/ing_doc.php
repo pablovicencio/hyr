@@ -11,6 +11,7 @@
 <?php
   include("../includes/recursosExternos.php");
 ?>
+
 <script src="../js/funcionesCob.js"></script>
 </head>
 <?php
