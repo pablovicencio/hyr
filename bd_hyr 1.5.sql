@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 27-04-2019 a las 22:27:15
--- Versión del servidor: 5.7.23
--- Versión de PHP: 5.6.38
+-- Tiempo de generación: 06-05-2019 a las 00:47:07
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,10 +44,24 @@ CREATE TABLE IF NOT EXISTS `documento` (
   `usu_reg_doc` int(11) DEFAULT NULL,
   `emp_doc` int(11) DEFAULT NULL,
   `periodo_doc` int(11) DEFAULT NULL,
+  `obs_doc` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_doc`),
   KEY `fk_usu_doc_idx` (`usu_reg_doc`),
   KEY `fk_emp_doc_idx` (`emp_doc`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `documento`
+--
+
+INSERT INTO `documento` (`id_doc`, `nro_doc`, `monto_afecto_doc`, `monto_exento_doc`, `monto_iva_doc`, `monto_total_doc`, `fec_ven_doc`, `fec_emi_doc`, `tipo_doc`, `est_doc`, `fec_reg_doc`, `usu_reg_doc`, `emp_doc`, `periodo_doc`, `obs_doc`) VALUES
+(1, 123, 10000, 2000, 1900, 13900, '2019-03-31', '2019-05-03', 1, 3, '2019-05-03 06:05:25', 2, 1, NULL, 'test ingreso doc'),
+(2, 1234, 100, 5000, 19, 5119, '2019-06-05', '2019-05-03', 1, 3, '2019-05-03 06:05:03', 2, 1, NULL, ''),
+(3, 1234, 100, 5000, 19, 5119, '2019-06-05', '2019-05-03', 1, 3, '2019-05-03 06:05:27', 2, 1, NULL, ''),
+(4, 1455, 2000, 3222, 380, 5602, '2020-02-01', '2019-05-03', 1, 3, '2019-05-03 06:05:29', 2, 1, NULL, ''),
+(5, 1448, 120, 200, 22, 342, '2019-08-03', '2019-05-03', NULL, 3, '2019-05-03 06:05:24', 2, 1, NULL, ''),
+(6, 101, 200, 300, 38, 538, '2019-08-06', '2019-05-03', 1, 3, '2019-05-03 06:05:36', 2, 1, NULL, 'test\r\n'),
+(7, 1448, 100, 100, 19, 219, '2019-05-04', '2019-04-03', 1, 1, '2019-05-04 01:05:32', 2, 1, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -75,9 +89,43 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `vig_emp` int(11) NOT NULL,
   `fec_cre_emp` datetime DEFAULT NULL,
   `usu_cre_emp` int(11) DEFAULT NULL,
+  `clave_previred_emp` varchar(45) DEFAULT NULL,
+  `clave_sii_emp` varchar(45) DEFAULT NULL,
+  `fac_rea_emp` float DEFAULT NULL,
+  `rta_at_emp` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_emp`),
   KEY `fk_usu_emp_idx` (`usu_cre_emp`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`id_emp`, `razon_social_emp`, `rut_emp`, `cons_soc_emp`, `monto_mensual_emp`, `monto_renta_emp`, `ciudad_emp`, `comuna_emp`, `dir_emp`, `reg_trib_emp`, `fec_ini_act_emp`, `mail_emp`, `nom_contacto_emp`, `patente_comer_emp`, `evaluacion_emp`, `vig_emp`, `fec_cre_emp`, `usu_cre_emp`, `clave_previred_emp`, `clave_sii_emp`, `fac_rea_emp`, `rta_at_emp`) VALUES
+(1, 'empresa prueba', '99556236-4', 0, 250000, 500000, 1, 1, 'Calle la unión 474', 1, '2019-05-02', 'pablo.vicencio@clinicarioblanco.cl', 'pablo', 1, 1, 1, '2019-05-02 15:33:22', 1, '123456', '123789', 100, 100);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `forma_pago`
+--
+
+DROP TABLE IF EXISTS `forma_pago`;
+CREATE TABLE IF NOT EXISTS `forma_pago` (
+  `id_formapago` int(11) NOT NULL AUTO_INCREMENT,
+  `desc_formapago` varchar(50) NOT NULL,
+  `vig_formapago` int(11) NOT NULL,
+  PRIMARY KEY (`id_formapago`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `forma_pago`
+--
+
+INSERT INTO `forma_pago` (`id_formapago`, `desc_formapago`, `vig_formapago`) VALUES
+(1, 'EFECTIVO', 1),
+(2, 'TRNASFERENCIA BANCARIA', 2),
+(3, 'TRANSFERENCIA BANCARIA', 1);
 
 -- --------------------------------------------------------
 
@@ -101,6 +149,25 @@ CREATE TABLE IF NOT EXISTS `giro` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `log_cambio`
+--
+
+DROP TABLE IF EXISTS `log_cambio`;
+CREATE TABLE IF NOT EXISTS `log_cambio` (
+  `id_cambio` int(11) NOT NULL AUTO_INCREMENT,
+  `tabla_cambio` varchar(50) NOT NULL,
+  `columna_cambio` varchar(50) NOT NULL,
+  `valor_ant` varchar(100) NOT NULL,
+  `valor_nuevo` varchar(100) NOT NULL,
+  `fec_cambio` datetime NOT NULL,
+  `usu_cambio` int(11) NOT NULL,
+  PRIMARY KEY (`id_cambio`),
+  KEY `fk_usu_cambio_idx` (`usu_cambio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mov_documento`
 --
 
@@ -112,10 +179,32 @@ CREATE TABLE IF NOT EXISTS `mov_documento` (
   `fec_reg_mov` datetime NOT NULL,
   `usu_reg_mov` int(11) DEFAULT NULL,
   `id_doc_mov` int(11) DEFAULT NULL,
+  `cod_formapago_mov` int(11) DEFAULT NULL,
+  `est_doc_mov` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_mov`),
   KEY `fk_usu_mov_idx` (`usu_reg_mov`),
-  KEY `fk_doc_mov_idx` (`id_doc_mov`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_doc_mov_idx` (`id_doc_mov`),
+  KEY `fk_formapago_mov_idx` (`cod_formapago_mov`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `mov_documento`
+--
+
+INSERT INTO `mov_documento` (`id_mov`, `monto_mov`, `obs_mov`, `fec_reg_mov`, `usu_reg_mov`, `id_doc_mov`, `cod_formapago_mov`, `est_doc_mov`) VALUES
+(1, 12000, 'test pago parcial', '2019-05-04 08:05:15', 2, 1, 1, 2),
+(2, 5119, 'test pago completo', '2019-05-04 08:05:08', 2, 2, 3, 3),
+(3, 5119, 'test pago completo', '2019-05-04 08:05:08', 2, 2, 3, 3),
+(4, 5602, 'test pago completo', '2019-05-04 08:05:45', 2, 4, 1, 3),
+(5, 1000, 'test pago parcial', '2019-05-04 09:05:09', 2, 3, 1, 2),
+(6, 342, '', '2019-05-04 09:05:31', 2, 5, 1, 3),
+(7, 583, 'test', '2019-05-04 09:05:04', 2, 6, 1, 3),
+(8, 15000, 'test', '2019-05-04 09:05:07', 2, 1, 1, 3),
+(9, 1000, 'test pago 2 1000', '2019-05-04 09:05:10', 2, 3, 1, 2),
+(10, 1000, 'pago 3 1000', '2019-05-04 09:05:15', 2, 3, 1, 2),
+(11, 1000, 'pago 4 1000', '2019-05-04 09:05:40', 2, 3, 3, 2),
+(12, 1000, 'pago 5 1000', '2019-05-04 09:05:51', 2, 3, 3, 2),
+(13, 119, 'pago completo', '2019-05-04 09:05:01', 2, 3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -157,6 +246,8 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `pass_per` varchar(32) NOT NULL,
   `personacol` varchar(45) DEFAULT NULL,
   `vig_per` int(11) DEFAULT NULL,
+  `clave_previred_per` varchar(45) DEFAULT NULL,
+  `clave_sii_per` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_per`),
   KEY `fk_usu_per_idx` (`usu_cre_per`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -207,6 +298,35 @@ CREATE TABLE IF NOT EXISTS `sucursales` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tab_param`
+--
+
+DROP TABLE IF EXISTS `tab_param`;
+CREATE TABLE IF NOT EXISTS `tab_param` (
+  `id_param` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cod_grupo` varchar(45) DEFAULT NULL,
+  `cod_item` varchar(45) DEFAULT NULL,
+  `desc_item` varchar(100) DEFAULT NULL,
+  `vig_item` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_param`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tab_param`
+--
+
+INSERT INTO `tab_param` (`id_param`, `cod_grupo`, `cod_item`, `desc_item`, `vig_item`) VALUES
+(1, '1', '0', 'TIPOS DE DOCUMENTOS', '1'),
+(2, '1', '1', 'FACTURA', '1'),
+(3, '1', '2', 'BOLETA', '1'),
+(4, '2', '0', 'ESTADO DOCUMENTOS', '1'),
+(5, '2', '1', 'PENDIENTE', '1'),
+(6, '2', '2', 'PAGO PARCIAL', '1'),
+(7, '2', '3', 'PAGADO', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -225,7 +345,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `vig_usu` int(11) NOT NULL,
   `nick_usu` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_usu`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usu`, `nom_usu`, `apepat_usu`, `apemat_usu`, `rut_usu`, `mail_usu`, `id_perfil`, `fec_cre_usu`, `cargo_usu`, `pass_usu`, `vig_usu`, `nick_usu`) VALUES
+(1, 'patrik', 'pimentel', 'carvacho', '17164970-6', 'ppimentel@andescode.cl', 1, '2019-04-01 00:00:00', 1, '9407c826d8e3c07ad37cb2d13d1cb641', 1, 'ppimentel'),
+(2, 'Pablo', 'Vicencio', 'Contreras', '18385191-8', 'pvicencioc@hotmail.cl', 1, '2019-05-02 15:16:04', 1, 'e10adc3949ba59abbe56e057f20f883e', 1, 'pvicencio');
 
 -- --------------------------------------------------------
 
@@ -272,10 +400,17 @@ ALTER TABLE `giro`
   ADD CONSTRAINT `fk_usu_giro` FOREIGN KEY (`usu_cre_giro`) REFERENCES `usuarios` (`id_usu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `log_cambio`
+--
+ALTER TABLE `log_cambio`
+  ADD CONSTRAINT `fk_usu_cambio` FOREIGN KEY (`usu_cambio`) REFERENCES `usuarios` (`id_usu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `mov_documento`
 --
 ALTER TABLE `mov_documento`
   ADD CONSTRAINT `fk_doc_mov` FOREIGN KEY (`id_doc_mov`) REFERENCES `documento` (`id_doc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_formapago_mov` FOREIGN KEY (`cod_formapago_mov`) REFERENCES `forma_pago` (`id_formapago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_usu_mov` FOREIGN KEY (`usu_reg_mov`) REFERENCES `usuarios` (`id_usu`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
