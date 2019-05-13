@@ -1,7 +1,7 @@
 //INSTANCIAS DE DATATABLE
 
 $(document).ready(function () {
-    $('#dtBasicExample').DataTable({
+    $('#dtBasicExample1').DataTable({
       "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
       }
@@ -60,7 +60,7 @@ $(document).ready(function () {
   });
 
 
-  //Buscar Usuario
+  //BUSCAR USUARIO
   function mod(usu) {
     
     $.ajax({
@@ -70,19 +70,19 @@ $(document).ready(function () {
      dataType:'json',
      success:function(result){
        console.log(result);
-       $('#nombre').val(result[0].nom_usu);
-       $('#apellidop').val(result[0].apepat_usu);
-       $('#apellidom').val(result[0].apemat_usu);
-       $('#rut').val(result[0].rut_usu);
-       $('#mail').val(result[0].mail_usu);
-       $('#nick').val(result[0].nick_usu);
-       $("#perfil").val(result[0].id_perfil);
-       $("#cargo").val(result[0].cargo_usu);
+       $('#mod_nombre').val(result[0].nom_usu);
+       $('#mod_apellidop').val(result[0].apepat_usu);
+       $('#mod_apellidom').val(result[0].apemat_usu);
+       $('#mod_rut').val(result[0].rut_usu);
+       $('#mod_mail').val(result[0].mail_usu);
+       $('#mod_nick').val(result[0].nick_usu);
+       $("#mod_perfil").val(result[0].id_perfil);
+       $("#mod_cargo").val(result[0].cargo_usu);
 
        if ((result[0].vig_usu)=="VIGENTE") {  
-         $('#vig').prop('checked', true);
+         $('#mod_vig').prop('checked', true);
              }else  {
-               $('#vig').prop('checked', false);
+               $('#mod_vig').prop('checked', false);
              }
 
  }
