@@ -35,6 +35,7 @@
 
                 
                 <li class="nav-item "><a class="nav-link" href="usuarios.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Usuarios</a></li> 
+                <li class="nav-item "><a class="nav-link" href="empresas.php"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Empresas</a></li>
               </ul>
             </div>
       </nav> 

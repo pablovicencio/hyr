@@ -2,8 +2,8 @@
 require_once '../recursos/db/db.php';
 
 /*/////////////////////////////
-Clase Usuario
-////////////////////////////*/
+/////////Clase Usuario/////////
+/////////////////////////////*/
 
 class UsuarioDAO    
 {
@@ -54,10 +54,9 @@ class UsuarioDAO
     public function getUsu() {
     return $this->id_usu;
     }
-
     /*///////////////////////////////////////
-    Login 
-    //////////////////////////////////////*/
+    /////////////////Login //////////////////
+    ///////////////////////////////////////*/
     public function login(){
 
         try{
@@ -108,8 +107,8 @@ class UsuarioDAO
 
 
     /*///////////////////////////////////////
-    Crear Usuario
-    //////////////////////////////////////*/
+    /////////////Crear Usuario///////////////
+    ///////////////////////////////////////*/
     public function crear_usuario() {
 
 
@@ -117,7 +116,18 @@ class UsuarioDAO
              
                 $pdo = AccesoDB::getCon();
 
-                 $sql_crear_usu = " INSERT INTO `usuarios`(`nom_usu`,`apepat_usu`,`apemat_usu`,`rut_usu`,`mail_usu`,`id_perfil`,`fec_cre_usu`,`cargo_usu`,`pass_usu`,`vig_usu`,`nick_usu`)
+                 $sql_crear_usu = " INSERT INTO `usuarios`(`nom_usu`,
+                                                            `apepat_usu`,
+                                                            `apemat_usu`,
+                                                            `rut_usu`,
+                                                            `mail_usu`,
+                                                            `id_perfil`,
+                                                            `fec_cre_usu`,
+                                                            `cargo_usu`,
+                                                            `pass_usu`,
+                                                            `vig_usu`,
+                                                            `nick_usu`)
+
                  VALUES(:nombre,:ape_pat,:ape_mat,:rut,:mail,:perfil,CURDATE(),:cargo,:pass,:vigencia,:nick)";
 
 
@@ -143,8 +153,8 @@ class UsuarioDAO
 
 
     /*///////////////////////////////////////
-    Modificar Usuario
-    //////////////////////////////////////*/
+    //////////Modificar Usuario//////////////
+    ///////////////////////////////////////*/
     public function modificar_usuario() {
 
 
@@ -183,8 +193,8 @@ class UsuarioDAO
     }
 
     /*///////////////////////////////////////
-    Actualizar Contraseña 
-    //////////////////////////////////////*/
+    //////////Actualizar Contraseña /////////
+    ///////////////////////////////////////*/
     public static function actualizar_contraseña($id,$pwd){
 
         try{
