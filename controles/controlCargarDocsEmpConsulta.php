@@ -22,7 +22,7 @@
 		var_dump($emp);
 
 		if ($emp > 0) {
-			$re = $fun->cargar_docs_emp($emp,1);
+			$re = $fun->cargar_docs_emp($emp,2);
 		 
 
 

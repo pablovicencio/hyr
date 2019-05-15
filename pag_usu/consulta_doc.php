@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>HYR - Ingreso de Pago</title>
+<title>HYR - Consulta Documento</title>
 
 <?php
   include("../includes/recursosExternos.php");
@@ -26,7 +26,7 @@
 <div class="container" id="main">
     <div class="row">
         <div class="col-12">
-        <h3>Ingreso de Pago  <i class="fa fa-money" aria-hidden="true"></i></h3>
+        <h3>Consulta de Documento  <i class="fa fa-search" aria-hidden="true"></i></h3>
         </div>
     </div>
     <hr>
@@ -36,7 +36,7 @@
     </div>
 
                         
-    <form id="formEmpPago" name="formEmpPago">
+    <form id="formEmpConsulta" name="formEmpConsulta">
     <div class="row" >
 
                         <div class="col-4">
@@ -51,7 +51,7 @@
                               <button class="btn btn-outline-success" id="val_emp" type="submit">
                             <i class="fa fa-check-square"></i>
                           </button>
-                          <button class="btn btn-outline-warning" id="atras_emp_pago">
+                          <button class="btn btn-outline-warning" id="atras_emp_consulta">
                             <i class="fa fa-arrow-circle-left"></i>
                           </button>
                                       
@@ -66,7 +66,7 @@
       </div>
       </form>
 <hr>
-                    <div  id="form_pago">
+                    <div  id="form_consulta">
                         </div>
                          <div class="row" id="div_tabla_doc" name="div_tabla_doc">
                             <div class="col-12">

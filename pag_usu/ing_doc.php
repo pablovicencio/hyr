@@ -5,6 +5,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--Quitar al pasar a prod, no guarda cache-->
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+
 
 <title>HYR - Ingreso de Documento</title>
 
@@ -34,24 +40,43 @@
     <div id="loading" style="display: none;">
         <center><img src="../recursos/img/load.gif"></center>
     </div>
-     <div  id="form">
+    <form id="formEmpDoc" name="formEmpDoc">
+    <div class="row" >
+
+                        <div class="col-4">
+                              <div class="form-group" >
+                                <label for="rut_emp">Rut Empresa:</label>
+                                <input type="text" class="form-control" id="rut_emp" name="rut_emp" placeholder="Ingrese Rut: '12345678-9'" pattern="\d{3,8}-[\d|kK]{1}" required>
+                              </div>
+                                      
+                        </div>
+                         <div class="col-2">
+                          <br>
+                              <button class="btn btn-outline-success" id="val_emp" type="submit">
+                            <i class="fa fa-check-square"></i>
+                          </button>
+                          <button class="btn btn-outline-warning" id="atras_emp_doc">
+                            <i class="fa fa-arrow-circle-left"></i>
+                          </button>
+                                      
+                        </div>
+                        <div class="col-6">
+                              <div class="form-group" >
+                                <label for="nom_emp">Nombre Empresa:</label>
+                                <input type="text" class="form-control" id="nom_emp" name="nom_emp" required readonly>
+                              </div>
+                                      
+                        </div>
+      </div>
+      </form>
+<hr>
+
+     <div  id="form_doc">
      <form id="formIngDoc" name="formIngDoc" onsubmit="return false;">
                         <div class="col-12">
-                            <label for="emp">Empresa:</label>
-                                        <select class="form-control chosen" id="emp" name="emp" onchange="montoEmp(this.value);">
-                                        <option value="" selected disabled>Seleccione Empresa</option>
-                                           <?php 
-                                            $re = $fun->cargar_empresas(1);   
-                                            foreach($re as $row)      
-                                                {
-                                                  ?>
-                                                  
-                                                   <option value="<?php echo $row['id_emp'] ?>"><?php echo $row['razon_social_emp'] ?></option>
-                                                      
-                                                  <?php
-                                                }    
-                                            ?>  
-                            </select><hr>
+
+                          <input type="hidden" class="form-control" id="emp" name="emp" min="0" required readonly>
+                            
                         </div>
                          <div class="row" >
 
