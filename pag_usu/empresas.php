@@ -64,7 +64,9 @@
   </div>
   <div class="tab-pane fade" id="modifica" role="tabpanel" aria-labelledby="modifica-tab">
   <!-- CONTENIDO 3 -->    
-        <h3>CONTENIDO FALTANTE</h3>
+        <?php
+          include("mod_emp.php");
+        ?>    
   </div>
 </div>
 

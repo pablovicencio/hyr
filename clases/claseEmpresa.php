@@ -25,6 +25,7 @@ class EmpresaDAO
     private $evaluacion_emp;
     private $vig_emp;
     private $fec_cre_emp;
+    private $usu_cre_emp;
     private $clave_previred_emp;
     private $clave_sii_emp;
     private $fac_rea_emp;
@@ -52,6 +53,7 @@ class EmpresaDAO
                                 $evaluacion_emp=null,
                                 $vig_emp=null,
                                 $fec_cre_emp=null,
+                                $usu_cre_emp=null,
                                 $clave_previred_emp=null,
                                 $clave_sii_emp=null,
                                 $fac_rea_emp=null,
@@ -76,6 +78,7 @@ class EmpresaDAO
     $this->evaluacion_emp      = $evaluacion_emp;
     $this->vig_emp             = $vig_emp;
     $this->fec_cre_emp         = $fec_cre_emp;
+    $this->usu_cre_emp         = $usu_cre_emp;
     $this->clave_previred_emp  = $clave_previred_emp;
     $this->clave_sii_emp       = $clave_sii_emp;
     $this->fac_rea_emp         = $fac_rea_emp;
@@ -90,14 +93,15 @@ class EmpresaDAO
     /*///////////////////////////////////////
     //////////////Crear Empresa//////////////
     ///////////////////////////////////////*/
-    public function crear_usuario() {
+    public function crear_empresa() {
 
 
         try{
              
                 $pdo = AccesoDB::getCon();
 
-                $sql_crear_emp = "INSERT INTO `empresa` (`razon_social_emp`,
+                $sql_crear_emp = "INSERT INTO `empresa` (`id_emp`, 
+                                                        `razon_social_emp`,
                                                         `rut_emp`,
                                                         `cons_soc_emp`,
                                                         `monto_mensual_emp`,
@@ -119,30 +123,14 @@ class EmpresaDAO
                                                         `fac_rea_emp`,
                                                         `rta_at_emp`)
 
-                                                VALUES (:razon_social_emp,
-                                                        :rut_emp,
-                                                        :cons_soc_emp,
-                                                        :monto_mensual_emp,
-                                                        :monto_renta_emp,
-                                                        :ciudad_emp,
-                                                        :comuna_emp,
-                                                        :dir_emp,
-                                                        :reg_trib_emp,
-                                                        :fec_ini_act_emp,
-                                                        :mail_emp,
-                                                        :nom_contacto_emp,
-                                                        :patente_comer_emp,
-                                                        :evaluacion_emp,
-                                                        :vig_emp,
-                                                        :CURDATE(),
-                                                        :usu_cre_emp,
-                                                        :clave_previred_emp,
-                                                        :clave_sii_emp,
-                                                        :fac_rea_emp,
-                                                        :rta_at_emp)";
+                                                VALUES (
+                    NULL , :razon_social_emp, :rut_emp, :cons_soc_emp, :monto_mensual_emp,:monto_renta_emp,
+                    :ciudad_emp, :comuna_emp, :dir_emp, :reg_trib_emp, :fec_ini_act_emp, :mail_emp,
+                    :nom_contacto_emp,:patente_comer_emp, :evaluacion_emp, :vig_emp,CURDATE(),:usu_cre_emp, :clave_previred_emp, :clave_sii_emp,
+                    :fac_rea_emp, :rta_at_emp)";
 
                 $stmt = $pdo->prepare($sql_crear_emp);
-                
+             /*   
         /*N°1*/ $stmt->bindParam(":razon_social_emp",$this->razon_social_emp, PDO::PARAM_STR);
         /*N°2*/ $stmt->bindParam(":rut_emp",$this->rut_emp, PDO::PARAM_STR);
         /*N°3*/ $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_INT);

@@ -220,7 +220,6 @@ class Funciones
                         from empresa,usuarios as u
                         where vig_emp = 1 and empresa.usu_cre_emp = u.id_usu";
                     }
-                        
 
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
@@ -233,6 +232,7 @@ class Funciones
             //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
+    
     /*////////////////////////////////////////////
     ///////////// CARGAR USUARIOS ////////////////
     ////////////////////////////////////////////*/ 
@@ -331,7 +331,7 @@ class Funciones
             if($opc == 1){
                 $sql = "SELECT rut_usu FROM usuarios where rut_usu = :rut";
             } else if($opc == 2){
-               //opciones adicionales
+               $sql = "SELECT rut_emp FROM empresa where rut_emp = :rut";
             } else if($opc == 3){
                //opciones adicionales
             }

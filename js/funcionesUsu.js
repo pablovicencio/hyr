@@ -85,7 +85,7 @@ $(document).ready(function () {
                $('#mod_vig').prop('checked', false);
              }
 
- }
+    }
  })
 }
 
