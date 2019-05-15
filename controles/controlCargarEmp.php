@@ -14,14 +14,13 @@
 
 	try{
 
-		$emp = stripcslashes ($_POST['emp']);
+		$emp = stripcslashes ($_POST['rut_emp']);
 
 		 $fun = new Funciones();
 		 $re = $fun->cargar_datos_emp($emp,2);
 		 
-
-
-          $datos = array();
+		 if (!empty($re)) {
+		 	          $datos = array();
 
 
           foreach($re as $row){
@@ -32,6 +31,9 @@
 		ob_end_clean();
 		
 		echo json_encode($datos);
+		 }
+
+
 	
 	} catch (Exception $e) {
 		//echo($e);

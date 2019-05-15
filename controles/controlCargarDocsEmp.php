@@ -14,10 +14,15 @@
 
 	try{
 
-		$emp = stripcslashes ($_POST['emp']);
+		$fun = new Funciones();
 
-		 $fun = new Funciones();
-		 $re = $fun->cargar_docs_emp($emp,1);
+		$rut_emp = stripcslashes ($_POST['rut_emp']);
+
+		$emp = $fun->cargar_id_emp($rut_emp);
+		var_dump($emp);
+
+		if ($emp > 0) {
+			$re = $fun->cargar_docs_emp($emp,1);
 		 
 
 
@@ -28,10 +33,16 @@
 
                echo $datos[] = $row;
     
-              }
-		ob_end_clean();
+               }
+		 ob_end_clean();
 		
-		echo json_encode($datos);
+		 echo json_encode($datos);
+		}else{
+			echo 0;
+		}
+
+		 
+		 
 	
 	} catch (Exception $e) {
 		//echo($e);

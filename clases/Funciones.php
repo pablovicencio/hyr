@@ -22,6 +22,34 @@ require_once '../recursos/db/db.php';
 class Funciones 
 {
 
+    /*///////////////////////////////////////
+    Cargar id empresa
+    //////////////////////////////////////*/
+    public function cargar_id_emp($rut_emp){
+
+         try{
+            
+            
+            $pdo = AccesoDB::getCon();
+                    
+            
+                 $sql = "select id_emp from empresa where rut_emp = :rut_emp";
+            
+                   
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":rut_emp", $rut_emp, PDO::PARAM_STR);
+            $stmt->execute();
+            $response = $stmt->fetchColumn();
+            return $response;
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+        }
+    }
+
+
+
+
    /*///////////////////////////////////////
     Cargar datos Documento pendiente
     //////////////////////////////////////*/
@@ -33,11 +61,10 @@ class Funciones
             $pdo = AccesoDB::getCon();
                     
             
-                 $sql = "select desc_item est, sum(c.monto_mov) suma
-                            from tab_param a, documento b, mov_documento c
+                 $sql = "select desc_item est, ifnull(sum(c.monto_mov),0) suma
+                            from tab_param a, documento b left join mov_documento c on c.id_doc_mov = b.id_doc
                             where a.cod_grupo = 2
                             and a.cod_item = b.est_doc
-                            and c.id_doc_mov = b.id_doc
                             and b.id_doc = :id_doc";
             
                    
@@ -146,7 +173,7 @@ class Funciones
     /*///////////////////////////////////////
     Cargar datos de Empresa
     //////////////////////////////////////*/
-    public function cargar_datos_emp($id_emp,$sel){
+    public function cargar_datos_emp($rut_emp,$sel){
 
          try{
             
@@ -157,12 +184,12 @@ class Funciones
                  $sql = "";
             }else if ($sel == 2) {
                 $sql = "select *                
-                from empresa where id_emp = :id_emp";
+                from empresa where rut_emp = :rut_emp";
             }  
                    
             
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(":id_emp", $id_emp, PDO::PARAM_INT);
+            $stmt->bindParam(":rut_emp", $rut_emp, PDO::PARAM_INT);
             $stmt->execute();
             $response = $stmt->fetchAll();
             return $response;
