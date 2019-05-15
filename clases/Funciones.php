@@ -116,17 +116,29 @@ class Funciones
                  $sql = "select *                
                 from documento where emp_doc = :id_emp and est_doc in (1,2)";
             }else if ($sel == 2 and $id_emp <> 0) {
-                $sql = "";
+                $sql = "select a.id_doc,b.razon_social_emp, a.nro_doc, b.razon_social_emp, c.desc_item est, a.monto_afecto_doc, a.monto_exento_doc, a.monto_iva_doc,
+                    a.monto_total_doc, a.fec_emi_doc, a.fec_ven_doc,d.desc_item tipo_doc, a.obs_doc,
+                    (select sum(d.monto_mov) from mov_documento d where a.id_doc = d.id_doc_mov) suma,a.est_doc
+                    from documento a, empresa b,tab_param c, tab_param d
+                    where
+                    a.emp_doc = b.id_emp
+                    and c.cod_grupo = 2
+                    and c.cod_item = a.est_doc
+                    and d.cod_grupo = 1
+                    and d.cod_item = a.tipo_doc
+                    and emp_doc = :id_emp";
             }else if ($sel == 1 and $id_emp == 0) {
                 $sql = "select a.id_doc, a.nro_doc, b.razon_social_emp, c.desc_item est, a.monto_afecto_doc, a.monto_exento_doc, a.monto_iva_doc,
-                    a.monto_total_doc, a.fec_emi_doc, a.fec_ven_doc,a.tipo_doc, a.obs_doc,
+                    a.monto_total_doc, a.fec_emi_doc, a.fec_ven_doc,d.desc_item tipo_doc, a.obs_doc,
                     (select sum(d.monto_mov) from mov_documento d where a.id_doc = d.id_doc_mov) suma
-                    from documento a, empresa b,tab_param c
+                    from documento a, empresa b,tab_param c , tab_param d
                     where
                     a.emp_doc = b.id_emp
                     and a.est_doc in (1,2)
                     and c.cod_grupo = 2
                     and c.cod_item = a.est_doc
+                    and d.cod_grupo = 1
+                    and d.cod_item = a.tipo_doc
                     and a.fec_ven_doc <= sysdate()
                     ";
             }   

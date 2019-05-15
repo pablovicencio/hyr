@@ -1,10 +1,93 @@
-//////////funcion atras ingreso doc
+
+
+
+
+//////////funcion atras consulta doc
+$(document).on("click", "#atras_emp_consulta", function () {
+  $('#formEmpConsulta').trigger("reset");   
+  $('#modal_pago').find('input').val('');
+  $('#modal_pago').modal('hide');
+  $('#div_tabla_doc').css("display","none");
+  $('#forma_consulta').prop('selectedIndex',0);
+  $('#tabla_docs tbody').empty();
+  $('#obs_pago').val('');
+  $('#rut_emp').prop('readonly', false);
+  $('#val_emp').css("display","block");
+  $('#atras_emp_consulta').css("display","none");
+
+  
+});
+
+/////////funcion cargar documentos empresa consulta
+$(document).ready(function() {
+  $("#formEmpConsulta").submit(function() { 
+
+    $.ajax({
+      url: '../controles/controlCargarEmp.php',
+      type: 'POST',
+      data:$("#formEmpConsulta").serialize(),
+      dataType:'json',
+      success:function(result){
+        $('#nom_emp').val(result[0].razon_social_emp);
+  },
+  error: function(){
+              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+      }
+    });
+
+
+      
+       $.ajax({
+      url: '../controles/controlCargarDocsEmpConsulta.php',
+      type: 'POST',
+      data:$("#formEmpConsulta").serialize(),
+      dataType:'json',
+      success:function(result){
+        var filas = Object.keys(result).length;
+     
+        for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
+          var nuevafila= "<tr><td style='display:none;'>" +
+          result[i].id_doc + "</td><td>" +
+          result[i].nro_doc + "</td><td>" +
+          result[i].est + "</td><td>" +
+          result[i].monto_afecto_doc + "</td><td>" +
+          result[i].monto_exento_doc + "</td><td>" +
+          result[i].monto_iva_doc + "</td><td>" +
+          result[i].monto_total_doc + "</td><td>" +
+          result[i].fec_emi_doc + "</td><td>" +
+          result[i].fec_ven_doc + "</td><td>" +
+          result[i].tipo_doc+"</td><td>"+
+          result[i].obs_doc + "</td><td>"
+          if (result[i].est_doc == 1) {
+            +'<a  class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Modificar</a>'
+          }
+          +'</td></tr>'
+            console.log(result[i].est_doc);
+     
+          $("#tabla_docs").append(nuevafila);
+
+        }
+        $("#div_tabla_doc").css("display","block");
+        $('#rut_emp').prop('readonly', true);
+        $('#val_emp').css("display","none");
+        $('#atras_emp_consulta').css("display","block");
+  },
+  error: function(){
+              swal("Error1", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+      }
+    });
+    return false;
+  });
+});
+
+
+//////////funcion atras ingreso pago
 $(document).on("click", "#atras_emp_pago", function () {
   $('#formEmpPago').trigger("reset");   
   $('#modal_pago').find('input').val('');
   $('#modal_pago').modal('hide');
   $('#div_tabla_doc').css("display","none");
-  $('#formapago').prop('selectedIndex',0);
+  $('#forma_pago').prop('selectedIndex',0);
   $('#tabla_docs tbody').empty();
   $('#obs_pago').val('');
   $('#rut_emp').prop('readonly', false);
@@ -16,7 +99,7 @@ $(document).on("click", "#atras_emp_pago", function () {
 
 
 
-//////////funcion cargar documentos empresa
+//////////funcion cargar documentos empresa pago
 $(document).ready(function() {
   $("#formEmpPago").submit(function() { 
 
@@ -80,7 +163,7 @@ $(document).ready(function() {
 //////////funcion atras ingreso doc
 $(document).on("click", "#atras_emp_doc", function () {
      
-  $('#formEmpDoc').trigger("reset");
+  $('#formEmpPagoDoc').trigger("reset");
   $('#formIngDoc').trigger("reset");
   $('#form_doc').css("display","none");
   $('#rut_emp').prop('readonly', false);
@@ -93,12 +176,12 @@ $(document).on("click", "#atras_emp_doc", function () {
 
 //////////funcion cargar empresa
 $(document).ready(function() {
-  $("#formEmpDoc").submit(function() { 
+  $("#formEmpPagoDoc").submit(function() { 
       
        $.ajax({
       url: '../controles/controlCargarEmp.php',
       type: 'POST',
-      data:$("#formEmpDoc").serialize(),
+      data:$("#formEmpPagoDoc").serialize(),
       dataType:'json',
       success:function(result){
         $('#nom_emp').val(result[0].razon_social_emp);
@@ -142,7 +225,7 @@ $(document).ready(function() {
                     $('#modal_pago').modal('hide');
                     $('#div_tabla_doc').css("display","none");
                     $('#formEmpPago').trigger("reset");
-                    $('#formapago').prop('selectedIndex',0);
+                    $('#forma_pago').prop('selectedIndex',0);
                     $('#tabla_docs tbody').empty();
                     $('#obs_pago').val('');
                     $('#rut_emp').prop('readonly', false);
@@ -238,7 +321,7 @@ $(document).ready(function() {
                     break;
                 default :
                     swal("Documento Ingresado", msg, "success");
-                    $('#formEmpDoc').trigger("reset");
+                    $('#formEmpPagoDoc').trigger("reset");
                     $('#formIngDoc').trigger("reset");
                     $('#form_doc').css("display","none");
                     $('#rut_emp').prop('readonly', false);
