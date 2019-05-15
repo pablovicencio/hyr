@@ -17,17 +17,17 @@ session_start();
 	try{
 
 		$usu = $_POST['usu'];
-		$nom = $_POST['nombre'];
-		$apep = $_POST['apellidop'];
-		$apem = $_POST['apellidom'];
- 		$mail = $_POST['mail'];
- 		$perfil = $_POST['perfil'];
- 		$cargo = $_POST['cargo'];
+		$nom = $_POST['mod_nombre'];
+		$apep = $_POST['mod_apellidop'];
+		$apem = $_POST['mod_apellidom'];
+ 		$mail = $_POST['mod_mail'];
+ 		$perfil = $_POST['mod_perfil'];
+ 		$cargo = $_POST['mod_cargo'];
  		//$nick = $_POST['nick'];
 		
 
 
-		if (isset($_POST['vig'])) {
+		if (isset($_POST['mod_vig'])) {
 			$vig = 1;
 		}else{
 			$vig = 0;

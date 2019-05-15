@@ -10,7 +10,7 @@
               <ul class="navbar-nav" >
                 <li class="nav-item "><a class="nav-link" href="inicio.php"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Inicio </a></li> 
                 <li class="nav-item "><a class="nav-link" href="#"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Mis Datos
-</a></li> 
+                </a></li> 
                 <!-- Dropdown -->
                 <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-handshake-o" aria-hidden="true"></i>&nbsp;Clientes</a>
@@ -33,20 +33,9 @@
                       </div>
                     </li>
 
-                <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                      
-                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;Usuarios</a>
-                      
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="cargar_usu.php">Ver &nbsp;<i class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a class="dropdown-item" href="crear_usu.php">Agregar &nbsp;<i class="fa fa-user-plus" aria-hidden="true"></i></a>
-                        <a class="dropdown-item" href="mod_usu.php">Modificar &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                      </div>
-                    </li>
                 
-                 
-   
+                <li class="nav-item "><a class="nav-link" href="usuarios.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Usuarios</a></li> 
+                <li class="nav-item "><a class="nav-link" href="empresas.php"><i class="fa fa-building" aria-hidden="true"></i>&nbsp;Empresas</a></li>
               </ul>
             </div>
       </nav> 

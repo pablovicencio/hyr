@@ -229,7 +229,7 @@ class Funciones
     /*///////////////////////////////////////
     Cargar lista despegable de empresas
     //////////////////////////////////////*/
-    public function cargar_empresas($vig){
+    public function cargar_empresas($opcion){
 
         try{
             
@@ -238,13 +238,15 @@ class Funciones
 
 
     
-                    if ($vig == 0) {
-                            $sql = "select id_emp, razon_social_emp
-                                    from empresa order by 2";
-                        }else if ($vig == 1){
-                            $sql = "select id_emp, razon_social_emp
-                                    from empresa where vig_emp = 1 order by 2";
-                        }
+                    if ($opcion == 0) {
+                        $sql = "select id_emp, razon_social_emp from empresa order by 2";
+                    }else if ($opcion == 1){
+                        $sql = "select id_emp, razon_social_emp from empresa where vig_emp = 1 order by 2";
+                    }else if($opcion == 2 ){
+                        $sql = "select id_emp,razon_social_emp,rut_emp,ciudad_emp,comuna_emp,dir_emp,mail_emp,fec_cre_emp,u.nick_usu
+                        from empresa,usuarios as u
+                        where vig_emp = 1 and empresa.usu_cre_emp = u.id_usu";
+                    }
                         
 
             $stmt = $pdo->prepare($sql);
@@ -270,15 +272,15 @@ class Funciones
             {
                 $sql = "select u.id_usu,u.nom_usu,u.apepat_usu,u.apemat_usu,u.rut_usu,u.mail_usu,a.desc_item as id_perfil,u.fec_cre_usu,b.desc_item as cargo_usu,if(u.vig_usu = 1, 'VIGENTE','NO VIGENTE') as vig_usu,u.nick_usu
                 from usuarios u, tab_param a, tab_param b
-                where u.id_perfil = a.cod_item and a.cod_grupo = 2 and a.vig_item = 1
-                and u.cargo_usu =  b.cod_item and b.cod_grupo = 3 and b.vig_item = 1 ";
+                where u.id_perfil = a.cod_item and a.cod_grupo = 3 and a.vig_item = 1
+                and u.cargo_usu =  b.cod_item and b.cod_grupo = 4 and b.vig_item = 1 ";
             }
             else if($opc == 2)
             {
                 $sql = "select u.id_usu,u.nom_usu,u.apepat_usu,u.apemat_usu,u.rut_usu,u.mail_usu,u.id_perfil,u.fec_cre_usu,u.cargo_usu,if(u.vig_usu = 1, 'VIGENTE','NO VIGENTE') as vig_usu,u.nick_usu
                 from usuarios u, tab_param a, tab_param b
-                where u.id_perfil = a.cod_item and a.cod_grupo = 2 and a.vig_item = 1
-                and u.cargo_usu =  b.cod_item and b.cod_grupo = 3 and b.vig_item = 1 and u.id_usu = :id_usu";
+                where u.id_perfil = a.cod_item and a.cod_grupo = 3 and a.vig_item = 1
+                and u.cargo_usu =  b.cod_item and b.cod_grupo = 4 and b.vig_item = 1 and u.id_usu = :id_usu";
             }
 
 

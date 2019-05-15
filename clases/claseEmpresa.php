@@ -2,13 +2,15 @@
 require_once '../recursos/db/db.php';
 
 /*/////////////////////////////
-Clase Empresa
-////////////////////////////*/
+/////////Clase Empresa/////////
+/////////////////////////////*/
 
 class EmpresaDAO    
 {
+    //21 campos 
     private $id_emp;
     private $razon_social_emp;
+    private $rut_emp;
     private $cons_soc_emp;
     private $monto_mensual_emp;
     private $monto_renta_emp;
@@ -35,6 +37,7 @@ class EmpresaDAO
 
     public function __construct($id_emp=null,
                                 $razon_social_emp=null,
+                                $rut_emp=null,
                                 $cons_soc_emp=null,
                                 $monto_mensual_emp=null,
                                 $monto_renta_emp=null,
@@ -56,8 +59,9 @@ class EmpresaDAO
                                 {
 
 
-    $this->id_emp               = $id_emp;
+    $this->id_emp              = $id_emp;
     $this->razon_social_emp    = $razon_social_emp;
+    $this->rut_emp             = $rut_emp;
     $this->cons_soc_emp        = $cons_soc_emp;
     $this->monto_mensual_emp   = $monto_mensual_emp;
     $this->monto_renta_emp     = $monto_renta_emp;
@@ -80,10 +84,93 @@ class EmpresaDAO
     }
 
     public function getEmp() {
-    return $this->id_emp;
+        return $this->id_emp;
     }
 
+    /*///////////////////////////////////////
+    //////////////Crear Empresa//////////////
+    ///////////////////////////////////////*/
+    public function crear_usuario() {
 
+
+        try{
+             
+                $pdo = AccesoDB::getCon();
+
+                $sql_crear_emp = "INSERT INTO `empresa` (`razon_social_emp`,
+                                                        `rut_emp`,
+                                                        `cons_soc_emp`,
+                                                        `monto_mensual_emp`,
+                                                        `monto_renta_emp`,
+                                                        `ciudad_emp`,
+                                                        `comuna_emp`,
+                                                        `dir_emp`,
+                                                        `reg_trib_emp`,
+                                                        `fec_ini_act_emp`,
+                                                        `mail_emp`,
+                                                        `nom_contacto_emp`,
+                                                        `patente_comer_emp`,
+                                                        `evaluacion_emp`,
+                                                        `vig_emp`,
+                                                        `fec_cre_emp`,
+                                                        `usu_cre_emp`,
+                                                        `clave_previred_emp`,
+                                                        `clave_sii_emp`,
+                                                        `fac_rea_emp`,
+                                                        `rta_at_emp`)
+
+                                                VALUES (:razon_social_emp,
+                                                        :rut_emp,
+                                                        :cons_soc_emp,
+                                                        :monto_mensual_emp,
+                                                        :monto_renta_emp,
+                                                        :ciudad_emp,
+                                                        :comuna_emp,
+                                                        :dir_emp,
+                                                        :reg_trib_emp,
+                                                        :fec_ini_act_emp,
+                                                        :mail_emp,
+                                                        :nom_contacto_emp,
+                                                        :patente_comer_emp,
+                                                        :evaluacion_emp,
+                                                        :vig_emp,
+                                                        :CURDATE(),
+                                                        :usu_cre_emp,
+                                                        :clave_previred_emp,
+                                                        :clave_sii_emp,
+                                                        :fac_rea_emp,
+                                                        :rta_at_emp)";
+
+                $stmt = $pdo->prepare($sql_crear_emp);
+                
+        /*N°1*/ $stmt->bindParam(":razon_social_emp",$this->razon_social_emp, PDO::PARAM_STR);
+        /*N°2*/ $stmt->bindParam(":rut_emp",$this->rut_emp, PDO::PARAM_STR);
+        /*N°3*/ $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_INT);
+        /*N°4*/ $stmt->bindParam(":monto_mensual_emp",$this->monto_mensual_emp, PDO::PARAM_INT);
+        /*N°5*/ $stmt->bindParam(":monto_renta_emp",$this->monto_renta_emp, PDO::PARAM_INT);
+        /*N°6*/ $stmt->bindParam(":ciudad_emp",$this->ciudad_emp, PDO::PARAM_INT);
+        /*N°7*/ $stmt->bindParam(":comuna_emp",$this->comuna_emp, PDO::PARAM_INT);
+        /*N°8*/ $stmt->bindParam(":dir_emp",$this->dir_emp, PDO::PARAM_STR);
+        /*N°9*/ $stmt->bindParam(":reg_trib_emp",$this->reg_trib_emp, PDO::PARAM_INT);
+        /*N°10*/$stmt->bindParam(":fec_ini_act_emp",$this->fec_ini_act_emp, PDO::PARAM_STR);
+        /*N°11*/$stmt->bindParam(":mail_emp",$this->mail_emp , PDO::PARAM_STR);
+        /*N°12*/$stmt->bindParam(":nom_contacto_emp",$this->nom_contacto_emp , PDO::PARAM_STR);
+        /*N°13*/$stmt->bindParam(":patente_comer_emp",$this->patente_comer_emp , PDO::PARAM_INT);
+        /*N°14*/$stmt->bindParam(":evaluacion_emp",$this->evaluacion_emp , PDO::PARAM_INT);
+        /*N°15*/$stmt->bindParam(":vig_emp",$this->vig_emp , PDO::PARAM_INT);
+        /*N°16$stmt->bindParam(":fec_cre_emp",$this->fec_cre_emp , PDO::PARAM_STR);*/
+        /*N°17*/$stmt->bindParam(":usu_cre_emp",$this->usu_cre_emp , PDO::PARAM_INT);
+        /*N°18*/$stmt->bindParam(":clave_previred_emp",$this->clave_previred_emp , PDO::PARAM_STR);
+        /*N°19*/$stmt->bindParam(":clave_sii_emp",$this->clave_sii_emp , PDO::PARAM_STR);
+        /*N°20*/$stmt->bindParam(":fac_rea_emp",$this->fac_rea_emp , PDO::PARAM_INT);
+        /*N°21*/$stmt->bindParam(":rta_at_emp",$this->rta_at_emp, PDO::PARAM_INT);
+                $stmt->execute();
+        
+
+            } catch (Exception $e) {
+                echo"1";
+            }
+    }
 
 
 
