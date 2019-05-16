@@ -90,6 +90,13 @@ $(document).ready(function() {
         $('#mrae').val(result[0].rta_at_emp);
         $('#mevem').val(result[0].evaluacion_emp);
         $('#mcem').val(result[0].nom_contacto_emp);
+        if((result[0].vig_emp)=="1") {  
+          $('#vigcheck').prop('checked', true);
+          $('#vigtext').prop('value',"Actualmente Vigente");
+        }else  {
+          $('#vigcheck').prop('checked', false);
+          $('#vigtext').prop('value',"No se Encuentra Vigente");
+        }
         
     }
  })

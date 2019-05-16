@@ -17,7 +17,7 @@
 		$emp = stripcslashes ($_POST['emp']);
 
 		 $fun = new Funciones();
-		 $re = $fun->cargar_datos_emp($emp,2);
+		 $re = $fun->cargar_datos_emp2($emp,2);
 		 
 
 

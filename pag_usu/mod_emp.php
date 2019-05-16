@@ -4,7 +4,7 @@
       <select class="form-control" id="emp" name="emp" style="width: 500px" onchange="mod(this.value)">
           <option value="" selected disabled>Seleccione Empresa</option>
                      <?php 
-                      $re = $fun->cargar_empresas(1);   
+                      $re = $fun->cargar_empresas(3);   
                       foreach($re as $row)      
                           {
                             ?>
@@ -46,7 +46,7 @@
 
               <div class="form-group">
                 <label for="mmail">Email:</label>
-                <input type="text" class="form-control" id="mmail" name="mmail" maxlength="20"  required>
+                <input type="text" class="form-control" id="mmail" name="mmail" maxlength="20" placeholder="email@dominio.cl" required>
               </div>
               
 
@@ -59,7 +59,7 @@
               <label for="mrut">Rut:</label>
               <div class="row">
                 <div class="col-12">
-                  <input type="text" class="form-control" id="mrut" name="mrut"  maxlength="10" placeholder="xxxxxxxx-x" required>
+                  <input type="text" class="form-control" id="mrut" name="mrut"  maxlength="10" placeholder="ej: 12345678-9" required>
                 </div>
               </div>
           </div>
@@ -70,7 +70,7 @@
 
           <div class="form-group">
              <label for="mdirec">Dirección:</label>
-             <input type="text" class="form-control" id="mdirec" name="mdirec" maxlength="150"  required>
+             <input type="text" class="form-control" id="mdirec" name="mdirec" maxlength="150" placeholder="Dirección" required>
           </div>
 
 
@@ -85,12 +85,12 @@
 
               <div class="form-group">
                 <label for="mciudad">Ciudad:</label>
-                <input type="text" class="form-control" id="mciudad" name="mciudad" maxlength="20"  required>
+                <input type="text" class="form-control" id="mciudad" name="mciudad" maxlength="20" placeholder="Ciudad" required>
               </div>
 
               <div class="form-group">
               <label for="mcomuna">Comuna:</label>
-              <input type="text" class="form-control" id="mcomuna" name="mcomuna" maxlength="20"  required>
+              <input type="text" class="form-control" id="mcomuna" name="mcomuna" maxlength="20" placeholder="Comuna" required>
               </div>
 
 
@@ -187,6 +187,18 @@
           </div>
         </div>
         </div> 
+
+        <label for="vigcheck"> Vigencia:</label>
+        <div class="input-group mb-3">
+          <br>
+        
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="checkbox" id="vigcheck" name="vigcheck" aria-label="Checkbox for following text input">
+            </div>
+          </div>
+          <input type="text" class="form-control" id="vigtext" name="vigtext" aria-label="Text input with checkbox" placeholder="Vigencia Actual de la Empresa">
+        </div>
 
          
 

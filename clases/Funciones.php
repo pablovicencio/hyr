@@ -5,25 +5,27 @@ require_once '../recursos/db/db.php';
 
 
 /* INDICE
-1°  cargar_pagos_doc
-2°  cargar_datos_doc
-3°  cargar_docs_emp
-4°  cargar_forma_pago
-5°  cargar_datos_emp
-6°  cargar_tipo_doc
-7°  cargar_empresas
-8°  cargar_usuarios
-9°  cargar_perfiles
-10° cargar_cargos
-11° validar_rut
-12° generaPass
+1°  cargar_id_emp
+2°  cargar_pagos_doc
+3°  cargar_datos_doc
+4°  cargar_docs_emp
+5°  cargar_forma_pago
+6°  cargar_datos_emp
+7°  cargar_datos_emp2
+8°  cargar_tipo_doc
+9°  cargar_empresas
+10°  cargar_usuarios
+11°  cargar_perfiles
+12° cargar_cargos
+13° validar_rut
+14° generaPass
 */
 
 class Funciones 
 {
 
     /*///////////////////////////////////////
-    Cargar id empresa
+    //////////Cargar id empresa/////////////
     //////////////////////////////////////*/
     public function cargar_id_emp($rut_emp){
 
@@ -46,10 +48,6 @@ class Funciones
             echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
         }
     }
-
-
-
-
    /*///////////////////////////////////////
     Cargar datos Documento pendiente
     //////////////////////////////////////*/
@@ -183,7 +181,7 @@ class Funciones
         }
     }
     /*///////////////////////////////////////
-    Cargar datos de Empresa
+    Cargar datos de Empresa por Rut
     //////////////////////////////////////*/
     public function cargar_datos_emp($rut_emp,$sel){
 
@@ -210,8 +208,35 @@ class Funciones
         }
     }
     /*///////////////////////////////////////
-    Cargar lista despegable de tipos de documentos
+    Cargar datos de Empresa por Id
     //////////////////////////////////////*/
+    public function cargar_datos_emp2($id,$sel){
+
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+                   
+           if ($sel == 1) {
+                $sql = "";
+           }else if ($sel == 2) {
+               $sql = "select *                
+               from empresa where id_emp = :id";
+           }  
+                  
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+       }
+   }
+    /*////////////////////////////////////////////
+    Cargar lista despegable de tipos de documentos
+    /////////////////////////////////////////////*/
     public function cargar_tipo_doc($vig){
 
         try{
@@ -258,6 +283,8 @@ class Funciones
                         $sql = "select id_emp,razon_social_emp,rut_emp,ciudad_emp,comuna_emp,dir_emp,mail_emp,fec_cre_emp,u.nick_usu
                         from empresa,usuarios as u
                         where vig_emp = 1 and empresa.usu_cre_emp = u.id_usu";
+                    }else if ($opcion == 3){
+                        $sql = "select id_emp, razon_social_emp from empresa";
                     }
 
             $stmt = $pdo->prepare($sql);
@@ -271,7 +298,6 @@ class Funciones
             //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
-    
     /*////////////////////////////////////////////
     ///////////// CARGAR USUARIOS ////////////////
     ////////////////////////////////////////////*/ 
@@ -411,13 +437,6 @@ class Funciones
         }
         return $pass;
     }
-
-
-
-
-
-
-
 
 }
 ?>

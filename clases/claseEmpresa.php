@@ -7,7 +7,7 @@ require_once '../recursos/db/db.php';
 
 class EmpresaDAO    
 {
-    //21 campos 
+    //22 campos 
     private $id_emp;
     private $razon_social_emp;
     private $rut_emp;
@@ -157,6 +157,65 @@ class EmpresaDAO
 
             } catch (Exception $e) {
                 echo"1";
+            }
+    }
+
+        /*///////////////////////////////////////
+    //////////Modificar Empresa//////////////
+    ///////////////////////////////////////*/
+    public function modificar_empresa() {
+
+
+        try{
+             
+                $pdo = AccesoDB::getCon();
+
+                $sql_mod_emp = "UPDATE `empresa`
+                                    SET
+                                    `vig_emp` = :vig_emp,
+                                    `nom_contacto_emp` = :nom_contacto_emp,
+                                    `mail_emp` = :mail_emp,
+                                    `dir_emp` = :dir_emp,
+                                    `ciudad_emp` = :ciudad_emp,
+                                    `comuna_emp` = :comuna_emp,
+                                    `monto_mensual_emp` = :monto_mensual_emp,
+                                    `monto_renta_emp` = :monto_renta_emp,
+                                    `cons_soc_emp` = :cons_soc_emp,
+                                    `reg_trib_emp` = :reg_trib_emp,
+                                    `patente_comer_emp` = :patente_comer_emp,
+                                    `evaluacion_emp` = :evaluacion_emp,
+                                    `rta_at_emp` = :rta_at_emp,
+                                    `clave_sii_emp` = :clave_sii_emp,
+                                    `clave_previred_emp` = :clave_previred_emp,
+                                    `fac_rea_emp` = :fac_rea_emp
+                                    WHERE `id_emp` = :id ";
+
+
+                $stmt = $pdo->prepare($sql_mod_emp);
+
+                $stmt->bindParam(":vig_emp",$this->vig_emp , PDO::PARAM_INT);  
+                $stmt->bindParam(":nom_contacto_emp",$this->nom_contacto_emp , PDO::PARAM_STR);
+                $stmt->bindParam(":mail_emp",$this->mail_emp , PDO::PARAM_STR);
+                $stmt->bindParam(":patente_comer_emp",$this->patente_comer_emp , PDO::PARAM_INT);
+                $stmt->bindParam(":evaluacion_emp",$this->evaluacion_emp , PDO::PARAM_INT);
+                $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":monto_mensual_emp",$this->monto_mensual_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":monto_renta_emp",$this->monto_renta_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":ciudad_emp",$this->ciudad_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":comuna_emp",$this->comuna_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":dir_emp",$this->dir_emp, PDO::PARAM_STR);
+                $stmt->bindParam(":reg_trib_emp",$this->reg_trib_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":clave_previred_emp",$this->clave_previred_emp , PDO::PARAM_STR);
+                $stmt->bindParam(":clave_sii_emp",$this->clave_sii_emp , PDO::PARAM_STR);
+                $stmt->bindParam(":fac_rea_emp",$this->fac_rea_emp , PDO::PARAM_INT);
+                $stmt->bindParam(":rta_at_emp",$this->rta_at_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":id", $this->id_emp, PDO::PARAM_INT);
+
+                $stmt->execute();
+        
+
+            } catch (Exception $e) {
+                echo"Error, comuniquese con el administrador".  $e->getMessage()."";
             }
     }
 

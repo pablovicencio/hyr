@@ -17,7 +17,6 @@
 
  	try{
 
-
         $vig = 1;
         $rsocial = $_POST['rsocial'];
         $cem = $_POST['cem'];
