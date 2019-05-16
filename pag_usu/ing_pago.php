@@ -12,7 +12,7 @@
   include("../includes/recursosExternos.php");
 
 ?>
-<script src="../js/funcionesCob.js"></script>
+<script id="funCob" src="../js/funcionesCob.js?id=<?php echo $_SESSION['perfil']; ?>"></script>
 </head>
 <?php
 

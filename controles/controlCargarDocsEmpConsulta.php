@@ -31,7 +31,7 @@
 
           foreach($re as $row){
 
-               echo $datos[] = $row;
+                $datos[] = $row;
     
                }
 		 ob_end_clean();

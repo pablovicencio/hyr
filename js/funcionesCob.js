@@ -1,4 +1,71 @@
 
+//id del perfil session enviado por src
+var session = document.getElementById("funCob").src.match(/\w+=\w+/g);
+var perfil = session[0].split("=");
+
+
+
+//////////funcion anular doc
+function anu_doc(id_doc){
+
+              swal({
+              title:'Anular Documento',
+              text: 'Ingresa el motivo',
+              content: "input",
+              button: {
+                text: "Anular",
+                closeModal: false,
+              },
+            })
+            .then(mot => {
+              if (!mot) throw null;
+
+
+              $.ajax({
+                            url: '../controles/controlAnularDoc.php',
+                            type: 'POST',
+                            data: { id_doc: id_doc, mot: mot},
+                            success: function (result) { 
+                              var msg = result.trim();
+                      
+                              switch(msg) {
+                                      case '-1':
+                                          swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
+                                          break;
+                                      case '-2':
+                                          swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");
+                                          break;
+                                      default :
+                                          swal("Anular", msg, "success");
+                                          
+                                          $('#div_tabla_doc').css("display","none");
+                                          $('#tabla_docs tbody').empty();
+                                          $('#rut_emp').prop('readonly', false);
+                                          $('#val_emp').css("display","block");
+                                          $('#atras_emp_consulta').css("display","none");
+                                          break;
+                                  }
+                            },
+                            error: function(){
+                                    alert('Verifique los datos') 
+                                    $("#main").show();     
+                              }
+                        });
+
+             
+            })
+            .catch(err => {
+              if (err) {
+                swal("Oh no!", "Tu evaluación no se ha guardado", "error");
+              } else {
+                swal.stopLoading();
+                swal.close();
+              }
+            });
+
+}
+
+
 
 
 
@@ -46,6 +113,8 @@ $(document).ready(function() {
         var filas = Object.keys(result).length;
      
         for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
+    
+
           var nuevafila= "<tr><td style='display:none;'>" +
           result[i].id_doc + "</td><td>" +
           result[i].nro_doc + "</td><td>" +
@@ -58,11 +127,11 @@ $(document).ready(function() {
           result[i].fec_ven_doc + "</td><td>" +
           result[i].tipo_doc+"</td><td>"+
           result[i].obs_doc + "</td><td>"
-          if (result[i].est_doc == 1) {
-            +'<a  class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Modificar</a>'
+          if (result[i].est_doc == 1 && perfil[1] == 1) {
+            nuevafila = nuevafila +'<button id="anu_doc" name="anu_doc" onclick="anu_doc('+result[i].id_doc+')" class="btn btn-outline-danger" >Anular</button></td></tr>'
+          } else{
+            nuevafila = nuevafila +'</td></tr>'
           }
-          +'</td></tr>'
-            console.log(result[i].est_doc);
      
           $("#tabla_docs").append(nuevafila);
 

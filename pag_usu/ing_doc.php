@@ -18,7 +18,7 @@
   include("../includes/recursosExternos.php");
 ?>
 
-<script src="../js/funcionesCob.js"></script>
+<script id="funCob" src="../js/funcionesCob.js?id=<?php echo $_SESSION['perfil']; ?>"></script>
 </head>
 <?php
 
@@ -134,7 +134,7 @@
                         <div class="form-group" >
                                 <label for="iva">Monto IVA:</label>
                                 <input type="number" class="form-control" id="iva" name="iva" min="0" readonly required>
-                              </div>
+                        </div>
                         
                       
                         </div>

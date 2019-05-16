@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--Quitar al pasar a prod, no guarda cache-->
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
 
 <title>HYR - Consulta Documento</title>
 
@@ -12,7 +17,7 @@
   include("../includes/recursosExternos.php");
 
 ?>
-<script src="../js/funcionesCob.js"></script>
+<script id="funCob" src="../js/funcionesCob.js?id=<?php echo $_SESSION['perfil']; ?>"></script>
 </head>
 <?php
 
@@ -76,6 +81,7 @@
                                       <tr>
                                         <th scope="col" style="display: none">Id_documento</th>
                                         <th scope="col">Nro Documento</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col">Afecto</th>
                                         <th scope="col">Exento</th>
                                         <th scope="col">IVA</th>
@@ -104,7 +110,7 @@
     <form id="formIngPago" name="formIngPago" onsubmit="return false;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Pago Documento Nro: <span id="nro_doc" name="nro_doc"></span></h5>
+        <h5 class="modal-title">Modificar Documento Nro: <span id="nro_doc" name="nro_doc"></span></h5>
         <input type="hidden" id="id_doc" name="id_doc" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -114,8 +120,21 @@
                 <div class="row">
                   <div class="col-6">
                               <div class="form-group">
-                                    <label for="monto_total">Monto Total:</label>
-                                    <input type="number" class="form-control" id="monto_total" name="monto_total" readonly>
+                                <label for="tipo_doc">Tipo Documento:</label>
+                                  <select class="form-control chosen" id="tipo_doc" name="tipo_doc" required>
+                                          <option value="" selected disabled>Seleccione tipo documento</option>
+                                             <?php 
+                                              $re = $fun->cargar_tipo_doc(1);   
+                                              foreach($re as $row)      
+                                                  {
+                                                    ?>
+                                                    
+                                                     <option value="<?php echo $row['tipo'] ?>"><?php echo $row['tipo_doc'] ?></option>
+                                                        
+                                                    <?php
+                                                  }    
+                                              ?>  
+                                  </select>
                               </div>
                   </div>
                   <div class="col-6">
@@ -127,16 +146,30 @@
                 </div>
                 <div class="row">
                   <div class="col-6">
-                              <div class="form-group">
-                                    <label for="est_doc">Estado Documento:</label>
-                                    <input type="text" class="form-control" id="est_doc" name="est_doc" readonly>
-                              </div>
+                      <div class="form-group" >
+                                    <label for="afecto">Monto Afecto:</label>
+                                    <input type="number" class="form-control" id="afecto" name="afecto" min="0" onkeyup="calculoIva();" required>
+                      </div>
                   </div>
                   <div class="col-6">
-                              <div class="form-group">
-                                    <label for="monto_pagado">Monto pagado:</label>
-                                    <input type="number" class="form-control" id="monto_pagado" name="monto_pagado" readonly>
-                              </div>
+                      <div class="form-group" >
+                                <label for="exento">Monto Exento:</label>
+                                <input type="number" class="form-control" id="exento" name="exento" min="0" onkeyup="calculoTotal();" required>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                      <div class="form-group" >
+                                <label for="iva">Monto IVA:</label>
+                                <input type="number" class="form-control" id="iva" name="iva" min="0" readonly required>
+                        </div>
+                  </div>
+                  <div class="col-6">
+                      <div class="form-group">
+                                    <label for="total">Monto Total:</label>
+                                    <input type="number" class="form-control" id="total" name="total" required readonly>
+                                  </div>
                   </div>
                 </div>
                 <div class="row" >
