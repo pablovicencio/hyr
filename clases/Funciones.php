@@ -25,6 +25,42 @@ class Funciones
 {
 
     /*///////////////////////////////////////
+    Cargar datos Movimiento Documento
+    //////////////////////////////////////*/
+    public function cargar_datos_mov_doc($id_doc){
+
+         try{
+            
+            
+            $pdo = AccesoDB::getCon();
+                    
+            
+                 $sql = 'select a.fec_reg_mov,a.monto_mov,concat(c.nom_usu," ",c.apepat_usu," ",c.apemat_usu) usu,a.obs_mov, b.desc_item est
+                            from mov_documento a, tab_param b, usuarios c
+                            where 
+                            a.est_doc_mov = b.cod_item
+                            and b.cod_grupo = 2
+                            and a.usu_reg_mov = c.id_usu
+                            and a.id_doc_mov = :id_doc
+                            order by fec_reg_mov ';
+            
+                   
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":id_doc", $id_doc, PDO::PARAM_INT);
+            $stmt->execute();
+            $response = $stmt->fetchAll();
+            return $response;
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+        }
+    }
+
+
+
+
+
+    /*///////////////////////////////////////
     //////////Cargar id empresa/////////////
     //////////////////////////////////////*/
     public function cargar_id_emp($rut_emp){

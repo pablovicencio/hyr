@@ -105,7 +105,7 @@
     </div>
 
 
-<div class="modal fade" id="modal_pago" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_consulta" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <form id="formIngPago" name="formIngPago" onsubmit="return false;">
     <div class="modal-content">
@@ -120,21 +120,8 @@
                 <div class="row">
                   <div class="col-6">
                               <div class="form-group">
-                                <label for="tipo_doc">Tipo Documento:</label>
-                                  <select class="form-control chosen" id="tipo_doc" name="tipo_doc" required>
-                                          <option value="" selected disabled>Seleccione tipo documento</option>
-                                             <?php 
-                                              $re = $fun->cargar_tipo_doc(1);   
-                                              foreach($re as $row)      
-                                                  {
-                                                    ?>
-                                                    
-                                                     <option value="<?php echo $row['tipo'] ?>"><?php echo $row['tipo_doc'] ?></option>
-                                                        
-                                                    <?php
-                                                  }    
-                                              ?>  
-                                  </select>
+                                    <label for="fec_ven">Fecha Vencimiento:</label>
+                                    <input type="date" class="form-control" id="fec_ven" name="fec_ven" readonly required>
                               </div>
                   </div>
                   <div class="col-6">
@@ -142,19 +129,21 @@
                               <div class="alert alert-danger" role="alert" id="ven_doc" name="ven_doc">
                                     Documento Vencido
                               </div>
+                              <br>
+                              
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-6">
                       <div class="form-group" >
                                     <label for="afecto">Monto Afecto:</label>
-                                    <input type="number" class="form-control" id="afecto" name="afecto" min="0" onkeyup="calculoIva();" required>
+                                    <input type="number" class="form-control" id="monto_afecto" name="monto_afecto" min="0" readonly required>
                       </div>
                   </div>
                   <div class="col-6">
                       <div class="form-group" >
                                 <label for="exento">Monto Exento:</label>
-                                <input type="number" class="form-control" id="exento" name="exento" min="0" onkeyup="calculoTotal();" required>
+                                <input type="number" class="form-control" id="monto_exento" name="monto_exento" min="0" readonly required>
                       </div>
                   </div>
                 </div>
@@ -162,53 +151,49 @@
                   <div class="col-6">
                       <div class="form-group" >
                                 <label for="iva">Monto IVA:</label>
-                                <input type="number" class="form-control" id="iva" name="iva" min="0" readonly required>
+                                <input type="number" class="form-control" id="monto_iva" name="monto_iva" min="0" readonly required>
                         </div>
                   </div>
                   <div class="col-6">
                       <div class="form-group">
                                     <label for="total">Monto Total:</label>
-                                    <input type="number" class="form-control" id="total" name="total" required readonly>
+                                    <input type="number" class="form-control" id="monto_total" name="monto_total" required readonly>
                                   </div>
                   </div>
                 </div>
-                <div class="row" >
-                            
-                            <div class="col">
-                              <div class="form-group">
-                                    <label for="forma_pago">Forma de Pago:</label>
-                                      <select class="form-control chosen" id="forma_pago" name="forma_pago" required>
-                                        <option value="" selected disabled>Seleccione Forma de Pago</option>
-                                           <?php 
-                                            $re = $fun->cargar_forma_pago(1);   
-                                            foreach($re as $row)      
-                                                {
-                                                  ?>
-                                                  
-                                                   <option value="<?php echo $row['id_formapago'] ?>"><?php echo $row['desc_formapago'] ?></option>
-                                                      
-                                                  <?php
-                                                }    
-                                            ?>  
-                              </select>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="form-group">
-                                    <label for="monto_mov">Monto de Pago:</label>
-                                    <input type="number" class="form-control" id="monto_pago" name="monto_pago" min="0" required>
-                              </div>
-                            </div>
 
-
+                <div class="row">
+                  <div class="col-6">
+                      <div class="form-group" >
+                                <label for="pagado">Monto Pagado:</label>
+                                <input type="number" class="form-control" id="monto_pagado" name="monto_pagado" readonly required>
                         </div>
-                        <textarea class="form-control" rows="5" id="obs_pago" name="obs_pago" placeholder="Observación"></textarea><br><br>
+                  </div>
+                  <div class="col-6">
+                      <div class="form-group">
+                                    <label for="est">Estado Documento:</label>
+                                    <input type="text" class="form-control" id="est_doc" name="est_doc" required readonly>
+                                  </div>
+                  </div>
+                </div>
+
+                        <table id="tabla_mov_doc" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                              <thead>
+                                <tr>
+                                      <th class="">Fecha Movimiento<i class="" aria-hidden="true"></i></th>
+                                      <th class="">Monto<i class="" aria-hidden="true"></i></th>
+                                      <th class="">Usuario<i class="" aria-hidden="true"></i></th>
+                                      <th class="">Observacion<i class="" aria-hidden="true"></i></th>
+                                      <th class="">Estado Documento<i class="" aria-hidden="true"></i></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                          </table>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-        <div class="container-login100-form-btn">
-                <button class="btn btn-outline-success" type="submit">Guardar Pago</button>
-        </div>
       </div>
     </div>
     </form>

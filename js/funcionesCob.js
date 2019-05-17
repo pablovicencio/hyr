@@ -4,6 +4,118 @@ var session = document.getElementById("funCob").src.match(/\w+=\w+/g);
 var perfil = session[0].split("=");
 
 
+  //CARGA DE GIF ING DOC
+  $(document).ajaxStart(function() {
+    $("#formIngDoc").hide();
+    $("#loading").show();
+       }).ajaxStop(function() {
+    $("#loading").hide();
+    $("#formIngDoc").show();
+    }); 
+
+    $(document).ajaxStart(function() {
+    $("#formEmpDoc").hide();
+    $("#loading").show();
+       }).ajaxStop(function() {
+    $("#loading").hide();
+    $("#formEmpDoc").show();
+    }); 
+
+  //CARGA DE GIF PAGO DOC
+  $(document).ajaxStart(function() {
+    $("#formIngPago").hide();
+    $("#loading").show();
+       }).ajaxStop(function() {
+    $("#loading").hide();
+    $("#formIngPago").show();
+    }); 
+
+  $(document).ajaxStart(function() {
+    $("#formEmpPago").hide();
+    $("#loading").show();
+       }).ajaxStop(function() {
+    $("#loading").hide();
+    $("#formEmpPago").show();
+    }); 
+
+  //CARGA DE GIF CONSULTA DOC
+  $(document).ajaxStart(function() {
+    $("#formEmpConsulta").hide();
+    $("#loading").show();
+       }).ajaxStop(function() {
+    $("#loading").hide();
+    $("#formEmpConsulta").show();
+    }); 
+
+
+
+
+//////////funcion cargar movimientos documentos Modal
+$(document).on("click", "#btn_modal_consulta", function () {
+  $('#tabla_mov_doc tbody').empty();
+     var nro_doc = $(this).data('doc');
+     var id_doc = $(this).data('id');
+     var total = $(this).data('total');
+     var afecto = $(this).data('afecto');
+     var exento = $(this).data('exento');
+     var iva = $(this).data('iva');
+     var fec_ven = new Date($(this).data('fec_ven'));
+     var fec = Date.now();
+     $("#nro_doc").text(nro_doc);
+     $("#id_doc").val(id_doc);
+     $("#monto_total").val(total);
+     $("#monto_afecto").val(afecto);
+     $("#monto_exento").val(exento);
+     $("#monto_iva").val(iva);
+     $("#fec_ven").val($(this).data('fec_ven'));
+
+     fec_ven < fec ? $('#ven_doc').css("display","block") : $('#ven_doc').css("display","none");
+
+    $.ajax({
+      url: '../controles/controlDatosDoc.php',
+      type: 'POST',
+      data: {"doc":id_doc},
+      dataType:'json',
+      success:function(result){
+        $('#est_doc').val(result[0].est);
+        $('#monto_pagado').val(result[0].suma);
+      }
+    })
+
+    $.ajax({
+      url: '../controles/controlMovDoc.php',
+      type: 'POST',
+      data: {"doc":id_doc},
+      dataType:'json',
+      success:function(result){
+        var filas = Object.keys(result).length;
+     
+        for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
+    
+
+          var nuevafila= "<tr><td>" +
+          result[i].fec_reg_mov + "</td><td>" +
+          result[i].monto_mov + "</td><td>" +
+          result[i].usu + "</td><td>" +
+          result[i].obs_mov + "</td><td>" +
+          result[i].est + "</td><tr>"
+
+           $("#tabla_mov_doc").append(nuevafila);
+
+        }
+        
+      }
+    })
+
+
+
+
+
+    $('#modal_consulta').modal('show');
+});
+
+
+
 
 //////////funcion anular doc
 function anu_doc(id_doc){
@@ -126,7 +238,8 @@ $(document).ready(function() {
           result[i].fec_emi_doc + "</td><td>" +
           result[i].fec_ven_doc + "</td><td>" +
           result[i].tipo_doc+"</td><td>"+
-          result[i].obs_doc + "</td><td>"
+          result[i].obs_doc + "</td><td>"+
+          '<a id="btn_modal_consulta" class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-afecto="'+result[i].monto_afecto_doc+'" data-exento="'+result[i].monto_exento_doc+'" data-iva="'+result[i].monto_iva_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Ver</a></td><td>'
           if (result[i].est_doc == 1 && perfil[1] == 1) {
             nuevafila = nuevafila +'<button id="anu_doc" name="anu_doc" onclick="anu_doc('+result[i].id_doc+')" class="btn btn-outline-danger" >Anular</button></td></tr>'
           } else{
@@ -207,7 +320,7 @@ $(document).ready(function() {
           result[i].fec_ven_doc + "</td><td>" +
           result[i].tipo_doc+"</td><td>"+
           result[i].obs_doc + "</td><td>"+
-          '<a  class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Pagar</a></td></tr>'
+          '<a id="btn_modal_pago" class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Pagar</a></td></tr>'
      
           $("#tabla_docs").append(nuevafila);
 
@@ -232,7 +345,7 @@ $(document).ready(function() {
 //////////funcion atras ingreso doc
 $(document).on("click", "#atras_emp_doc", function () {
      
-  $('#formEmpPagoDoc').trigger("reset");
+  $('#formEmpDoc').trigger("reset");
   $('#formIngDoc').trigger("reset");
   $('#form_doc').css("display","none");
   $('#rut_emp').prop('readonly', false);
@@ -243,31 +356,6 @@ $(document).on("click", "#atras_emp_doc", function () {
 });
 
 
-//////////funcion cargar empresa
-$(document).ready(function() {
-  $("#formEmpPagoDoc").submit(function() { 
-      
-       $.ajax({
-      url: '../controles/controlCargarEmp.php',
-      type: 'POST',
-      data:$("#formEmpPagoDoc").serialize(),
-      dataType:'json',
-      success:function(result){
-        $('#nom_emp').val(result[0].razon_social_emp);
-        $('#emp').val(result[0].id_emp);
-        $('#mon_men').val(result[0].monto_mensual_emp);
-        $('#form_doc').css("display","block");
-        $('#rut_emp').prop('readonly', true);
-        $('#val_emp').css("display","none");
-        $('#atras_emp_doc').css("display","block");
-  },
-  error: function(){
-              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
-      }
-    });
-    return false;
-  });
-}); 
 
 
 
@@ -313,8 +401,8 @@ $(document).ready(function() {
 
 
 
-//////////funcion cargar documento para pago
-$(document).on("click", ".link-modal", function () {
+//////////funcion cargar documento para pago Modal
+$(document).on("click", "#btn_modal_pago", function () {
      var nro_doc = $(this).data('doc');
      var id_doc = $(this).data('id');
      var total = $(this).data('total');
@@ -390,7 +478,7 @@ $(document).ready(function() {
                     break;
                 default :
                     swal("Documento Ingresado", msg, "success");
-                    $('#formEmpPagoDoc').trigger("reset");
+                    $('#formEmpDoc').trigger("reset");
                     $('#formIngDoc').trigger("reset");
                     $('#form_doc').css("display","none");
                     $('#rut_emp').prop('readonly', false);
@@ -402,6 +490,34 @@ $(document).ready(function() {
             }
       },
       error: function(){
+              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+      }
+    });
+    return false;
+  });
+}); 
+
+
+
+//////////funcion cargar empresa ing doc
+$(document).ready(function() {
+  $("#formEmpDoc").submit(function() { 
+      
+       $.ajax({
+      url: '../controles/controlCargarEmp.php',
+      type: 'POST',
+      data:$("#formEmpDoc").serialize(),
+      dataType:'json',
+      success:function(result){
+        $('#nom_emp').val(result[0].razon_social_emp);
+        $('#emp').val(result[0].id_emp);
+        $('#mon_men').val(result[0].monto_mensual_emp);
+        $('#form_doc').css("display","block");
+        $('#rut_emp').prop('readonly', true);
+        $('#val_emp').css("display","none");
+        $('#atras_emp_doc').css("display","block");
+  },
+  error: function(){
               swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
       }
     });
