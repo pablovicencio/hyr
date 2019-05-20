@@ -1,3 +1,6 @@
+
+
+//gif cargando
 $(document).ajaxStart(function() {
   $("#main").hide();
   $("#loading").show();

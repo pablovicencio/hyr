@@ -34,7 +34,8 @@
  			$obs_doc = '';
  		}
 
- 		
+ 			$fun = new Funciones();
+
  			$emp = new EmpresaDAO($id_emp);
 		 	
  			$usu = new UsuarioDAO($id_usu);
@@ -44,8 +45,15 @@
 			$ing_doc = $dao->ing_doc($usu->getUsu(),$emp->getEmp());
 			
 			if ($ing_doc>0){
-			
-			echo"Documento Nro. ".$num_doc." ingresado correctamente";    
+
+				$datos_mail = $dao->datos_mail($num_doc);
+
+				$mail = $dao->mail_ing_doc($datos_mail['nom_emp'],$datos_mail['mail_emp'],$datos_mail['tipo'],$num_doc,$total, $fec_ven);	
+				
+				echo"Documento Nro. ".$num_doc." ingresado correctamente";
+
+
+
 			} else {
 				//$enviar_pass = $fun->enviar_correo_pass($nom,$correo,$nueva_pass);
 			

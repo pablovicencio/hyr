@@ -76,11 +76,11 @@
                          <div class="row" id="div_tabla_doc" name="div_tabla_doc">
                             <div class="col-12">
                               <div class="table-responsive">
-                                 <table class="table table-sm" id="tabla_docs" name="tabla_docs">
-                                    <thead class="thead-dark">
+                                 <table class="table table-striped table-bordered" id="tabla_docs" name="tabla_docs">
+                                    <thead>
                                       <tr>
                                         <th scope="col" style="display: none">Id_documento</th>
-                                        <th scope="col">Nro Documento</th>
+                                        <th scope="col">Nro Doc</th>
                                         <th scope="col">Estado</th>
                                         <th scope="col">Afecto</th>
                                         <th scope="col">Exento</th>
@@ -88,8 +88,10 @@
                                         <th scope="col">Total</th>
                                         <th scope="col">Fecha Emisión</th>
                                         <th scope="col">Fecha Vencimiento</th>
-                                        <th scope="col">Tipo Documento</th>
+                                        <th scope="col">Tipo Doc</th>
                                         <th scope="col">Observación</th>
+                                        <th scope="col">Ver</th>
+                                        <th scope="col">Anular</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -110,7 +112,7 @@
     <form id="formIngPago" name="formIngPago" onsubmit="return false;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modificar Documento Nro: <span id="nro_doc" name="nro_doc"></span></h5>
+        <h5 class="modal-title"><span id="tipo_modal" name="tipo_modal"></span> Nro: <span id="nro_doc" name="nro_doc"></span></h5>
         <input type="hidden" id="id_doc" name="id_doc" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

@@ -19,5 +19,7 @@
 #atras_emp_consulta{
   display: none;
 }
-
+#impbol{
+  visibility: hidden;
+}
 

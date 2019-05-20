@@ -84,13 +84,27 @@
         <div class="col-4">
 
               <div class="form-group">
-                <label for="mciudad">Ciudad:</label>
-                <input type="text" class="form-control" id="mciudad" name="mciudad" maxlength="20" placeholder="Ciudad" required>
+                          <label for="ciudad">Ciudad:</label>
+                            <select class="form-control" name="mciudad" id="mciudad" required onchange="mod_ciudad(this.value,'mcomuna')">
+              <option value="" selected disabled>Seleccione la Ciudad</option>
+              <?php 
+              $re = $fun->cargar_ciudades();   
+              foreach($re as $row)      
+              {
+              ?>
+              <option value="<?php echo $row['provincia_id'] ?>"><?php echo $row['provincia_nombre'] ?></option>
+
+              <?php
+              }    
+              ?>       
+            </select>
               </div>
 
               <div class="form-group">
               <label for="mcomuna">Comuna:</label>
-              <input type="text" class="form-control" id="mcomuna" name="mcomuna" maxlength="20" placeholder="Comuna" required>
+              <select class="form-control" name="mcomuna" id="mcomuna" required>
+              <option value="" selected disabled>Seleccione la Comuna</option>
+            </select>
               </div>
 
 
@@ -197,7 +211,7 @@
               <input type="checkbox" id="vigcheck" name="vigcheck" aria-label="Checkbox for following text input">
             </div>
           </div>
-          <input type="text" class="form-control" id="vigtext" name="vigtext" aria-label="Text input with checkbox" placeholder="Vigencia Actual de la Empresa">
+          <input type="text" class="form-control" id="vigtext" name="vigtext" aria-label="Text input with checkbox" placeholder="Vigencia Actual de la Empresa" readonly>
         </div>
 
          

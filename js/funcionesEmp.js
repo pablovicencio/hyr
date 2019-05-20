@@ -1,3 +1,31 @@
+//////////funcion cargar comunas
+function mod_ciudad(ciudad,com){
+  $('#'+com).empty();
+      $.ajax({
+      type: "POST",
+      url: '../controles/controlCargarComunas.php',
+      data:{"ciudad":ciudad},
+      dataType:'json',
+      success: function (result) { 
+        var filas = Object.keys(result).length;
+        for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
+           let $option = $('<option />', {
+              text: result[i].comuna_nombre,
+              value: result[i].comuna_id,
+          });
+          $('#'+com).prepend($option);
+        }
+      },
+      error: function(){
+              alert('Verifique los datos');      
+      }
+    });
+}  
+
+
+
+
+
 //INSTANCIAS DE DATATABLE
 
 $(document).ready(function () {
@@ -69,14 +97,14 @@ $(document).ready(function() {
      data: {"emp":emp},
      dataType:'json',
      success:function(result){
-       console.log(result);
+
 
         $('#rsoc').val(result[0].razon_social_emp);
         $('#mmail').val(result[0].mail_emp);
         $('#mrut').val(result[0].rut_emp);
         $('#mdirec').val(result[0].dir_emp);
         $('#mciudad').val(result[0].ciudad_emp);
-        $('#mcomuna').val(result[0].comuna_emp);
+        //$('#mcomuna').val(result[0].comuna_emp);
         $('#mmme').val(result[0].monto_mensual_emp);
         $('#mmre').val(result[0].monto_renta_emp);
         $('#mcse').val(result[0].cons_soc_emp);
@@ -97,7 +125,8 @@ $(document).ready(function() {
           $('#vigcheck').prop('checked', false);
           $('#vigtext').prop('value',"No se Encuentra Vigente");
         }
-        
+        mod_ciudad(result[0].ciudad_emp,'mcomuna');
+        $('#mcomuna').val(result[0].comuna_emp);
     }
  })
 }

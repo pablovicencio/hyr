@@ -4,6 +4,34 @@ var session = document.getElementById("funCob").src.match(/\w+=\w+/g);
 var perfil = session[0].split("=");
 
 
+
+
+  //////////funcion cambio doc boleta impuesto
+  $(document).on("change", "#tipo_doc", function () {
+    //Factura
+    if ($('#tipo_doc').val() == 1) {
+      $('#lblAfecto').text('Monto Afecto');
+      //$('#exento').val("0");
+      $('#lblExento').css("visibility","visible");
+      $('#exento').css("display","block");
+      $('#impbol').css("visibility","hidden");
+      $('#lblIVA').text('Monto IVA');
+      }
+
+    //Boleta
+    if ($('#tipo_doc').val() == 2) {
+      $('#lblAfecto').text('Monto Neto');
+      $('#exento').val("0");
+      $('#lblExento').css("visibility","hidden");
+      $('#exento').css("display","none");
+      $('#impbol').css("visibility","visible");
+      $('#lblIVA').text('Monto Retención');
+      }
+
+    
+  });
+  
+
   //CARGA DE GIF ING DOC
   $(document).ajaxStart(function() {
     $("#formIngDoc").hide();
@@ -67,6 +95,7 @@ $(document).on("click", "#btn_modal_consulta", function () {
      $("#monto_afecto").val(afecto);
      $("#monto_exento").val(exento);
      $("#monto_iva").val(iva);
+     $("#tipo_modal").text($(this).data('tipo'));
      $("#fec_ven").val($(this).data('fec_ven'));
 
      fec_ven < fec ? $('#ven_doc').css("display","block") : $('#ven_doc').css("display","none");
@@ -239,7 +268,7 @@ $(document).ready(function() {
           result[i].fec_ven_doc + "</td><td>" +
           result[i].tipo_doc+"</td><td>"+
           result[i].obs_doc + "</td><td>"+
-          '<a id="btn_modal_consulta" class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-afecto="'+result[i].monto_afecto_doc+'" data-exento="'+result[i].monto_exento_doc+'" data-iva="'+result[i].monto_iva_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Ver</a></td><td>'
+          '<a id="btn_modal_consulta" class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-afecto="'+result[i].monto_afecto_doc+'" data-exento="'+result[i].monto_exento_doc+'" data-iva="'+result[i].monto_iva_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-tipo="'+result[i].tipo_doc+'" data-toggle="modal" >Ver</a></td><td>'
           if (result[i].est_doc == 1 && perfil[1] == 1) {
             nuevafila = nuevafila +'<button id="anu_doc" name="anu_doc" onclick="anu_doc('+result[i].id_doc+')" class="btn btn-outline-danger" >Anular</button></td></tr>'
           } else{
@@ -253,6 +282,12 @@ $(document).ready(function() {
         $('#rut_emp').prop('readonly', true);
         $('#val_emp').css("display","none");
         $('#atras_emp_consulta').css("display","block");
+        $('#tabla_docs').DataTable({
+            "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      }
+    });
+    $('.dataTables_length').addClass('bs-select');
   },
   error: function(){
               swal("Error1", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
@@ -441,7 +476,7 @@ $(document).on("click", "#btn_modal_pago", function () {
 
 //////////funcion calcular monto total
 function calculoTotal()
-{
+{     
       var afecto = $('#afecto').val() == '' ? 0 : $('#afecto').val();
       var exento = $('#exento').val() == '' ? 0 : $('#exento').val();
       var iva = $('#iva').val() == '' ? 0 : $('#iva').val();
@@ -453,8 +488,20 @@ function calculoTotal()
 //////////funcion calcular monto iva
 function calculoIva()
 {
-        var iva = parseInt($('#afecto').val()) * 0.19;
-        $('#iva').val(parseInt(iva));
+        if ($('#tipo_doc').val() == 1) {
+          var iva = parseInt($('#afecto').val()) * 0.19;
+          $('#iva').val(parseInt(iva));
+        }else if ($('#tipo_doc').val() == 2) {
+          $('#exento').val('0');
+          if ($('#impbolcheck').prop('checked')) {
+            var iva = parseInt($('#afecto').val()) * 0.10;
+            $('#iva').val(parseInt(iva));
+          }else{
+            $('#iva').val('0');
+          }
+          
+        }
+        
         calculoTotal();
 }
 

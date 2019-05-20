@@ -65,12 +65,26 @@
 
               <div class="form-group">
                 <label for="ciudad">Ciudad:</label>
-                <input type="text" class="form-control" id="ciudad" name="ciudad" maxlength="20"  required>
+                            <select class="form-control" name="ciudad" id="ciudad" required onchange="mod_ciudad(this.value,'comuna')">
+              <option value="" selected disabled>Seleccione la Ciudad</option>
+              <?php 
+              $re = $fun->cargar_ciudades();   
+              foreach($re as $row)      
+              {
+              ?>
+              <option value="<?php echo $row['provincia_id'] ?>"><?php echo $row['provincia_nombre'] ?></option>
+
+              <?php
+              }    
+              ?>       
+            </select>
               </div>
 
               <div class="form-group">
               <label for="comuna">Comuna:</label>
-              <input type="text" class="form-control" id="comuna" name="comuna" maxlength="20"  required>
+              <select class="form-control" name="comuna" id="comuna" required>
+              <option value="" selected disabled>Seleccione la Comuna</option>
+            </select>
               </div>
 
 

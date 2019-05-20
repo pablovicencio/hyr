@@ -25,6 +25,95 @@ class Funciones
 {
 
     /*///////////////////////////////////////
+    //////////Cargar datos mail ing doc/////////////
+    //////////////////////////////////////*/
+    public function datos_mail($num_doc){
+
+         try{
+            
+            
+            $pdo = AccesoDB::getCon();
+                    
+            
+                 $sql = "select b.razon_social_emp nom_emp, b.mail_emp, c.desc_item tipo
+from documento a, empresa b, tab_param c
+where a.nro_doc = :num_doc
+and a.emp_doc = b.id_emp
+and a.tipo_doc = c.cod_item
+and c.cod_grupo = 1";
+            
+                   
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":num_doc", $num_doc, PDO::PARAM_INT);
+            $stmt->execute();
+            $response = $stmt->fetchColumn();
+            return $response;
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+        }
+    }
+
+
+    /*////////////////////////////////////////////
+    Cargar lista despegable de comunas
+    /////////////////////////////////////////////*/
+    public function cargar_comunas($ciudad){
+
+        try{
+            
+            
+            $pdo = AccesoDB::getCon();
+
+
+    
+                    $sql = "select comuna_id, comuna_nombre from comuna where comuna_provincia_id = :ciudad order by comuna_nombre";
+                        
+                        
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":ciudad", $ciudad, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $response = $stmt->fetchAll();
+            return $response;
+
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+        }
+    }
+
+
+
+    /*////////////////////////////////////////////
+    Cargar lista despegable de ciudades
+    /////////////////////////////////////////////*/
+    public function cargar_ciudades(){
+
+        try{
+            
+            
+            $pdo = AccesoDB::getCon();
+
+
+    
+                    $sql = "select provincia_id, provincia_nombre from provincia order by provincia_nombre";
+                        
+                        
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            $response = $stmt->fetchAll();
+            return $response;
+
+        } catch (Exception $e) {
+            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+        }
+    }
+
+
+    /*///////////////////////////////////////
     Cargar datos Movimiento Documento
     //////////////////////////////////////*/
     public function cargar_datos_mov_doc($id_doc){
@@ -380,9 +469,9 @@ class Funciones
 
 
             if ($vig_usu == 0) {
-                $sql = "select cod_item id_perfil, desc_item perfil from tab_param where cod_grupo = 2 and cod_item <> 0";
+                $sql = "select cod_item id_perfil, desc_item perfil from tab_param where cod_grupo = 3 and cod_item <> 0";
             }else if ($vig_usu == 1) {
-                $sql = "select cod_item id_perfil, desc_item perfil from tab_param where cod_grupo = 2 and cod_item <> 0 and vig_item = 1";
+                $sql = "select cod_item id_perfil, desc_item perfil from tab_param where cod_grupo = 3 and cod_item <> 0 and vig_item = 1";
             }  
 
             $stmt = $pdo->prepare($sql);
@@ -405,9 +494,9 @@ class Funciones
             $pdo = AccesoDB::getCon();
 
             if ($vig_cargo == 0) {
-                $sql = "select cod_item id_cargo, desc_item cargo from tab_param where cod_grupo = 3 and cod_item <> 0";
+                $sql = "select cod_item id_cargo, desc_item cargo from tab_param where cod_grupo = 4 and cod_item <> 0";
             }else if ($vig_cargo == 1) {
-                $sql = "select cod_item id_cargo, desc_item cargo from tab_param where cod_grupo = 3 and cod_item <> 0 and vig_item = 1";
+                $sql = "select cod_item id_cargo, desc_item cargo from tab_param where cod_grupo = 4 and cod_item <> 0 and vig_item = 1";
             }  
 
             $stmt = $pdo->prepare($sql);
@@ -473,6 +562,67 @@ class Funciones
         }
         return $pass;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////
+    //////////////////////////
+    //////////////////////////
+    //////////////////////////
+    //////////////////////////mails HYR
+
+        /*///////////////////////////////////////
+            enviar mail nuevo documento ing
+        //////////////////////////////////////*/
+        public function mail_ing_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_doc, $fec_ven) {
+            try{
+                $to = "$nom_emp";
+                        $subject = "HTML email";
+
+                        $message = "
+                        <html>
+                        <head>
+                        <title>Ingreso de Documento de pago - Consultora HYR</title>
+                        </head>
+                        <body>
+                        <h1>Ingreso "$tipo_doc." Nro ".$nro_doc."<h1>
+                        Estimados ".$nom_emp."
+                        Hemos ingresado el documento de pago "$tipo_doc." Nro ".$nro_doc." por un monto total de $".$monto_doc.".
+                        <br>
+                        Su fecha de vencimiento es el ".$fec_ven."
+
+                        Se despide Atte.
+
+                        Consultora HYR
+
+                        Este mensaje es enviado automaticamente, favor no responder.
+                        </body>
+                        </html>
+                        ";
+
+                        // Always set content-type when sending HTML email
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                        // More headers
+                        $headers .= 'From: <hyr@hyr.com>' . "\r\n";
+                        $headers .= 'Cc: pvicencio@andescode.cl' . "\r\n";
+
+                        mail($to,$subject,$message,$headers);
+        } catch (Exception $e) {
+                throw $e;
+        }
+        }
+
 
 }
 ?>

@@ -87,7 +87,7 @@
                               </div>
                               
                               <div class="form-group" >
-                                <label for="afecto">Monto Afecto:</label>
+                                <label for="afecto" id="lblAfecto">Monto Afecto:</label>
                                 <input type="number" class="form-control" id="afecto" name="afecto" min="0" onkeyup="calculoIva();" required>
                               </div>
 
@@ -117,8 +117,18 @@
                               </div>
 
                               <div class="form-group" >
-                                <label for="exento">Monto Exento:</label>
+                                <label for="exento" id="lblExento">Monto Exento:</label>
                                 <input type="number" class="form-control" id="exento" name="exento" min="0" onkeyup="calculoTotal();" required>
+
+                                        <div class="input-group mb-3" id="impbol">
+                                            <br>
+                                            <div class="input-group-prepend">
+                                              <div class="input-group-text">
+                                                <input type="checkbox" id="impbolcheck" name="impbolcheck" aria-label="Checkbox for following text input" onclick="calculoIva()">
+                                              </div>
+                                            </div>
+                                            <input type="text" class="form-control" id="impboltext" name="impboltext" aria-label="Text input with checkbox" placeholder="Retener 10%" readonly>
+                                          </div>
                               </div>
 
                               
@@ -132,7 +142,7 @@
                               </div>
                               
                         <div class="form-group" >
-                                <label for="iva">Monto IVA:</label>
+                                <label for="iva" id="lblIva">Monto IVA:</label>
                                 <input type="number" class="form-control" id="iva" name="iva" min="0" readonly required>
                         </div>
                         

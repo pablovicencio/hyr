@@ -1,9 +1,9 @@
 <?php
  session_start();
 
- if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0) ){
+ if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0)  ){
     //Si la sesión esta seteada no hace nada
-    $id_usu = $_SESSION['id'];
+    $id = $_SESSION['id'];
   }
   else{
     //Si no lo redirige a la pagina index para que inicie la sesion 
@@ -14,14 +14,10 @@
 
 	try{
 
-		$fun = new Funciones();
+		$ciudad = stripcslashes ($_POST['ciudad']);
 
-		$rut_emp = stripcslashes ($_POST['rut_emp']);
-
-		$emp = $fun->cargar_id_emp($rut_emp);
-
-		if ($emp > 0) {
-			$re = $fun->cargar_docs_emp($emp,1);
+		 $fun = new Funciones();
+		 $re = $fun->cargar_comunas($ciudad);
 		 
 
 
@@ -32,16 +28,10 @@
 
                 $datos[] = $row;
     
-               }
-		 ob_end_clean();
+              }
+		ob_end_clean();
 		
-		 echo json_encode($datos);
-		}else{
-			echo 0;
-		}
-
-		 
-		 
+		echo json_encode($datos);
 	
 	} catch (Exception $e) {
 		//echo($e);
