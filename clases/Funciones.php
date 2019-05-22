@@ -160,7 +160,7 @@ and c.cod_grupo = 1";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":num_doc", $num_doc, PDO::PARAM_INT);
             $stmt->execute();
-            $response = $stmt->fetchColumn();
+            $response = $stmt->fetchAll();
             return $response;
         } catch (Exception $e) {
             echo"-1";
@@ -412,7 +412,7 @@ and c.cod_grupo = 1";
                     if ($vig == 0) {
                             $sql = "";
                         }else if ($vig == 1){
-                            $sql = "select id_formapago, desc_formapago from forma_pago where vig_formapago = 1";
+                            $sql = "select id_formapago, desc_formapago from forma_pago where vig_formapago = 1 and desc_formapago <> ''";
                         }
                         
 

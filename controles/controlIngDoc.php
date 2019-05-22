@@ -14,6 +14,7 @@
  	require_once '../clases/claseDocumento.php';
  	require_once '../clases/claseEmpresa.php';
  	require_once '../clases/claseUsuario.php';
+ 	require_once '../clases/Funciones.php';
  
  	try{
  		$id_emp = $_POST['emp'];
@@ -46,9 +47,9 @@
 			
 			if ($ing_doc>0){
 
-				$datos_mail = $dao->datos_mail($num_doc);
+				$datos_mail = $fun->datos_mail($num_doc);
 
-				$mail = $dao->mail_ing_doc($datos_mail['nom_emp'],$datos_mail['mail_emp'],$datos_mail['tipo'],$num_doc,$total, $fec_ven);	
+				$mail = $fun->mail_ing_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$num_doc,$total, $fec_ven);	
 				
 				echo"Documento Nro. ".$num_doc." ingresado correctamente";
 
