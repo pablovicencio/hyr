@@ -11,8 +11,8 @@
  		goto salir;
  	}      
 
- 	require_once '../clases/ClaseDocumento.php';
- 	require_once '../clases/ClaseUsuario.php';
+ 	require_once '../clases/claseDocumento.php';
+ 	require_once '../clases/claseUsuario.php';
  	require_once '../clases/Funciones.php';
  
  	try{

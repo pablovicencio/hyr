@@ -11,7 +11,7 @@
  		goto salir;
  	}      
 
-     require_once '../clases/ClaseUsuario.php';
+     require_once '../clases/claseUsuario.php';
      require_once '../clases/Funciones.php';
  
  	try{
@@ -47,6 +47,7 @@
                     echo "1";    
                 }else{
                     
+                   $mailUsu = $dao->mail_crear_usu($password,$nombre,$rut,$mail); 
                    echo "Usuario de : ".$nombre." ".$apellidop." Creado Correctamente, La Contraseña es: ".$password." y será enviada por Email.";
                 }
             }else{

@@ -69,8 +69,8 @@
                   <td><?php echo "<script>var string = numeral(". $row['monto_exento_doc'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['monto_iva_doc'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['monto_total_doc'].").format('$000,000,000,000');document.write(string)</script>"?></td>
-                  <td><?php echo $row['fec_emi_doc']?></td>
-                  <td><?php echo $row['fec_ven_doc']?></td>
+                  <td><?php echo date('d-m-Y', strtotime($row['fec_emi_doc'])) ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($row['fec_ven_doc'])) ?></td>
                   <td><?php echo $row['tipo_doc']?></td>
                   <td><?php echo $row['obs_doc']?></td>
                   <td><?php echo $row['suma']?></td>

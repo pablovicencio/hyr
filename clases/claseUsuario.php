@@ -202,8 +202,8 @@ class UsuarioDAO
                 
                 $pdo = AccesoDB::getCon();
 
-                $sql_pwd = "update usuario
-                set pass = :pwd
+                $sql_pwd = "update usuarios
+                set pass_usu = :pwd
                 where id_usu = :id";
 
 

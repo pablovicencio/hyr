@@ -25,6 +25,119 @@ class Funciones
 {
 
     /*///////////////////////////////////////
+    Validar contraseña 
+    //////////////////////////////////////*/
+        public function validar_pwd($id,$ident){
+
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                            if ($ident == 0) {
+                                $sql = "select pass_cli pass
+                                        from clientes where id_cli = :id";
+                            
+                            }else if ($ident == 1) {
+                                $sql = "select pass_usu pass
+                                        from usuarios where id_usu = :id";
+                            }
+        
+                       
+                                
+                            
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $response = $stmt->fetchAll();
+                return $response;
+
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+    /*///////////////////////////////////////
+    Cargar datos de usuario
+    //////////////////////////////////////*/
+        public function cargar_datos_usu($id_usu,$sel){
+
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+
+                        
+                if ($sel == 1) {
+                     $sql = "select concat(a.NOM_USU) nom, concat(a.APEPAT_USU,' ',a.APEMAT_USU) ape, a.RUT_USU rut,
+                                a.MAIL_USU mail,c.desc_item perfil, a.FEC_CRE_USU fec, b.DESC_ITEM cargo, if(a.VIG_USU=1,'Vigente','No Vigente') vig, a.NICK_USU nick
+                                from usuarios a, tab_param b, tab_param c
+                                where a.CARGO_USU = b.COD_ITEM and b.COD_GRUPO = 4 and b.VIG_ITEM = 1 
+                                and a.ID_PERFIL = c.COD_ITEM and c.COD_GRUPO = 3 and c.VIG_ITEM = 1
+                                and a.ID_USU = :id_usu";
+                }else if ($sel == 2) {
+                    $sql = "select a.NOM1_USU,a.NOM2_USU , a.APEPAT_USU,a.APEMAT_USU, a.RUT_USU ,
+                                a.MAIL_USU ,a.id_perfil, DATE_FORMAT(a.fec_cre_usu, '%d-%m-%Y') fec_cre_usu, a.cargo_usu, a.VIG_USU, a.NICK_USU
+                                from usuarios a
+                                where 
+                                a.ID_USU = :id_usu";
+                }
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":id_usu", $id_usu, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $response = $stmt->fetchAll();
+                return $response;
+
+            } catch (Exception $e) {
+                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+    /*///////////////////////////////////////
+    Validar usuario reset contraseña
+    //////////////////////////////////////*/
+        public function validar_usu($rut,$mail,$ident){
+
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                            if ($ident == 0) {
+                                $sql = "select id_cli id from clientes where rut_cli = :rut and mail_cli = :mail";
+                            
+                            }else if ($ident == 1) {
+                                $sql = "select id_usu id from usuarios where rut_usu = :rut and mail_usu = :mail";
+                            }
+        
+                       
+                                
+                            
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":rut", $rut, PDO::PARAM_STR);
+                $stmt->bindParam(":mail", $mail, PDO::PARAM_STR);
+                $stmt->execute();
+
+                $response = $stmt->fetchColumn();
+                return $response;
+
+            } catch (Exception $e) {
+                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
+
+    /*///////////////////////////////////////
     //////////Cargar datos mail ing doc/////////////
     //////////////////////////////////////*/
     public function datos_mail($num_doc){
@@ -50,7 +163,8 @@ and c.cod_grupo = 1";
             $response = $stmt->fetchColumn();
             return $response;
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
 
@@ -79,7 +193,8 @@ and c.cod_grupo = 1";
             return $response;
 
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
 
@@ -108,7 +223,8 @@ and c.cod_grupo = 1";
             return $response;
 
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
 
@@ -141,7 +257,8 @@ and c.cod_grupo = 1";
             $response = $stmt->fetchAll();
             return $response;
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
 
@@ -170,7 +287,8 @@ and c.cod_grupo = 1";
             $response = $stmt->fetchColumn();
             return $response;
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
    /*///////////////////////////////////////
@@ -198,7 +316,8 @@ and c.cod_grupo = 1";
             $response = $stmt->fetchAll();
             return $response;
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
     /*///////////////////////////////////////
@@ -222,7 +341,8 @@ and c.cod_grupo = 1";
             $response = $stmt->fetchAll();
             return $response;
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
     /*///////////////////////////////////////
@@ -273,7 +393,8 @@ and c.cod_grupo = 1";
             $response = $stmt->fetchAll();
             return $response;
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
     /*///////////////////////////////////////
@@ -302,7 +423,8 @@ and c.cod_grupo = 1";
             return $response;
 
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
     /*///////////////////////////////////////
@@ -329,7 +451,8 @@ and c.cod_grupo = 1";
             $response = $stmt->fetchAll();
             return $response;
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
     /*///////////////////////////////////////
@@ -356,7 +479,8 @@ and c.cod_grupo = 1";
            $response = $stmt->fetchAll();
            return $response;
        } catch (Exception $e) {
-           echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
        }
    }
     /*////////////////////////////////////////////
@@ -385,7 +509,8 @@ and c.cod_grupo = 1";
             return $response;
 
         } catch (Exception $e) {
-            echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../paginas_fa/datos_pers.php';</script>";
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
     }
     /*///////////////////////////////////////
@@ -585,8 +710,8 @@ and c.cod_grupo = 1";
         //////////////////////////////////////*/
         public function mail_ing_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_doc, $fec_ven) {
             try{
-                $to = "$nom_emp";
-                        $subject = "HTML email";
+                $to = $correo;
+                        $subject = "Ingreso de Documento de pago - Consultora HYR";
 
                         $message = "
                         <html>
@@ -594,16 +719,107 @@ and c.cod_grupo = 1";
                         <title>Ingreso de Documento de pago - Consultora HYR</title>
                         </head>
                         <body>
-                        <h1>Ingreso "$tipo_doc." Nro ".$nro_doc."<h1>
+                        <h1>Ingreso ".$tipo_doc." Nro ".$nro_doc."<h1>
                         Estimados ".$nom_emp."
-                        Hemos ingresado el documento de pago "$tipo_doc." Nro ".$nro_doc." por un monto total de $".$monto_doc.".
+                        Hemos ingresado el documento de pago <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto total de <b>$".$monto_doc."</b>.
                         <br>
-                        Su fecha de vencimiento es el ".$fec_ven."
-
+                        Su fecha de vencimiento es el <b>".$fec_ven."</b>
+                        <br><br>
                         Se despide Atte.
+                        <br><br>
+                        <h2>Consultora HYR</h2>
+                        <br><br>
+                        Este mensaje es enviado automaticamente, favor no responder.
+                        </body>
+                        </html>
+                        ";
 
-                        Consultora HYR
+                        // Always set content-type when sending HTML email
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
+                        // More headers
+                        $headers .= 'From: <hyr@hyr.com>' . "\r\n";
+                        $headers .= 'Cc: pvicencio@andescode.cl' . "\r\n";
+
+                        mail($to,$subject,$message,$headers);
+        } catch (Exception $e) {
+                throw $e;
+        }
+        }
+
+        /*///////////////////////////////////////
+            enviar mail nuevo usuario
+        //////////////////////////////////////*/
+        public function mail_crear_usu($password,$nombre,$rut,$mail) {
+            try{
+                $to = $mail;
+                        $subject = "Bienvenido a Consultora HYR";
+
+                        $message = "
+                        <html>
+                        <head>
+                        <title>Creación de Usuario - Consultora HYR</title>
+                        </head>
+                        <body>
+                        <h1>Creación de Usuario<h1>
+                        Estimado ".$nombre." se ha creado tu usuario para el sistema de gestión Consultora HYR.
+                        <br>
+                        Tus credenciales de ingreso son:
+
+                        Rut: <b>".$rut."</b>
+                        <br>
+                        Contraseña: <b>".$password."</b>
+                        <br><br>
+                        Se despide Atte.
+                        <br><br>
+                        <h2>Consultora HYR</h2>
+                        <br><br>
+                        Este mensaje es enviado automaticamente, favor no responder.
+                        </body>
+                        </html>
+                        ";
+
+                        // Always set content-type when sending HTML email
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                        // More headers
+                        $headers .= 'From: <hyr@hyr.com>' . "\r\n";
+                        $headers .= 'Cc: pvicencio@andescode.cl' . "\r\n";
+
+                        mail($to,$subject,$message,$headers);
+        } catch (Exception $e) {
+                throw $e;
+        }
+        }
+
+
+        /*///////////////////////////////////////
+            enviar mail reset password
+        //////////////////////////////////////*/
+        public function correo_upd_pass($mail,$contraseña) {
+            try{
+                $to = $mail;
+                        $subject = "Cambio de Contraseña HYR";
+
+                        $message = "
+                        <html>
+                        <head>
+                        <title>Cambio de Contraseña - Consultora HYR</title>
+                        </head>
+                        <body>
+                        <h1>Actualización de contraseña<h1>
+                        Estimad@ se ha actualizado su contraseña para el sistema de gestión Consultora HYR.
+                        <br>
+                        Tu Nueva Contraseña es:
+                        <br><br>
+                        Contraseña: <b>".$password."</b>
+                        <br><br>
+                        Se despide Atte.
+                        <br><br>
+                        <h2>Consultora HYR</h2>
+                        <br><br>
                         Este mensaje es enviado automaticamente, favor no responder.
                         </body>
                         </html>

@@ -11,9 +11,9 @@
  		goto salir;
  	}      
 
- 	require_once '../clases/ClaseDocumento.php';
- 	require_once '../clases/ClaseEmpresa.php';
- 	require_once '../clases/ClaseUsuario.php';
+ 	require_once '../clases/claseDocumento.php';
+ 	require_once '../clases/claseEmpresa.php';
+ 	require_once '../clases/claseUsuario.php';
  
  	try{
  		$id_emp = $_POST['emp'];

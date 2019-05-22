@@ -28,7 +28,7 @@
         <td><?php echo $row['comuna_emp']?></td>
         <td><?php echo $row['dir_emp']?></td>
         <td><?php echo $row['mail_emp']?></td>
-        <td><?php echo $row['fec_cre_emp']?></td>
+        <td><?php echo date('d-m-Y', strtotime($row['fec_cre_emp']))?></td>
         <td><?php echo $row['nick_usu']?></td>
 
       </tr>

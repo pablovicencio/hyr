@@ -12,7 +12,7 @@ session_start();
  	}         
 	     
 	require_once '../clases/Funciones.php';
- 	require_once '../clases/ClaseUsuario.php';
+ 	require_once '../clases/claseUsuario.php';
 
 	try{
 

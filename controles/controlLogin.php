@@ -1,11 +1,11 @@
 <?php
-	require_once '../clases/ClaseUsuario.php';
+	require_once '../clases/claseUsuario.php';
 	//require_once '../includes/recursosExternos.php';
 
 	try{
 		if (!empty($_POST['rut']) and !empty($_POST['pwd'])){ 
 			$rut = $_POST['rut'];
-			$pwd = md5($_POST['pwd']);
+			$pwd = $_POST['pwd'];
 			
 			$dao = new UsuarioDAO('',$rut,'','','','','','',$pwd,'','');
  		

@@ -30,7 +30,7 @@
         <td><?php echo $row['id_perfil']?></td>
         <td><?php echo $row['cargo_usu']?></td>
         <td><?php echo $row['vig_usu']?></td>
-        <td><?php echo $row['fec_cre_usu']?></td>
+        <td><?php echo date('d-m-Y', strtotime($row['fec_cre_usu'])) ?></td>
         <td><?php echo $row['nick_usu']?></td>
       </tr>
     <?php } ?>  
