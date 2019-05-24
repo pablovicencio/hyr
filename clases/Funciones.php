@@ -766,7 +766,7 @@ and c.cod_grupo = 1";
                         Estimado ".$nombre." se ha creado tu usuario para el sistema de gestión Consultora HYR.
                         <br>
                         Tus credenciales de ingreso son:
-
+                        <br>
                         Rut: <b>".$rut."</b>
                         <br>
                         Contraseña: <b>".$password."</b>
@@ -790,7 +790,8 @@ and c.cod_grupo = 1";
 
                         mail($to,$subject,$message,$headers);
         } catch (Exception $e) {
-                throw $e;
+                //throw $e;
+                 echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
         }
         }
 

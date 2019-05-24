@@ -27,14 +27,18 @@
                       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;Cobranza</a>
                       <div class="dropdown-menu">
                        <a class="dropdown-item" href="consulta_doc.php">Consulta &nbsp;<i class="fa fa-eye" aria-hidden="true"></i></a>
-                       <a class="dropdown-item" href="ing_doc.php">Ingresar Documento &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>
+
+
+                      <?php if($_SESSION['perfil']==1){echo '<a class="dropdown-item" href="ing_doc.php">Ingresar Documento &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>';}?>
+
+                       
                         <a class="dropdown-item" href="ing_pago.php">Ingresar Pago &nbsp;<i class="fa fa-dollar" aria-hidden="true"></i></a>
                         <a class="dropdown-item" href="mod_doc.php">Parametros Alertas  &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                       </div>
                     </li>
 
                 
-                <li class="nav-item "><a class="nav-link" href="usuarios.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Usuarios</a></li> 
+                <?php if($_SESSION['perfil']==1){echo '<li class="nav-item "><a class="nav-link" href="usuarios.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Usuarios</a></li> ';}?>
               </ul>
             </div>
       </nav> 
