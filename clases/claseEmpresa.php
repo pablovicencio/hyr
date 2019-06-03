@@ -93,14 +93,14 @@ class EmpresaDAO
     /*///////////////////////////////////////
     //////////////Crear Empresa//////////////
     ///////////////////////////////////////*/
-    public function crear_empresa() {
+    public function crear_empresa($giros) {
 
 
         try{
              
                 $pdo = AccesoDB::getCon();
 
-                $sql_crear_emp = "INSERT INTO `empresa` (`id_emp`, 
+                $sql_crear_emp = "INSERT INTO `empresa` ( 
                                                         `razon_social_emp`,
                                                         `rut_emp`,
                                                         `cons_soc_emp`,
@@ -123,8 +123,7 @@ class EmpresaDAO
                                                         `fac_rea_emp`,
                                                         `rta_at_emp`)
 
-                                                VALUES (
-                    NULL , :razon_social_emp, :rut_emp, :cons_soc_emp, :monto_mensual_emp,:monto_renta_emp,
+                                                VALUES ( :razon_social_emp, :rut_emp, :cons_soc_emp, :monto_mensual_emp,:monto_renta_emp,
                     :ciudad_emp, :comuna_emp, :dir_emp, :reg_trib_emp, :fec_ini_act_emp, :mail_emp,
                     :nom_contacto_emp,:patente_comer_emp, :evaluacion_emp, :vig_emp,CURDATE(),:usu_cre_emp, :clave_previred_emp, :clave_sii_emp,
                     :fac_rea_emp, :rta_at_emp)";
@@ -153,10 +152,38 @@ class EmpresaDAO
         /*N°20*/$stmt->bindParam(":fac_rea_emp",$this->fac_rea_emp , PDO::PARAM_INT);
         /*N°21*/$stmt->bindParam(":rta_at_emp",$this->rta_at_emp, PDO::PARAM_INT);
                 $stmt->execute();
+
+
+
+
+            if ($giros <> '') {
+                                  foreach ($giros as $row) {
+                              $giro = $row['giro'];
+                              
+                                  $sql_rut = "INSERT INTO `giro`
+                                                (`desc_giro`,`id_emp_giro`,`vig_giro`,`fec_cre_giro`,`usu_cre_giro`)
+                                                VALUES
+                                                (:giro,(select id_emp from empresa order by id_emp desc limit 1),'1',CURDATE(),:usu_cre_giro)";
+
+
+
+                $stmt = $pdo->prepare($sql_rut);
+                        $stmt->bindParam("giro", $giro, PDO::PARAM_STR);
+                        $stmt->bindParam(":usu_cre_giro",$this->usu_cre_emp , PDO::PARAM_INT);
+                        
+                $stmt->execute();
+
+                
+                }
+            }
+
+
+
         
 
             } catch (Exception $e) {
-                echo"1";
+                echo $e->getMessage();
+                //echo"1";
             }
     }
 

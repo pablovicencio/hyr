@@ -1,3 +1,26 @@
+
+
+
+//agregar giros crear empresa
+$(document).on("click", "#btn_cre_giro", function () {  
+    
+    if ($("#giro_cre").val()!='') {
+    var nuevafila= "<tr><td>" +
+          $("#giro_cre").val()+'</td></tr>'
+          
+          $("#tabla_giros_emp_cre").append(nuevafila);
+          $("#giro_cre").val('');
+    }
+});
+
+
+//////////funcion carga nom empresa modal giros crear empresa
+$(document).ready(function(){
+  $("#btn_modal_giro").click(function(){
+    $("#cre_emp_giro").text($("#rsocial").val());
+  });
+});
+
 //////////funcion cargar comunas
 function mod_ciudad(ciudad,com){
   $('#'+com).empty();
@@ -58,11 +81,25 @@ $(document).ready(function () {
 
 //CONTROL CREAR Empresa
 $(document).ready(function() {
-  $("#formCrearEmp").submit(function() {    
+  $("#formCrearEmp").submit(function() { 
+
+    var TableData = new Array();
+    
+            $('#tabla_giros_emp_cre tr').each(function(row, tr){
+                TableData[row]={
+                  "giro" : $(tr).find('td:eq(0)').text()
+                }
+            }); 
+            TableData.shift();  // first row will be empty - so remove
+            TableData = JSON.stringify(TableData);
+            $('#tbConvertToJSON').val('JSON array: \n\n' + TableData.replace(/},/g, "},\n"));
+
+
+
     $.ajax({
       type: "POST",
       url: '../controles/controlCrearEmp.php',
-      data:$("#formCrearEmp").serialize(),
+      data:$("#formCrearEmp").serialize() + "&datagiros="+TableData,
       success: function (result) { 
         var msg = result.trim();
 

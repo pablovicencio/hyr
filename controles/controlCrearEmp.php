@@ -37,10 +37,18 @@
         $fre = $_POST['fre'];
         $rae = $_POST['rae'];
 
+        if (isset($_POST['datagiros'])) {
+          $giros = stripcslashes ($_POST['datagiros']);
+          $giros= json_decode($giros,TRUE);
+        }else{
+          $giros = '';
+        }
+        
+
       
         $func = new Funciones();
 
-        if($mail != ''){
+        if($rut != ''){
             $validar = $func->validar_rut($rut,2);
 
             if(count($validar)==0){
@@ -49,7 +57,7 @@
 
                 $dao = new EmpresaDAO('',$rsocial,$rut,$cse,$mme,$mre,$ciudad,$comuna,$direc,$rte,$fia,$mail,$cem,$pce,$evem,$vig,'',$id_usu,$cprev,$csii,$fre,$rae);
                                
-                $crearEmp = $dao->crear_empresa();
+                $crearEmp = $dao->crear_empresa($giros);
 
                 if(count($crearEmp)>0){
                     echo "1";    

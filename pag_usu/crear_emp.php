@@ -26,7 +26,7 @@
 
               <div class="form-group">
                 <label for="mail">Email:</label>
-                <input type="text" class="form-control" id="mail" name="mail" maxlength="20"  required>
+                <input type="text" class="form-control" id="mail" name="mail" maxlength="100"  required>
               </div>
               
 
@@ -54,7 +54,11 @@
           </div>
 
 
-
+          <div class="form-group">
+            <br>
+                <a id="btn_modal_giro" class="link-modal btn btn-outline-info" data-toggle="modal" data-target="#modal_giro">Giros</a>
+                
+              </div>
           
 
 
@@ -136,7 +140,7 @@
         <label for="pce">Evaluacion Empresa:</label>
         <div class="row">
           <div class="col-12">
-            <input type="text" class="form-control" id="pce" name="pce"  maxlength="10" placeholder="Patente Comercial" required>
+            <input type="text" class="form-control" id="evem" name="evem"  maxlength="10" placeholder="Evaluacion Empresa" required>
           </div>
         </div>
     </div>
@@ -177,7 +181,7 @@
         <label for="fre">Fac. Rea. Emp.:</label>
         <div class="row">
           <div class="col-12">
-            <input type="text" class="form-control" id="fre" name="fre"  maxlength="10" placeholder="Fac. Rea. Emp." required>
+            <input type="number" class="form-control" id="fre" name="fre" min="01" placeholder="Fac. Rea. Emp." required>
           </div>
         </div>
         </div> 
@@ -190,5 +194,50 @@
   <div class="col-12 text-center">
     <input type="submit" class="btn btn-outline-success" id="btnAc" name="btnAc" value="Crear Empresa" >                                         
   </div>
-  <!-- Fin Row -->  
+  <!-- Fin Row --> 
+   </form> 
+
+<!-- Modal giros --> 
+  <div class="modal fade" id="modal_giro" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <form id="formIngPago" name="formIngPago" onsubmit="return false;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Giros de empresa <span id="cre_emp_giro" name="cre_emp_giro"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <div class="row">
+                  <div class="col-6">
+                              <div class="form-group">
+                                    <input type="text" class="form-control" id="giro_cre" name="giro_cre" placeholder="Nuevo Giro" required>
+                              </div>
+                  </div>
+                  <div class="col-6">
+                              <button id="btn_cre_giro" name="btn_cre_giro"  class="btn btn-outline-success" id="guardar_giro" id="name_giro">Agregar Giro</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <table id="tabla_giros_emp_cre" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                              <thead>
+                                <tr>
+                                      <th>Giro</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                          </table>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+        <div class="container-login100-form-btn">
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
 </form>
