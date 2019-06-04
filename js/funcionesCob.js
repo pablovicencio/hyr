@@ -243,7 +243,7 @@ $(document).ready(function() {
       }
     });
 
-
+    $("#tabla_docs").dataTable().fnDestroy();
       
        $.ajax({
       url: '../controles/controlCargarDocsEmpConsulta.php',
