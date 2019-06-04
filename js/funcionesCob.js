@@ -25,7 +25,7 @@ var perfil = session[0].split("=");
       $('#lblExento').css("visibility","hidden");
       $('#exento').css("display","none");
       $('#impbol').css("visibility","visible");
-      $('#lblIVA').text('Monto Retención');
+      $('#lblIva').text('Monto Retención');
       }
 
     
