@@ -68,9 +68,9 @@
         <div class="col-4">
 
               <div class="form-group">
-                <label for="ciudad">Ciudad:</label>
+                <label for="ciudad">Provincia:</label>
                             <select class="form-control" name="ciudad" id="ciudad" required onchange="mod_ciudad(this.value,'comuna')">
-              <option value="" selected disabled>Seleccione la Ciudad</option>
+              <option value="" selected disabled>Seleccione la Provincia</option>
               <?php 
               $re = $fun->cargar_ciudades();   
               foreach($re as $row)      
@@ -106,11 +106,11 @@
 
         <div class="form-group">
           <label for="mme">Monto Mensual Empresa:</label>
-          <input type="number"  class="form-control" id="mme" name="mme" maxlength="10" placeholder="Monto Mensual Empresa" required>
+          <input type="text"  class="form-control nro" id="mme" name="mme" maxlength="20" placeholder="Monto Mensual Empresa" required>
         </div>
         <div class="form-group">
           <label for="mre">Monto Renta Empresa:</label>
-          <input type="number" class="form-control" id="mre" name="mre" maxlength="10"  placeholder="Monto Renta Empresa" required>
+          <input type="text" class="form-control nro" id="mre" name="mre" maxlength="20"  placeholder="Monto Renta Empresa" required>
         </div>
         <div class="form-group">
           <label for="cse">Cons. Soc. Emp.:</label>
@@ -118,7 +118,7 @@
         </div>
         <div class="form-group">
           <label for="rte">Reg. Trib. Emp.:</label>
-          <input type="number" class="form-control" id="rte" name="rte" maxlength="10"  placeholder="Reg. Trib. Emp." required>
+          <input type="text" class="form-control" id="rte" name="rte" maxlength="10"  placeholder="Reg. Trib. Emp." required>
         </div>
 
 
@@ -181,7 +181,7 @@
         <label for="fre">Fac. Rea. Emp.:</label>
         <div class="row">
           <div class="col-12">
-            <input type="number" class="form-control" id="fre" name="fre" min="01" placeholder="Fac. Rea. Emp." required>
+            <input type="number" class="form-control" id="fre" name="fre" placeholder="Fac. Rea. Emp.">
           </div>
         </div>
         </div> 

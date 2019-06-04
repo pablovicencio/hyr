@@ -167,23 +167,24 @@ class EmpresaDAO
 
 
 
-                $stmt = $pdo->prepare($sql_rut);
-                        $stmt->bindParam("giro", $giro, PDO::PARAM_STR);
-                        $stmt->bindParam(":usu_cre_giro",$this->usu_cre_emp , PDO::PARAM_INT);
+                $stmt1 = $pdo->prepare($sql_rut);
+                        $stmt1->bindParam("giro", $giro, PDO::PARAM_STR);
+                        $stmt1->bindParam(":usu_cre_giro",$this->usu_cre_emp , PDO::PARAM_INT);
                         
-                $stmt->execute();
+                $stmt1->execute();
 
                 
                 }
             }
+            return $stmt->rowCount();
 
 
 
         
 
             } catch (Exception $e) {
-                echo $e->getMessage();
-                //echo"1";
+                //echo $e->getMessage();
+                echo"0";
             }
     }
 

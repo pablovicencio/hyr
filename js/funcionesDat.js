@@ -32,6 +32,7 @@ $(document).ready(function() {
                     break;
                 default:
                     swal("Contraseña Actualizada", msg, "success");
+                    $('#ModalActPwd').modal('hide');
                     setInterval('location.reload()',10000);
             }
       },

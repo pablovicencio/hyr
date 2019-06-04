@@ -4,7 +4,7 @@
             <th class="">ID                             <i class="" aria-hidden="true"></i></th>
             <th class="">Razón Social                           <i class="" aria-hidden="true"></i></th>
             <th class="">Rut                        <i class="" aria-hidden="true"></i></th>
-            <th class="">Ciudad                             <i class="" aria-hidden="true"></i></th>
+            <th class="">Provincia                             <i class="" aria-hidden="true"></i></th>
             <th class="">Comuna                             <i class="" aria-hidden="true"></i></th>
             <th class="">Dirección                          <i class="" aria-hidden="true"></i></th>
             <th class="">Mail                           <i class="" aria-hidden="true"></i></th>

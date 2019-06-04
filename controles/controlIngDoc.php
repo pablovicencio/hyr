@@ -20,15 +20,20 @@
  		$id_emp = $_POST['emp'];
 
  		$num_doc = $_POST['num_doc'];
- 		$afecto = $_POST['afecto'];
+ 		$afecto = str_replace(".","",$_POST['afecto']);
  		$fec_emi = $_POST['fec_emi'];
  		$tipo_doc = $_POST['tipo_doc'];
- 		$exento = $_POST['exento'];
+ 		$exento = str_replace(".","",$_POST['exento']);
  		$fec_ven = $_POST['fec_ven'];
- 		$iva = $_POST['iva'];
- 		$total = $_POST['total'];
+ 		$iva = str_replace(".","",$_POST['iva']);
+ 		$total = str_replace(".","",$_POST['total']);
  		$fec_reg = date("Y-m-d h:m:s", time());
  		$est = 1;
+
+ 		$afecto = str_replace(",","",$afecto);
+ 		$exento = str_replace(",","",$exento );
+ 		$iva = str_replace(",","",$iva);
+ 		$total = str_replace(",","",$total);
  		if (isset($_POST['obs_doc'])) {
  			$obs_doc = $_POST['obs_doc'];
  		}else{
@@ -47,7 +52,7 @@
 			
 			if ($ing_doc>0){
 
-				$datos_mail = $fun->datos_mail($num_doc);
+				$datos_mail = $fun->datos_mail($num_doc,1);
 
 				$mail = $fun->mail_ing_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$num_doc,$total, $fec_ven);	
 				

@@ -115,7 +115,7 @@
                   <div class="col-6">
                               <div class="form-group">
                                     <label for="monto_total">Monto Total:</label>
-                                    <input type="number" class="form-control" id="monto_total" name="monto_total" readonly>
+                                    <input type="text" class="form-control" id="monto_total" name="monto_total" readonly>
                               </div>
                   </div>
                   <div class="col-6">
@@ -135,7 +135,7 @@
                   <div class="col-6">
                               <div class="form-group">
                                     <label for="monto_pagado">Monto pagado:</label>
-                                    <input type="number" class="form-control" id="monto_pagado" name="monto_pagado" readonly>
+                                    <input type="text" class="form-control" id="monto_pagado" name="monto_pagado" readonly>
                               </div>
                   </div>
                 </div>
@@ -163,7 +163,7 @@
                             <div class="col">
                               <div class="form-group">
                                     <label for="monto_mov">Monto de Pago:</label>
-                                    <input type="number" class="form-control" id="monto_pago" name="monto_pago" min="0" required>
+                                    <input type="text" class="form-control nro" id="monto_pago" name="monto_pago"  required>
                               </div>
                             </div>
 

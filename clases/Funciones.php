@@ -140,21 +140,28 @@ class Funciones
     /*///////////////////////////////////////
     //////////Cargar datos mail ing doc/////////////
     //////////////////////////////////////*/
-    public function datos_mail($num_doc){
+    public function datos_mail($num_doc,$id){
 
          try{
             
             
             $pdo = AccesoDB::getCon();
-                    
-            
-                 $sql = "select b.razon_social_emp nom_emp, b.mail_emp, c.desc_item tipo
+
+            if ($id == 1) {
+                $sql = "select b.razon_social_emp nom_emp, b.mail_emp, c.desc_item tipo
 from documento a, empresa b, tab_param c
 where a.nro_doc = :num_doc
 and a.emp_doc = b.id_emp
 and a.tipo_doc = c.cod_item
 and c.cod_grupo = 1";
-            
+            }elseif ($id == 2) {
+                $sql = "select b.razon_social_emp nom_emp, b.mail_emp, c.desc_item tipo, a.nro_doc
+from documento a, empresa b, tab_param c
+where a.id_doc = :num_doc
+and a.emp_doc = b.id_emp
+and a.tipo_doc = c.cod_item
+and c.cod_grupo = 1";
+            }   
                    
             
             $stmt = $pdo->prepare($sql);
@@ -705,25 +712,27 @@ and c.cod_grupo = 1";
     //////////////////////////
     //////////////////////////mails HYR
 
+
+
         /*///////////////////////////////////////
-            enviar mail nuevo documento ing
+            enviar mail pago documento 
         //////////////////////////////////////*/
-        public function mail_ing_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_doc, $fec_ven) {
+        public function mail_pago_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_doc, $fec_reg,$est) {
             try{
                 $to = $correo;
-                        $subject = "Ingreso de Documento de pago - Consultora HYR";
+                        $subject = "Pago de Documento - Consultora HYR";
 
                         $message = "
                         <html>
                         <head>
-                        <title>Ingreso de Documento de pago - Consultora HYR</title>
+                        <title>Pago de Documento - Consultora HYR</title>
                         </head>
                         <body>
-                        <h1>Ingreso ".$tipo_doc." Nro ".$nro_doc."<h1>
+                        <h1>Agradecemos pago de ".$tipo_doc." Nro ".$nro_doc."<h1>
                         Estimados ".$nom_emp."
-                        Hemos ingresado el documento de pago <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto total de <b>$".$monto_doc."</b>.
+                        Agradecemos a usted el pago ".$est." de su <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto de <b>$".$monto_doc."</b>.
                         <br>
-                        Su fecha de vencimiento es el <b>".$fec_ven."</b>
+                        La fecha de registro fue el <b>".date('d-m-Y', strtotime($fec_reg))."</b>
                         <br><br>
                         Se despide Atte.
                         <br><br>
@@ -741,6 +750,51 @@ and c.cod_grupo = 1";
                         // More headers
                         $headers .= 'From: <hyr@hyr.com>' . "\r\n";
                         $headers .= 'Cc: pvicencio@andescode.cl' . "\r\n";
+                        $headers .= 'Cc: rmunoz@hyrconsultora.com' . "\r\n";
+
+                        mail($to,$subject,$message,$headers);
+        } catch (Exception $e) {
+                throw $e;
+        }
+        }
+
+        /*///////////////////////////////////////
+            enviar mail nuevo documento ing
+        //////////////////////////////////////*/
+        public function mail_ing_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_doc, $fec_ven) {
+            try{
+                $to = $correo;
+                        $subject = "Ingreso de Documento de pago - Consultora HYR";
+
+                        $message = "
+                        <html>
+                        <head>
+                        <title>Ingreso de Documento de pago - Consultora HYR</title>
+                        </head>
+                        <body>
+                        <h1>Disponible para pago ".$tipo_doc." Nro ".$nro_doc."<h1>
+                        Estimados ".$nom_emp."
+                        Informamos a usted que se encuentra disponible para pago su <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto total de <b>$".$monto_doc."</b>.
+                        <br>
+                        Su fecha de vencimiento es el <b>".date('d-m-Y', strtotime($fec_ven))."</b>
+                        <br><br>
+                        Se despide Atte.
+                        <br><br>
+                        <h2>Consultora HYR</h2>
+                        <br><br>
+                        Este mensaje es enviado automaticamente, favor no responder.
+                        </body>
+                        </html>
+                        ";
+
+                        // Always set content-type when sending HTML email
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                        // More headers
+                        $headers .= 'From: <hyr@hyr.com>' . "\r\n";
+                        $headers .= 'Cc: pvicencio@andescode.cl' . "\r\n";
+                        $headers .= 'Cc: rmunoz@hyrconsultora.com' . "\r\n";
 
                         mail($to,$subject,$message,$headers);
         } catch (Exception $e) {
@@ -815,7 +869,7 @@ and c.cod_grupo = 1";
                         <br>
                         Tu Nueva Contraseña es:
                         <br><br>
-                        Contraseña: <b>".$password."</b>
+                        Contraseña: <b>".$contraseña."</b>
                         <br><br>
                         Se despide Atte.
                         <br><br>

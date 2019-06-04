@@ -46,7 +46,7 @@
 
               <div class="form-group">
                 <label for="mmail">Email:</label>
-                <input type="text" class="form-control" id="mmail" name="mmail" maxlength="20" placeholder="email@dominio.cl" required>
+                <input type="text" class="form-control" id="mmail" name="mmail" maxlength="100" placeholder="email@dominio.cl" required>
               </div>
               
 
@@ -84,9 +84,9 @@
         <div class="col-4">
 
               <div class="form-group">
-                          <label for="ciudad">Ciudad:</label>
+                          <label for="ciudad">Provincia:</label>
                             <select class="form-control" name="mciudad" id="mciudad" required onchange="mod_ciudad(this.value,'mcomuna')">
-              <option value="" selected disabled>Seleccione la Ciudad</option>
+              <option value="" selected disabled>Seleccione la Provincia</option>
               <?php 
               $re = $fun->cargar_ciudades();   
               foreach($re as $row)      

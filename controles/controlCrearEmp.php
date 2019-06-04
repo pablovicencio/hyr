@@ -25,8 +25,8 @@
         $direc = $_POST['direc'];
         $ciudad = $_POST['ciudad'];
         $comuna = $_POST['comuna'];
-        $mme = $_POST['mme'];
-        $mre = $_POST['mre'];
+        $mme = str_replace(".","",$_POST['mme']);
+        $mre = str_replace(".","",$_POST['mre']);
         $cse = $_POST['cse'];
         $rte = $_POST['rte'];
         $pce = $_POST['pce'];
@@ -36,6 +36,9 @@
         $cprev = $_POST['cprev'];
         $fre = $_POST['fre'];
         $rae = $_POST['rae'];
+
+        $mme = str_replace(",","",$mme);
+        $mre = str_replace(",","",$mre);
 
         if (isset($_POST['datagiros'])) {
           $giros = stripcslashes ($_POST['datagiros']);
@@ -59,7 +62,7 @@
                                
                 $crearEmp = $dao->crear_empresa($giros);
 
-                if(count($crearEmp)>0){
+                if(count($crearEmp)==0){
                     echo "1";    
                 }else{
                    echo "Empresa : ".$rsocial." Ingresada Correctamente!";

@@ -3,6 +3,16 @@
 var session = document.getElementById("funCob").src.match(/\w+=\w+/g);
 var perfil = session[0].split("=");
 
+//////////funcion separador de miles inputs number
+    $(document).on('keyup', '.nro', function (e) {
+     element = e.target;
+     value = element.value;
+    n = value;
+    n = String(n).replace(/\D/g, "");
+    n = '' ? n : Number(n).toLocaleString();  
+    element.value = n;
+  });
+
 
 
 
@@ -15,17 +25,28 @@ var perfil = session[0].split("=");
       $('#lblExento').css("visibility","visible");
       $('#exento').css("display","block");
       $('#impbol').css("visibility","hidden");
-      $('#lblIVA').text('Monto IVA');
+      $('#lblIva').text('Monto IVA');
+      $('#afecto').val(0);
+      $('#exento').val(0);
+      $('#iva').val(0);
+      $('#total').val(0);
+      $('#afecto').prop('readonly', false);
+      $('#exento').prop('readonly', false);
       }
 
     //Boleta
     if ($('#tipo_doc').val() == 2) {
-      $('#lblAfecto').text('Monto Neto');
+      $('#lblAfecto').text('Monto Liquido');
       $('#exento').val("0");
       $('#lblExento').css("visibility","hidden");
       $('#exento').css("display","none");
       $('#impbol').css("visibility","visible");
       $('#lblIva').text('Monto Retención');
+      $('#afecto').val(0);
+      $('#exento').val(0);
+      $('#iva').val(0);
+      $('#total').val(0);
+      $('#afecto').prop('readonly', false);
       }
 
     
@@ -91,10 +112,10 @@ $(document).on("click", "#btn_modal_consulta", function () {
      var fec = Date.now();
      $("#nro_doc").text(nro_doc);
      $("#id_doc").val(id_doc);
-     $("#monto_total").val(total);
-     $("#monto_afecto").val(afecto);
-     $("#monto_exento").val(exento);
-     $("#monto_iva").val(iva);
+     $("#monto_total").val(Number(parseInt(total)).toLocaleString());
+     $("#monto_afecto").val(Number(parseInt(afecto)).toLocaleString());
+     $("#monto_exento").val(Number(parseInt(exento)).toLocaleString());
+     $("#monto_iva").val(Number(parseInt(iva)).toLocaleString());
      $("#tipo_modal").text($(this).data('tipo'));
      $("#fec_ven").val($(this).data('fec_ven'));
 
@@ -107,7 +128,7 @@ $(document).on("click", "#btn_modal_consulta", function () {
       dataType:'json',
       success:function(result){
         $('#est_doc').val(result[0].est);
-        $('#monto_pagado').val(result[0].suma);
+        $('#monto_pagado').val(Number(parseInt(result[0].suma)).toLocaleString());
       }
     })
 
@@ -124,7 +145,7 @@ $(document).on("click", "#btn_modal_consulta", function () {
 
           var nuevafila= "<tr><td>" +
           result[i].fec_reg_mov + "</td><td>" +
-          result[i].monto_mov + "</td><td>" +
+          Number(parseInt(result[i].monto_mov)).toLocaleString() + "</td><td>" +
           result[i].usu + "</td><td>" +
           result[i].obs_mov + "</td><td>" +
           result[i].est + "</td><tr>"
@@ -229,6 +250,7 @@ $(document).on("click", "#atras_emp_consulta", function () {
 /////////funcion cargar documentos empresa consulta
 $(document).ready(function() {
   $("#formEmpConsulta").submit(function() { 
+    $('#tabla_docs').DataTable().destroy();
 
     $.ajax({
       url: '../controles/controlCargarEmp.php',
@@ -260,10 +282,10 @@ $(document).ready(function() {
           result[i].id_doc + "</td><td>" +
           result[i].nro_doc + "</td><td>" +
           result[i].est + "</td><td>" +
-          result[i].monto_afecto_doc + "</td><td>" +
-          result[i].monto_exento_doc + "</td><td>" +
-          result[i].monto_iva_doc + "</td><td>" +
-          result[i].monto_total_doc + "</td><td>" +
+          Number(result[i].monto_afecto_doc).toLocaleString() + "</td><td>" +
+          Number(result[i].monto_exento_doc).toLocaleString() + "</td><td>" +
+          Number(result[i].monto_iva_doc).toLocaleString() + "</td><td>" +
+          Number(result[i].monto_total_doc).toLocaleString() + "</td><td>" +
           result[i].fec_emi_doc + "</td><td>" +
           result[i].fec_ven_doc + "</td><td>" +
           result[i].tipo_doc+"</td><td>"+
@@ -347,10 +369,10 @@ $(document).ready(function() {
           var nuevafila= "<tr><td style='display:none;'>" +
           result[i].id_doc + "</td><td>" +
           result[i].nro_doc + "</td><td>" +
-          result[i].monto_afecto_doc + "</td><td>" +
-          result[i].monto_exento_doc + "</td><td>" +
-          result[i].monto_iva_doc + "</td><td>" +
-          result[i].monto_total_doc + "</td><td>" +
+          Number(result[i].monto_afecto_doc).toLocaleString() + "</td><td>" +
+          Number(result[i].monto_exento_doc).toLocaleString() + "</td><td>" +
+          Number(result[i].monto_iva_doc).toLocaleString() + "</td><td>" +
+          Number(result[i].monto_total_doc).toLocaleString() + "</td><td>" +
           result[i].fec_emi_doc + "</td><td>" +
           result[i].fec_ven_doc + "</td><td>" +
           result[i].tipo_doc+"</td><td>"+
@@ -386,6 +408,8 @@ $(document).on("click", "#atras_emp_doc", function () {
   $('#rut_emp').prop('readonly', false);
   $('#atras_emp_doc').css("display","none");
   $('#val_emp').css("display","block");
+  $('#afecto').prop('readonly', true);
+  $('#exento').prop('readonly', true);
 
   
 });
@@ -397,39 +421,98 @@ $(document).on("click", "#atras_emp_doc", function () {
 //////////funcion pago documento
 $(document).ready(function() {
   $("#formIngPago").submit(function() {    
-    $.ajax({
-      type: "POST",
-      url: '../controles/controlPagoDoc.php',
-      data:$("#formIngPago").serialize(),
-      success: function (result) { 
-      var msg = result.trim();
 
-        switch(msg) {
-                case '-1':
-                    swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
-                    break;
-                case '-2':
-                    swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");
-                    break;
-                default :
-                    swal("Pago Ingresado", msg, "success");
-                    $('#modal_pago').find('input').val('');
-                    $('#modal_pago').modal('hide');
-                    $('#div_tabla_doc').css("display","none");
-                    $('#formEmpPago').trigger("reset");
-                    $('#forma_pago').prop('selectedIndex',0);
-                    $('#tabla_docs tbody').empty();
-                    $('#obs_pago').val('');
-                    $('#rut_emp').prop('readonly', false);
-                    $('#val_emp').css("display","block");
-                    $('#atras_emp_pago').css("display","none");
-                    break;
-            }
-      },
-      error: function(){
-              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
-      }
-    });
+    var total = String($('#monto_total').val()).replace(/\D/g, "");
+    var pagado = String($('#monto_pagado').val()).replace(/\D/g, "");
+    var pago = String($('#monto_pago').val()).replace(/\D/g, "");
+
+    if (parseInt(total) < (parseInt(pago)+parseInt(pagado))) {
+           swal({
+                  title: "Advertencia de Monto",
+                  text: "La suma de monto pagado es mayor que el total del documento ¿Estas seguro que deseas registrarlo?",
+                  icon: "warning",
+                  buttons: ["Cancelar", "Aceptar"],
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                        $.ajax({
+                            type: "POST",
+                            url: '../controles/controlPagoDoc.php',
+                            data:$("#formIngPago").serialize(),
+                            success: function (result) { 
+                            var msg = result.trim();
+
+                              switch(msg) {
+                                      case '-1':
+                                          swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
+                                          break;
+                                      case '-2':
+                                          swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");
+                                          break;
+                                      default :
+                                          swal("Pago Ingresado", msg, "success");
+                                          $('#modal_pago').find('input').val('');
+                                          $('#modal_pago').modal('hide');
+                                          $('#div_tabla_doc').css("display","none");
+                                          $('#formEmpPago').trigger("reset");
+                                          $('#forma_pago').prop('selectedIndex',0);
+                                          $('#tabla_docs tbody').empty();
+                                          $('#obs_pago').val('');
+                                          $('#rut_emp').prop('readonly', false);
+                                          $('#val_emp').css("display","block");
+                                          $('#atras_emp_pago').css("display","none");
+                                          break;
+                                  }
+                            },
+                            error: function(){
+                                    swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+                            }
+                          });
+
+                  } 
+                });
+    
+    }else{
+                                        $.ajax({
+                            type: "POST",
+                            url: '../controles/controlPagoDoc.php',
+                            data:$("#formIngPago").serialize(),
+                            success: function (result) { 
+                            var msg = result.trim();
+
+                              switch(msg) {
+                                      case '-1':
+                                          swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
+                                          break;
+                                      case '-2':
+                                          swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");
+                                          break;
+                                      default :
+                                          swal("Pago Ingresado", msg, "success");
+                                          $('#modal_pago').find('input').val('');
+                                          $('#modal_pago').modal('hide');
+                                          $('#div_tabla_doc').css("display","none");
+                                          $('#formEmpPago').trigger("reset");
+                                          $('#forma_pago').prop('selectedIndex',0);
+                                          $('#tabla_docs tbody').empty();
+                                          $('#obs_pago').val('');
+                                          $('#rut_emp').prop('readonly', false);
+                                          $('#val_emp').css("display","block");
+                                          $('#atras_emp_pago').css("display","none");
+                                          break;
+                                  }
+                            },
+                            error: function(){
+                                    swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+                            }
+                          });
+    }
+
+
+    
+
+
     return false;
   });
 }); 
@@ -443,11 +526,9 @@ $(document).on("click", "#btn_modal_pago", function () {
      var total = $(this).data('total');
      var fec_ven = new Date($(this).data('fec_ven'));
      var fec = Date.now();
-     console.log(nro_doc);
-     console.log(id_doc);
      $("#nro_doc").text(nro_doc);
      $("#id_doc").val(id_doc);
-     $("#monto_total").val(total);
+     $("#monto_total").val(Number(total).toLocaleString());
 
      fec_ven < fec ? $('#ven_doc').css("display","block") : $('#ven_doc').css("display","none");
 
@@ -458,7 +539,7 @@ $(document).on("click", "#btn_modal_pago", function () {
       dataType:'json',
       success:function(result){
         $('#est_doc').val(result[0].est);
-        $('#monto_pagado').val(result[0].suma);
+        $('#monto_pagado').val(Number(result[0].suma).toLocaleString());
       }
     })
 
@@ -477,25 +558,35 @@ $(document).on("click", "#btn_modal_pago", function () {
 //////////funcion calcular monto total
 function calculoTotal()
 {     
-      var afecto = $('#afecto').val() == '' ? 0 : $('#afecto').val();
-      var exento = $('#exento').val() == '' ? 0 : $('#exento').val();
-      var iva = $('#iva').val() == '' ? 0 : $('#iva').val();
+      var afecto = $('#afecto').val() == '' ? 0 : String($('#afecto').val()).replace(/\D/g, "");
+      var exento = $('#exento').val() == '' ? 0 : String($('#exento').val()).replace(/\D/g, "");
+      var iva = $('#iva').val() == '' ? 0 : String($('#iva').val()).replace(/\D/g, "");
 
 
        var total = parseInt(afecto) + parseInt(exento) + parseInt(iva);
-        $('#total').val(parseInt(total));
+        $('#total').val(Number(parseInt(total)).toLocaleString());
 }
 //////////funcion calcular monto iva
 function calculoIva()
 {
+        var afecto = String($('#afecto').val()).replace(/\D/g, "")
         if ($('#tipo_doc').val() == 1) {
-          var iva = parseInt($('#afecto').val()) * 0.19;
-          $('#iva').val(parseInt(iva));
+          if (afecto!=0) {
+            var iva = parseInt(afecto) * 0.19;
+            $('#iva').val(Number(parseInt(iva)).toLocaleString());
+          }else{
+            $('#iva').val(0);
+          }
+          
         }else if ($('#tipo_doc').val() == 2) {
           $('#exento').val('0');
           if ($('#impbolcheck').prop('checked')) {
-            var iva = parseInt($('#afecto').val()) * 0.10;
-            $('#iva').val(parseInt(iva));
+            if (afecto!=0) {
+              var iva = parseInt(afecto) * 0.10;
+              $('#iva').val(Number(parseInt(iva)).toLocaleString());
+            }else{
+              $('#iva').val(0);
+            }
           }else{
             $('#iva').val('0');
           }
@@ -558,7 +649,7 @@ $(document).ready(function() {
       success:function(result){
         $('#nom_emp').val(result[0].razon_social_emp);
         $('#emp').val(result[0].id_emp);
-        $('#mon_men').val(result[0].monto_mensual_emp);
+        $('#mon_men').val(Number(result[0].monto_mensual_emp).toLocaleString());
         $('#form_doc').css("display","block");
         $('#rut_emp').prop('readonly', true);
         $('#val_emp').css("display","none");

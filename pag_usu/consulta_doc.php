@@ -139,13 +139,13 @@
                   <div class="col-6">
                       <div class="form-group" >
                                     <label for="afecto">Monto Afecto:</label>
-                                    <input type="number" class="form-control" id="monto_afecto" name="monto_afecto" min="0" readonly required>
+                                    <input type="text" class="form-control" id="monto_afecto" name="monto_afecto"  readonly required>
                       </div>
                   </div>
                   <div class="col-6">
                       <div class="form-group" >
                                 <label for="exento">Monto Exento:</label>
-                                <input type="number" class="form-control" id="monto_exento" name="monto_exento" min="0" readonly required>
+                                <input type="text" class="form-control" id="monto_exento" name="monto_exento"  readonly required>
                       </div>
                   </div>
                 </div>
@@ -153,13 +153,13 @@
                   <div class="col-6">
                       <div class="form-group" >
                                 <label for="iva">Monto IVA:</label>
-                                <input type="number" class="form-control" id="monto_iva" name="monto_iva" min="0" readonly required>
+                                <input type="text" class="form-control" id="monto_iva" name="monto_iva"  readonly required>
                         </div>
                   </div>
                   <div class="col-6">
                       <div class="form-group">
                                     <label for="total">Monto Total:</label>
-                                    <input type="number" class="form-control" id="monto_total" name="monto_total" required readonly>
+                                    <input type="text" class="form-control" id="monto_total" name="monto_total" required readonly>
                                   </div>
                   </div>
                 </div>
@@ -168,7 +168,7 @@
                   <div class="col-6">
                       <div class="form-group" >
                                 <label for="pagado">Monto Pagado:</label>
-                                <input type="number" class="form-control" id="monto_pagado" name="monto_pagado" readonly required>
+                                <input type="text" class="form-control" id="monto_pagado" name="monto_pagado" readonly required>
                         </div>
                   </div>
                   <div class="col-6">

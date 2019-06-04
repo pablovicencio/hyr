@@ -18,11 +18,15 @@
  	try{
  		$id_doc = $_POST['id_doc'];
 
- 		$monto_mov = $_POST['monto_pago'];
+ 		$monto_mov = str_replace(".","",$_POST['monto_pago']);
  		$fec_reg = date("Y-m-d h:m:s", time());
  		$cod_formapago_mov = $_POST['forma_pago'];
- 		$suma_pago = $_POST['monto_pagado'];
+ 		$suma_pago = str_replace(".","",$_POST['monto_pagado']);
+ 		
  		$fun = new Funciones(); 
+
+ 		$suma_pago = str_replace(",","",$suma_pago);
+ 		$monto_mov = str_replace(",","",$monto_mov);
 
  		$re = $fun->cargar_datos_doc($id_doc);  
  	
@@ -47,6 +51,9 @@
 			$pago_doc = $dao->pago_doc($usu->getUsu(),$monto_mov,$obs_mov,$fec_reg,$cod_formapago_mov,$est_mov);
 			
 			if ($pago_doc>0){
+
+				$datos_mail = $fun->datos_mail($id_doc,2);
+				$mail = $fun->mail_pago_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$datos_mail[0]['nro_doc'],$monto_mov, $fec_reg,$est_msg);	
 			
 			echo"Documento pagado ".$est_msg;    
 			} else {

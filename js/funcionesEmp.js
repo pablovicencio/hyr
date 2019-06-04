@@ -1,12 +1,29 @@
+//////////funcion separador de miles inputs number
+    $(document).on('keyup', '.nro', function (e) {
+     element = e.target;
+     value = element.value;
+    n = value;
+    n = String(n).replace(/\D/g, "");
+    n = '' ? n : Number(n).toLocaleString();  
+    element.value = n;
+});
+
+//////////quitar giro modal
+$(function () {
+    $(document).on('click', '#borrar_giro', function (event) {
+        event.preventDefault();
+        $(this).closest('tr').remove();
+    });
+});
 
 
-
-//agregar giros crear empresa
+//////////agregar giros crear empresa
 $(document).on("click", "#btn_cre_giro", function () {  
     
     if ($("#giro_cre").val()!='') {
     var nuevafila= "<tr><td>" +
-          $("#giro_cre").val()+'</td></tr>'
+          $("#giro_cre").val()+'</td><td>'+
+          '<button id="borrar_giro" name="borrar_giro" class="btn btn-outline-danger" >Eliminar</button></td></tr>'
           
           $("#tabla_giros_emp_cre").append(nuevafila);
           $("#giro_cre").val('');
@@ -22,7 +39,7 @@ $(document).ready(function(){
 });
 
 //////////funcion cargar comunas
-function mod_ciudad(ciudad,com){
+function mod_ciudad(ciudad,com,comsel){
   $('#'+com).empty();
       $.ajax({
       type: "POST",
@@ -37,6 +54,7 @@ function mod_ciudad(ciudad,com){
               value: result[i].comuna_id,
           });
           $('#'+com).prepend($option);
+          $('#'+com).val(comsel);
         }
       },
       error: function(){
@@ -162,8 +180,7 @@ $(document).ready(function() {
           $('#vigcheck').prop('checked', false);
           $('#vigtext').prop('value',"No se Encuentra Vigente");
         }
-        mod_ciudad(result[0].ciudad_emp,'mcomuna');
-        $('#mcomuna').val(result[0].comuna_emp);
+        mod_ciudad(result[0].ciudad_emp,'mcomuna',result[0].comuna_emp);
     }
  })
 }
