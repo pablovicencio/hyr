@@ -30,7 +30,7 @@
 
  		$re = $fun->cargar_datos_doc($id_doc);  
  	
- 		if ($re[0]['monto_total_doc'] > ($monto_mov+$suma_pago)) {
+ 		if ($re[0]['total'] > ($monto_mov+$suma_pago)) {
  			$est_mov = 2;
  			$est_msg = 'parcialmente';
  		}else{

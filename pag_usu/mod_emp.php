@@ -59,7 +59,7 @@
               <label for="mrut">Rut:</label>
               <div class="row">
                 <div class="col-12">
-                  <input type="text" class="form-control" id="mrut" name="mrut"  maxlength="10" placeholder="ej: 12345678-9" required>
+                  <input type="text" class="form-control" id="mrut" name="mrut"  maxlength="10" placeholder="ej: 12345678-9" required readonly>
                 </div>
               </div>
           </div>

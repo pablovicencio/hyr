@@ -309,7 +309,7 @@ and c.cod_grupo = 1";
             $pdo = AccesoDB::getCon();
                     
             
-                 $sql = "select desc_item est, ifnull(sum(c.monto_mov),0) suma
+                 $sql = "select desc_item est, ifnull(sum(c.monto_mov),0) suma, b.tipo_doc
                             from tab_param a, documento b left join mov_documento c on c.id_doc_mov = b.id_doc
                             where a.cod_grupo = 2
                             and a.cod_item = b.est_doc
@@ -338,7 +338,11 @@ and c.cod_grupo = 1";
             $pdo = AccesoDB::getCon();
                     
             
-                 $sql = "select * from documento where id_doc = :id_doc";
+                 $sql = "select *, CASE
+                            WHEN tipo_doc = 1 THEN monto_total_doc
+                            WHEN tipo_doc = 2 THEN monto_afecto_doc
+                        END AS total
+                        from documento where id_doc = :id_doc";
             
                    
             

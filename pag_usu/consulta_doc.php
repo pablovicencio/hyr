@@ -138,13 +138,13 @@
                 <div class="row">
                   <div class="col-6">
                       <div class="form-group" >
-                                    <label for="afecto">Monto Afecto:</label>
+                                    <label for="afecto" id="lblAfecto">Monto Afecto:</label>
                                     <input type="text" class="form-control" id="monto_afecto" name="monto_afecto"  readonly required>
                       </div>
                   </div>
                   <div class="col-6">
                       <div class="form-group" >
-                                <label for="exento">Monto Exento:</label>
+                                <label for="exento" id="lblExento">Monto Exento:</label>
                                 <input type="text" class="form-control" id="monto_exento" name="monto_exento"  readonly required>
                       </div>
                   </div>
@@ -152,7 +152,7 @@
                 <div class="row">
                   <div class="col-6">
                       <div class="form-group" >
-                                <label for="iva">Monto IVA:</label>
+                                <label for="iva" id="lblIva">Monto IVA:</label>
                                 <input type="text" class="form-control" id="monto_iva" name="monto_iva"  readonly required>
                         </div>
                   </div>
