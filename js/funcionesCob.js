@@ -119,6 +119,18 @@ $(document).on("click", "#btn_modal_consulta", function () {
      $("#tipo_modal").text($(this).data('tipo'));
      $("#fec_ven").val($(this).data('fec_ven'));
 
+     if ($(this).data('tipo') == 'BOLETA') {
+        $("#lblAfecto").text("Monto Liquido");
+        $("#lblIva").text("Monto Retención");
+        $("#lblExento").css("display","none");
+        $("#monto_exento").css("display","none");
+     }else if($(this).data('tipo') == 'FACTURA'){
+        $("#lblAfecto").text("Monto Afecto");
+        $("#lblIva").text("Monto IVA");
+        $("#lblExento").css("display","block");
+        $("#monto_exento").css("display","block");
+     }
+
      fec_ven < fec ? $('#ven_doc').css("display","block") : $('#ven_doc').css("display","none");
 
     $.ajax({
@@ -250,7 +262,9 @@ $(document).on("click", "#atras_emp_consulta", function () {
 /////////funcion cargar documentos empresa consulta
 $(document).ready(function() {
   $("#formEmpConsulta").submit(function() { 
+
     $('#tabla_docs').DataTable().destroy();
+    $('#tabla_docs tbody').empty();
 
     $.ajax({
       url: '../controles/controlCargarEmp.php',
@@ -377,7 +391,7 @@ $(document).ready(function() {
           result[i].fec_ven_doc + "</td><td>" +
           result[i].tipo_doc+"</td><td>"+
           result[i].obs_doc + "</td><td>"+
-          '<a id="btn_modal_pago" class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Pagar</a></td></tr>'
+          '<a id="btn_modal_pago" class="link-modal btn btn-outline-info" data-id="'+result[i].id_doc+'" data-doc="'+result[i].nro_doc+'" data-total="'+result[i].monto_total_doc+'" data-afecto="'+result[i].monto_afecto_doc+'" data-fec_ven="'+result[i].fec_ven_doc+'" data-toggle="modal" >Pagar</a></td></tr>'
      
           $("#tabla_docs").append(nuevafila);
 
@@ -524,12 +538,12 @@ $(document).on("click", "#btn_modal_pago", function () {
      var nro_doc = $(this).data('doc');
      var id_doc = $(this).data('id');
      var total = $(this).data('total');
+     var afecto = $(this).data('afecto');
      var fec_ven = new Date($(this).data('fec_ven'));
      var fec = Date.now();
      $("#nro_doc").text(nro_doc);
      $("#id_doc").val(id_doc);
-     $("#monto_total").val(Number(total).toLocaleString());
-
+     
      fec_ven < fec ? $('#ven_doc').css("display","block") : $('#ven_doc').css("display","none");
 
     $.ajax({
@@ -538,6 +552,11 @@ $(document).on("click", "#btn_modal_pago", function () {
       data: {"doc":id_doc},
       dataType:'json',
       success:function(result){
+        if (result[0].tipo_doc == 2) {
+          $("#monto_total").val(Number(afecto).toLocaleString());
+        }else{
+          $("#monto_total").val(Number(total).toLocaleString());
+        }
         $('#est_doc').val(result[0].est);
         $('#monto_pagado').val(Number(result[0].suma).toLocaleString());
       }

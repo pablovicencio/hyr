@@ -200,6 +200,7 @@ class EmpresaDAO
 
                 $sql_mod_emp = "UPDATE `empresa`
                                     SET
+                                    `razon_social_emp` = :razon_emp,
                                     `vig_emp` = :vig_emp,
                                     `nom_contacto_emp` = :nom_contacto_emp,
                                     `mail_emp` = :mail_emp,
@@ -215,12 +216,13 @@ class EmpresaDAO
                                     `rta_at_emp` = :rta_at_emp,
                                     `clave_sii_emp` = :clave_sii_emp,
                                     `clave_previred_emp` = :clave_previred_emp,
-                                    `fac_rea_emp` = :fac_rea_emp
+                                    `fac_rea_emp` = :fac_rea_emp,
+                                    `fec_ini_act_emp` = :fec_ini_emp
                                     WHERE `id_emp` = :id ";
 
 
                 $stmt = $pdo->prepare($sql_mod_emp);
-
+                $stmt->bindParam(":razon_emp",$this->razon_social_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":vig_emp",$this->vig_emp , PDO::PARAM_INT);  
                 $stmt->bindParam(":nom_contacto_emp",$this->nom_contacto_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":mail_emp",$this->mail_emp , PDO::PARAM_STR);
@@ -237,6 +239,7 @@ class EmpresaDAO
                 $stmt->bindParam(":clave_sii_emp",$this->clave_sii_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":fac_rea_emp",$this->fac_rea_emp , PDO::PARAM_INT);
                 $stmt->bindParam(":rta_at_emp",$this->rta_at_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":fec_ini_emp",$this->fec_ini_act_emp, PDO::PARAM_STR);
                 $stmt->bindParam(":id", $this->id_emp, PDO::PARAM_INT);
 
                 $stmt->execute();

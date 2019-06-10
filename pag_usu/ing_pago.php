@@ -169,6 +169,20 @@
 
 
                         </div>
+                        <div class="row" >
+                            <div class="col">
+                              <div class="form-group">
+                                    <label for="fecha_pago">Fecha de Pago:</label>
+                                    <input type="date" class="form-control" id="fec_pago" name="fec_pago"  required>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                    
+                              </div>
+                            </div>
+                        </div>
+
                         <textarea class="form-control" rows="5" id="obs_pago" name="obs_pago" placeholder="Observación"></textarea><br><br>
       </div>
       <div class="modal-footer">

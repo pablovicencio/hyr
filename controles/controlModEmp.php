@@ -19,7 +19,7 @@ session_start();
 
         $idemp = $_POST['emp'];
         if (isset($_POST['vigcheck'])){$vig = 1;}else{$vig = 0;}
-        //$rsoc = $_POST['rsoc'];
+        $rsoc = $_POST['rsoc'];
         $mcem = $_POST['mcem'];         //Contacto Empresa 
         $mmail = $_POST['mmail'];       //Mail
         //$mrut = $_POST['mrut'];         rut
@@ -32,7 +32,7 @@ session_start();
         $mrte = $_POST['mrte'];         //Reg. Trib. Emp.
         $mpce = $_POST['mpce'];         //Patente Comercial Empresa
         $mevem = $_POST['mevem'];       //Evaluacion Empresa
-        //$mfia = $_POST['mfia'];         //Fecha Inicio de Actividades 
+        $mfia = $_POST['mfia'];         //Fecha Inicio de Actividades 
         $mrae = $_POST['mrae'];         //Rta. At. Emp.
         $mcsii = $_POST['mcsii'];       //Clave SII
         $mcprev = $_POST['mcprev'];     //Clave Previred
@@ -41,7 +41,7 @@ session_start();
 
 		
         $dao = new EmpresaDAO($idemp,
-                               '',
+                               $rsoc,
                                '',
                                $mcse,
                                $mmme,
@@ -50,7 +50,7 @@ session_start();
                                $mcomuna,
                                $mdirec,
                                $mrte,
-                               '',
+                               $mfia,
                                $mmail,
                                $mcem,
                                $mpce,
@@ -70,7 +70,7 @@ session_start();
 			if (count($mod_emp)>0){
 				echo "1";    
 			} else {
-				echo"Empresa Modificada Correctamente!.";  
+				echo"Empresa Modificada Correctamente!. El sistema se actualizara";  
 			}
 	salir:
 	} catch (Exception $e) {

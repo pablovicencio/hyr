@@ -132,7 +132,7 @@ $(document).ready(function() {
               swal("Rut Duplicado", "El RUT ya se encuentra en el sistema, puede encontrarse sin vigencia", "warning");
               break;
           default:
-              swal("Empresa Creada!", msg, "success");
+              swal("Empresa Creada", msg, "success");
             }
       },
       error: function(){
@@ -203,8 +203,8 @@ $(document).ready(function() {
                     swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
                     break;
                 default:
-                    swal("Usuario Modificado", msg, "success");
-                    //location.reload(true);
+                    swal("Empresa Modificada", msg, "success");
+                    setInterval('location.reload()',3000);
             }
       },
       error: function(){
