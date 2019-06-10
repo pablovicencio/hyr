@@ -728,7 +728,7 @@ and c.cod_grupo = 1";
                         <title>Pago de Documento - Consultora HYR</title>
                         </head>
                         <body>
-                        <h1>Agradecemos pago de ".$tipo_doc." Nro ".$nro_doc."<h1>
+                        <h2>Agradecemos pago de ".$tipo_doc." Nro ".$nro_doc."</h2>
                         Estimados ".$nom_emp."
                         Agradecemos a usted el pago ".$est." de su <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto de <b>$".$monto_doc."</b>.
                         <br>
@@ -736,7 +736,7 @@ and c.cod_grupo = 1";
                         <br><br>
                         Se despide Atte.
                         <br><br>
-                        <h2>Consultora HYR</h2>
+                        <h3>Consultora HYR</h3>
                         <br><br>
                         Este mensaje es enviado automaticamente, favor no responder.
                         </body>
@@ -772,7 +772,7 @@ and c.cod_grupo = 1";
                         <title>Ingreso de Documento de pago - Consultora HYR</title>
                         </head>
                         <body>
-                        <h1>Disponible para pago ".$tipo_doc." Nro ".$nro_doc."<h1>
+                        <h2>Disponible para pago ".$tipo_doc." Nro ".$nro_doc."</h2>
                         Estimados ".$nom_emp."
                         Informamos a usted que se encuentra disponible para pago su <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto total de <b>$".$monto_doc."</b>.
                         <br>
@@ -780,7 +780,7 @@ and c.cod_grupo = 1";
                         <br><br>
                         Se despide Atte.
                         <br><br>
-                        <h2>Consultora HYR</h2>
+                        <h3>Consultora HYR</h3>
                         <br><br>
                         Este mensaje es enviado automaticamente, favor no responder.
                         </body>
@@ -816,7 +816,7 @@ and c.cod_grupo = 1";
                         <title>Creación de Usuario - Consultora HYR</title>
                         </head>
                         <body>
-                        <h1>Creación de Usuario<h1>
+                        <h2>Creación de Usuario</h2>
                         Estimado ".$nombre." se ha creado tu usuario para el sistema de gestión Consultora HYR.
                         <br>
                         Tus credenciales de ingreso son:
@@ -827,7 +827,7 @@ and c.cod_grupo = 1";
                         <br><br>
                         Se despide Atte.
                         <br><br>
-                        <h2>Consultora HYR</h2>
+                        <h3>Consultora HYR</h3>
                         <br><br>
                         Este mensaje es enviado automaticamente, favor no responder.
                         </body>
@@ -864,7 +864,7 @@ and c.cod_grupo = 1";
                         <title>Cambio de Contraseña - Consultora HYR</title>
                         </head>
                         <body>
-                        <h1>Actualización de contraseña<h1>
+                        <h2>Actualización de contraseña</h2>
                         Estimad@ se ha actualizado su contraseña para el sistema de gestión Consultora HYR.
                         <br>
                         Tu Nueva Contraseña es:
@@ -873,7 +873,7 @@ and c.cod_grupo = 1";
                         <br><br>
                         Se despide Atte.
                         <br><br>
-                        <h2>Consultora HYR</h2>
+                        <h3>Consultora HYR</h3>
                         <br><br>
                         Este mensaje es enviado automaticamente, favor no responder.
                         </body>

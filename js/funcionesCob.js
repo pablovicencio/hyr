@@ -582,7 +582,7 @@ function calculoIva()
           $('#exento').val('0');
           if ($('#impbolcheck').prop('checked')) {
             if (afecto!=0) {
-              var iva = parseInt(afecto) * 0.10;
+              var iva = parseInt(afecto) * 0.1111111111111112;
               $('#iva').val(Number(parseInt(iva)).toLocaleString());
             }else{
               $('#iva').val(0);
