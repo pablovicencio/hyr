@@ -1,3 +1,45 @@
+
+//////////funcion notificar documentos pendiente
+function not_doc(id_doc){
+
+    $.ajax({
+      url: '../controles/controlNotificarDoc.php',
+      type: 'POST',
+      data:{ id_doc: id_doc},
+      success:function(result){
+        var msg = result.trim();
+
+        switch(msg) {
+                case '-2':
+                    swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");
+                    break;
+                default :
+                    swal("Documento Notificado", msg, "success");
+
+                    //$('#obs_doc').val('');
+                    break;
+            }
+  },
+  error: function(){
+              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+      }
+      });
+    return false;
+  }
+
+
+
+ //CARGA DE GIF INICIO
+  $(document).ajaxStart(function() {
+    $("#main").hide();
+    $("#loading").show();
+       }).ajaxStop(function() {
+    $("#loading").hide();
+    $("#main").show();
+    }); 
+
+
+
 //INSTANCIAS DE DATATABLE
 
 $(document).ready(function () {

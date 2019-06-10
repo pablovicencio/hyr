@@ -161,7 +161,25 @@ where a.id_doc = :num_doc
 and a.emp_doc = b.id_emp
 and a.tipo_doc = c.cod_item
 and c.cod_grupo = 1";
-            }   
+            }elseif ($id == 3) {
+                $sql = "select b.razon_social_emp nom_emp, b.mail_emp, c.desc_item tipo, a.nro_doc, est_doc, 
+ifnull(((CASE
+                            WHEN tipo_doc = 1 THEN monto_total_doc
+                            WHEN tipo_doc = 2 THEN monto_afecto_doc
+                        END)-
+                        (select sum(d.monto_mov) from mov_documento d where a.id_doc = d.id_doc_mov))
+                        ,CASE
+                            WHEN tipo_doc = 1 THEN monto_total_doc
+                            WHEN tipo_doc = 2 THEN monto_afecto_doc
+                        END)
+ monto_deuda, a.fec_ven_doc
+from documento a, empresa b, tab_param c
+where a.id_doc = :num_doc
+and a.emp_doc = b.id_emp
+and a.tipo_doc = c.cod_item
+and c.cod_grupo = 1";
+            }    
+
                    
             
             $stmt = $pdo->prepare($sql);
@@ -721,7 +739,7 @@ and c.cod_grupo = 1";
         /*///////////////////////////////////////
             enviar mail pago documento 
         //////////////////////////////////////*/
-        public function mail_pago_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_doc, $fec_reg,$est) {
+        public function mail_pago_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_doc, $est,$fec_pago) {
             try{
                 $to = $correo;
                         $subject = "Pago de Documento - Consultora HYR";
@@ -732,11 +750,11 @@ and c.cod_grupo = 1";
                         <title>Pago de Documento - Consultora HYR</title>
                         </head>
                         <body>
-                        <h1>Agradecemos pago de ".$tipo_doc." Nro ".$nro_doc."<h1>
+                        <h1>Agradecemos pago de ".$tipo_doc." Nro ".$nro_doc."</h1>
                         Estimados ".$nom_emp."
                         Agradecemos a usted el pago ".$est." de su <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto de <b>$".$monto_doc."</b>.
                         <br>
-                        La fecha de registro fue el <b>".date('d-m-Y', strtotime($fec_reg))."</b>
+                        La fecha de pago fue el <b>".date('d-m-Y', strtotime($fec_pago))."</b>
                         <br><br>
                         Se despide Atte.
                         <br><br>
@@ -874,6 +892,49 @@ and c.cod_grupo = 1";
                         Tu Nueva Contraseña es:
                         <br><br>
                         Contraseña: <b>".$contraseña."</b>
+                        <br><br>
+                        Se despide Atte.
+                        <br><br>
+                        <h2>Consultora HYR</h2>
+                        <br><br>
+                        Este mensaje es enviado automaticamente, favor no responder.
+                        </body>
+                        </html>
+                        ";
+
+                        // Always set content-type when sending HTML email
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                        // More headers
+                        $headers .= 'From: <hyr@hyr.com>' . "\r\n";
+                        $headers .= 'Cc: pvicencio@andescode.cl' . "\r\n";
+
+                        mail($to,$subject,$message,$headers);
+        } catch (Exception $e) {
+                throw $e;
+        }
+        }
+
+        /*///////////////////////////////////////
+            enviar mail notificar deuda doc
+        //////////////////////////////////////*/
+        public function mail_not_doc($nom_emp,$correo,$tipo_doc,$nro_doc,$monto_deuda, $est,$fec_ven) {
+            try{
+                $to = $correo;
+                        $subject = "Aviso de Documento - Consultora HYR";
+
+                        $message = "
+                        <html>
+                        <head>
+                        <title>Aviso de Documento - Consultora HYR</title>
+                        </head>
+                        <body>
+                        <h1>Recordamos pago de ".$tipo_doc." Nro ".$nro_doc."</h1>
+                        Estimados ".$nom_emp."
+                        Recordamos a usted el ".$est." de su <b>".$tipo_doc."</b> Nro <b>".$nro_doc."</b> por un monto de <b>$".$monto_deuda."</b>.
+                        <br>
+                        La fecha de vencimiento del documento fue el <b>".date('d-m-Y', strtotime($fec_ven))."</b>
                         <br><br>
                         Se despide Atte.
                         <br><br>

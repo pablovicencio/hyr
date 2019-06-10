@@ -18,6 +18,9 @@
 </head>
 
 <body>
+<div id="loading" style="display: none;">
+        <center><img src="../recursos/img/load.gif"></center>
+    </div>
 <div class="container" id="main">
     <div class="row">
         <div class="col-12 text-center">
@@ -75,7 +78,7 @@
                   <td><?php echo $row['obs_doc']?></td>
                   <td><?php echo $row['suma']?></td>
 
-                  <td><a style="text-decoration:none"  href="#" name="" value="">Notificar</a></td>
+                  <td><button id="not_doc" name="not_doc" onclick="not_doc(<?php echo $row['id_doc']?>)" class="btn btn-warning" >Notificar</button></td>
 
                 
                  
