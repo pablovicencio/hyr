@@ -41,14 +41,15 @@
     <a class="nav-link active" id="lista-tab" data-toggle="tab" href="#lista" role="tab" aria-controls="lista"
       aria-selected="true"><i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;&nbsp;Listado</a>
   </li>
-  <li class="nav-item">
+  <?php if($_SESSION['perfil']==1){
+  echo '<li class="nav-item">
     <a class="nav-link" id="agrega-tab" data-toggle="tab" href="#agrega" role="tab" aria-controls="agrega"
       aria-selected="false"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Agregar</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="modifica-tab" data-toggle="tab" href="#modifica" role="tab" aria-controls="modifica"
       aria-selected="false"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Modificar</a>
-  </li>
+  </li>';}?>       
 </ul>
 
 <hr>
@@ -63,14 +64,14 @@
   <div class="tab-pane fade" id="agrega" role="tabpanel" aria-labelledby="agrega-tab">
   <!-- CONTENIDO 2 -->
         <!-- CONTENIDO 1 -->
-        <?php
-          include("crear_emp.php");
+        <?php if($_SESSION['perfil']==1){
+          include("crear_emp.php");}
         ?>       
   </div>
   <div class="tab-pane fade" id="modifica" role="tabpanel" aria-labelledby="modifica-tab">
   <!-- CONTENIDO 3 -->    
-        <?php
-          include("mod_emp.php");
+        <?php if($_SESSION['perfil']==1){
+          include("mod_emp.php");}
         ?>    
   </div>
 </div>
