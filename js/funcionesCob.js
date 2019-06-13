@@ -488,7 +488,16 @@ $(document).ready(function() {
                 });
     
     }else{
-                                        $.ajax({
+          swal({
+                  title: "Ingreso de Pago",
+                  text: "¿Esta seguro de registrar el pago?",
+                  icon: "warning",
+                  buttons: ["Cancelar", "Aceptar"],
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                      $.ajax({
                             type: "POST",
                             url: '../controles/controlPagoDoc.php',
                             data:$("#formIngPago").serialize(),
@@ -521,6 +530,8 @@ $(document).ready(function() {
                                     swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
                             }
                           });
+                       } 
+                });
     }
 
 

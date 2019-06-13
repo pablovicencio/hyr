@@ -123,15 +123,15 @@ $this->obs_doc =$obs_doc;
     /*///////////////////////////////////////
     Pago Documento
     //////////////////////////////////////*/
-    public function pago_doc($usu,$monto_mov,$obs_mov,$fec_reg,$cod_formapago_mov,$est_mov) {
+    public function pago_doc($usu,$monto_mov,$obs_mov,$fec_reg,$cod_formapago_mov,$est_mov,$fec_mov) {
 
 
         try{
              
                 $pdo = AccesoDB::getCon();
 
-                $sql_ing_mov = "INSERT INTO `mov_documento`(`monto_mov`,`obs_mov`,`fec_reg_mov`,`usu_reg_mov`,`id_doc_mov`,`cod_formapago_mov`,`est_doc_mov`)
-                VALUES(:monto_mov,:obs_mov,:fec_mov,:usu_mov,:doc_mov,:formapago_mov,:est_mov);";
+                $sql_ing_mov = "INSERT INTO `mov_documento`(`monto_mov`,`obs_mov`,`fec_reg_mov`,`usu_reg_mov`,`id_doc_mov`,`cod_formapago_mov`,`est_doc_mov`,`fec_mov`)
+                VALUES(:monto_mov,:obs_mov,:fec_mov,:usu_mov,:doc_mov,:formapago_mov,:est_mov,:fec_mov);";
 
 
                 $stmt = $pdo->prepare($sql_ing_mov);
@@ -142,6 +142,7 @@ $this->obs_doc =$obs_doc;
                 $stmt->bindParam(":doc_mov", $this->id_doc, PDO::PARAM_INT);
                 $stmt->bindParam(":formapago_mov", $cod_formapago_mov, PDO::PARAM_INT);
                 $stmt->bindParam(":est_mov", $est_mov, PDO::PARAM_STR);
+                $stmt->bindParam(":fec_mov", $fec_mov, PDO::PARAM_STR);
                 $stmt->execute();
 
 

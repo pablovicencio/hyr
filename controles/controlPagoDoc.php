@@ -49,7 +49,7 @@
 
  			$dao = new DocumentoDAO($id_doc);
  		
-			$pago_doc = $dao->pago_doc($usu->getUsu(),$monto_mov,$obs_mov,$fec_reg,$cod_formapago_mov,$est_mov);
+			$pago_doc = $dao->pago_doc($usu->getUsu(),$monto_mov,$obs_mov,$fec_reg,$cod_formapago_mov,$est_mov,$fec_pago);
 			
 			if ($pago_doc>0){
 
