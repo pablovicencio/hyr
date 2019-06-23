@@ -33,7 +33,7 @@
 
                        
                         <a class="dropdown-item" href="ing_pago.php">Ingresar Pago &nbsp;<i class="fa fa-dollar" aria-hidden="true"></i></a>
-                        <a class="dropdown-item" href="mod_doc.php">Parametros Alertas  &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" href="inf_cob.php">Informes  &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                       </div>
                     </li>
 
