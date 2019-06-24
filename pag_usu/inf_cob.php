@@ -72,6 +72,7 @@
                                         <th scope="col">Doc. Pagados</th>
                                         <th scope="col">Cargos</th>
                                         <th scope="col">Pagos</th>
+                                        <th scope="col">Prom. Días Pago</th>
                                         <th scope="col">Detalle</th>
                                       </tr>
     </thead>
@@ -95,8 +96,9 @@
                   <td><?php echo "<script>var string = numeral(". $row['cant_docs_pagoc'].").format('000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['cargos'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['pagos'].").format('$000,000,000,000');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['prom_dias_pago'].").format('000,000,000,000');document.write(string)</script>"?></td>
 
-                  <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'.$row['id_emp'].'" data-rut="'.$row['id_emp'].'" data-emp="'.$row['razon_social_emp'].'" data-prom="'.$row['prom_dias_pago'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
+                  <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'.$row['id_emp'].'" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'" data-prom="'.$row['prom_dias_pago'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
 
                 
                  
@@ -120,6 +122,7 @@
                                         <th scope="col">Doc. Pagados</th>
                                         <th scope="col">Cargos</th>
                                         <th scope="col">Pagos</th>
+                                        <th scope="col">Prom. Días Pago</th>
                                         <th scope="col">Detalle</th>
       </tr>
     </tfoot> 

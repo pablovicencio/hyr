@@ -10,6 +10,10 @@ $(document).on("click", "#btn_modal_det_inf_cob", function () {
      var rut_emp = $(this).data('rut');
      var emp = $(this).data('emp');
      var prom = $(this).data('prom');
+
+     var desde = $('#fec_desde').val();
+     var hasta = $('#fec_hasta').val();
+
      $("#Remp_det_inf_cob").text(rut_emp);
      $("#emp_det_inf_cob").text(emp);
      $("#prom_dias_pago").text(prom);
@@ -17,7 +21,7 @@ $(document).on("click", "#btn_modal_det_inf_cob", function () {
     $.ajax({
       url: '../controles/controlDetInfCob.php',
       type: 'POST',
-      data: {"emp":id_emp},
+      data: {"emp":id_emp, "fec_desde":desde, "fec_hasta":hasta},
       dataType:'json',
       success:function(result){
         $("#tabla_det_inf").dataTable().fnDestroy();
@@ -94,6 +98,7 @@ $(document).ready(function() {
           numeral(result[i].cant_docs_pagoc).format('000,000,000,000') + "</td><td>" +
           numeral(result[i].cargos).format('$000,000,000,000') + "</td><td>" +
           numeral(result[i].pagos).format('$000,000,000,000') + "</td><td>" +
+          numeral(result[i].prom_dias_pago).format('000,000,000,000') + "</td><td>" +
           '<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'+result[i].id_emp+'" data-rut="'+result[i].rut_emp+'" data-emp="'+result[i].razon_social_emp+'" data-prom="'+result[i].prom_dias_pago+'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a></td></tr>'
      
           $("#tabla_inf_cob").append(nuevafila);

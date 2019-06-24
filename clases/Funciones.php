@@ -22,12 +22,12 @@ class Funciones
     /*///////////////////////////////////////
     Informe detalle cobranza
     //////////////////////////////////////*/
-        public function inf_det_cob($emp){
+        public function inf_det_cob($emp,$desde,$hasta){
             try{
                 
                 
                 $pdo = AccesoDB::getCon();
-                            
+                            if ($desde == 0 && $hasta == 0 ) {
                                 $sql = "SELECT  a.nro_doc, b.desc_item tipo_doc,'INGRESO' tipo_mov,IF(a.tipo_doc = 1, a.monto_total_doc,a.monto_afecto_doc) cargo,
                                     0 pago, a.fec_emi_doc fecha, obs_doc obs
                                     FROM documento a, tab_param b
@@ -42,8 +42,32 @@ class Funciones
                                     and c.est_doc_mov = d.cod_item and d.cod_grupo = 2 and b.vig_item = 1
                                     and a.est_doc <> 4 and a.emp_doc = :emp
                                     order by 1,6";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                            }else{
+                                $sql = "SELECT  a.nro_doc, b.desc_item tipo_doc,'INGRESO' tipo_mov,IF(a.tipo_doc = 1, a.monto_total_doc,a.monto_afecto_doc) cargo,
+                                    0 pago, a.fec_emi_doc fecha, obs_doc obs
+                                    FROM documento a, tab_param b
+                                    WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
+                                    and a.est_doc <> 4 and a.emp_doc = :emp
+                                    UNION ALL
+                                    SELECT  a.nro_doc, b.desc_item tipo_doc,d.desc_item tipo_mov,0 cargo,
+                                    c.monto_mov pago, IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) fecha, obs_mov obs
+                                    FROM documento a, tab_param b,  mov_documento c, tab_param d
+                                    WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
+                                    and a.id_doc = c.id_doc_mov
+                                    and c.est_doc_mov = d.cod_item and d.cod_grupo = 2 and b.vig_item = 1
+                                    and a.est_doc <> 4 and a.emp_doc = :emp
+                                    and IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) between :desde and :hasta
+                                    order by 1,6";
+
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                                    $stmt->bindParam(":desde", $desde, PDO::PARAM_STR);
+                                    $stmt->bindParam(":hasta", $hasta, PDO::PARAM_STR);
+
+                            }
                 $stmt->execute();
                 $response = $stmt->fetchAll();
                 return $response;
@@ -74,7 +98,7 @@ class Funciones
                                             where a.id_emp = b.emp_doc and  b.est_doc in(2,3) and b.id_doc = c.id_doc_mov and c.est_doc_mov = 3),0)
                                             /
                                             (select count(b.id_doc) from documento b where a.id_emp = b.emp_doc and  b.est_doc = 3)),0) prom_dias_pago
-                                        FROM empresa a";
+                                        FROM empresa a order by 3 desc";
                                 $stmt = $pdo->prepare($sql);
                             
                             }else {
@@ -90,7 +114,7 @@ class Funciones
                                             where a.id_emp = b.emp_doc and  b.est_doc in(2,3) and b.id_doc = c.id_doc_mov and c.est_doc_mov = 3),0)
                                             /
                                             (select count(b.id_doc) from documento b where a.id_emp = b.emp_doc and  b.est_doc = 3)),0) prom_dias_pago
-                                        FROM empresa a";
+                                        FROM empresa a order by 3 desc";
 
                                 $stmt = $pdo->prepare($sql);
                                 $stmt->bindParam(":desde", $desde, PDO::PARAM_STR);

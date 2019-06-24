@@ -14,11 +14,23 @@
 
 	try{
 
+		if (isset($_POST['fec_desde'])) {
+			$desde = stripcslashes ($_POST['fec_desde']);
+		}else{
+			$desde = 0;
+		}
+
+		if (isset($_POST['fec_hasta'])) {
+			$hasta = stripcslashes ($_POST['fec_hasta']);
+		}else{
+			$hasta = 0;
+		}
+
 		
 		$emp = stripcslashes ($_POST['emp']);
 		
 		 $fun = new Funciones();
-		 $re = $fun->inf_det_cob($emp);
+		 $re = $fun->inf_det_cob($emp,$desde,$hasta);
 		 
 		 if (!empty($re)) {
 		 	          $datos = array();
