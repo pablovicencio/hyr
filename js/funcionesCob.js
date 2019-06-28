@@ -3,6 +3,161 @@
 var session = document.getElementById("funCob").src.match(/\w+=\w+/g);
 var perfil = session[0].split("=");
 
+
+//////////funcion cargar detalle informe cobranza modal
+$(document).on("click", "#btn_modal_det_inf_cob", function () {
+     var id_emp = $(this).data('id');
+     var rut_emp = $(this).data('rut');
+     var emp = $(this).data('emp');
+     var prom = $(this).data('prom');
+
+     var desde = $('#fec_desde').val();
+     var hasta = $('#fec_hasta').val();
+
+     $("#Remp_det_inf_cob").text(rut_emp);
+     $("#emp_det_inf_cob").text(emp);
+     $("#prom_dias_pago").text(prom);
+     
+    $.ajax({
+      url: '../controles/controlDetInfCob.php',
+      type: 'POST',
+      data: {"emp":id_emp, "fec_desde":desde, "fec_hasta":hasta},
+      dataType:'json',
+      success:function(result){
+        $("#tabla_det_inf").dataTable().fnDestroy();
+        $('#tabla_det_inf tbody').empty();
+
+        var filas = Object.keys(result).length;
+        console.log (filas);
+     
+        for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
+          var nuevafila= "<tr><td>" +
+          result[i].nro_doc + "</td><td>" +
+          result[i].tipo_doc + "</td><td>" +
+          result[i].tipo_mov + "</td><td>" +
+          numeral(result[i].cargo).format('$000,000,000,000') + "</td><td>" +
+          numeral(result[i].pago).format('$000,000,000,000') + "</td><td>" +
+          result[i].fecha + "</td><td>" +
+          result[i].obs + "</td></tr>"
+     
+          $("#tabla_det_inf").append(nuevafila);
+
+        }
+            $('#tabla_det_inf').DataTable({
+      buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+    ],
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      },
+        dom: 'Bfrtip'
+    });
+    $('.dataTables_length').addClass('bs-select');
+
+
+      }
+    })
+
+
+
+
+
+    $('#modal_det_inf_cob').modal('show');
+});
+
+//////////funcion buscar informe
+$(document).ready(function() {
+  $("#formInfCob").submit(function() {    
+    $.ajax({
+      type: "POST",
+      url: '../controles/controlInfCob.php',
+      data:$("#formInfCob").serialize(),
+      dataType:'json',
+      success: function (result) { 
+        $("#tabla_inf_cob").dataTable().fnDestroy();
+        $('#tabla_inf_cob tbody').empty();
+
+        var filas = Object.keys(result).length;
+        console.log (filas);
+     
+        for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
+          var nuevafila= "<tr><td>" +
+          result[i].rut_emp + "</td><td>" +
+          result[i].razon_social_emp + "</td><td>" +
+          numeral(result[i].cant_docs).format('000,000,000,000') + "</td><td>" +
+           numeral(result[i].cant_docs_ing).format('000,000,000,000') + "</td><td>" +
+          numeral(result[i].cant_docs_pagop).format('000,000,000,000') + "</td><td>" +
+          numeral(result[i].cant_docs_pagoc).format('000,000,000,000') + "</td><td>" +
+          numeral(result[i].cargos).format('$000,000,000,000') + "</td><td>" +
+          numeral(result[i].pagos).format('$000,000,000,000') + "</td><td>" +
+          numeral(result[i].prom_dias_pago).format('000,000,000,000') + "</td><td>" +
+          '<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'+result[i].id_emp+'" data-rut="'+result[i].rut_emp+'" data-emp="'+result[i].razon_social_emp+'" data-prom="'+result[i].prom_dias_pago+'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a></td></tr>'
+     
+          $("#tabla_inf_cob").append(nuevafila);
+
+        }
+            $('#tabla_inf_cob').DataTable({
+      buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+    ],
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      },
+        dom: 'Bfrtip'
+    });
+    $('.dataTables_length').addClass('bs-select');
+
+
+      },
+      error: function(){
+              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+      }
+    });
+    return false;
+  });
+}); 
+
+//INSTANCIAS DE DATATABLE informe
+
+$(document).ready(function () {
+    $('#tabla_inf_cob').DataTable({
+      buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+    ],
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      },
+        dom: 'Bfrtip'
+    });
+    $('.dataTables_length').addClass('bs-select');
+  });
+
+
+
 //////////funcion separador de miles inputs number
     $(document).on('keyup', '.nro', function (e) {
      element = e.target;

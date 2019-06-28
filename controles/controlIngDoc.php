@@ -40,6 +40,8 @@
  			$obs_doc = '';
  		}
 
+
+
  			$fun = new Funciones();
 
  			$emp = new EmpresaDAO($id_emp);
@@ -53,6 +55,10 @@
 			if ($ing_doc>0){
 
 				$datos_mail = $fun->datos_mail($num_doc,1);
+
+				 		if ($tipo_doc == 2) {
+ 								$total = $afecto;
+ 						}
 
 				$mail = $fun->mail_ing_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$num_doc,$total, $fec_ven);	
 				
