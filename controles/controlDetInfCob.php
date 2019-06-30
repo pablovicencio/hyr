@@ -28,9 +28,15 @@
 
 		
 		$emp = stripcslashes ($_POST['emp']);
+		$tipo = stripcslashes ($_POST['tipo']);
 		
 		 $fun = new Funciones();
-		 $re = $fun->inf_det_cob($emp,$desde,$hasta);
+		 if ($tipo == 1) {
+		 	$re = $fun->inf_det_cob($emp,$desde,$hasta);
+		 }elseif ($tipo == 2) {
+		 	$re = $fun->inf_doc_pen($emp,$desde,$hasta);
+		 }
+		 
 		 
 		 if (!empty($re)) {
 		 	          $datos = array();
