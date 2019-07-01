@@ -22,4 +22,7 @@
 #impbol{
   visibility: hidden;
 }
+#modal_ult_doc_content {
+    max-width: 80% !important;
+}
 

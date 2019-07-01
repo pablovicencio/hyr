@@ -62,12 +62,7 @@ $(document).on("click", "#btn_modal_det_inf_cob", function () {
       buttons: [
         {
             extend: 'excelHtml5',
-            text: 'Excel',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                }
-            }
+            text: 'Excel'
         }
     ],
       "language": {
@@ -149,12 +144,7 @@ $(document).ready(function() {
       buttons: [
         {
             extend: 'excelHtml5',
-            text: 'Excel',
-            exportOptions: {
-                modifier: {
-                    page: 'current'
-                }
-            }
+            text: 'Excel'
         }
     ],
       "language": {

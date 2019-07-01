@@ -130,7 +130,7 @@
         </div>
         <div class="form-group">
           <label for="mcse">Cons. Soc. Emp.:</label>
-          <input type="number" class="form-control" id="mcse" name="mcse" maxlength="10"  placeholder="Cons. Soc. Emp." required>
+          <input type="date" class="form-control" id="mcse" name="mcse" required>
         </div>
         <div class="form-group">
           <label for="mrte">Reg. Trib. Emp.:</label>

@@ -114,7 +114,7 @@
         </div>
         <div class="form-group">
           <label for="cse">Cons. Soc. Emp.:</label>
-          <input type="number" class="form-control" id="cse" name="cse" maxlength="10"  placeholder="Cons. Soc. Emp." required>
+          <input type="date" class="form-control" id="cse" name="cse" required>
         </div>
         <div class="form-group">
           <label for="rte">Reg. Trib. Emp.:</label>
