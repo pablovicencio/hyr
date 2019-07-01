@@ -28,9 +28,13 @@
         <h3><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Resúmen General</h3>
         <hr>
         </div>
+
+        <a id="btn_modal_ult_doc" class="link-modal btn btn-outline-success" data-target="#modal_ult_doc" data-toggle="modal" >Infome Ultimo Doc. Emitido</a>
+
+
         
         <div class="col-12 ">
-        
+        <br>
         <h5>Documentos de Pago Vencidos <i class="fa fa-clock-o" aria-hidden="true"></i></i></h5>
     <div class="table-responsive">
     <table id="doc_ven" class="table table-striped table-bordered" cellspacing="0" style="font-size: 0.8rem;" width="100%">
@@ -78,7 +82,7 @@
                   <td><?php echo $row['obs_doc']?></td>
                   <td><?php echo $row['suma']?></td>
 
-                  <td><?php if($_SESSION['perfil']==1){echo'<button id="not_doc" name="not_doc" onclick="not_doc('.$row["id_doc"].')" class="btn btn-warning" >Notificar</button>';}?></td>
+                  <td><?php if($_SESSION['perfil']==1){echo'<button id="not_doc" name="not_doc" onclick="not_doc('.$row["id_doc"].')" class="btn btn-warning" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>';}?></td>
 
                 
                  
@@ -122,6 +126,60 @@
 
 </div>
 
+<div class="modal fade" id="modal_ult_doc" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" id="modal_ult_doc_content" role="document">
 
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Informe de ultimo documento emitido por empresa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                </div>
+                      <div class="table-responsive">
+                        <table id="tabla_ult_doc"class="table table-striped table-bordered" cellspacing="0" style="font-size: 0.8rem;" width="100%">
+                              <thead>
+                                <tr>
+                                        <th scope="col">Rut Emp</th>
+                                        <th scope="col">Razon Social</th>
+                                        <th scope="col">Clave SII</th>
+                                        <th scope="col">Afecto</th>
+                                        <th scope="col">Exento</th>
+                                        <th scope="col">Iva o Retención</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Tipo Doc</th>
+                                        <th scope="col">Nro Doc</th>
+                                        <th scope="col">Fecha Emisión</th>
+                                        <th scope="col">Usuario</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                        <th scope="col">Rut Emp</th>
+                                        <th scope="col">Razon Social</th>
+                                        <th scope="col">Clave SII</th>
+                                        <th scope="col">Afecto</th>
+                                        <th scope="col">Exento</th>
+                                        <th scope="col">Iva o Retención</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Tipo Doc</th>
+                                        <th scope="col">Nro Doc</th>
+                                        <th scope="col">Fecha Emisión</th>
+                                        <th scope="col">Usuario</th>
+                                </tr>
+                              </tfoot>
+                          </table>
+                        </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

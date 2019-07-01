@@ -27,6 +27,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 
 
+<script src="https://cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
+
 <script src="../js/funciones.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.min.js"></script>

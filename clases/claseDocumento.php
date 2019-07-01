@@ -131,13 +131,13 @@ $this->obs_doc =$obs_doc;
                 $pdo = AccesoDB::getCon();
 
                 $sql_ing_mov = "INSERT INTO `mov_documento`(`monto_mov`,`obs_mov`,`fec_reg_mov`,`usu_reg_mov`,`id_doc_mov`,`cod_formapago_mov`,`est_doc_mov`,`fec_mov`)
-                VALUES(:monto_mov,:obs_mov,:fec_mov,:usu_mov,:doc_mov,:formapago_mov,:est_mov,:fec_mov);";
+                VALUES(:monto_mov,:obs_mov,:fec_reg,:usu_mov,:doc_mov,:formapago_mov,:est_mov,:fec_mov);";
 
 
                 $stmt = $pdo->prepare($sql_ing_mov);
                 $stmt->bindParam(":monto_mov", $monto_mov, PDO::PARAM_INT);
                 $stmt->bindParam(":obs_mov", $obs_mov, PDO::PARAM_STR);
-                $stmt->bindParam(":fec_mov", $fec_reg, PDO::PARAM_STR);
+                $stmt->bindParam(":fec_reg", $fec_reg, PDO::PARAM_STR);
                 $stmt->bindParam(":usu_mov", $usu, PDO::PARAM_INT);
                 $stmt->bindParam(":doc_mov", $this->id_doc, PDO::PARAM_INT);
                 $stmt->bindParam(":formapago_mov", $cod_formapago_mov, PDO::PARAM_INT);

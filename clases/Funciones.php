@@ -20,6 +20,99 @@ class Funciones
 {
 
     /*///////////////////////////////////////
+    Informe ultimo pago por empresa
+    //////////////////////////////////////*/
+        public function inf_det_ult_pago(){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                                $sql = "select a.rut_emp,a.razon_social_emp, ifnull(a.clave_sii_emp,'') clave_sii_emp,
+ifnull((select b.monto_afecto_doc from documento b where b.emp_doc = a.id_emp and b.est_doc <> 4 order by fec_emi_doc desc limit 1),0) afecto,
+ifnull((select b.monto_exento_doc from documento b where b.emp_doc = a.id_emp and b.est_doc <> 4 order by fec_emi_doc desc limit 1),0) exento,
+ifnull((select b.monto_iva_doc from documento b where b.emp_doc = a.id_emp and b.est_doc <> 4 order by fec_emi_doc desc limit 1),0) iva,
+ifnull((select b.monto_total_doc from documento b where b.emp_doc = a.id_emp and b.est_doc <> 4 order by fec_emi_doc desc limit 1),0) total,
+ifnull((select c.desc_item from documento b, tab_param c where b.emp_doc = a.id_emp and b.est_doc <> 4 and b.tipo_doc = c.cod_item and c.cod_grupo = 1  order by fec_emi_doc desc limit 1),'') tipo_doc,
+ifnull((select b.nro_doc from documento b where b.emp_doc = a.id_emp and b.est_doc <> 4 order by fec_emi_doc desc limit 1),0) nro_doc,
+ifnull((select b.fec_emi_doc from documento b where b.emp_doc = a.id_emp and b.est_doc <> 4 order by fec_emi_doc desc limit 1),'') fec_emi,
+ifnull((select c.nick_usu from documento b, usuarios c where b.emp_doc = a.id_emp and b.est_doc <> 4 and c.id_usu = b.usu_reg_doc order by fec_emi_doc desc limit 1),'') usu
+from
+empresa a";
+                                  
+                            
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+    /*///////////////////////////////////////
+    Informe detalle cobranza--docs pendientes
+    //////////////////////////////////////*/
+        public function inf_doc_pen($emp,$desde,$hasta){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+                            if ($desde == 0 && $hasta == 0 ) {
+                                $sql = "SELECT  a.nro_doc, b.desc_item tipo_doc,'INGRESO' tipo_mov,IF(a.tipo_doc = 1, a.monto_total_doc,a.monto_afecto_doc) cargo,
+                                    0 pago, a.fec_emi_doc fecha, obs_doc obs, a.fec_emi_doc fec, c.nick_usu
+                                    FROM documento a, tab_param b, usuarios c
+                                    WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
+                                    and a.est_doc in (1,2) and a.emp_doc = :emp and a.usu_reg_doc = c.id_usu
+                                    UNION ALL
+                                    SELECT  a.nro_doc, b.desc_item tipo_doc,d.desc_item tipo_mov,0 cargo,
+                                    c.monto_mov pago, IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) fecha, obs_mov obs, c.fec_reg_mov fec, e.nick_usu
+                                    FROM documento a, tab_param b,  mov_documento c, tab_param d, usuarios e
+                                    WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
+                                    and a.id_doc = c.id_doc_mov
+                                    and c.est_doc_mov = d.cod_item and d.cod_grupo = 2 and b.vig_item = 1
+                                    and a.est_doc in (1,2) and a.emp_doc = :emp and c.usu_reg_mov = e.id_usu
+                                    order by 1,8";
+
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                            }else{
+                                $sql = "SELECT  a.nro_doc, b.desc_item tipo_doc,'INGRESO' tipo_mov,IF(a.tipo_doc = 1, a.monto_total_doc,a.monto_afecto_doc) cargo,
+                                    0 pago, a.fec_emi_doc fecha, obs_doc obs, a.fec_emi_doc fec, c.nick_usu
+                                    FROM documento a, tab_param b, usuarios c
+                                    WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
+                                    and a.est_doc in (1,2) and a.emp_doc = :emp and a.usu_reg_doc = c.id_usu
+                                    and IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) between :desde and :hasta
+                                    UNION ALL
+                                    SELECT  a.nro_doc, b.desc_item tipo_doc,d.desc_item tipo_mov,0 cargo,
+                                    c.monto_mov pago, IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) fecha, obs_mov obs, c.fec_reg_mov fec, e.nick_usu
+                                    FROM documento a, tab_param b,  mov_documento c, tab_param d, usuarios e
+                                    WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
+                                    and a.id_doc = c.id_doc_mov
+                                    and c.est_doc_mov = d.cod_item and d.cod_grupo = 2 and b.vig_item = 1
+                                    and a.est_doc in (1,2) and a.emp_doc = :emp
+                                    and IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) between :desde and :hasta and c.usu_reg_mov = e.id_usu
+                                    order by 1,8";
+
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                                    $stmt->bindParam(":desde", $desde, PDO::PARAM_STR);
+                                    $stmt->bindParam(":hasta", $hasta, PDO::PARAM_STR);
+
+                            }
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
+    /*///////////////////////////////////////
     Informe detalle cobranza
     //////////////////////////////////////*/
         public function inf_det_cob($emp,$desde,$hasta){
@@ -29,38 +122,39 @@ class Funciones
                 $pdo = AccesoDB::getCon();
                             if ($desde == 0 && $hasta == 0 ) {
                                 $sql = "SELECT  a.nro_doc, b.desc_item tipo_doc,'INGRESO' tipo_mov,IF(a.tipo_doc = 1, a.monto_total_doc,a.monto_afecto_doc) cargo,
-                                    0 pago, a.fec_emi_doc fecha, obs_doc obs
-                                    FROM documento a, tab_param b
+                                    0 pago, a.fec_emi_doc fecha, obs_doc obs, a.fec_emi_doc fec, c.nick_usu
+                                    FROM documento a, tab_param b, usuarios c
                                     WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
-                                    and a.est_doc <> 4 and a.emp_doc = :emp
+                                    and a.est_doc <> 4 and a.emp_doc = :emp and a.usu_reg_doc = c.id_usu
                                     UNION ALL
                                     SELECT  a.nro_doc, b.desc_item tipo_doc,d.desc_item tipo_mov,0 cargo,
-                                    c.monto_mov pago, IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) fecha, obs_mov obs
-                                    FROM documento a, tab_param b,  mov_documento c, tab_param d
+                                    c.monto_mov pago, IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) fecha, obs_mov obs, c.fec_reg_mov fec, e.nick_usu
+                                    FROM documento a, tab_param b,  mov_documento c, tab_param d, usuarios e
                                     WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
                                     and a.id_doc = c.id_doc_mov
                                     and c.est_doc_mov = d.cod_item and d.cod_grupo = 2 and b.vig_item = 1
-                                    and a.est_doc <> 4 and a.emp_doc = :emp
-                                    order by 1,6";
+                                    and a.est_doc <> 4 and a.emp_doc = :emp and c.usu_reg_mov = e.id_usu
+                                    order by 1,8";
 
                                     $stmt = $pdo->prepare($sql);
                                     $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
                             }else{
                                 $sql = "SELECT  a.nro_doc, b.desc_item tipo_doc,'INGRESO' tipo_mov,IF(a.tipo_doc = 1, a.monto_total_doc,a.monto_afecto_doc) cargo,
-                                    0 pago, a.fec_emi_doc fecha, obs_doc obs
-                                    FROM documento a, tab_param b
+                                    0 pago, a.fec_emi_doc fecha, obs_doc obs, a.fec_emi_doc fec, c.nick_usu
+                                    FROM documento a, tab_param b, usuarios c
                                     WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
-                                    and a.est_doc <> 4 and a.emp_doc = :emp
+                                    and a.est_doc <> 4 and a.emp_doc = :emp and a.usu_reg_doc = c.id_usu
+                                    and IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) between :desde and :hasta
                                     UNION ALL
                                     SELECT  a.nro_doc, b.desc_item tipo_doc,d.desc_item tipo_mov,0 cargo,
-                                    c.monto_mov pago, IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) fecha, obs_mov obs
-                                    FROM documento a, tab_param b,  mov_documento c, tab_param d
+                                    c.monto_mov pago, IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) fecha, obs_mov obs, c.fec_reg_mov fec, e.nick_usu
+                                    FROM documento a, tab_param b,  mov_documento c, tab_param d, usuarios e
                                     WHERE a.tipo_doc = b.cod_item and b.cod_grupo = 1 and b.vig_item = 1
                                     and a.id_doc = c.id_doc_mov
                                     and c.est_doc_mov = d.cod_item and d.cod_grupo = 2 and b.vig_item = 1
                                     and a.est_doc <> 4 and a.emp_doc = :emp
-                                    and IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) between :desde and :hasta
-                                    order by 1,6";
+                                    and IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov) between :desde and :hasta and c.usu_reg_mov = e.id_usu
+                                    order by 1,8";
 
                                     $stmt = $pdo->prepare($sql);
                                     $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);

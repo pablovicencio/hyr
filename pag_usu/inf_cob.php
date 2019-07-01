@@ -42,7 +42,7 @@
     <div class="row">
       <div class="col-4">
                               <div class="form-group">
-                                    <label for="fec_desde">Desde:</label>
+                                    <label for="fec_desde">Desde: <span class="badge badge-warning" data-toggle="popover" data-content="La busqueda se realizara por la fecha de emision de los documentos">?</span></label>
                                     <input type="date" class="form-control" id="fec_desde" name="fec_desde">
                               </div>
       </div>
@@ -75,6 +75,7 @@
                                         <th scope="col">Saldo por cobrar</th>
                                         <th scope="col">Prom. Días Pago</th>
                                         <th scope="col">Detalle</th>
+                                        <th scope="col">Doc. Pendientes</th>
                                       </tr>
     </thead>
     <tbody>
@@ -97,12 +98,13 @@
                   <td><?php echo "<script>var string = numeral(". $row['cant_docs_pagoc'].").format('000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['cargos'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['pagos'].").format('$000,000,000,000');document.write(string)</script>"?></td>
-                   <td><?php echo "<script>var string = numeral(". $row['saldo'].").format('$000,000,000,000');document.write(string)</script>"?></td>
-                  <td><?php echo "<script>var string = numeral(". $row['prom_dias_pago'].").format('000,000,000,000');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['saldo'].").format('$000,000,000,000');document.write(string)</script>"?></td>
+                   <td><?php echo "<script>var string = numeral(". $row['prom_dias_pago'].").format('000,000,000,000');document.write(string)</script>"?></td>
 
 
-                  <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'.$row['id_emp'].'" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'" data-prom="'.$row['prom_dias_pago'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
+                  <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'.$row['id_emp'].'" data-tipo="1" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'" data-prom="'.$row['prom_dias_pago'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
 
+                  <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-warning" data-id="'.$row['id_emp'].'" data-tipo="2" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'" data-prom="'.$row['prom_dias_pago'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
                 
                  
                 
@@ -128,6 +130,7 @@
                                         <th scope="col">Saldo por cobrar</th>
                                         <th scope="col">Prom. Días Pago</th>
                                         <th scope="col">Detalle</th>
+                                        <th scope="col">Doc. Pendientes</th>
       </tr>
     </tfoot> 
   </table>
@@ -149,7 +152,7 @@
 
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Empresa: <span id="emp_det_inf_cob" name="emp_det_inf_cob"></span> Rut: <span id="Remp_det_inf_cob" name="Remp_det_inf_cob"></span><br>
+        <h5 class="modal-title"><span id="tit_det_inf_cob" name="tit_det_inf_cob"></span>Empresa: <span id="emp_det_inf_cob" name="emp_det_inf_cob"></span> Rut: <span id="Remp_det_inf_cob" name="Remp_det_inf_cob"></span><br>
         Promedio días de pago: <span id="prom_dias_pago" name="prom_dias_pago"></span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -168,24 +171,26 @@
                                         <th scope="col">Pago</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Observacion</th>
+                                        <th scope="col">Usuario</th>
                                 </tr>
                               </thead>
                               <tbody>
                               </tbody>
                               <tfoot>
                                 <tr>
-                                        <th scope="col">Nro Doc</th>
-                                        <th scope="col">Tipo Doc</th>
-                                        <th scope="col">Tipo Mov</th>
-                                        <th scope="col">Facturado</th>
-                                        <th scope="col">Pago</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Observacion</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col">Totales Generales</th>
+                                        <th scope="col" id ='totalCargos'></th>
+                                        <th scope="col" id ='totalPagos'></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
                                 </tr>
                               </tfoot> 
                           </table>
 
-      </div>
+ 
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
       </div>
