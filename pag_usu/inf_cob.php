@@ -70,8 +70,9 @@
                                         <th scope="col">Doc. Pendientes</th>
                                         <th scope="col">Doc. Pago Parcial</th>
                                         <th scope="col">Doc. Pagados</th>
-                                        <th scope="col">Cargos</th>
+                                        <th scope="col">Facturado</th>
                                         <th scope="col">Pagos</th>
+                                        <th scope="col">Saldo por cobrar</th>
                                         <th scope="col">Prom. Días Pago</th>
                                         <th scope="col">Detalle</th>
                                       </tr>
@@ -96,7 +97,9 @@
                   <td><?php echo "<script>var string = numeral(". $row['cant_docs_pagoc'].").format('000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['cargos'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['pagos'].").format('$000,000,000,000');document.write(string)</script>"?></td>
+                   <td><?php echo "<script>var string = numeral(". $row['saldo'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['prom_dias_pago'].").format('000,000,000,000');document.write(string)</script>"?></td>
+
 
                   <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'.$row['id_emp'].'" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'" data-prom="'.$row['prom_dias_pago'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
 
@@ -120,8 +123,9 @@
                                         <th scope="col">Doc. Pendientes</th>
                                         <th scope="col">Doc. Pago Parcial</th>
                                         <th scope="col">Doc. Pagados</th>
-                                        <th scope="col">Cargos</th>
+                                        <th scope="col">Facturado</th>
                                         <th scope="col">Pagos</th>
+                                        <th scope="col">Saldo por cobrar</th>
                                         <th scope="col">Prom. Días Pago</th>
                                         <th scope="col">Detalle</th>
       </tr>
@@ -160,7 +164,7 @@
                                         <th scope="col">Nro Doc</th>
                                         <th scope="col">Tipo Doc</th>
                                         <th scope="col">Tipo Mov</th>
-                                        <th scope="col">Cargo</th>
+                                        <th scope="col">Facturado</th>
                                         <th scope="col">Pago</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Observacion</th>
@@ -173,7 +177,7 @@
                                         <th scope="col">Nro Doc</th>
                                         <th scope="col">Tipo Doc</th>
                                         <th scope="col">Tipo Mov</th>
-                                        <th scope="col">Cargo</th>
+                                        <th scope="col">Facturado</th>
                                         <th scope="col">Pago</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Observacion</th>

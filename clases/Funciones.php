@@ -97,7 +97,10 @@ class Funciones
                                         ROUND((IFNULL((select sum(DATEDIFF(IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov), b.fec_emi_doc)) from documento b , mov_documento c
                                             where a.id_emp = b.emp_doc and  b.est_doc in(2,3) and b.id_doc = c.id_doc_mov and c.est_doc_mov = 3),0)
                                             /
-                                            (select count(b.id_doc) from documento b where a.id_emp = b.emp_doc and  b.est_doc = 3)),0) prom_dias_pago
+                                            (select count(b.id_doc) from documento b where a.id_emp = b.emp_doc and  b.est_doc = 3)),0) prom_dias_pago,
+                                        (((select IFNULL(sum(b.monto_total_doc),0) from documento b where a.id_emp = b.emp_doc and  b.est_doc <> 4 and b.tipo_doc = 1)+
+                                        (select IFNULL(sum(b.monto_afecto_doc),0) from documento b where a.id_emp = b.emp_doc and  b.est_doc <> 4 and b.tipo_doc = 2))-
+                                        (select IFNULL(sum(c.monto_mov),0) from documento b, mov_documento c where a.id_emp = b.emp_doc and  b.est_doc <> 4 and b.id_doc = c.id_doc_mov)) saldo
                                         FROM empresa a order by 3 desc";
                                 $stmt = $pdo->prepare($sql);
                             
@@ -113,7 +116,10 @@ class Funciones
                                         ROUND((IFNULL((select sum(DATEDIFF(IF(c.fec_mov='0000-00-00',c.fec_reg_mov,c.fec_mov), b.fec_emi_doc)) from documento b , mov_documento c
                                             where a.id_emp = b.emp_doc and  b.est_doc in(2,3) and b.id_doc = c.id_doc_mov and c.est_doc_mov = 3),0)
                                             /
-                                            (select count(b.id_doc) from documento b where a.id_emp = b.emp_doc and  b.est_doc = 3)),0) prom_dias_pago
+                                            (select count(b.id_doc) from documento b where a.id_emp = b.emp_doc and  b.est_doc = 3)),0) prom_dias_pago,
+                                        (((select IFNULL(sum(b.monto_total_doc),0) from documento b where a.id_emp = b.emp_doc and  b.est_doc <> 4 and b.tipo_doc = 1 and  b.fec_emi_doc between :desde and :hasta)+
+                                        (select IFNULL(sum(b.monto_afecto_doc),0) from documento b where a.id_emp = b.emp_doc and  b.est_doc <> 4 and b.tipo_doc = 2 and  b.fec_emi_doc between :desde and :hasta))-
+                                        (select IFNULL(sum(c.monto_mov),0) from documento b, mov_documento c where a.id_emp = b.emp_doc and  b.est_doc <> 4 and b.id_doc = c.id_doc_mov and  b.fec_emi_doc between :desde and :hasta)) saldo
                                         FROM empresa a order by 3 desc";
 
                                 $stmt = $pdo->prepare($sql);
