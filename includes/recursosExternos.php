@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../css/estilo.css">
 <link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/f29.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 <link rel="stylesheet" type="text/css" href="    https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>

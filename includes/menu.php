@@ -40,6 +40,7 @@
                 
                 <?php if($_SESSION['perfil']==1){echo '<li class="nav-item "><a class="nav-link" href="usuarios.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Usuarios</a></li> ';}?>
                 <li class="nav-item "><a class="nav-link" href="f29.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;F-29</a></li>
+                <li class="nav-item "><a class="nav-link" href="f29_v2.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;F-29v2</a></li>
               </ul>
             </div>
       </nav> 
