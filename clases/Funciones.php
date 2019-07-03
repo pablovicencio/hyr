@@ -19,6 +19,36 @@ require_once '../recursos/db/db.php';
 class Funciones 
 {
 
+
+
+    /*///////////////////////////////////////
+    Validacion ingreso doc
+    //////////////////////////////////////*/
+        public function val_ing_doc($key){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                                $sql = "select count(1) val from documento 
+                                        where concat('E',emp_doc,'T',tipo_doc,'N',nro_doc) = :key
+                                        and est_doc <> 4";
+                                  
+                            
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":key", $key, PDO::PARAM_STR);
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
+
     /*///////////////////////////////////////
     Informe ultimo pago por empresa
     //////////////////////////////////////*/

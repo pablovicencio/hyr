@@ -29,7 +29,7 @@
         <hr>
         </div>
 
-        <a id="btn_modal_ult_doc" class="link-modal btn btn-outline-success" data-target="#modal_ult_doc" data-toggle="modal" >Infome Ultimo Doc. Emitido</a>
+        <?php if($_SESSION['perfil']==1){echo'<a id="btn_modal_ult_doc" class="link-modal btn btn-outline-success" data-target="#modal_ult_doc" data-toggle="modal" >Infome Ultimo Doc. Emitido</a>';}?>
 
 
         
