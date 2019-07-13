@@ -10,7 +10,7 @@
     header("location: ../index.html");
   }  
 
-	require_once '../clases/ClaseEmpresa.php';
+	require_once '../clases/claseEmpresa.php';
 
 	try{
 
@@ -27,7 +27,8 @@
 		}
 		
 
-		$tasa_lab = stripcslashes ($_POST['tasa']);
+		$fec_act_lab = stripcslashes ($_POST['fec_act']);
+		$periodo_lab = stripcslashes ($_POST['periodo']);
 		$tasa_acc_lab = stripcslashes ($_POST['tasa_acc']);
 
 		$cot_lab = str_replace(",","",$_POST['cot_lab']);
@@ -36,7 +37,7 @@
 		
 		 $fun = new EmpresaDAO();
 		 
-		 $reg_mod = $fun->reg_mod_lab($emp,$cot_lab,$nro_trab,$cargas_lab,$fec_reg,$tasa_lab,$tasa_acc_lab,$id_usu);
+		 $reg_mod = $fun->reg_mod_lab($emp,$cot_lab,$nro_trab,$cargas_lab,$fec_reg,$fec_act_lab,$tasa_acc_lab,$id_usu,$periodo_lab);
 		 
 		 
 			if ($reg_mod>0){

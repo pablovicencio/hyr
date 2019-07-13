@@ -29,7 +29,7 @@ class Funciones
                 
                 $pdo = AccesoDB::getCon();
 
-                                $sql = "select a.cot_mod_lab, a.ntrab_mod_lab, if(a.cargas_mod_lab=1,'Si','No') cargas_mod_lab, a.fec_act_mod_lab, a.tasa_acc_mod_lab, a.tasa_mod_lab, c.nick_usu
+                                $sql = "select a.cot_mod_lab, a.ntrab_mod_lab, if(a.cargas_mod_lab=1,'Si','No') cargas_mod_lab, a.fec_act_mod_lab, a.tasa_acc_mod_lab, a.periodo_mod_lab, c.nick_usu
                                         from mod_lab a, usuarios c
                                         where 
                                         a.usu_mod_lab = c.id_usu
@@ -63,8 +63,8 @@ class Funciones
                                         ifnull((select ntrab_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) trab,
                                         ifnull((select if(c.cargas_mod_lab=1,'Si','No') from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) cargas,
                                         ifnull((select fec_act_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) fec,
-                                        ifnull((select tasa_acc_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) tasa_acc,
-                                        ifnull((select tasa_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) tasa
+                                        ifnull((select round(tasa_acc_mod_lab,3) from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) tasa_acc,
+                                        ifnull((select periodo_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) periodo
                                         from empresa a ";
                                   
                             

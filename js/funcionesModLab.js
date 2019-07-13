@@ -81,7 +81,7 @@ $(document).on("click", "#btn_modal_hist_mod_lab", function () {
           result[i].cargas_mod_lab + "</td><td>" +
           result[i].fec_act_mod_lab + "</td><td>" +
           result[i].tasa_acc_mod_lab + "</td><td>" +
-          result[i].tasa_mod_lab + "</td><td>" +
+          result[i].periodo_mod_lab + "</td><td>" +
           result[i].nick_usu + "</td></tr>"
      
           $("#tabla_hist_mod_lab").append(nuevafila);
