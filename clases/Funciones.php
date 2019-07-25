@@ -19,6 +19,95 @@ require_once '../recursos/db/db.php';
 class Funciones 
 {
 
+
+    /*///////////////////////////////////////
+    Historial modulo laboral
+    //////////////////////////////////////*/
+        public function inf_hist_mod_lab($emp){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                                $sql = "select a.cot_mod_lab, a.ntrab_mod_lab, if(a.cargas_mod_lab=1,'Si','No') cargas_mod_lab, a.fec_act_mod_lab, a.tasa_acc_mod_lab, a.periodo_mod_lab, c.nick_usu
+                                        from mod_lab a, usuarios c
+                                        where 
+                                        a.usu_mod_lab = c.id_usu
+                                        and a.emp_mod_lab = :emp
+                                        order by fec_act_mod_lab desc";
+                                  
+                            
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+    /*///////////////////////////////////////
+    Informe modulo laboral
+    //////////////////////////////////////*/
+        public function inf_mod_lab(){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                                $sql = "select a.id_emp, a.rut_emp, a.razon_social_emp,
+                                        ifnull((select cot_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) cot,
+                                        ifnull((select ntrab_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) trab,
+                                        ifnull((select if(c.cargas_mod_lab=1,'Si','No') from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) cargas,
+                                        ifnull((select fec_act_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) fec,
+                                        ifnull((select round(tasa_acc_mod_lab,3) from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) tasa_acc,
+                                        ifnull((select periodo_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) periodo
+                                        from empresa a ";
+                                  
+                            
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
+    /*///////////////////////////////////////
+    Validacion ingreso doc
+    //////////////////////////////////////*/
+        public function val_ing_doc($key){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                                $sql = "select count(1) val from documento 
+                                        where concat('E',emp_doc,'T',tipo_doc,'N',nro_doc) = :key
+                                        and est_doc <> 4";
+                                  
+                            
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":key", $key, PDO::PARAM_STR);
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
+
     /*///////////////////////////////////////
     Informe ultimo pago por empresa
     //////////////////////////////////////*/
@@ -1063,6 +1152,7 @@ and c.cod_grupo = 1";
                         // More headers
                         $headers .= 'From: <hyr@hyr.com>' . "\r\n";
                         $headers .= 'Cc: pvicencio@andescode.cl' . "\r\n";
+                        $headers .= 'Cc: rmunoz@hyrconsultora.com' . "\r\n";
                         mail($to,$subject,$message,$headers);
         } catch (Exception $e) {
                 throw $e;

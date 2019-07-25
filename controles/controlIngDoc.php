@@ -40,6 +40,8 @@
  			$obs_doc = '';
  		}
 
+ 		$key = 'E'.$id_emp.'T'.$tipo_doc.'N'.$num_doc;
+
 
 
  			$fun = new Funciones();
@@ -49,29 +51,37 @@
  			$usu = new UsuarioDAO($id_usu);
 
  			$dao = new DocumentoDAO('',$num_doc, $afecto, $exento, $iva, $total, $fec_ven, $fec_emi, $tipo_doc, $est,  $fec_reg, '', $obs_doc);
- 		
-			$ing_doc = $dao->ing_doc($usu->getUsu(),$emp->getEmp());
-			
-			if ($ing_doc>0){
 
-				$datos_mail = $fun->datos_mail($num_doc,1);
+ 			$val_doc = $fun->val_ing_doc($key);
+
+ 			if ($val_doc[0]['val'] == 1) {
+ 				echo"-3";  
+ 			}else{
+ 							$ing_doc = $dao->ing_doc($usu->getUsu(),$emp->getEmp());
+			
+						if ($ing_doc>0){
+
+						$datos_mail = $fun->datos_mail($num_doc,1);
 
 				 		if ($tipo_doc == 2) {
  								$total = $afecto;
  						}
 
-				$mail = $fun->mail_ing_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$num_doc,$total, $fec_ven);	
+							$mail = $fun->mail_ing_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$num_doc,$total, $fec_ven);	
 				
-				echo"Documento Nro. ".$num_doc." ingresado correctamente";
+							echo"Documento Nro. ".$num_doc." ingresado correctamente";
 
 
 
-			} else {
-				//$enviar_pass = $fun->enviar_correo_pass($nom,$correo,$nueva_pass);
+						} else {
 			
-			echo"-2";  
+						echo"-2";  
 				
-					}
+						}
+ 			}
+
+ 		
+
 		
 	
 	salir:

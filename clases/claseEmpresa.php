@@ -188,7 +188,7 @@ class EmpresaDAO
             }
     }
 
-        /*///////////////////////////////////////
+    /*///////////////////////////////////////
     //////////Modificar Empresa//////////////
     ///////////////////////////////////////*/
     public function modificar_empresa() {
@@ -250,6 +250,61 @@ class EmpresaDAO
             }
     }
 
+
+
+    /*///////////////////////////////////////
+    //////////Registrar Modulo Laboral//////////////
+    ///////////////////////////////////////*/
+    public function reg_mod_lab($emp,$cot_lab,$nro_trab,$cargas_lab,$fec_reg,$fec_act,$tasa_acc_lab,$id_usu,$periodo) {
+
+
+        try{
+             
+                $pdo = AccesoDB::getCon();
+
+                $sql_reg_mod = "INSERT INTO `mod_lab`
+                        (
+                                    `cot_mod_lab`,
+                                    `ntrab_mod_lab`,
+                                    `cargas_mod_lab`,
+                                    `fec_reg_mod_lab`,
+                                    `tasa_acc_mod_lab`,
+                                    `periodo_mod_lab`,
+                                    `usu_mod_lab`,
+                                    `emp_mod_lab`,
+                                    `fec_act_mod_lab`)
+                                    VALUES
+                                    (
+                                    :cot,
+                                    :ntrab,
+                                    :cargas,
+                                    :fec_reg,
+                                    :tasa_acc,
+                                    :periodo,
+                                    :usu,
+                                    :emp,
+                                    :fec_act)";
+
+
+                $stmt = $pdo->prepare($sql_reg_mod);
+                $stmt->bindParam(":cot",$cot_lab , PDO::PARAM_INT);
+                $stmt->bindParam(":ntrab",$nro_trab , PDO::PARAM_INT);  
+                $stmt->bindParam(":cargas",$cargas_lab , PDO::PARAM_INT);
+                $stmt->bindParam(":fec_reg",$fec_reg , PDO::PARAM_STR);
+                $stmt->bindParam(":tasa_acc",$tasa_acc_lab , PDO::PARAM_STR);
+                $stmt->bindParam(":periodo",$periodo , PDO::PARAM_STR);
+                $stmt->bindParam(":usu",$id_usu , PDO::PARAM_INT);
+                $stmt->bindParam(":emp",$emp, PDO::PARAM_INT);
+                $stmt->bindParam(":fec_act",$fec_act, PDO::PARAM_INT);
+                $stmt->execute();
+
+                return $stmt->rowCount();
+        
+
+            } catch (Exception $e) {
+                echo"Error, comuniquese con el administrador".  $e->getMessage()."";
+            }
+    }
 
 
 

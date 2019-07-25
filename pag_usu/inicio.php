@@ -29,7 +29,7 @@
         <hr>
         </div>
 
-        <a id="btn_modal_ult_doc" class="link-modal btn btn-outline-success" data-target="#modal_ult_doc" data-toggle="modal" >Infome Ultimo Doc. Emitido</a>
+        <?php if($_SESSION['perfil']==1){echo'<a id="btn_modal_ult_doc" class="link-modal btn btn-outline-success" data-target="#modal_ult_doc" data-toggle="modal" >Infome Ultimo Doc. Emitido</a>';}?>
 
 
         
@@ -44,6 +44,10 @@
                                         <th scope="col">Nro Doc</th>
                                         <th scope="col">Empresa</th>
                                         <th scope="col">Estado</th>
+                                        <th scope="col" style="display: none">afecto_num</th>
+                                        <th scope="col" style="display: none">exento_num</th>
+                                        <th scope="col" style="display: none">iva_num</th>
+                                        <th scope="col" style="display: none">total_num</th>
                                         <th scope="col">Afecto</th>
                                         <th scope="col">Exento</th>
                                         <th scope="col">IVA</th>
@@ -72,6 +76,11 @@
                   <td><?php echo "N° ".$row['nro_doc']?></td>
                   <td><?php echo $row['razon_social_emp']?></td>
                   <td><?php echo $row['est']?></td>
+                  <td style="display: none"><?php echo $row['monto_afecto_doc']?></td>
+                  <td style="display: none"><?php echo $row['monto_exento_doc']?></td>
+                  <td style="display: none"><?php echo $row['monto_iva_doc']?></td>
+                  <td style="display: none"><?php echo $row['monto_total_doc']?></td>
+
                   <td><?php echo "<script>var string = numeral(". $row['monto_afecto_doc'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['monto_exento_doc'].").format('$000,000,000,000');document.write(string)</script>"?></td>
                   <td><?php echo "<script>var string = numeral(". $row['monto_iva_doc'].").format('$000,000,000,000');document.write(string)</script>"?></td>
@@ -98,20 +107,24 @@
     </tbody>
     <tfoot>
       <tr>
-        <th scope="col" style="display: none">Id_documento</th>
-                                        <th scope="col">Nro Doc</th>
-                                        <th scope="col">Empresa</th>
-                                        <th scope="col">Estado</th>
-                                        <th scope="col">Afecto</th>
-                                        <th scope="col">Exento</th>
-                                        <th scope="col">IVA</th>
-                                        <th scope="col">Total</th>
-                                        <th scope="col">Fecha Emisión</th>
-                                        <th scope="col">Fecha Vencimiento</th>
-                                        <th scope="col">Tipo Doc</th>
-                                        <th scope="col">Observación</th>
-                                        <th scope="col">Monto Pagado</th>
-                                        <th scope="col">Notificar</th>
+                                        <th scope="col" style="display: none">Id_documento</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col" style="display: none">afecto_num</th>
+                                        <th scope="col" style="display: none">exento_num</th>
+                                        <th scope="col" style="display: none">iva_num</th>
+                                        <th scope="col" style="display: none">total_num</th>
+                                        <th scope="col"> Totales Generales</th>
+                                        <th scope="col" id ='totalAfecto'></th>
+                                        <th scope="col" id ='totalExento'></th>
+                                        <th scope="col" id ='totalIva'></th>
+                                        <th scope="col" id ='totalTotal'></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col" id ='totalSumaPago'></th>
+                                        <th scope="col"></th>
       </tr>
     </tfoot> 
   </table>

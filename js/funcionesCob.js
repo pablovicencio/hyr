@@ -831,6 +831,9 @@ $(document).ready(function() {
                 case '-2':
                     swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");
                     break;
+                case '-3':
+                    swal("Validación Documento", "este documento ya se encuentra ingresado, favor validar", "warning");
+                    break;
                 default :
                     swal("Documento Ingresado", msg, "success");
                     $('#formEmpDoc').trigger("reset");

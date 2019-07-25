@@ -116,7 +116,49 @@ $(document).ready(function () {
     $('#doc_ven').DataTable({
       "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-      }
+      },
+              "footerCallback": function ( row, data, start, end, display ) {
+                    var api = this.api(), data;  
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function ( i ) {
+                        return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ?  i : 0;
+                    };
+                    console.log(data);
+                    
+                    total_afecto = api.column( 4 ).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    },0 );
+
+                    total_exento = api.column( 5 ).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    },0 );
+
+                    total_iva = api.column( 6 ).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    },0 );
+
+                    total_total = api.column( 7 ).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    },0 );
+
+                    total_suma_pago = api.column( 16 ).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    },0 );
+                    
+
+
+                    total_afecto = parseInt(total_afecto);
+                    total_exento = parseInt(total_exento);
+                    total_iva = parseInt(total_iva);
+                    total_total = parseInt(total_total);
+                    total_suma_pago = parseInt(total_suma_pago);
+                    // Update footer
+                    $('#totalAfecto').html(numeral(total_afecto).format('$000,000,000,000'));
+                    $('#totalExento').html(numeral(total_exento).format('$000,000,000,000'));   
+                    $('#totalIva').html(numeral(total_iva).format('$000,000,000,000'));  
+                    $('#totalTotal').html(numeral(total_total).format('$000,000,000,000'));   
+                    $('#totalSumaPago').html(numeral(total_suma_pago).format('$000,000,000,000'));               
+                }
     });
     $('.dataTables_length').addClass('bs-select');
   });
