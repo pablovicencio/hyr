@@ -134,7 +134,7 @@
         </div>
         <div class="form-group">
           <label for="mrte">Reg. Trib. Emp.:</label>
-          <input type="number" class="form-control" id="mrte" name="mrte" maxlength="10"  placeholder="Reg. Trib. Emp." required>
+          <input type="text" class="form-control" id="mrte" name="mrte" maxlength="25"  placeholder="Reg. Trib. Emp." required>
         </div>
 
 

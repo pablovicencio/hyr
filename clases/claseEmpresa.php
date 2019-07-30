@@ -138,7 +138,7 @@ class EmpresaDAO
         /*N°6*/ $stmt->bindParam(":ciudad_emp",$this->ciudad_emp, PDO::PARAM_INT);
         /*N°7*/ $stmt->bindParam(":comuna_emp",$this->comuna_emp, PDO::PARAM_INT);
         /*N°8*/ $stmt->bindParam(":dir_emp",$this->dir_emp, PDO::PARAM_STR);
-        /*N°9*/ $stmt->bindParam(":reg_trib_emp",$this->reg_trib_emp, PDO::PARAM_INT);
+        /*N°9*/ $stmt->bindParam(":reg_trib_emp",$this->reg_trib_emp, PDO::PARAM_STR);
         /*N°10*/$stmt->bindParam(":fec_ini_act_emp",$this->fec_ini_act_emp, PDO::PARAM_STR);
         /*N°11*/$stmt->bindParam(":mail_emp",$this->mail_emp , PDO::PARAM_STR);
         /*N°12*/$stmt->bindParam(":nom_contacto_emp",$this->nom_contacto_emp , PDO::PARAM_STR);
@@ -234,7 +234,7 @@ class EmpresaDAO
                 $stmt->bindParam(":ciudad_emp",$this->ciudad_emp, PDO::PARAM_INT);
                 $stmt->bindParam(":comuna_emp",$this->comuna_emp, PDO::PARAM_INT);
                 $stmt->bindParam(":dir_emp",$this->dir_emp, PDO::PARAM_STR);
-                $stmt->bindParam(":reg_trib_emp",$this->reg_trib_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":reg_trib_emp",$this->reg_trib_emp, PDO::PARAM_STR);
                 $stmt->bindParam(":clave_previred_emp",$this->clave_previred_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":clave_sii_emp",$this->clave_sii_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":fac_rea_emp",$this->fac_rea_emp , PDO::PARAM_INT);
