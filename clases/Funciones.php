@@ -817,13 +817,18 @@ and c.cod_grupo = 1";
                         $sql = "select f.id_f29 id,u.nick_usu nick,f.fecha_form fecha,e.razon_social_emp empresa,e.rut_emp rut,f.c91 total
                         from empresa e,f29 f,usuarios u
                         where f.id_emp = e.id_emp and f.usu_reg_doc = u.id_usu";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute();
+                        $response = $stmt->fetchAll();
                     }else if ($opcion == 1){
-                        $sql = "SELECT * FROM F29
-                        where id_f29 = $id";
+                        $sql = "SELECT * FROM f29
+                        where id_f29 = :id";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                        $stmt->execute();
+                        $response = $stmt->fetchAll();
                     }
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
-            $response = $stmt->fetchAll();
+
             return $response;
         } catch (Exception $e) {
             echo"-1";
