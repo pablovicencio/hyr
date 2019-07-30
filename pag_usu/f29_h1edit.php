@@ -1,8 +1,9 @@
-<form id="formCrearForm" onsubmit="return false;"  >
+<form id="formModForm" onsubmit="return false;"  >
 
 <div class="row">
-  
 
+
+<input type="hidden" name="variable1" value="<?php echo $id_f29?>" />
 
     <div class="col-6">
         <select class="form-control" id="emp" name="emp" onchange="">
@@ -29,7 +30,7 @@
     <div class="col-6 f29span ">
         <br>
         <span class="input-group-text f29 f29bold" id="basic-addon4" >IMPUESTO AL VALOR AGREGADO D.L. 825/74</span>
-            
+      
     </div>
 
     <div class="col-3 f29span">
@@ -2331,6 +2332,6 @@
 </div>
 
 <div class="col-12 text-center">
-    <input type="submit" class="btn btn-outline-success" id="btnAc" name="btnAc" value="ingresar Formulario" >                                         
+    <input type="submit" class="btn btn-outline-success" id="btnAc" name="btnAc" value="Modificar Formulario" >                                         
   </div>
 

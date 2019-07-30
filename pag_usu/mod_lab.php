@@ -50,7 +50,7 @@
                                         <th scope="col">Cargas Laborales</th>
                                         <th scope="col">Ultima fecha de actualización</th>
                                         <th scope="col">Tasa de Accidentabilidad</th>
-                                        <th scope="col">Tasa</th>
+                                        <th scope="col">Periodo</th>
                                         <th scope="col">Actualizar</th>
                                       </tr>
     </thead>
@@ -74,7 +74,7 @@
                   <td><?php echo $row['cargas']?></td>
                   <td><?php echo date('d-m-Y', strtotime($row['fec']))?></td>
                   <td><?php echo $row['tasa_acc']?></td>
-                  <td><?php echo $row['tasa']?></td>
+                  <td><?php echo $row['periodo']?></td>
 
                   <td><?php echo'<a id="btn_modal_hist_mod_lab" class="link-modal btn btn-outline-success" data-id="'.$row['id_emp'].'" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'" data-fec="'.date('d-m-Y', strtotime($row['fec'])).'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
                 
@@ -99,7 +99,7 @@
                                         <th scope="col">Cargas Laborales</th>
                                         <th scope="col">Ultima fecha de actualización</th>
                                         <th scope="col">Tasa de Accidentabilidad</th>
-                                        <th scope="col">Tasa</th>
+                                        <th scope="col">Periodo</th>
                                         <th scope="col">Actualizar</th>
                                       </tr>
     </tfoot> 
@@ -148,9 +148,9 @@
                 </div>
                 <div class="row">
                   <div class="col-6">
+                    <br>
                               <div class="form-group">
                                                 <div class="input-group mb-3">
-                              
 
                                             <div class="input-group-prepend">
                                               <div class="input-group-text">
@@ -163,7 +163,10 @@
                   </div>
                   <div class="col-6">
                               <div class="form-group">
-                                    
+                                  <div class="form-group">
+                                    <label for="fecha_act">Fecha de Actualización:</label>
+                                    <input type="date" class="form-control" id="fec_act" name="fec_act"  required>
+                              </div>
                               </div>
                   </div>
                 </div>
@@ -177,8 +180,8 @@
                               </div>
                             <div class="col-6">
                               <div class="form-group">
-                                    <label for="tasa">Tasa:</label>
-                                    <input type="number" class="form-control" id="tasa" name="tasa" min="0" step="any" required>
+                                    <label for="tasa">Periodo:</label>
+                                    <input type="number" class="form-control" id="periodo" name="periodo"  maxlength="6" minlength="6" placeholder="MMAAAA" required>
                               </div>
                             </div>
 
@@ -209,7 +212,7 @@
                                         <th scope="col">Cargas Laborales</th>
                                         <th scope="col">Ultima fecha de actualización</th>
                                         <th scope="col">Tasa de Accidentabilidad</th>
-                                        <th scope="col">Tasa</th>
+                                        <th scope="col">Periodo</th>
                                         <th scope="col">Usuario</th>
                                 </tr>
                               </thead>
@@ -222,7 +225,7 @@
                                         <th scope="col">Cargas Laborales</th>
                                         <th scope="col">Ultima fecha de actualización</th>
                                         <th scope="col">Tasa de Accidentabilidad</th>
-                                        <th scope="col">Tasa</th>
+                                        <th scope="col">Periodo</th>
                                         <th scope="col">Usuario</th>
                                 </tr>
                               </tfoot> 

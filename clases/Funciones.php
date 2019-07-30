@@ -29,7 +29,7 @@ class Funciones
                 
                 $pdo = AccesoDB::getCon();
 
-                                $sql = "select a.cot_mod_lab, a.ntrab_mod_lab, if(a.cargas_mod_lab=1,'Si','No') cargas_mod_lab, a.fec_act_mod_lab, a.tasa_acc_mod_lab, a.tasa_mod_lab, c.nick_usu
+                                $sql = "select a.cot_mod_lab, a.ntrab_mod_lab, if(a.cargas_mod_lab=1,'Si','No') cargas_mod_lab, a.fec_act_mod_lab, a.tasa_acc_mod_lab, a.periodo_mod_lab, c.nick_usu
                                         from mod_lab a, usuarios c
                                         where 
                                         a.usu_mod_lab = c.id_usu
@@ -63,8 +63,8 @@ class Funciones
                                         ifnull((select ntrab_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) trab,
                                         ifnull((select if(c.cargas_mod_lab=1,'Si','No') from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) cargas,
                                         ifnull((select fec_act_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) fec,
-                                        ifnull((select tasa_acc_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) tasa_acc,
-                                        ifnull((select tasa_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) tasa
+                                        ifnull((select round(tasa_acc_mod_lab,3) from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) tasa_acc,
+                                        ifnull((select periodo_mod_lab from mod_lab c where c.emp_mod_lab = a.id_emp order by c.fec_act_mod_lab desc limit 1 ),0) periodo
                                         from empresa a ";
                                   
                             
@@ -794,6 +794,32 @@ and c.cod_grupo = 1";
                         where vig_emp = 1 and empresa.usu_cre_emp = u.id_usu";
                     }else if ($opcion == 3){
                         $sql = "select id_emp, razon_social_emp from empresa";
+                    }
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $response = $stmt->fetchAll();
+            return $response;
+        } catch (Exception $e) {
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+        }
+    }
+    /*///////////////////////////////////////
+    Cargar lista despegable de Formularios 29
+    //////////////////////////////////////*/
+    public function cargar_formularios($opcion,$id){
+        try{
+            
+            
+            $pdo = AccesoDB::getCon();
+    
+                    if ($opcion == 0) {
+                        $sql = "select f.id_f29 id,u.nick_usu nick,f.fecha_form fecha,e.razon_social_emp empresa,e.rut_emp rut,f.c91 total
+                        from empresa e,f29 f,usuarios u
+                        where f.id_emp = e.id_emp and f.usu_reg_doc = u.id_usu";
+                    }else if ($opcion == 1){
+                        $sql = "SELECT * FROM F29
+                        where id_f29 = $id";
                     }
             $stmt = $pdo->prepare($sql);
             $stmt->execute();

@@ -39,8 +39,16 @@
 
                 
                 <?php if($_SESSION['perfil']==1){echo '<li class="nav-item "><a class="nav-link" href="usuarios.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Usuarios</a></li> ';}?>
-                <li class="nav-item "><a class="nav-link" href="f29.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;F-29</a></li>
-                <li class="nav-item "><a class="nav-link" href="f29_v2.php"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;F-29v2</a></li>
+                  <!-- Dropdown -->
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Formulario 29</a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="rf29.php">Ver/Modificar &nbsp;<i class="fa fa-list-ol" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" href="f29_v2.php">Agregar Nuevo &nbsp;<i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                         <!-- <a class="dropdown-item" href="ef29.php">Modificar &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> -->
+                      </div>
+                    </li>  
+                     <!-- Dropdown -->
 
                 <li class="nav-item "><a class="nav-link" href="mod_lab.php"><i class="fa fa-black-tie" aria-hidden="true"></i>&nbsp;Modulo Laboral
                 </a></li> 

@@ -11,23 +11,29 @@
 <?php
   include("../includes/recursosExternos.php");
 ?>
-
+<?php
+  include("../includes/infoLog.php");
+  include("../includes/menu.php");
+  $id_f29 = $_GET['id_f29'];
+?>
 <script src="../js/funcionesF29.js"></script>
-
+<script type="text/javascript">
+window.onload = mod(<?php echo $id_f29 ?>);
+</script>
 </head>
 
 <body>
 
 
-<?php
-  include("../includes/infoLog.php");
-  include("../includes/menu.php");
-?>
+
+
 
 <div class="container" id="main">
 
 <div class="col-12 text-center">
-  <h3>Formulario - 29&nbsp;&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></h3>
+  <h3>Formulario - 29&nbsp;&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i>
+
+  </h3>
   <hr>
 </div>
 
@@ -48,14 +54,14 @@
     <div class="tab-pane fade show active" id="lista" role="tabpanel" aria-labelledby="lista-tab">
         <!-- CONTENIDO 1 -->
         <?php
-          include("f29_h1.php");
+          include("f29_h1edit.php");
         ?>
     </div>
   <div class="tab-pane fade" id="agrega" role="tabpanel" aria-labelledby="agrega-tab">
   <!-- CONTENIDO 2 -->
         <!-- CONTENIDO 1 -->
         <?php
-          include("f29_h2.php");
+          include("f29_h2edit.php");
         ?>       
   </div>
  </div>
