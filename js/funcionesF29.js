@@ -232,25 +232,6 @@ function mod(id_form) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //CONTROL CREAR FORMULARIO
 $(document).ready(function() {
   $("#formCrearForm").submit(function() { 
@@ -298,23 +279,33 @@ $(document).ready(function () {
   $('.dataTables_length').addClass('bs-select');
 });
   
-    
+
+//PINTAR VERDE LOS INPUT
+function green(idinput,valor){
+
+  var id = document.getElementById(idinput);
+  var val = valor;
+  //alert("el Valor Es:"+val);
+
+if (val >= 1) {
+  id.style.backgroundColor = "#c1e6c7";
+} else {
+  id.style.backgroundColor = "#ffffff";
+}
+
+}
+
+//BORRAR EL CERO AL HACER SELECCION.
+function modcont(id_field){
+
+  var id = id_field;
+  document.getElementById(id).value = "";
+
+}
   
-  
+   
   function calcularHojauno(){
 
-    //INICI0 HOJA UNO
-    //var C20 = parseInt(document.getElementById('C20').value);
-    //var C585 = parseInt(document.getElementById('C585').value);
-    //var C142 = parseInt(document.getElementById('C142').value);
-    //var C731 = parseInt(document.getElementById('C731').value);
-    //var C732 = parseInt(document.getElementById('C732').value);
-    //var C714 = parseInt(document.getElementById('C714').value);
-    //var C715 = parseInt(document.getElementById('C715').value);
-    //var C515 = parseInt(document.getElementById('C515').value);
-    //var C587 = parseInt(document.getElementById('C587').value);
-    //var C720 = parseInt(document.getElementById('C720').value);
-    //var C503 = parseInt(document.getElementById('C503').value);
     var C502 = parseInt(document.getElementById('C502').value);
     //var C763 = parseInt(document.getElementById('C763').value);
     var C764 = parseInt(document.getElementById('C764').value);
@@ -427,6 +418,9 @@ $(document).ready(function () {
     var C92 = parseInt(document.getElementById('C92').value);
     var C93 = parseInt(document.getElementById('C93').value);
     var C94 = parseInt(document.getElementById('C94').value);
+
+
+
       
     var totaldebito = C502+C764+C717+C111+C759+C513-C510-C709-C734+C517+C501+C154+C518+C713+C741;
     
@@ -447,13 +441,34 @@ $(document).ready(function () {
       document.getElementById("C77").value = diferencia;
       document.getElementById("C89").value = 0;
     }
+    
+    //////////////////////////////
+    // CALCULO LINEAS 58 - 59 60 //
+    //////////////////////////////
+    var baseimponible = document.getElementById("C563").value;
+    var tasa = document.getElementById("C115").value;
+    var ppmdet = ((baseimponible*tasa) / 100);
+    document.getElementById("C62").value = Math.round(ppmdet);
+   
+    var baseimponible2 = document.getElementById("C120").value;
+    var tasa2 = document.getElementById("C542").value;
+    var ppmdet2 = ((baseimponible2*tasa2) / 100);
+    document.getElementById("C123").value = Math.round(ppmdet2);
+
+    var baseimponible3 = document.getElementById("C701").value;
+    var tasa3 = document.getElementById("C702").value;
+    var ppmdet3 = ((baseimponible3*tasa3) / 100);
+    document.getElementById("C703").value = Math.round(ppmdet3);
+    // FIN CALCULO LINEAS   58 - 59 - 60
+
 
     var subtotal = C89+C760+C50+C48+C151+C153+C54+C56+C588+C589+C62+C123+C703+C66+C152+C70;
     var total = subtotal + C92 + C93;
     //document.getElementById("C94").value = total;
-
+    
+    totaldethoja2 = document.getElementById("C598").value;
     document.getElementById("C595").value = subtotal;
-    document.getElementById("C91").value = subtotal - C89;
+    document.getElementById("C91").value = subtotal-totaldethoja2;
 
      
      //FIN HOJA UNO
@@ -565,23 +580,40 @@ $(document).ready(function () {
         document.getElementById("C506").value = 0;
       }
 
+      /////////////////////////////////
+      // CALCULO LINEAS 98 hasta 102 //
+      /////////////////////////////////
 
+      var cod556 = document.getElementById("C556").value;
 
-      /*var anticipo = C556 + C557 - C558;
-      document.getElementById("543").value = anticipo;
+      if (cod556 >= 1) {
+        var anticipo = C556 + C557 - C558;
+        var calculorem = document.getElementById("C89").value;  /* $ 1.990.080 */
+        document.getElementById("C543").value = anticipo;  /* $ 2.042.047 */
+        document.getElementById("C573").value = anticipo-calculorem;
+        document.getElementById("C598").value = calculorem; 
+      } else {
+        
+      }
 
-      if (diferencia2 >= 0) {
       
-        document.getElementById("C506").value = diferencia2;
-        document.getElementById("C507").value = 0;
-      }else{
-        diferencia2 = ( diferencia2 * -1);
-        document.getElementById("C507").value = diferencia2;
-        document.getElementById("C506").value = 0;
-      }*/
+      
 
 
+     
+
+      //////////////////////////////
+      //     CALCULO LINEA 547    //
+      //////////////////////////////
+
+      var linea65 = document.getElementById("C595").value;
+      var linea102 = document.getElementById("C598").value;
+      var totaldeterminado = linea65 - linea102;
+      document.getElementById("C547").value = totaldeterminado;
   }
+
+
+
   //CONTROL MODIFICAR FORMULARIO29
 $(document).ready(function() {
   $("#formModForm").submit(function() {    
