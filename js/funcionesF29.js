@@ -291,17 +291,24 @@ if (val >= 1) {
   id.style.backgroundColor = "#c1e6c7";
 } else {
   id.style.backgroundColor = "#ffffff";
+  document.getElementById(idinput).value = "0";
 }
 
 }
 
 //BORRAR EL CERO AL HACER SELECCION.
 function modcont(id_field){
-
   var id = id_field;
-  document.getElementById(id).value = "";
+
+  if (document.getElementById(id).value == 0) {
+    document.getElementById(id).value = "";
+  }
+  
 
 }
+
+
+
   
    
   function calcularHojauno(){

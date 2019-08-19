@@ -70,7 +70,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text f29 f29span f29num" id="basic-addon4">20</span>
             </div>
-            <input type="number" value="0" class="form-control f29 f29inp" id="C20" name="C20" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onkeyup="calcularHojauno()" onclick="modcont(this.id)" >
+            <input type="number" value="0" class="form-control f29 f29inp" id="C20" name="C20" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onkeyup="calcularHojauno()" onclick="modcont(this.id)">
         </div>
     </div>
 
