@@ -284,7 +284,9 @@ $(document).ready(function () {
 function green(idinput,valor){
 
   var id = document.getElementById(idinput);
-  var val = valor;
+  var val = document.getElementById(idinput).value;
+  val = val.replace(/\./g,'');
+
   //alert("el Valor Es:"+val);
 
 if (val >= 1) {
@@ -303,36 +305,48 @@ function modcont(id_field){
   if (document.getElementById(id).value == 0) {
     document.getElementById(id).value = "";
   }
-  
+}
 
+function prueba(){
+
+  var test = document.getElementById('test').value;
+  test = test.replace(/\./,"");
+  //var test = "1.258";
+  //test.replace(/\./,"");
+  alert(test);
 }
 
 
+//FORMATEAR NUMEROS Y AGREGAR SEPARADOR DE MILES
+function format(input)
+{
+var num = input.value.replace(/\./g,'');
+if(!isNaN(num)){
+num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+num = num.split('').reverse().join('').replace(/^[\.]/,'');
+input.value = num;
+}
+ 
+else{ swal("Solo Numeros", "En esta Casilla Solo Se Aceptan Numeros", "warning");
+input.value = input.value.replace(/[^\d\.]*/g,'');
+}
+}
+
 
   
-   
+   //FUNCION PARA DESCARTAR
   function calcularHojauno(){
 
     var C502 = parseInt(document.getElementById('C502').value);
-    //var C763 = parseInt(document.getElementById('C763').value);
     var C764 = parseInt(document.getElementById('C764').value);
-    //var C716 = parseInt(document.getElementById('C716').value);
     var C717 = parseInt(document.getElementById('C717').value);
-    //var C110 = parseInt(document.getElementById('C110').value);
     var C111 = parseInt(document.getElementById('C111').value);
-    //var C758 = parseInt(document.getElementById('C758').value);
     var C759 = parseInt(document.getElementById('C759').value);
-    //var C512 = parseInt(document.getElementById('C512').value);
     var C513 = parseInt(document.getElementById('C513').value);
-    //var C509 = parseInt(document.getElementById('C509').value);
     var C510 = parseInt(document.getElementById('C510').value);
-    //var C708 = parseInt(document.getElementById('C708').value);
     var C709 = parseInt(document.getElementById('C709').value);
-    //var C733 = parseInt(document.getElementById('C733').value);
     var C734 = parseInt(document.getElementById('C734').value);
-    //var C516 = parseInt(document.getElementById('C516').value);
     var C517 = parseInt(document.getElementById('C517').value);
-    //var C500 = parseInt(document.getElementById('C500').value);
     var C501 = parseInt(document.getElementById('C501').value);
     var C154 = parseInt(document.getElementById('C154').value);
     var C518 = parseInt(document.getElementById('C518').value);
@@ -351,134 +365,18 @@ function modcont(id_field){
     //var C584 = parseInt(document.getElementById('C584').value);
     var C562 = parseInt(document.getElementById('C562').value);
     //var C519 = parseInt(document.getElementById('C519').value);
-    var C520 = parseInt(document.getElementById('C520').value);
-    //var C761 = parseInt(document.getElementById('C761').value);
-    var C762 = parseInt(document.getElementById('C762').value);
-    //var C765 = parseInt(document.getElementById('C765').value);
-    var C766 = parseInt(document.getElementById('C766').value);
-    //var C524 = parseInt(document.getElementById('C524').value);
-    var C525 = parseInt(document.getElementById('C525').value);
-    //var C527 = parseInt(document.getElementById('C527').value);
-    var C528 = parseInt(document.getElementById('C528').value);
-    //var C531 = parseInt(document.getElementById('C531').value);
-    var C532 = parseInt(document.getElementById('C532').value);
-    //var C534 = parseInt(document.getElementById('C534').value);
-    var C535 = parseInt(document.getElementById('C535').value);
-    //var C536 = parseInt(document.getElementById('C536').value);
-    var C553 = parseInt(document.getElementById('C553').value);
-    var C504 = parseInt(document.getElementById('C504').value);
-    var C593 = parseInt(document.getElementById('C593').value);
-    var C594 = parseInt(document.getElementById('C594').value);
-    var C592 = parseInt(document.getElementById('C592').value);
-    var C539 = parseInt(document.getElementById('C539').value);
-    var C718 = parseInt(document.getElementById('C718').value);
-    var C164 = parseInt(document.getElementById('C164').value);
-    var C730 = parseInt(document.getElementById('C730').value);
-    var C742 = parseInt(document.getElementById('C742').value);
-    var C743 = parseInt(document.getElementById('C743').value);
-    var C127 = parseInt(document.getElementById('C127').value);
-    var C729 = parseInt(document.getElementById('C729').value);
-    var C744 = parseInt(document.getElementById('C744').value);
-    var C745 = parseInt(document.getElementById('C745').value);
-    var C544 = parseInt(document.getElementById('C544').value);
-    var C523 = parseInt(document.getElementById('C523').value);
-    var C712 = parseInt(document.getElementById('C712').value);
-    var C757 = parseInt(document.getElementById('C757').value);
+
     var C537 = parseInt(document.getElementById('C537').value);
     var C77 = parseInt(document.getElementById('C77').value);
-    var C89 = parseInt(document.getElementById('C89').value);
-    var C760 = parseInt(document.getElementById('C760').value);
-    var C50 = parseInt(document.getElementById('C50').value);
-    var C751 = parseInt(document.getElementById('C751').value);
-    var C735 = parseInt(document.getElementById('C735').value);
-    var C48 = parseInt(document.getElementById('C48').value);
-    var C151 = parseInt(document.getElementById('C151').value);
-    var C153 = parseInt(document.getElementById('C153').value);
-    var C54 = parseInt(document.getElementById('C54').value);
-    var C56 = parseInt(document.getElementById('C56').value);
-    var C588 = parseInt(document.getElementById('C588').value);
-    var C589 = parseInt(document.getElementById('C589').value);
-    var C30 = parseInt(document.getElementById('C30').value);
-    var C563 = parseInt(document.getElementById('C563').value);
-    var C115 = parseInt(document.getElementById('C115').value);
-    var C68 = parseInt(document.getElementById('C68').value);
-    var C62 = parseInt(document.getElementById('C62').value);
-    var C565 = parseInt(document.getElementById('C565').value);
-    var C120 = parseInt(document.getElementById('C120').value);
-    var C542 = parseInt(document.getElementById('C542').value);
-    var C122 = parseInt(document.getElementById('C122').value);
-    var C123 = parseInt(document.getElementById('C123').value);
-    var C700 = parseInt(document.getElementById('C700').value);
-    var C701 = parseInt(document.getElementById('C701').value);
-    var C702 = parseInt(document.getElementById('C702').value);
-    var C711 = parseInt(document.getElementById('C711').value);
-    var C703 = parseInt(document.getElementById('C703').value);
-    var C66 = parseInt(document.getElementById('C66').value);
-    var C152 = parseInt(document.getElementById('C152').value);
-    var C70 = parseInt(document.getElementById('C70').value);
+    
     var C595 = parseInt(document.getElementById('C595').value);
-    //var C1 = (document.getElementById('C1').value);
-    //var C2 = (document.getElementById('C2').value);
-    //var C5 = (document.getElementById('C5').value);
-    //var C583 = (document.getElementById('C583').value);
     var C91 = parseInt(document.getElementById('C91').value);
     var C92 = parseInt(document.getElementById('C92').value);
     var C93 = parseInt(document.getElementById('C93').value);
     var C94 = parseInt(document.getElementById('C94').value);
 
-
-
-      
-    var totaldebito = C502+C764+C717+C111+C759+C513-C510-C709-C734+C517+C501+C154+C518+C713+C741;
     
-    document.getElementById("C538").value = totaldebito;
-    
-    
-    
-    var totalcredito = C520+C762+C766+C525-C528+C532+C535+C553+C504-C593-C594-C592-C539-C718+C164+C127+C544-C523-C712-C757;
-    document.getElementById("C537").value = totalcredito;
-     
-    var diferencia = totaldebito-totalcredito;
-    if (diferencia >= 0) {
-      
-      document.getElementById("C89").value = diferencia;
-      document.getElementById("C77").value = 0;
-    }else{
-      diferencia = ( diferencia * -1);
-      document.getElementById("C77").value = diferencia;
-      document.getElementById("C89").value = 0;
-    }
-    
-    //////////////////////////////
-    // CALCULO LINEAS 58 - 59 60 //
-    //////////////////////////////
-    var baseimponible = document.getElementById("C563").value;
-    var tasa = document.getElementById("C115").value;
-    var ppmdet = ((baseimponible*tasa) / 100);
-    document.getElementById("C62").value = Math.round(ppmdet);
-   
-    var baseimponible2 = document.getElementById("C120").value;
-    var tasa2 = document.getElementById("C542").value;
-    var ppmdet2 = ((baseimponible2*tasa2) / 100);
-    document.getElementById("C123").value = Math.round(ppmdet2);
 
-    var baseimponible3 = document.getElementById("C701").value;
-    var tasa3 = document.getElementById("C702").value;
-    var ppmdet3 = ((baseimponible3*tasa3) / 100);
-    document.getElementById("C703").value = Math.round(ppmdet3);
-    // FIN CALCULO LINEAS   58 - 59 - 60
-
-
-    var subtotal = C89+C760+C50+C48+C151+C153+C54+C56+C588+C589+C62+C123+C703+C66+C152+C70;
-    var total = subtotal + C92 + C93;
-    //document.getElementById("C94").value = total;
-    
-    totaldethoja2 = document.getElementById("C598").value;
-    document.getElementById("C595").value = subtotal;
-    document.getElementById("C91").value = subtotal-totaldethoja2;
-
-     
-     //FIN HOJA UNO
     
 
 
@@ -603,12 +501,6 @@ function modcont(id_field){
         
       }
 
-      
-      
-
-
-     
-
       //////////////////////////////
       //     CALCULO LINEA 547    //
       //////////////////////////////
@@ -618,7 +510,7 @@ function modcont(id_field){
       var totaldeterminado = linea65 - linea102;
       document.getElementById("C547").value = totaldeterminado;
   }
-
+ //FUNCION PARA DESCARTAR
 
 
   //CONTROL MODIFICAR FORMULARIO29
@@ -652,4 +544,463 @@ $(document).ready(function() {
 });
 
 
+/////////////////////////////////////////////////////////////////////////////////////
 
+
+////////////////////////////////////////////////
+//// F   O  R  M  U  L  A  R  I  O  2 9  ///////
+////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+//CALCULO FORMULARIO 29 LINEA 7 HASTA LINEA 22//
+//          TOTAL DEBITOS HOJA 1              //
+////////////////////////////////////////////////
+  function calcDebitos(){
+
+    var C502 = (document.getElementById('C502').value);
+    var C764 = (document.getElementById('C764').value);
+    var C717 = (document.getElementById('C717').value);
+    var C111 = (document.getElementById('C111').value);
+    var C759 = (document.getElementById('C759').value);
+    var C513 = (document.getElementById('C513').value);
+    var C510 = (document.getElementById('C510').value);
+    var C709 = (document.getElementById('C709').value);
+    var C734 = (document.getElementById('C734').value);
+    var C517 = (document.getElementById('C517').value);
+    var C501 = (document.getElementById('C501').value);
+    var C154 = (document.getElementById('C154').value);
+    var C518 = (document.getElementById('C518').value);
+    var C713 = (document.getElementById('C713').value);
+    var C741 = (document.getElementById('C741').value);
+    
+    C502 = parseInt(C502.replace(/\./g,""));
+    C764 = parseInt(C764.replace(/\./g,""));
+    C717 = parseInt(C717.replace(/\./g,""));
+    C111 = parseInt(C111.replace(/\./g,""));
+    C759 = parseInt(C759.replace(/\./g,""));
+    C513 = parseInt(C513.replace(/\./g,""));
+    C510 = parseInt(C510.replace(/\./g,""));
+    C709 = parseInt(C709.replace(/\./g,""));
+    C734 = parseInt(C734.replace(/\./g,""));
+    C517 = parseInt(C517.replace(/\./g,""));
+    C501 = parseInt(C501.replace(/\./g,""));
+    C154 = parseInt(C154.replace(/\./g,""));
+    C518 = parseInt(C518.replace(/\./g,""));
+    C713 = parseInt(C713.replace(/\./g,""));
+    C741 = parseInt(C741.replace(/\./g,""));
+
+    var totaldebito = C502+C764+C717+C111+C759+C513-C510-C709-C734+C517+C501+C154+C518+C713+C741;
+
+    document.getElementById("C538").value = totaldebito;
+
+  }
+////////////////////////////////////////////////
+//  FIN FORMULARIO 29 LINEA 7 HASTA LINEA 22  //
+//          TOTAL DEBITOS HOJA 1              //
+////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+//     CALCULO  29 LINEA 23 HASTA LINEA 47    //
+//          TOTAL CREDITOS HOJA 1             //
+////////////////////////////////////////////////
+
+function calcCreditos(){
+
+
+
+  var C520 = (document.getElementById('C520').value);
+  var C762 = (document.getElementById('C762').value);
+  var C766 = (document.getElementById('C766').value);
+  var C525 = (document.getElementById('C525').value);
+  var C528 = (document.getElementById('C528').value);
+  var C532 = (document.getElementById('C532').value);
+  var C535 = (document.getElementById('C535').value);
+  var C553 = (document.getElementById('C553').value);
+  var C504 = (document.getElementById('C504').value);
+  var C593 = (document.getElementById('C593').value);
+  var C594 = (document.getElementById('C594').value);
+  var C592 = (document.getElementById('C592').value);
+  var C539 = (document.getElementById('C539').value);
+  var C718 = (document.getElementById('C718').value);
+  var C164 = (document.getElementById('C164').value);
+  var C730 = (document.getElementById('C730').value);
+  var C742 = (document.getElementById('C742').value);
+  var C743 = (document.getElementById('C743').value);
+  var C127 = (document.getElementById('C127').value);
+  var C729 = (document.getElementById('C729').value);
+  var C744 = (document.getElementById('C744').value);
+  var C745 = (document.getElementById('C745').value);
+  var C544 = (document.getElementById('C544').value);
+  var C523 = (document.getElementById('C523').value);
+  var C712 = (document.getElementById('C712').value);
+  var C757 = (document.getElementById('C757').value);
+  
+
+  C520 = parseInt(C520.replace(/\./g,""));
+  C762 = parseInt(C762.replace(/\./g,""));
+  C766 = parseInt(C766.replace(/\./g,""));
+  C525 = parseInt(C525.replace(/\./g,""));
+  C528 = parseInt(C528.replace(/\./g,""));
+  C532 = parseInt(C532.replace(/\./g,""));
+  C535 = parseInt(C535.replace(/\./g,""));
+  C553 = parseInt(C553.replace(/\./g,""));
+  C504 = parseInt(C504.replace(/\./g,""));
+  C593 = parseInt(C593.replace(/\./g,""));
+  C594 = parseInt(C594.replace(/\./g,""));
+  C592 = parseInt(C592.replace(/\./g,""));
+  C539 = parseInt(C539.replace(/\./g,""));
+  C718 = parseInt(C718.replace(/\./g,""));
+  C164 = parseInt(C164.replace(/\./g,""));
+  C730 = parseInt(C730.replace(/\./g,""));
+  C742 = parseInt(C742.replace(/\./g,""));
+  C743 = parseInt(C743.replace(/\./g,""));
+  C127 = parseInt(C127.replace(/\./g,""));
+  C729 = parseInt(C729.replace(/\./g,""));
+  C744 = parseInt(C744.replace(/\./g,""));
+  C745 = parseInt(C745.replace(/\./g,""));
+  C544 = parseInt(C544.replace(/\./g,""));
+  C523 = parseInt(C523.replace(/\./g,""));
+  C712 = parseInt(C712.replace(/\./g,""));
+  C757 = parseInt(C757.replace(/\./g,""));
+
+  var totaldebito = (document.getElementById('C538').value);
+  var totalcredito = C520+C762+C766+C525-C528+C532+C535+C553+C504-C593-C594-C592-C539-C718+C164+C127+C544-C523-C712-C757;
+
+  document.getElementById("C537").value = totalcredito;
+
+// ASIGNACION DE VALOR A CASILLAS 77 O 89 SEGUN CORRESPONDA
+    var diferencia = totaldebito-totalcredito;
+    if (diferencia >= 0) {
+      document.getElementById("C89").value = diferencia;
+      document.getElementById("C77").value = 0;
+    }else{
+      diferencia = ( diferencia * -1);
+      document.getElementById("C77").value = diferencia;
+      document.getElementById("C89").value = 0;
+    }
+}
+////////////////////////////////////////////////
+//     FIN      29 LINEA 23 HASTA LINEA 47    //
+//          TOTAL CREDITOS HOJA 1             //
+////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////
+//     CALCULO  29 LINEA 48 HASTA LINEA 64    //
+//          IMPTO A LA RENTA HOJA 1           //
+////////////////////////////////////////////////
+
+function calcimpto(){
+
+      ///////////////////////////////
+    // CALCULO LINEAS 58 - 59 60 //
+    ///////////////////////////////
+    var baseimponible = document.getElementById("C563").value;
+    baseimponible = parseInt(baseimponible.replace(/\./g,""));
+
+    var tasa = document.getElementById("C115").value;
+    var ppmdet = ((baseimponible*tasa) / 100);
+    document.getElementById("C62").value = Math.round(ppmdet);
+   
+    var baseimponible2 = document.getElementById("C120").value;
+    baseimponible2 = parseInt(baseimponible2.replace(/\./g,""));
+    var tasa2 = document.getElementById("C542").value;
+    var ppmdet2 = ((baseimponible2*tasa2) / 100);
+    document.getElementById("C123").value = Math.round(ppmdet2);
+
+    var baseimponible3 = document.getElementById("C701").value;
+    baseimponible3 = parseInt(baseimponible3.replace(/\./g,""));
+    var tasa3 = document.getElementById("C702").value;
+    var ppmdet3 = ((baseimponible3*tasa3) / 100);
+    document.getElementById("C703").value = Math.round(ppmdet3);
+    // FIN CALCULO LINEAS   58 - 59 - 60
+
+
+  var C89  = (document.getElementById('C89').value);
+  var C760 = (document.getElementById('C760').value);
+  var C50  = (document.getElementById('C50').value);
+  var C48  = (document.getElementById('C48').value);
+  var C151 = (document.getElementById('C151').value);
+  var C153 = (document.getElementById('C153').value);
+  var C54  = (document.getElementById('C54').value);
+  var C56  = (document.getElementById('C56').value);
+  var C588 = (document.getElementById('C588').value);
+  var C589 = (document.getElementById('C589').value);
+  var C62  = (document.getElementById('C62').value);
+  var C123 = (document.getElementById('C123').value);
+  var C703 = (document.getElementById('C703').value);
+  var C66  = (document.getElementById('C66').value);
+  var C152 = (document.getElementById('C152').value);
+  var C70  = (document.getElementById('C70').value);
+
+  C89  = parseInt(C89.replace(/\./g,""));
+  C760 = parseInt(C760.replace(/\./g,""));
+  C50  = parseInt(C50.replace(/\./g,""));
+  C48  = parseInt(C48.replace(/\./g,""));
+  C151 = parseInt(C151.replace(/\./g,""));
+  C153 = parseInt(C153.replace(/\./g,""));
+  C54  = parseInt(C54.replace(/\./g,""));
+  C56  = parseInt(C56.replace(/\./g,""));
+  C588 = parseInt(C588.replace(/\./g,""));
+  C589 = parseInt(C589.replace(/\./g,""));
+  C62  = parseInt(C62.replace(/\./g,""));
+  C123 = parseInt(C123.replace(/\./g,""));
+  C703 = parseInt(C703.replace(/\./g,""));
+  C66  = parseInt(C66.replace(/\./g,""));
+  C152 = parseInt(C152.replace(/\./g,""));
+  C70 = parseInt(C70.replace(/\./g,""));
+
+
+
+
+    var subtotal = C89+C760+C50+C48+C151+C153+C54+C56+C588+C589+C62+C123+C703+C66+C152+C70;
+    
+    //document.getElementById("C94").value = total;
+    
+    totaldethoja2 = document.getElementById("C598").value;
+    document.getElementById("C595").value = subtotal;
+    //document.getElementById("C91").value = subtotal-totaldethoja2;
+
+    ///////////////////////////////
+    //  FIN  LINEAS 58 - 59 60   //
+    ///////////////////////////////
+
+  
+  var subtotal = C89+C760+C50+C48+C151+C153+C54+C56+C588+C589+C62+C123+C703+C66+C152+C70;
+  document.getElementById("C595").value = subtotal;
+
+
+}
+////////////////////////////////////////////////
+//     FIN  29 LINEA 48 HASTA LINEA 64        //
+//          IMPTO A LA RENTA HOJA 1           //
+////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////
+//     CALCULO  29 LINEA 66 en adelante       //
+//          TRIB SIMPLE RENTA HOJA 2          //
+////////////////////////////////////////////////
+function valoresHoja2(){
+
+  var C595  = (document.getElementById('C595').value);
+  var C409  = (document.getElementById('C409').value);
+  var C522  = (document.getElementById('C522').value);
+  var C526  = (document.getElementById('C526').value);
+  var C550  = (document.getElementById('C550').value);
+  var C506  = (document.getElementById('C506').value);
+  var C598  = (document.getElementById('C598').value);
+  var C596  = (document.getElementById('C596').value);
+  var C727  = (document.getElementById('C727').value);
+  var C706  = (document.getElementById('C706').value);
+  var C570  = (document.getElementById('C570').value);
+  var C571  = (document.getElementById('C571').value);
+  var C590  = (document.getElementById('C590').value);
+
+  C595  = parseInt(C595.replace(/\./g,""));
+  C409  = parseInt(C409.replace(/\./g,""));
+  C522  = parseInt(C522.replace(/\./g,""));
+  C526  = parseInt(C526.replace(/\./g,""));
+  C550  = parseInt(C550.replace(/\./g,""));
+  C506  = parseInt(C506.replace(/\./g,""));
+  C598  = parseInt(C598.replace(/\./g,""));
+  C596  = parseInt(C596.replace(/\./g,""));
+  C727  = parseInt(C727.replace(/\./g,""));
+  C706  = parseInt(C706.replace(/\./g,""));
+  C570  = parseInt(C570.replace(/\./g,""));
+  C571  = parseInt(C571.replace(/\./g,""));
+  C590  = parseInt(C590.replace(/\./g,""));
+
+
+var totalDeterm = C595+C409+C522+C526+C550+C506-C598+C596-C727-C706-C570-C571-C590;
+document.getElementById("C547").value = totalDeterm;
+
+  if (totalDeterm >= 0) {
+    document.getElementById("C91").value = totalDeterm;
+  } else {
+    var C89 = (document.getElementById('C89').value);
+    document.getElementById("C91").value = C89;
+  }
+
+}
+
+////////////////////////////////////////////////
+//     FIN      29 LINEA 66 en adelante       //
+//          TRIB SIMPLE RENTA HOJA 2          //
+////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////
+//     CALCULO  29 LINEA 71 a 76              //
+//          IMPTO ADICIONAL   HOJA 2          //
+////////////////////////////////////////////////
+function imptAdi(){
+
+  var C113 = (document.getElementById('C113').value);
+  var C28  = (document.getElementById('C28').value);
+  var C548 = (document.getElementById('C548').value);
+  var C540 = (document.getElementById('C540').value);
+  var C541 = (document.getElementById('C541').value);
+  var C549 = (document.getElementById('C549').value);
+  var C550 = (document.getElementById('C550').value);
+
+  C113 = parseInt(C113.replace(/\./g,""));
+  C28 = parseInt(C28.replace(/\./g,""));
+  C548 = parseInt(C548.replace(/\./g,""));
+  C540 = parseInt(C540.replace(/\./g,""));
+  C541 = parseInt(C541.replace(/\./g,""));
+  C549 = parseInt(C549.replace(/\./g,""));
+  C550 = parseInt(C550.replace(/\./g,""));
+
+  var resultado = C113-C28-C548-C540+C541;
+
+  // ASIGNACION DE VALOR A CASILLAS 549 O 550 SEGUN CORRESPONDA
+  if (resultado >= 0) {
+    document.getElementById("C550").value = resultado;
+    document.getElementById("C549").value = 0;
+  }else{
+    resultado = ( resultado * -1);
+    document.getElementById("C549").value = resultado;
+    document.getElementById("C550").value = 0;
+  }
+
+
+
+
+}
+////////////////////////////////////////////////
+//     FIN  29 LINEA 71 a 76                  //
+//          IMPTO ADICIONAL   HOJA 2          //
+////////////////////////////////////////////////
+
+////////////////////////////////////////////////
+//     CALCULO  29 LINEA 77 a 97              //
+//          IMPTO ADICIONAL   HOJA 2          //
+////////////////////////////////////////////////
+function imptAdi42(){
+
+  var C577 = (document.getElementById('C577').value);
+  var C32 = (document.getElementById('C32').value);
+  var C150 = (document.getElementById('C150').value);
+  var C146 = (document.getElementById('C146').value);
+  var C752 = (document.getElementById('C752').value);
+  var C545 = (document.getElementById('C545').value);
+  var C546 = (document.getElementById('C546').value);
+  var C710 = (document.getElementById('C710').value);
+  var C602 = (document.getElementById('C602').value);
+  var C576 = (document.getElementById('C576').value);
+  var C33 = (document.getElementById('C33').value);
+  var C149 = (document.getElementById('C149').value);
+  var C85 = (document.getElementById('C85').value);
+  var C754 = (document.getElementById('C754').value);
+  var C551 = (document.getElementById('C551').value);
+  var C559 = (document.getElementById('C559').value);
+  var C508 = (document.getElementById('C508').value);
+  var C533 = (document.getElementById('C533').value);
+  var C552 = (document.getElementById('C552').value);
+  var C603 = (document.getElementById('C603').value);
+
+C577 = parseInt(C577.replace(/\./g,""));
+C32  = parseInt(C32.replace(/\./g,""));
+C150 = parseInt(C150.replace(/\./g,""));
+C146 = parseInt(C146.replace(/\./g,""));
+C752 = parseInt(C752.replace(/\./g,""));
+C545 = parseInt(C545.replace(/\./g,""));
+C546 = parseInt(C546.replace(/\./g,""));
+C710 = parseInt(C710.replace(/\./g,""));
+C602 = parseInt(C602.replace(/\./g,""));
+C576 = parseInt(C576.replace(/\./g,""));
+C33  = parseInt(C33.replace(/\./g,""));
+C149 = parseInt(C149.replace(/\./g,""));
+C85  = parseInt(C85.replace(/\./g,""));
+C754 = parseInt(C754.replace(/\./g,""));
+C551 = parseInt(C551.replace(/\./g,""));
+C559 = parseInt(C559.replace(/\./g,""));
+C508 = parseInt(C508.replace(/\./g,""));
+C533 = parseInt(C533.replace(/\./g,""));
+C552 = parseInt(C552.replace(/\./g,""));
+C603 = parseInt(C603.replace(/\./g,""));
+
+var resultado1 = C577+C32+C150+C146+C752+C545-C546-C710;
+document.getElementById("C602").value = resultado1;
+
+var resultado2 = C576+C33+C149+C85+C754+C551-C559+C508-C533+C552;
+document.getElementById("C603").value = resultado2;
+
+resultado = resultado1 - resultado2;
+
+
+resultado = parseInt(resultado);
+
+  if (resultado >= 0) {
+    document.getElementById("C506").value = resultado;
+    document.getElementById("C507").value = 0;
+  }else{
+    resultado = ( resultado * -1);
+    document.getElementById("C507").value = resultado;
+    document.getElementById("C506").value = 0;
+  }
+
+}
+////////////////////////////////////////////////
+//     FIN      29 LINEA 77 a 97              //
+//          IMPTO ADICIONAL   HOJA 2          //
+////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////
+//     CALCULO  29 LINEA 98 a 107             //
+//          ANTICIPO CAMBIO   HOJA 2          //
+////////////////////////////////////////////////
+function anticipo(){
+
+  valoresHoja2();
+  var C556 = (document.getElementById('C556').value);
+  var C557 = (document.getElementById('C557').value);
+  var C558 = (document.getElementById('C558').value);
+  var C573 = (document.getElementById('C573').value);
+  var C598 = (document.getElementById('C598').value);
+  var C39  = (document.getElementById('C39').value);
+  var C554 = (document.getElementById('C554').value);
+  var C736 = (document.getElementById('C736').value);
+  var C597 = (document.getElementById('C597').value);
+  var C555 = (document.getElementById('C555').value);
+  var C596 = (document.getElementById('C596').value);
+  
+  C556 = parseInt(C556.replace(/\./g,""));
+  C557 = parseInt(C557.replace(/\./g,""));
+  C558 = parseInt(C558.replace(/\./g,""));
+  C573 = parseInt(C573.replace(/\./g,""));
+  C598 = parseInt(C598.replace(/\./g,""));
+  C39  = parseInt(C39.replace(/\./g,""));
+  C554 = parseInt(C554.replace(/\./g,""));
+  C736 = parseInt(C736.replace(/\./g,""));
+  C597 = parseInt(C597.replace(/\./g,""));
+  C555 = parseInt(C555.replace(/\./g,""));
+  C596 = parseInt(C596.replace(/\./g,""));
+  
+  var anticipo = C556+C557-C558;
+  document.getElementById("C543").value = anticipo;
+  var cod89 = document.getElementById("C89").value;
+  cod89 = parseInt(cod89.replace(/\./g,""));
+  
+
+  if (anticipo > cod89) {
+    document.getElementById("C598").value = cod89;
+  }else{
+    document.getElementById("C598").value = anticipo;
+  }
+
+  
+
+  var agRetenedor = C39+C554-C736+C597+C555;
+  document.getElementById("C596").value = agRetenedor;
+  valoresHoja2();
+
+}
+////////////////////////////////////////////////
+//     FIN      29 LINEA 98 a 107            //
+//          ANTICIPO CAMBIO   HOJA 2          //
+////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////
