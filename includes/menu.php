@@ -16,7 +16,7 @@
                       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-handshake-o" aria-hidden="true"></i>&nbsp;Clientes</a>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="empresas.php">Empresas &nbsp;<i class="fa fa-building" aria-hidden="true"></i></a>
-                        <a class="dropdown-item" href="#">Personas &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" href="#">Personas &nbsp;<i class="fa fa-user" aria-hidden="true"></i></a>
                         <a class="dropdown-item" href="#">Sociedades &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
                       </div>
                     </li>  

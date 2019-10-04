@@ -123,7 +123,7 @@ $(document).ready(function () {
                     var intVal = function ( i ) {
                         return typeof i === 'string' ? i.replace(/[\$,]/g, '')*1 : typeof i === 'number' ?  i : 0;
                     };
-                    console.log(data);
+                    //console.log(data);
                     
                     total_afecto = api.column( 4 ).data().reduce( function (a, b) {
                         return intVal(a) + intVal(b);

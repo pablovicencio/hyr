@@ -21,6 +21,135 @@ class Funciones
 
 
     /*///////////////////////////////////////
+    Cargar datos de Persona por Id
+    //////////////////////////////////////*/
+    public function cargar_datos_per2($id,$sel){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+                   
+           if ($sel == 1) {
+                $sql = "";
+           }else if ($sel == 2) {
+               $sql = "select *                
+               from persona where id_per = :id";
+           }  
+                  
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+
+
+    /*///////////////////////////////////////
+    Cargar lista despegable de personas
+    //////////////////////////////////////*/
+    public function cargar_personas($opcion){
+        try{
+            
+            
+            $pdo = AccesoDB::getCon();
+    
+                    if ($opcion == 0) {
+                        $sql = "select id_emp, razon_social_emp from empresa order by 2";
+                    }else if ($opcion == 1){
+                        $sql = "select id_emp, razon_social_emp from empresa where vig_emp = 1 order by 2";
+                    }else if($opcion == 2 ){
+                        $sql = "select a.id_per,a.nom_per, a.rut_per, a.mail_per, a.fec_cre_per, c.nick_usu,
+                                (select count(id_soc) from sociedad b where a.id_per = b.id_per_soc and b.vig_soc = 1) sociedades
+                                from persona a inner join usuarios c
+                                on a.usu_cre_per = c.id_usu
+                                where a.vig_per = 1";
+                    }else if ($opcion == 3){
+                        $sql = "select id_per, nom_per from persona";
+                    }
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $response = $stmt->fetchAll();
+            return $response;
+        } catch (Exception $e) {
+            echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+        }
+    }
+
+
+
+    /*///////////////////////////////////////
+    Cargar sociedades persona
+    //////////////////////////////////////*/
+        public function cargar_datos_aso($per){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                                $sql = "select a.id_soc, c.nom_per, b.razon_social_emp, a.porc_part_soc, a.monto_part_soc
+                                        from sociedad a, empresa b, persona c
+                                        where a.vig_soc = 1
+                                        and a.id_emp_soc = b.id_emp
+                                        and a.id_per_soc = c.id_per
+                                        and b.vig_emp = 1
+                                        and c.vig_per = 1
+                                        and c.id_per = :per";
+                                  
+                            
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":per", $per, PDO::PARAM_INT);
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
+
+    /*///////////////////////////////////////
+    Validar Sociedad persona
+    //////////////////////////////////////*/
+        public function validar_soc($per,$emp){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+
+                                $sql = "select count(1) soc from sociedad where id_per_soc = :per and id_emp_soc = :emp and vig_soc = 1";
+                                  
+                            
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":per", $per, PDO::PARAM_INT);
+                $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                $stmt->execute();
+                $response = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
+
+
+
+
+    /*///////////////////////////////////////
     Historial modulo laboral
     //////////////////////////////////////*/
         public function inf_hist_mod_lab($emp){
@@ -923,7 +1052,7 @@ and c.cod_grupo = 1";
             } else if($opc == 2){
                $sql = "SELECT rut_emp FROM empresa where rut_emp = :rut";
             } else if($opc == 3){
-               //opciones adicionales
+               $sql = "SELECT rut_per FROM persona where rut_per = :rut";
             }
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":rut", $rut, PDO::PARAM_STR);
