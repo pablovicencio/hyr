@@ -779,7 +779,7 @@ function calcimpto(){
     //document.getElementById("C94").value = total;
     
     totaldethoja2 = document.getElementById("C598").value;
-    alert(totaldethoja2);
+    //alert(totaldethoja2);
     if (totaldethoja2) {
       document.getElementById("C91").value = subtotal-totaldethoja2;
     }else{
