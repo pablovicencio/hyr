@@ -1381,113 +1381,106 @@
 <!-- END Linea % -->
 
  <!-- Linea 42 -->
- <div class="col-6 f29span f29">
-        
-        <div class="col-12 f29span f29">
+ <div class="col-3 f29span f29x2">
+        <div class="col-12 f29span f29x2">
+            <div class="input-group-prepend">   
+                <span class="input-group-text f29x2" id="basic-addon4" style="text-align: left;" >42 - Recuperación del Impuesto Especíﬁco al Petróleo Diesel</span>
+            </div>        
+        </div>   
+    </div>
 
-        <div class="input-group-prepend">   
-            <span class="input-group-text f29" id="basic-addon4" >42 - Recuperación del Impuesto Especíﬁco al Petróleo Diesel </span>
-            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">730 </span>
-            <input type="number" value="0" class="form-control f29 f29inp" id="C730" name="C730" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
+
+    <div class="col-3 f29span f29">
+
+        <div class="input-group-prepend">
+                
+        <span class="input-group-text f29x2 f29x2num f29span  text-center" id="basic-addon4">730 </span>
+            <input type="number" value="0" class="form-control f29x2 f29inp" id="C730" name="C730" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
+            
+        </div>                 
+    </div>
+
+
+    <div class="col-3 f29span f29">
+
+        <div class="input-group-prepend">
             <span class="input-group-text f29 f29span  text-center" id="basic-addon4">Base </span>
             <span class="input-group-text f29 f29span  text-center" id="basic-addon4">742 </span>
             <input type="number" value="0" class="form-control f29 f29inp" id="C742" name="C742" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
-        </div>    
-            
-            
-        </div>
         
+        </div>                 
         
+        <div class="input-group-prepend">
+            <span class="input-group-text f29 f29span text-center" id="basic-addon4">Variable </span>
+            <span class="input-group-text f29 f29span text-center" id="basic-addon4">743 </span>
+            <input type="number" value="0" class="form-control f29 f29inp" id="C743" name="C743"  aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onclick="modcont(this.id)" >
         
+        </div>                 
     </div>
 
-    <div class="col-6 f29">
+    <div class="col-3 f29span f29">
 
-        <div class="row f29span f29">
-        <div class="col-6 f29span f29">
-
-            <div class="input-group-prepend">   
-                <span class="input-group-text f29" id="basic-addon4" >Variable</span>
-                <span class="input-group-text f29 f29span text-center" id="basic-addon4">743 </span>
-                <input type="number" value="0" class="form-control f29 f29inp" id="C743" name="C743"  aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onclick="modcont(this.id)" >
-                
-            </div>    
-
-
-            </div>
-
-            <div class="col-6 f29span f29">
-
-            <div class="input-group-prepend">   
-
-                <span class="input-group-text f29 f29span f29num text-center" id="basic-addon4">127 </span>
-                <input type="text" value="0" class="form-control f29 f29inp" id="C127" name="C127" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onkeyup="format(this)" onchange="calcCreditos()"  onclick="modcont(this.id)" >
+                <div class="input-group-prepend">   
+                <span class="input-group-text f29x2 f29span f29x2num text-center" id="basic-addon4">127 </span>
+                <input type="text" value="0" class="form-control f29x2 f29inp" id="C127" name="C127" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onkeyup="format(this)" onchange="calcCreditos()"  onclick="modcont(this.id)" >
                 <div class="input-group-append">
-                    <span class="input-group-text f29 f29num" id="basic-addon2 ">+</span>
+                    <span class="input-group-text f29x2 f29num" id="basic-addon2 ">+</span>
                 </div>
-            </div>    
-
-
-            </div>
-        </div>
-        
-
-    </div>  
+                </div>    
+    </div>
  <!-- ENDLinea 42 -->
   <!-- Linea 43 -->
-  <div class="col-6 f29span f29">
-        
-        <div class="col-12 f29span f29">
-
-        <div class="input-group-prepend">   
-            <span class="input-group-text f29" id="basic-addon4" >43 - Recuperación del Impuesto Especíﬁco al Petróleo Diesel soportado por Transportistas de Carga</span>
-            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">729 </span>
-            <input type="number" value="0" class="form-control f29 f29inp" id="C729" name="C729" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
-            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">Base </span>
-            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">744 </span>
-            <input type="number" value="0" class="form-control f29 f29inp" id="C744" name="C744" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onclick="modcont(this.id)" >
-        </div>    
-            
-            
-        </div>
-        
-        
-        
+    <div class="col-3 f29span f29x2">
+        <div class="col-12 f29span f29x2">
+            <div class="input-group-prepend">   
+                <span class="input-group-text f29x2" id="basic-addon4" style="text-align: left;" >43 - Recuperación del Impuesto Especíﬁco al<br>Petróleo Diesel soportado por Transportistas de Carga</span>
+            </div>        
+        </div>   
     </div>
 
-    <div class="col-6 f29">
 
-        <div class="row f29span f29">
-        <div class="col-6 f29span f29">
+    <div class="col-3 f29span f29">
 
-            <div class="input-group-prepend">   
-                <span class="input-group-text f29" id="basic-addon4" >Variable</span>
-                <span class="input-group-text f29 f29span text-center" id="basic-addon4">745 </span>
-                <input type="number" value="0" class="form-control f29 f29inp" id="C745" name="C745" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
+        <div class="input-group-prepend">
                 
-            </div>    
+                <span class="input-group-text f29x2 f29x2num f29span  text-center" id="basic-addon4">729 </span>
+                <input type="number" value="0" class="form-control f29x2 f29inp" id="C729" name="C729" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
+            
+        </div>                 
+    </div>
 
 
-            </div>
+    <div class="col-3 f29span f29">
 
-            <div class="col-6 f29span f29">
-
-            <div class="input-group-prepend">   
-
-                <span class="input-group-text f29 f29span f29num text-center" id="basic-addon4">544 </span>
-                <input type="text" value="0" class="form-control f29 f29inp" id="C544" name="C544" aria-describedby="basic-addon4"  OnBlur="green(this.id,this.value)" onkeyup="format(this)" onchange="calcCreditos()"  onclick="modcont(this.id)">
-                <div class="input-group-append">
-                    <span class="input-group-text f29 f29num" id="basic-addon2 ">+</span>
-                </div>
-            </div>    
-
-
-            </div>
-        </div>
+        <div class="input-group-prepend">
+            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">Base </span>
+            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">744 </span>
+            <input type="number" value="0" class="form-control f29 f29inp" id="C744" name="C744" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onclick="modcont(this.id)" > 
+        
+        </div>                 
+        
+        <div class="input-group-prepend">
+            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">Variable </span>
+            <span class="input-group-text f29 f29span  text-center" id="basic-addon4">745 </span>
+            <input type="number" value="0" class="form-control f29 f29inp" id="C745" name="C745" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onclick="modcont(this.id)" > 
+        
+        </div>                 
         
 
-    </div>  
- <!-- ENDLinea 43 -->
+    </div>
+
+    <div class="col-3 f29span f29">
+
+                <div class="input-group-prepend">   
+                    <span class="input-group-text f29x2 f29span f29x2num text-center" id="basic-addon4">544 </span>
+                    <input type="text" value="0" class="form-control f29x2 f29inp" id="C544" name="C544" aria-describedby="basic-addon4"  OnBlur="green(this.id,this.value)" onkeyup="format(this)" onchange="calcCreditos()"  onclick="modcont(this.id)">
+                    <div class="input-group-append">
+                        <span class="input-group-text f29x2 f29num" id="basic-addon2 ">+</span>
+                    </div>
+                </div>    
+    </div>
+<!-- ENDLinea 43 -->
+
  <!-- Linea 44 -->
 <div class="col-9 f29span f29">
 
@@ -1981,7 +1974,8 @@
 
                     <div class="input-group-prepend">
                         <span class="input-group-text f29 f29span f29num text-center" id="basic-addon4">62  </span>
-                        <input type="text" value="0" class="form-control f29 f29inp" id="C62" name="C62" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onkeyup="format(this)" onchange="calcimpto()"  onclick="modcont(this.id)"  >
+                        <input type="text"  value="0" class="form-control f29 f29inp" id="C62" name="C62" aria-describedby="basic-addon4" OnBlur="greenStrings(this.id,this.value)" >
+                        
                         <span class="input-group-text f29 f29num" id="basic-addon2 ">+</span>
                     </div>
     
@@ -2026,7 +2020,7 @@
                         <div class="col-3 f29span f29">
                             <div class="input-group-prepend">
                                 <span class="input-group-text f29 f29span f29num text-center" id="basic-addon4">542 </span>
-                                <input type="number" value="0" class="form-control f29 f29inp" id="C542" name="C542" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"   onchange="calcimpto()" onclick="modcont(this.id)">
+                                <input type="number" value="0" step=".01" class="form-control f29 f29inp" id="C542" name="C542" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"   onchange="calcimpto()" onclick="modcont(this.id)">
                             </div>
                         </div>
 
@@ -2045,7 +2039,7 @@
 
                     <div class="input-group-prepend">
                         <span class="input-group-text f29 f29span f29num text-center" id="basic-addon4">123  </span>
-                        <input type="text" value="0" class="form-control f29 f29inp" id="C123"  name="C123" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onkeyup="format(this)" onchange="calcimpto()"  onclick="modcont(this.id)" >
+                        <input type="text" value="0" class="form-control f29 f29inp" id="C123"  name="C123" aria-describedby="basic-addon4" OnBlur="greenStrings(this.id,this.value)" >
                         <span class="input-group-text f29 f29num" id="basic-addon2 ">+</span>
                     </div>
     
@@ -2089,7 +2083,7 @@
                         <div class="col-3 f29span f29">
                             <div class="input-group-prepend">
                                 <span class="input-group-text f29 f29span f29num text-center" id="basic-addon4">702 </span>
-                                <input type="number" value="0" class="form-control f29 f29inp" id="C702" name="C702" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onchange="calcimpto()"  onclick="modcont(this.id)" >
+                                <input type="number" value="0" step=".01" class="form-control f29 f29inp" id="C702" name="C702" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onchange="calcimpto()"  onclick="modcont(this.id)" >
                             </div>
                         </div>
 
@@ -2108,7 +2102,7 @@
 
                     <div class="input-group-prepend">
                         <span class="input-group-text f29 f29span f29num text-center" id="basic-addon4">703  </span>
-                        <input type="text" value="0" class="form-control f29 f29inp" id="C703" name="C703" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onkeyup="format(this)" onchange="calcimpto()"  onclick="modcont(this.id)"  >
+                        <input type="text" value="0" class="form-control f29 f29inp" id="C703" name="C703" aria-describedby="basic-addon4" OnBlur="greenStrings(this.id,this.value)" >
                         <span class="input-group-text f29 f29num" id="basic-addon2 ">+</span>
                     </div>
     
@@ -2343,6 +2337,8 @@
 
 <hr>
 </div>
+
+
 
 <div class="col-12 text-center">
     <input type="submit" class="btn btn-outline-success" id="btnAc" name="btnAc" value="ingresar Formulario" >                                         

@@ -9,14 +9,14 @@
 <title>HYR - F29</title>
 
 <?php
-  include("../includes/recursosExternos.php");
+  include("../includes/recursosExternos.php"); // Validado
 ?>
 <?php
-  include("../includes/infoLog.php");
-  include("../includes/menu.php");
+  include("../includes/infoLog.php"); // Validado
+  include("../includes/menu.php");  // Validado
   $id_f29 = $_GET['id_f29'];
 ?>
-<script src="../js/funcionesF29.js"></script>
+<script src="../js/funcionesF29.js"></script> <!--// Validado-->
 <script type="text/javascript">
 window.onload = mod(<?php echo $id_f29 ?>);
 </script>
