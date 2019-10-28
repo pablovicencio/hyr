@@ -244,6 +244,9 @@ $(document).ready(function() {
         var msg = result.trim();
 
         switch(msg) {
+          case '-1':
+              swal("Error Periodo F29", "La empresa ya cuenta con un F29 para este periodo, favor editar el existente", "warning");
+              break;
           case '1':
               swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
               break;

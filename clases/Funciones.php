@@ -21,6 +21,36 @@ class Funciones
 
 
     /*///////////////////////////////////////
+    Validar periodo f29
+    //////////////////////////////////////*/
+    public function val_periodo_f29($emp, $per){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+                   
+           
+               $sql = 'SELECT count(1) val FROM `f29` 
+                        where id_emp = :emp and DATE_FORMAT(fecha_form, "%m-%Y") = :fec';
+           
+                  
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+           $stmt->bindParam(":fec", $per, PDO::PARAM_STR);
+           $stmt->execute();
+           $response = $stmt->fetch(PDO::FETCH_ASSOC);
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+
+    /*///////////////////////////////////////
     Cargar datos de Persona por Id
     //////////////////////////////////////*/
     public function cargar_datos_per2($id,$sel){

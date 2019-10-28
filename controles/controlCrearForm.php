@@ -121,7 +121,7 @@
         $c115       = $_POST['C115'];
         $c68        = $_POST['C68'];
         $c62        = $_POST['C62'];
-        echo "ESTE ES C62".$c62;
+        //echo "ESTE ES C62".$c62;
         $c565       = $_POST['C565'];
         $c120       = $_POST['C120'];
         $c542       = $_POST['C542'];
@@ -232,6 +232,20 @@
         $c313       = $_POST['C313'];
         $c314       = $_POST['C314'];
         $fecha      = $_POST['fecha'];
+
+
+        $func = new Funciones();
+
+        $fecha_per = date_create($fecha);
+        $fecha_per = date_format($fecha_per,"m-Y");
+
+        $val_f29 = $func->val_periodo_f29($id_emp,$fecha_per);  
+
+        if ($val_f29['val'] == 0) {
+
+
+
+
 
         $c585 = str_replace(".","",$c585);
         $c20  = str_replace(".","",$c20);
@@ -442,10 +456,8 @@
         $c313 = str_replace(".","",$c313);
         $c314 = str_replace(".","",$c314);
 
-
-
       
-        $func = new Funciones();
+        
   
         //$dao = new formularioDAO('',$c585);
 
@@ -649,20 +661,26 @@
         $c313,
         $c314,
         $fecha);
-        
-        
-        
-        
-        //echo "USU: ".$id_usu." EMP:".$id_emp ." Celda 585 :". $c585;
-        //$ing_form = $dao->ing_form($usu->getUsu(),$emp->getEmp());
-        $ing_form = $dao->ing_form($id_usu,$id_emp);                 
-                
+
+
+            //echo "USU: ".$id_usu." EMP:".$id_emp ." Celda 585 :". $c585;
+            //$ing_form = $dao->ing_form($usu->getUsu(),$emp->getEmp());
+            $ing_form = $dao->ing_form($id_usu,$id_emp);                 
+                    
 
                 if(count($ing_form)==0){
                     echo "2";    
                 }else{
                    echo "Formulario Ingresado Correctamente!";
                 }
+        }else{
+            echo "-1"; 
+        }
+        
+        
+        
+        
+        
    	
         salir:
     } catch (Exception $e) {
