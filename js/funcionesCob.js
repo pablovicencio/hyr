@@ -544,7 +544,7 @@ $(document).ready(function() {
   $("#formEmpPago").submit(function() { 
 
     $.ajax({
-      url: '../controles/controlCargarEmp.php',
+      url: '../controles/controlCargarEmpSV.php',
       type: 'POST',
       data:$("#formEmpPago").serialize(),
       dataType:'json',

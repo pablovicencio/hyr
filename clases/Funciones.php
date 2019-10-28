@@ -67,7 +67,7 @@ class Funciones
                         $sql = "select id_emp, razon_social_emp from empresa where vig_emp = 1 order by 2";
                     }else if($opcion == 2 ){
                         $sql = "select a.id_per,a.nom_per, a.rut_per, a.mail_per, a.fec_cre_per, c.nick_usu,
-                                (select count(id_soc) from sociedad b where a.id_per = b.id_per_soc and b.vig_soc = 1) sociedades
+                                (select count(id_soc) from sociedad b where a.id_per = b.id_per_soc and b.vig_soc = 1 and b.id_emp_soc is not null) sociedades
                                 from persona a inner join usuarios c
                                 on a.usu_cre_per = c.id_usu
                                 where a.vig_per = 1";
@@ -836,7 +836,8 @@ and c.cod_grupo = 1";
             $pdo = AccesoDB::getCon();
                     
             if ($sel == 1) {
-                 $sql = "";
+                 $sql = "select *                
+                from empresa where rut_emp = :rut_emp and vig_emp = 1";
             }else if ($sel == 2) {
                 $sql = "select *                
                 from empresa where rut_emp = :rut_emp";

@@ -17,7 +17,7 @@
 		$emp = stripcslashes ($_POST['rut_emp']);
 
 		 $fun = new Funciones();
-		 $re = $fun->cargar_datos_emp($emp,1);
+		 $re = $fun->cargar_datos_emp($emp,2);
 		 
 		 if (!empty($re)) {
 		 	          $datos = array();

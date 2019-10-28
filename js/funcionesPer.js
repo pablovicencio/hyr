@@ -233,6 +233,9 @@ $(document).ready(function() {
           case '-4':
               window.location.assign("../index.html")
               break;
+          case '-5':
+              swal("Error de Asociación", "Favor seleccione una empresa a asociar", "warning");
+              break;
           default:
               swal("Asociación creada", msg, "success");
               id_per = $("#mod_soc_per").val();
@@ -300,6 +303,9 @@ $(document).ready(function() {
               break;
           case '-4':
               window.location.assign("../index.html")
+              break;
+          case '-5':
+              swal("Error de Asociación", "Favor seleccione una empresa a asociar", "warning");
               break;
           default:
               swal("Asociación creada", msg, "success");
