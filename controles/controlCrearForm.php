@@ -121,6 +121,7 @@
         $c115       = $_POST['C115'];
         $c68        = $_POST['C68'];
         $c62        = $_POST['C62'];
+        echo "ESTE ES C62".$c62;
         $c565       = $_POST['C565'];
         $c120       = $_POST['C120'];
         $c542       = $_POST['C542'];
@@ -332,7 +333,7 @@
         $c30  = str_replace(".","",$c30);
         $c563 = str_replace(".","",$c563);
         $c68  = str_replace(".","",$c68);
-        $c62  = str_replace(".","",$c62);
+        //$c62  = str_replace(".","",$c62);
         $c565 = str_replace(".","",$c565);
         $c120 = str_replace(".","",$c120);
         $c122 = str_replace(".","",$c122);

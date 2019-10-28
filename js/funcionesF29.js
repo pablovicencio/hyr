@@ -280,6 +280,25 @@ $(document).ready(function () {
 });
   
 
+//PINTAR VERDE LOS INPUT codigos 62 123 703
+function greenStrings(idinput,valor){
+
+  var id = document.getElementById(idinput);
+  var val = document.getElementById(idinput).value;
+  val = val.replace(/\./g,'');
+
+  //alert("el Valor Es:"+val);
+
+if (val) {
+  id.style.backgroundColor = "#c1e6c7";
+} else {
+  id.style.backgroundColor = "#ffffff";
+  document.getElementById(idinput).value = "0";
+}
+
+}
+
+
 //PINTAR VERDE LOS INPUT
 function green(idinput,valor){
 
@@ -692,29 +711,31 @@ function calcCreditos(){
 
 function calcimpto(){
 
-      ///////////////////////////////
+    ///////////////////////////////
     // CALCULO LINEAS 58 - 59 60 //
     ///////////////////////////////
     var baseimponible = document.getElementById("C563").value;
     baseimponible = parseInt(baseimponible.replace(/\./g,""));
-
     var tasa = document.getElementById("C115").value;
     var ppmdet = ((baseimponible*tasa) / 100);
-    document.getElementById("C62").value = Math.round(ppmdet);
-   
+    regresar = ppmdet.toString().replace(/\./g,',');
+    document.getElementById("C62").value = regresar;
+
+
     var baseimponible2 = document.getElementById("C120").value;
     baseimponible2 = parseInt(baseimponible2.replace(/\./g,""));
     var tasa2 = document.getElementById("C542").value;
     var ppmdet2 = ((baseimponible2*tasa2) / 100);
-    document.getElementById("C123").value = Math.round(ppmdet2);
+    regresar2 = ppmdet2.toString().replace(/\./g,',');
+    document.getElementById("C123").value = regresar2;
 
     var baseimponible3 = document.getElementById("C701").value;
     baseimponible3 = parseInt(baseimponible3.replace(/\./g,""));
     var tasa3 = document.getElementById("C702").value;
     var ppmdet3 = ((baseimponible3*tasa3) / 100);
-    document.getElementById("C703").value = Math.round(ppmdet3);
+    regresar3 = ppmdet3.toString().replace(/\./g,',');
+    document.getElementById("C703").value = regresar3;
     // FIN CALCULO LINEAS   58 - 59 - 60
-
 
   var C89  = (document.getElementById('C89').value);
   var C760 = (document.getElementById('C760').value);
@@ -758,16 +779,21 @@ function calcimpto(){
     //document.getElementById("C94").value = total;
     
     totaldethoja2 = document.getElementById("C598").value;
+    alert(totaldethoja2);
+    if (totaldethoja2) {
+      document.getElementById("C91").value = subtotal-totaldethoja2;
+    }else{
+      document.getElementById("C91").value = totaldethoja2;  
+    }
+
+
     document.getElementById("C595").value = subtotal;
-    //document.getElementById("C91").value = subtotal-totaldethoja2;
+  
 
     ///////////////////////////////
     //  FIN  LINEAS 58 - 59 60   //
     ///////////////////////////////
 
-  
-  var subtotal = C89+C760+C50+C48+C151+C153+C54+C56+C588+C589+C62+C123+C703+C66+C152+C70;
-  document.getElementById("C595").value = subtotal;
 
 
 }
