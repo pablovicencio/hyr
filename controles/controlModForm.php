@@ -653,7 +653,7 @@
                 
 
                 if(count($mod_form)==0){
-                   echo "2";    
+                   //echo "2";    
                 }else{
                    echo "Formulario Modificado Correctamente!";
                 }

@@ -721,23 +721,24 @@ function calcimpto(){
     baseimponible = parseInt(baseimponible.replace(/\./g,""));
     var tasa = document.getElementById("C115").value;
     var ppmdet = ((baseimponible*tasa) / 100);
-    regresar = ppmdet.toString().replace(/\./g,',');
-    document.getElementById("C62").value = regresar;
+    //regresar = ppmdet.toString().replace(/\./g,',');
+    document.getElementById("C62").value = Math.round(ppmdet);
+
 
 
     var baseimponible2 = document.getElementById("C120").value;
     baseimponible2 = parseInt(baseimponible2.replace(/\./g,""));
     var tasa2 = document.getElementById("C542").value;
     var ppmdet2 = ((baseimponible2*tasa2) / 100);
-    regresar2 = ppmdet2.toString().replace(/\./g,',');
-    document.getElementById("C123").value = regresar2;
+    //regresar2 = ppmdet2.toString().replace(/\./g,',');
+    document.getElementById("C123").value = Math.round(ppmdet2);
 
     var baseimponible3 = document.getElementById("C701").value;
     baseimponible3 = parseInt(baseimponible3.replace(/\./g,""));
     var tasa3 = document.getElementById("C702").value;
     var ppmdet3 = ((baseimponible3*tasa3) / 100);
-    regresar3 = ppmdet3.toString().replace(/\./g,',');
-    document.getElementById("C703").value = regresar3;
+    //regresar3 = ppmdet3.toString().replace(/\./g,',');
+    document.getElementById("C703").value = Math.round(ppmdet3);
     // FIN CALCULO LINEAS   58 - 59 - 60
 
   var C89  = (document.getElementById('C89').value);
