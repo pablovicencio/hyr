@@ -25,7 +25,27 @@
     <div class="col-6 form-control">
         <input type="date" id="fecha" name="fecha" >
     </div>
-
+<br><br>
+<div class="col-3 form-check">
+  <input class="form-check-input" type="radio" name="ivas" id="iva" value="iva">
+  <label class="form-check-label" for="exampleRadios1">
+    Iva Pagado
+  </label>
+</div>
+<div class="col-3 form-check">
+  <input class="form-check-input" type="radio" name="ivas" id="ivapost" value="ivapost" onclick="modiva(this.id)">
+  <label class="form-check-label" for="exampleRadios1">
+    Iva Postergado
+  </label>
+  <input class="form-control form-control-sm" type="number" name="ivapostval" id="ivapostval" value="0" onkeyup="format(this)" onclick="modcont(this.id)" style="display: none">
+</div>
+<div class="col-6 form-check">
+  <input class="form-check-input" type="radio" name="ivas" id="ivanopag" value="ivanopag">
+  <label class="form-check-label" for="exampleRadios2">
+    Iva No Pagado
+  </label>
+  <input class="form-control form-control-sm" type="number" name="ivanopagval" id="ivanopagval" value="0" onkeyup="format(this)" onclick="modcont(this.id)" style="display: none">
+</div>
 <br>
     <!-- Linea 0 -->
     <div class="col-6 f29span ">

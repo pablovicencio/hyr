@@ -1,4 +1,10 @@
 
+function modiva(id_iva){
+  if (id_iva == "ivapost") {
+    $("#ivapostval").show();
+    $('#C89').prop('readonly', true);
+  }
+}
 
 //RELLENO DE DATOS DEL DOCUMENTO
 function mod(id_form) {
