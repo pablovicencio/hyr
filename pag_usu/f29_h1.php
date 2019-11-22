@@ -25,27 +25,24 @@
     <div class="col-6 form-control">
         <input type="date" id="fecha" name="fecha" >
     </div>
+    
 <br><br>
-<div class="col-3 form-check">
-  <input class="form-check-input" type="radio" name="ivas" id="iva" value="iva">
-  <label class="form-check-label" for="exampleRadios1">
-    Iva Pagado
+
+<div class="btn-group btn-group-toggle col-12 " data-toggle="buttons">
+  <label class="col-4 btn btn-secondary active " id ="ivapagado" onclick="seleccion(this.id)">
+    <input  type="radio" value="1" name="ivas" id="rbivapagado" autocomplete="off"> IVA Pagado &nbsp;<i class="fa fa-check-square" aria-hidden="true"></i>
   </label>
-</div>
-<div class="col-3 form-check">
-  <input class="form-check-input" type="radio" name="ivas" id="ivapost" value="ivapost" onclick="modiva(this.id)">
-  <label class="form-check-label" for="exampleRadios1">
-    Iva Postergado
+
+  <label class="col-4 btn btn-secondary " id ="ivaposter" onclick="seleccion(this.id)">
+    <input  type="radio" value="2" name="ivas" id="rbivaposter" autocomplete="off"> IVA Postergado &nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i>
   </label>
-  <input class="form-control form-control-sm" type="number" name="ivapostval" id="ivapostval" value="0" onkeyup="format(this)" onclick="modcont(this.id)" style="display: none">
-</div>
-<div class="col-6 form-check">
-  <input class="form-check-input" type="radio" name="ivas" id="ivanopag" value="ivanopag">
-  <label class="form-check-label" for="exampleRadios2">
-    Iva No Pagado
+
+  <label class="col-4 btn btn-secondary " id ="ivanopagado" onclick="seleccion(this.id)">
+    <input type="radio"  value="3" name="ivas" id="rbivanopagado" autocomplete="off" > IVA No Pagado &nbsp;<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
   </label>
-  <input class="form-control form-control-sm" type="number" name="ivanopagval" id="ivanopagval" value="0" onkeyup="format(this)" onclick="modcont(this.id)" style="display: none">
+
 </div>
+
 <br>
     <!-- Linea 0 -->
     <div class="col-6 f29span ">

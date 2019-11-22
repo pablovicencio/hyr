@@ -222,6 +222,8 @@ class formularioDAO
     private $c313; 
     private $c314;
     private $fecha;
+    private $ivapost;
+    private $ivanop;
 
 
     public function __construct(
@@ -437,7 +439,9 @@ class formularioDAO
                                 $c726 = null,
                                 $c313 = null,
                                 $c314 = null,
-                                $fecha = null
+                                $fecha = null,
+                                $ivapost = null,
+                                $ivanop = null
                                 
                                 ) 
                                 {
@@ -654,6 +658,8 @@ class formularioDAO
                                     $this->c313     = $c313;
                                     $this->c314     = $c314;
                                     $this->fecha    = $fecha;
+                                    $this->ivapost  = $ivapost;
+                                    $this->ivanop   = $ivanop;
                                 }
 
     public function getf29() 
@@ -885,7 +891,9 @@ class formularioDAO
                                                     `c726`,
                                                     `c313`,
                                                     `c314`,
-                                                    `fecha_form`
+                                                    `fecha_form`,
+                                                    `ivapost`,
+                                                    `ivanop`
                                                     )
                 
                             VALUES         (:usu_reg_doc,
@@ -1101,7 +1109,9 @@ class formularioDAO
                                             :c726,
                                             :c313,
                                             :c314,
-                                            :fecha);";
+                                            :fecha,
+                                            :ivapost,
+                                            :ivanop);";
 
                 $stmt = $pdo->prepare($sql_ing_form);
              
@@ -1321,6 +1331,9 @@ class formularioDAO
                 $stmt->bindParam(":c313", $this->c313, PDO::PARAM_STR);
                 $stmt->bindParam(":c314", $this->c314, PDO::PARAM_STR);
                 $stmt->bindParam(":fecha", $this->fecha, PDO::PARAM_STR);
+                $stmt->bindParam(":c707", $this->c707, PDO::PARAM_INT);
+                $stmt->bindParam(":ivapost", $this->ivapost, PDO::PARAM_INT);
+                $stmt->bindParam(":ivanop", $this->ivanop, PDO::PARAM_INT);
                 $stmt->execute();
 
                 
@@ -1560,7 +1573,10 @@ class formularioDAO
                                         `c44` = :c44,
                                         `c726` = :c726,
                                         `c313` = :c313,
-                                        `c314` = :c314
+                                        `c314` = :c314,
+                                        `ivapost` = :ivapost,
+                                        `ivanop` = :ivanop
+                                        
                                  
 
 
@@ -1781,6 +1797,8 @@ class formularioDAO
                 $stmt->bindParam(":c726", $this->c726, PDO::PARAM_STR);
                 $stmt->bindParam(":c313", $this->c313, PDO::PARAM_STR);
                 $stmt->bindParam(":c314", $this->c314, PDO::PARAM_STR);
+                $stmt->bindParam(":ivapost", $this->ivapost, PDO::PARAM_INT);
+                $stmt->bindParam(":ivanop", $this->ivanop, PDO::PARAM_INT);
 
                 $stmt->execute();
         

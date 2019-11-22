@@ -1,9 +1,35 @@
 <?php
   session_start();
  
-  	if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0)and isset($_POST['emp']) ){
+  	if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0)and isset($_POST['emp'])){
   		//Si la sesión esta seteada no hace nada
-  		$id_usu = $_SESSION['id'];
+        if(isset($_POST['ivas'])){
+
+         switch ($_POST['ivas']) {
+             case "1":
+                 //CUANDO ES UN IVA NORMAL//
+                 $ivapost = 0;
+                 $ivanop = 0;
+                 $id_usu = $_SESSION['id'];
+                 break;
+             case "2":
+                 //CUANDO ES IVA POSTERGADO//
+                 $ivapost = 1;
+                 $ivanop = 0;
+                 $id_usu = $_SESSION['id'];
+                 break;
+             case "3":
+                 //CUANDO ES IVA NO PAGADO//
+                 $ivapost = 0;
+                 $ivanop = 1;
+                 $id_usu = $_SESSION['id'];
+                 break;
+         }
+     }
+     else{
+         echo("4");
+        goto salir;
+     }	
   	}
   	else{
  		//Si no lo redirige a la pagina index para que inicie la sesion	
@@ -18,6 +44,7 @@
 
  	try{
 
+       
         $id_form     = $_POST['variable1']; 
         $c585       = $_POST['C585'];
         $c20        = $_POST['C20'];
@@ -643,7 +670,7 @@
         $c44,
         $c726,
         $c313,
-        $c314);
+        $c314,'',$ivapost,$ivanop);
         
         
         

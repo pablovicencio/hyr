@@ -2,8 +2,35 @@
   session_start();
  
   	if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0)and isset($_POST['emp']) ){
-  		//Si la sesión esta seteada no hace nada
-  		$id_usu = $_SESSION['id'];
+          //Si la sesión esta seteada no hace nada
+          
+        if(isset($_POST['ivas'])){
+
+            switch ($_POST['ivas']) {
+                case "1":
+                    //CUANDO ES UN IVA NORMAL//
+                    $ivapost = 0;
+                    $ivanop = 0;
+                    $id_usu = $_SESSION['id'];
+                    break;
+                case "2":
+                    //CUANDO ES IVA POSTERGADO//
+                    $ivapost = 1;
+                    $ivanop = 0;
+                    $id_usu = $_SESSION['id'];
+                    break;
+                case "3":
+                    //CUANDO ES IVA NO PAGADO//
+                    $ivapost = 0;
+                    $ivanop = 1;
+                    $id_usu = $_SESSION['id'];
+                    break;
+            }
+        }
+        else{
+            echo("4");
+ 		    goto salir;
+        }	
   	}
   	else{
  		//Si no lo redirige a la pagina index para que inicie la sesion	
@@ -17,7 +44,8 @@
  	 require_once '../clases/claseUsuario.php';
 
  	try{
-        
+
+
         $id_emp     = $_POST['emp'];    
         $c585       = $_POST['C585'];
         $c20        = $_POST['C20'];
@@ -660,7 +688,7 @@
         $c726,
         $c313,
         $c314,
-        $fecha);
+        $fecha,$ivapost,$ivanop);
 
 
             //echo "USU: ".$id_usu." EMP:".$id_emp ." Celda 585 :". $c585;
