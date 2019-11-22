@@ -23,7 +23,7 @@ class Funciones
     /*///////////////////////////////////////
     Validar periodo f29
     //////////////////////////////////////*/
-    public function val_periodo_f29($emp, $per){
+    public function val_periodo_f29($emp, $per, $form){
         try{
            
            
@@ -31,13 +31,14 @@ class Funciones
                    
            
                $sql = 'SELECT count(1) val FROM `f29` 
-                        where id_emp = :emp and DATE_FORMAT(fecha_form, "%m-%Y") = :fec';
+                        where id_emp = :emp and DATE_FORMAT(fecha_form, "%m-%Y") = :fec and id_f29 <> :form';
            
                   
            
            $stmt = $pdo->prepare($sql);
            $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
            $stmt->bindParam(":fec", $per, PDO::PARAM_STR);
+           $stmt->bindParam(":form", $form, PDO::PARAM_INT);
            $stmt->execute();
            $response = $stmt->fetch(PDO::FETCH_ASSOC);
            return $response;

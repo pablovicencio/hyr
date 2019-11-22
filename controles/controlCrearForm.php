@@ -239,7 +239,7 @@
         $fecha_per = date_create($fecha);
         $fecha_per = date_format($fecha_per,"m-Y");
 
-        $val_f29 = $func->val_periodo_f29($id_emp,$fecha_per);  
+        $val_f29 = $func->val_periodo_f29($id_emp,$fecha_per,0);  
 
         if ($val_f29['val'] == 0) {
 

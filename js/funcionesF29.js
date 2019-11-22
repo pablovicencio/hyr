@@ -546,6 +546,9 @@ $(document).ready(function() {
         var msg = result.trim();
         console.log(result);
         switch(msg) {
+              case '-1':
+              swal("Error Periodo F29", "La empresa ya cuenta con un F29 para este periodo, favor editar el existente", "warning");
+              break;
                 case '0':
                     window.location.assign("../index.html")
                     break;

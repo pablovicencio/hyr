@@ -1560,7 +1560,8 @@ class formularioDAO
                                         `c44` = :c44,
                                         `c726` = :c726,
                                         `c313` = :c313,
-                                        `c314` = :c314
+                                        `c314` = :c314,
+                                        `fecha_form` = :fecha
                                  
 
 
@@ -1781,6 +1782,7 @@ class formularioDAO
                 $stmt->bindParam(":c726", $this->c726, PDO::PARAM_STR);
                 $stmt->bindParam(":c313", $this->c313, PDO::PARAM_STR);
                 $stmt->bindParam(":c314", $this->c314, PDO::PARAM_STR);
+                $stmt->bindParam(":fecha", $this->fecha, PDO::PARAM_STR);
 
                 $stmt->execute();
         

@@ -18,7 +18,12 @@
 
  	try{
 
+        $id_emp     = $_POST['emp']; 
+
         $id_form     = $_POST['variable1']; 
+        $fecha     = $_POST['fecha']; 
+
+
         $c585       = $_POST['C585'];
         $c20        = $_POST['C20'];
         $c586       = $_POST['C586'];
@@ -442,6 +447,13 @@
         
               
         $func = new Funciones();
+
+        $fecha_per = date_create($fecha);
+        $fecha_per = date_format($fecha_per,"m-Y");
+
+        $val_f29 = $func->val_periodo_f29($id_emp,$fecha_per,$id_form);  
+
+        if ($val_f29['val'] == 0) {
   
         //$dao = new formularioDAO('',$c585);
 
@@ -643,7 +655,8 @@
         $c44,
         $c726,
         $c313,
-        $c314);
+        $c314,
+        $fecha);
         
         
         
@@ -657,6 +670,9 @@
                 }else{
                    echo "Formulario Modificado Correctamente!";
                 }
+        }else{
+            echo "-1"; 
+        }
    	
         salir:
     } catch (Exception $e) {
