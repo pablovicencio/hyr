@@ -1,4 +1,10 @@
 
+function modiva(id_iva){
+  if (id_iva == "ivapost") {
+    $("#ivapostval").show();
+    $('#C89').prop('readonly', true);
+  }
+}
 
 //RELLENO DE DATOS DEL DOCUMENTO
 function mod(id_form) {
@@ -225,7 +231,33 @@ function mod(id_form) {
       $('#C726').val(result[0].c726); 
       $('#C313').val(result[0].c313); 
       $('#C314').val(result[0].c314); 
-      $('#fecha').val(result[0].fecha_form);    
+      $('#fecha').val(result[0].fecha_form);
+
+      var ivapost = result[0].ivapost;
+      var ivanop = result[0].ivanop;
+
+      if( ivanop == 1 && ivapost == 0){
+        jQuery('#ivanopagado').addClass('bg-warning');
+        jQuery('#ivaposter').removeClass('bg-info');
+        jQuery('#ivapagado').removeClass('bg-success');
+        document.getElementById("ivanopagado").focus();
+      }
+      if(ivapost == 1 && ivanop == 0){
+        jQuery('#ivaposter').addClass('bg-info');
+        jQuery('#ivapagado').removeClass('bg-success');
+        jQuery('#ivanopagado').removeClass('bg-warning');
+        document.getElementById("ivaposter").focus();
+      }
+      if(ivapost == 0 && ivanop == 0){
+        jQuery('#ivapagado').addClass('bg-success');
+        jQuery('#ivaposter').removeClass('bg-info');
+        jQuery('#ivanopagado').removeClass('bg-warning');
+        document.getElementById("ivapagado").focus();
+      }    
+
+      
+
+ 
       
   }
 })
@@ -255,6 +287,9 @@ $(document).ready(function() {
               break;
           case '3':
               swal("Seleccionar Cliente", "Recuerde Seleccionar el Cliente antes de Ingresar el Formulario", "warning");
+              break;
+          case '4':
+              swal("Seleccionar Tipo Pago", "Recuerde Seleccionar el Tipo de Pago IVA ( Pagado, Postergado, No Pagado).", "warning");
               break;
           default:
               swal("Ingreso Exitoso", msg, "success");
@@ -301,6 +336,84 @@ if (val) {
 
 }
 
+
+function seleccion(idlabel){
+
+ 
+  switch (idlabel) {
+    case "ivapagado":
+        jQuery('#ivapagado').addClass('bg-success');
+        jQuery('#ivaposter').removeClass('bg-info');
+        jQuery('#ivanopagado').removeClass('bg-warning');
+        $('#C89').prop('readonly', false);
+        $("#C760").attr("onchange","calcimpto()");
+        $("#C50").attr("onchange","calcimpto()");
+        $("#C48").attr("onchange","calcimpto()");
+        $("#C151").attr("onchange","calcimpto()");
+        $("#C153").attr("onchange","calcimpto()");
+        $("#C54").attr("onchange","calcimpto()");
+        $("#C56").attr("onchange","calcimpto()");
+        $("#C588").attr("onchange","calcimpto()");
+        $("#C589").attr("onchange","calcimpto()");
+        $("#C62").attr("onchange","calcimpto()");
+        $("#C123").attr("onchange","calcimpto()");
+        $("#C703").attr("onchange","calcimpto()");
+        $("#C66").attr("onchange","calcimpto()");
+        $("#C152").attr("onchange","calcimpto()");
+        $("#C70").attr("onchange","calcimpto()");
+        
+      break;
+    case "ivaposter":
+        jQuery('#ivaposter').addClass('bg-info');
+        jQuery('#ivapagado').removeClass('bg-success');
+        jQuery('#ivanopagado').removeClass('bg-warning');
+        $('#C89').prop('readonly', true);
+        $("#C760").attr("onchange","calcimptoPoster()");
+        $("#C50").attr("onchange","calcimptoPoster()");
+        $("#C48").attr("onchange","calcimptoPoster()");
+        $("#C151").attr("onchange","calcimptoPoster()");
+        $("#C153").attr("onchange","calcimptoPoster()");
+        $("#C54").attr("onchange","calcimptoPoster()");
+        $("#C56").attr("onchange","calcimptoPoster()");
+        $("#C588").attr("onchange","calcimptoPoster()");
+        $("#C589").attr("onchange","calcimptoPoster()");
+        $("#C62").attr("onchange","calcimptoPoster()");
+        $("#C123").attr("onchange","calcimptoPoster()");
+        $("#C703").attr("onchange","calcimptoPoster()");
+        $("#C66").attr("onchange","calcimptoPoster()");
+        $("#C152").attr("onchange","calcimptoPoster()");
+        $("#C70").attr("onchange","calcimptoPoster()");
+        
+      break;
+    
+    case "ivanopagado":
+        jQuery('#ivanopagado').addClass('bg-warning');
+        jQuery('#ivaposter').removeClass('bg-info');
+        jQuery('#ivapagado').removeClass('bg-success');
+        $('#C89').prop('readonly', false);
+        $("#C760").attr("onchange","calcimpto()");
+        $("#C50").attr("onchange","calcimpto()");
+        $("#C48").attr("onchange","calcimpto()");
+        $("#C151").attr("onchange","calcimpto()");
+        $("#C153").attr("onchange","calcimpto()");
+        $("#C54").attr("onchange","calcimpto()");
+        $("#C56").attr("onchange","calcimpto()");
+        $("#C588").attr("onchange","calcimpto()");
+        $("#C589").attr("onchange","calcimpto()");
+        $("#C62").attr("onchange","calcimpto()");
+        $("#C123").attr("onchange","calcimpto()");
+        $("#C703").attr("onchange","calcimpto()");
+        $("#C66").attr("onchange","calcimpto()");
+        $("#C152").attr("onchange","calcimpto()");
+        $("#C70").attr("onchange","calcimpto()");
+ 
+      break;
+
+    default:
+      break;
+  }
+
+}
 
 //PINTAR VERDE LOS INPUT
 function green(idinput,valor){
@@ -856,7 +969,6 @@ document.getElementById("C547").value = totalDeterm;
   }
 
 }
-
 ////////////////////////////////////////////////
 //     FIN      29 LINEA 66 en adelante       //
 //          TRIB SIMPLE RENTA HOJA 2          //
@@ -1037,3 +1149,99 @@ function anticipo(){
 ////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+function calcimptoPoster(){
+
+  ///////////////////////////////////////////////////////////////////////////////////
+  // CALCULO LINEAS 58 - 59 60  DE IVA POSTERGADO "NO INCLUYE CODIGO 89 EN EL TOTAL//
+  ///////////////////////////////////////////////////////////////////////////////////
+  var baseimponible = document.getElementById("C563").value;
+  baseimponible = parseInt(baseimponible.replace(/\./g,""));
+  var tasa = document.getElementById("C115").value;
+  var ppmdet = ((baseimponible*tasa) / 100);
+  //regresar = ppmdet.toString().replace(/\./g,',');
+  document.getElementById("C62").value = Math.round(ppmdet);
+
+
+
+  var baseimponible2 = document.getElementById("C120").value;
+  baseimponible2 = parseInt(baseimponible2.replace(/\./g,""));
+  var tasa2 = document.getElementById("C542").value;
+  var ppmdet2 = ((baseimponible2*tasa2) / 100);
+  //regresar2 = ppmdet2.toString().replace(/\./g,',');
+  document.getElementById("C123").value = Math.round(ppmdet2);
+
+  var baseimponible3 = document.getElementById("C701").value;
+  baseimponible3 = parseInt(baseimponible3.replace(/\./g,""));
+  var tasa3 = document.getElementById("C702").value;
+  var ppmdet3 = ((baseimponible3*tasa3) / 100);
+  //regresar3 = ppmdet3.toString().replace(/\./g,',');
+  document.getElementById("C703").value = Math.round(ppmdet3);
+  // FIN CALCULO LINEAS   58 - 59 - 60
+
+var C89  = (document.getElementById('C89').value);
+var C760 = (document.getElementById('C760').value);
+var C50  = (document.getElementById('C50').value);
+var C48  = (document.getElementById('C48').value);
+var C151 = (document.getElementById('C151').value);
+var C153 = (document.getElementById('C153').value);
+var C54  = (document.getElementById('C54').value);
+var C56  = (document.getElementById('C56').value);
+var C588 = (document.getElementById('C588').value);
+var C589 = (document.getElementById('C589').value);
+var C62  = (document.getElementById('C62').value);
+var C123 = (document.getElementById('C123').value);
+var C703 = (document.getElementById('C703').value);
+var C66  = (document.getElementById('C66').value);
+var C152 = (document.getElementById('C152').value);
+var C70  = (document.getElementById('C70').value);
+
+C89  = parseInt(C89.replace(/\./g,""));
+C760 = parseInt(C760.replace(/\./g,""));
+C50  = parseInt(C50.replace(/\./g,""));
+C48  = parseInt(C48.replace(/\./g,""));
+C151 = parseInt(C151.replace(/\./g,""));
+C153 = parseInt(C153.replace(/\./g,""));
+C54  = parseInt(C54.replace(/\./g,""));
+C56  = parseInt(C56.replace(/\./g,""));
+C588 = parseInt(C588.replace(/\./g,""));
+C589 = parseInt(C589.replace(/\./g,""));
+C62  = parseInt(C62.replace(/\./g,""));
+C123 = parseInt(C123.replace(/\./g,""));
+C703 = parseInt(C703.replace(/\./g,""));
+C66  = parseInt(C66.replace(/\./g,""));
+C152 = parseInt(C152.replace(/\./g,""));
+C70 = parseInt(C70.replace(/\./g,""));
+
+
+
+
+  var subtotal = C760+C50+C48+C151+C153+C54+C56+C588+C589+C62+C123+C703+C66+C152+C70;
+  
+  //document.getElementById("C94").value = total;
+  
+  totaldethoja2 = document.getElementById("C598").value;
+  //alert(totaldethoja2);
+  if (totaldethoja2) {
+    document.getElementById("C91").value = subtotal-totaldethoja2;
+  }else{
+    document.getElementById("C91").value = totaldethoja2;  
+  }
+
+
+  document.getElementById("C595").value = subtotal;
+
+
+  ///////////////////////////////
+  //  FIN  LINEAS 58 - 59 60   //
+  ///////////////////////////////
+
+
+
+}
+////////////////////////////////////////////////
+//     FIN  29 LINEA 48 HASTA LINEA 64        //
+//          IMPTO A LA RENTA HOJA 1           //
+////////////////////////////////////////////////

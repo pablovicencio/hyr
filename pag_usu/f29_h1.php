@@ -25,6 +25,23 @@
     <div class="col-6 form-control">
         <input type="date" id="fecha" name="fecha" >
     </div>
+    
+<br><br>
+
+<div class="btn-group btn-group-toggle col-12 " data-toggle="buttons">
+  <label class="col-4 btn btn-secondary active " id ="ivapagado" onclick="seleccion(this.id)">
+    <input  type="radio" value="1" name="ivas" id="rbivapagado" autocomplete="off"> IVA Pagado &nbsp;<i class="fa fa-check-square" aria-hidden="true"></i>
+  </label>
+
+  <label class="col-4 btn btn-secondary " id ="ivaposter" onclick="seleccion(this.id)">
+    <input  type="radio" value="2" name="ivas" id="rbivaposter" autocomplete="off"> IVA Postergado &nbsp;<i class="fa fa-clock-o" aria-hidden="true"></i>
+  </label>
+
+  <label class="col-4 btn btn-secondary " id ="ivanopagado" onclick="seleccion(this.id)">
+    <input type="radio"  value="3" name="ivas" id="rbivanopagado" autocomplete="off" > IVA No Pagado &nbsp;<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+  </label>
+
+</div>
 
 <br>
     <!-- Linea 0 -->
