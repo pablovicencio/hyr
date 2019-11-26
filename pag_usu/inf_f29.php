@@ -92,16 +92,16 @@
                   <td><?php echo $row['rut_emp']?></td>
                   <td><?php echo $row['razon_social_emp']?></td>
                   <td><?php echo "<script>var string = numeral(". $row['cant_f29'].").format('000,000,000,000');document.write(string)</script>"?></td>
-                  <td><?php echo "<script>var string = numeral(". $row['rel'].").format('000,000,000,000.[000]');document.write(string)</script>"?></td>
-                  <td><?php echo "<script>var string = numeral(". $row['deb'].").format('000,000,000,000');document.write(string)</script>"?></td>
-                  <td><?php echo "<script>var string = numeral(". $row['cred'].").format('000,000,000,000');document.write(string)</script>"?></td>
-                  <td><?php echo "<script>var string = numeral(". $row['ivapag'].").format('$000,000,000,000');document.write(string)</script>"?></td>
-                  <td><?php echo "<script>var string = numeral(". $row['ivapost'].").format('$000,000,000,000');document.write(string)</script>"?></td>
-                  <td><?php echo "<script>var string = numeral(". $row['ivanop'].").format('$000,000,000,000');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['rel'].").format('000,000,000,000.[00]');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['deb'].").format('$000,000,000,000');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['cred'].").format('$000,000,000,000');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['ivapag'].").format('000,000,000,000');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['ivapost'].").format('000,000,000,000');document.write(string)</script>"?></td>
+                  <td><?php echo "<script>var string = numeral(". $row['ivanop'].").format('000,000,000,000');document.write(string)</script>"?></td>
                    
 
 
-                  <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-success" data-id="'.$row['id_emp'].'" data-tipo="1" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'"   data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
+                  <td><?php echo'<a  class="link-modal btn btn-outline-success" style="color: inherit;"  href="inf_f29get.php?emp='.$row['id_emp'].'"><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
 
                   <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-warning" data-id="'.$row['id_emp'].'" data-tipo="2" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
                 
@@ -145,7 +145,7 @@
 
 
 
-<div class="modal fade" id="modal_det_inf_cob" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modal_det_inf_cob" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
 
     <div class="modal-content">
@@ -194,7 +194,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 </body>

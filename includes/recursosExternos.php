@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="../css/estilo.css">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/f29.css">
+<link rel="stylesheet" href="../css/f29graficos.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 <link rel="stylesheet" type="text/css" href="    https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>

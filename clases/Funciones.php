@@ -19,6 +19,52 @@ require_once '../recursos/db/db.php';
 class Funciones 
 {
 
+
+    /*///////////////////////////////////////
+    Cargar datos de  para grafico
+    //////////////////////////////////////*/
+    public function cargar_datos_f29graf($emp,$graf){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+
+
+
+            switch ($graf) {
+                case 'rel':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c538,0)/IFNULL(if(c537=0,1,c537),1) val from f29 where id_emp = :emp order by 1 ';
+                    break;
+
+                case 'debcred':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c538,0) val1,  IFNULL(c537,0) val2 from f29 where id_emp = :emp order by 1 ';
+                    break;
+                case 'ven':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c563,0) val from f29 where id_emp = :emp order by 1 ';
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+                   
+ 
+               
+                  
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
     /*///////////////////////////////////////
     Informe f29
     //////////////////////////////////////*/
