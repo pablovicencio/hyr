@@ -6,6 +6,32 @@ function modiva(id_iva){
   }
 }
 
+
+//INSTANCIAS DE DATATABLE informe
+
+$(document).ready(function () {
+    $('#tabla_inf_f29').DataTable({
+      buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            exportOptions: {
+                modifier: {
+                    page: 'current'
+                }
+            }
+        }
+    ],
+      "order": [[ 2, "desc" ]],
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      },
+        dom: 'Bfrtip'
+    });
+    $('.dataTables_length').addClass('bs-select');
+  });
+
+
 //RELLENO DE DATOS DEL DOCUMENTO
 function mod(id_form) {
     
