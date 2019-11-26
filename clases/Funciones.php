@@ -19,6 +19,57 @@ require_once '../recursos/db/db.php';
 class Funciones 
 {
 
+    /*///////////////////////////////////////
+    Informe f29
+    //////////////////////////////////////*/
+        public function inf_f29($desde,$hasta){
+            try{
+                
+                
+                $pdo = AccesoDB::getCon();
+                            if ($desde == 0 && $hasta == 0 ) {
+                                $sql = "SELECT a.rut_emp,a.razon_social_emp,
+                                        (select count(b.id_f29) from f29 b where a.id_emp = b.id_emp) cant_f29,
+                                        IFNULL((select IFNULL(sum(b.c538),0)/IFNULL(sum(b.c537),0) from f29 b where a.id_emp = b.id_emp),0) rel,
+                                        (select IFNULL(sum(b.c538),0) from f29 b where a.id_emp = b.id_emp) deb,
+                                        (select IFNULL(sum(b.c537),0) from f29 b where a.id_emp = b.id_emp) cred,
+                                        (select IFNULL(sum(1),0) from f29 b where a.id_emp = b.id_emp and  b.ivapost <> 1 and b.ivanop <> 1) ivapag,
+                                        (select IFNULL(sum(1),0) from f29 b where a.id_emp = b.id_emp and  b.ivapost = 1 ) ivapost,
+                                        (select IFNULL(sum(1),0) from f29 b where a.id_emp = b.id_emp and  b.ivanop = 1 ) ivanop,a.id_emp
+                                        FROM empresa a order by 3 desc";
+                                $stmt = $pdo->prepare($sql);
+                            
+                            }else {
+                                $sql = "SELECT a.rut_emp,a.razon_social_emp,
+                                        (select count(b.id_f29) from f29 b where a.id_emp = b.id_emp and b.fecha_form between :desde and :hasta) cant_f29,
+                                        IFNULL((select IFNULL(sum(b.c538),0)/IFNULL(sum(b.c537),0) from f29 b where a.id_emp = b.id_emp and b.fecha_form between :desde and :hasta),0) rel,
+                                        (select IFNULL(sum(b.c538),0) from f29 b where a.id_emp = b.id_emp and b.fecha_form between :desde and :hasta) deb,
+                                        (select IFNULL(sum(b.c537),0) from f29 b where a.id_emp = b.id_emp and b.fecha_form between :desde and :hasta) cred,
+                                        (select IFNULL(sum(1),0) from f29 b where a.id_emp = b.id_emp and  b.ivapost <> 1 and b.ivanop <> 1 and b.fecha_form between :desde and :hasta) ivapag,
+                                        (select IFNULL(sum(1),0) from f29 b where a.id_emp = b.id_emp and  b.ivapost = 1 and b.fecha_form between :desde and :hasta) ivapost,
+                                        (select IFNULL(sum(1),0) from f29 b where a.id_emp = b.id_emp and  b.ivanop = 1 and b.fecha_form between :desde and :hasta) ivanop,a.id_emp
+                                        FROM empresa a order by 3 desc";
+
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->bindParam(":desde", $desde, PDO::PARAM_STR);
+                                $stmt->bindParam(":hasta", $hasta, PDO::PARAM_STR);
+                            }
+        
+                       
+                                
+                            
+                
+                $stmt->execute();
+                $response = $stmt->fetchAll();
+                return $response;
+            } catch (Exception $e) {
+                                echo"-1 ".$e->getMessage();
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+            }
+        }
+
+
+
 
     /*///////////////////////////////////////
     Validar periodo f29
