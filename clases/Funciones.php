@@ -20,6 +20,74 @@ class Funciones
 {
 
 
+
+
+    /*///////////////////////////////////////
+    Cargar datos de totales f29
+    //////////////////////////////////////*/
+    public function cargar_datos_inf29tot($emp){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+                   
+
+               $sql = '
+                         select IFNULL(sum(c538),0) deb, IFNULL(sum(c537),0) cred,IFNULL(sum(c563),0) ven,IFNULL(sum(c62),0) ppm, 
+                        IFNULL(sum(c48),0) impu, IFNULL(sum(c151),0) ret, IFNULL(sum(c91),0) impp,IFNULL(sum(c504),0) credfis 
+                        from f29 where id_emp = :emp';
+ 
+                  
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+
+
+    /*///////////////////////////////////////
+    Cargar datos de tipos de iva por empresa f29
+    //////////////////////////////////////*/
+    public function cargar_resiva($emp){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+                   
+
+               $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, 
+                        CASE
+                            WHEN ivapost = 1 THEN "IVA Postergado"
+                            WHEN ivanop = 1 THEN "IVA No Pagado"
+                            ELSE "IVA Pagado"
+                        END iva from f29 where id_emp = :emp
+                         order by 1 desc';
+ 
+                  
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+
     /*///////////////////////////////////////
     Cargar datos de  para grafico
     //////////////////////////////////////*/
@@ -41,6 +109,21 @@ class Funciones
                     break;
                 case 'ven':
                     $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c563,0) val from f29 where id_emp = :emp order by 1 ';
+                    break;
+                case 'ppm':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c62,0) val from f29 where id_emp = :emp order by 1 ';
+                    break;
+                case 'impu':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c48,0) val from f29 where id_emp = :emp order by 1 ';
+                    break;
+                case 'ret':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c151,0) val from f29 where id_emp = :emp order by 1 ';
+                    break;
+                case 'impp':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c91,0) val from f29 where id_emp = :emp order by 1 ';
+                    break;
+                case 'recref':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c504,0) val from f29 where id_emp = :emp order by 1 ';
                     break;
                 
                 default:

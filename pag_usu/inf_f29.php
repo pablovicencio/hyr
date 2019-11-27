@@ -74,7 +74,7 @@
                                         <th scope="col">Ivas Postergados</th>
                                         <th scope="col">Ivas No Pagados</th>
                                         <th scope="col">Detalle</th>
-                                        <th scope="col">Enviar Mail</th>
+                                        
                                       </tr>
     </thead>
     <tbody>
@@ -103,7 +103,7 @@
 
                   <td><?php echo'<a  class="link-modal btn btn-outline-success" style="color: inherit;"  href="inf_f29get.php?emp='.$row['id_emp'].'"><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
 
-                  <td><?php echo'<a id="btn_modal_det_inf_cob" class="link-modal btn btn-outline-warning" data-id="'.$row['id_emp'].'" data-tipo="2" data-rut="'.$row['rut_emp'].'" data-emp="'.$row['razon_social_emp'].'"  data-toggle="modal" ><i class="fa fa-plus-square" aria-hidden="true"></i></a>';?></td>
+                  
                 
                  
                 
@@ -128,7 +128,7 @@
                                         <th scope="col">Ivas Postergados</th>
                                         <th scope="col">Ivas No Pagados</th>
                                         <th scope="col">Detalle</th>
-                                        <th scope="col">Enviar Mail</th>
+                                       
       </tr>
     </tfoot> 
   </table>

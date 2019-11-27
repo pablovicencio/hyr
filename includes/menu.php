@@ -45,6 +45,7 @@
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="rf29.php">Ver/Modificar &nbsp;<i class="fa fa-list-ol" aria-hidden="true"></i></a>
                         <a class="dropdown-item" href="f29_v2.php">Agregar Nuevo &nbsp;<i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" href="inf_f29.php">Informes  &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                          <!-- <a class="dropdown-item" href="ef29.php">Modificar &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> -->
                       </div>
                     </li>  
