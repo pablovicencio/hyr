@@ -2,6 +2,30 @@
 var idemp = document.getElementById("idemp").src.match(/\w+=\w+/g);
 var emp = idemp[0].split("=");
 
+
+
+
+
+function imp() {
+
+                $('#menu').css("display","none");
+                $('#btnimp').css("display","none");
+            window.print();
+                $('#menu').css("display","block");
+                $('#btnimp').css("display","block");
+    
+    
+
+}
+
+
+
+
+
+
+
+
+
 $(document).ready(function () {
 
 
@@ -29,6 +53,7 @@ var graf = "rel";
         // chart.
         labels: ['Relación'],
         barColors: ['Green'],
+        xLabelAngle: 60,
 
       });
   },
@@ -71,6 +96,7 @@ var graf = "debcred";
         lineWidth: '6px',
         parseTime: false,
         lineColors: ['Green', 'Blue'],
+        xLabelAngle: 60,
 
       });
   },
@@ -107,6 +133,7 @@ var graf = "ven";
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
         labels: ['Ventas'],
+        xLabelAngle: 60,
 
       });
   },
@@ -142,7 +169,8 @@ var graf = "ppm";
         ykeys: ['value'],
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
-        labels: ['PPM']
+        labels: ['PPM'],
+        xLabelAngle: 60,
 
       });
   },
@@ -178,7 +206,8 @@ var graf = "impu";
         ykeys: ['value'],
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
-        labels: ['Imp. Único']
+        labels: ['Imp. Único'],
+        xLabelAngle: 60,
 
       });
   },
@@ -216,6 +245,7 @@ var graf = "ret";
         // chart.
         labels: ['Retención'],
         barColors: ['Green'],
+        xLabelAngle: 60,
 
       });
   },
@@ -253,6 +283,7 @@ var graf = "impp";
         // chart.
         labels: ['Imp. Pagado'],
         barColors: ['Green'],
+        xLabelAngle: 60,
 
       });
   },
@@ -289,6 +320,7 @@ var graf = "recref";
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
         labels: ['Remanente'],
+        xLabelAngle: 60,
 
       });
   },

@@ -1,6 +1,6 @@
 
 
-<div class="row">
+<div class="row" id="menu">
 <div class="col-12 text-center">
   <nav class="navbar navbar-expand-md navbar-dark" style ="background-color:#0a4f90 ">
         <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="false">
@@ -45,7 +45,7 @@
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="rf29.php">Ver/Modificar &nbsp;<i class="fa fa-list-ol" aria-hidden="true"></i></a>
                         <a class="dropdown-item" href="f29_v2.php">Agregar Nuevo &nbsp;<i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
-                        <a class="dropdown-item" href="inf_f29.php">Informes  &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" href="inf_f29.php">Informes  &nbsp;<i class="fa fa-bar-chart" aria-hidden="true"></i></a>
                          <!-- <a class="dropdown-item" href="ef29.php">Modificar &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> -->
                       </div>
                     </li>  

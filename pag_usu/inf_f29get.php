@@ -44,6 +44,7 @@
 <div class="container" id="main">
     <div class="row">
         <div class="col-12">
+     <button  class="btn btn-outline-danger" style="color: inherit;" id="btnimp" onclick="imp()"><i class="fa fa-print" aria-hidden="true"></i></button>
 
      <?php
       $re = $fun ->cargar_datos_emp2($emp,2);
