@@ -1550,6 +1550,7 @@ class formularioDAO
                                         `c726` = :c726,
                                         `c313` = :c313,
                                         `c314` = :c314,
+                                        `fecha_form` = :fecha,
                                         `ivapost` = :ivapost,
                                         `ivanop` = :ivanop
                                         
@@ -1768,6 +1769,7 @@ class formularioDAO
                 $stmt->bindParam(":c726", $this->c726, PDO::PARAM_STR);
                 $stmt->bindParam(":c313", $this->c313, PDO::PARAM_STR);
                 $stmt->bindParam(":c314", $this->c314, PDO::PARAM_STR);
+                $stmt->bindParam(":fecha", $this->fecha, PDO::PARAM_STR);
                 $stmt->bindParam(":ivapost", $this->ivapost, PDO::PARAM_INT);
                 $stmt->bindParam(":ivanop", $this->ivanop, PDO::PARAM_INT);
                 $stmt->execute();

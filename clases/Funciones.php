@@ -70,7 +70,8 @@ class Funciones
                             WHEN ivanop = 1 THEN "IVA No Pagado"
                             ELSE "IVA Pagado"
                         END iva from f29 where id_emp = :emp
-                         order by 1 desc';
+                         order by 1 desc
+                         limit 12';
  
                   
            
@@ -101,29 +102,29 @@ class Funciones
 
             switch ($graf) {
                 case 'rel':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c538,0)/IFNULL(if(c537=0,1,c537),1) val from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c538,0)/IFNULL(if(c537=0,1,c537),1) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
 
                 case 'debcred':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c538,0) val1,  IFNULL(c537,0) val2 from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c538,0) val1,  IFNULL(c537,0) val2 from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'ven':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c563,0) val from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c563,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'ppm':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c62,0) val from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c62,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'impu':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c48,0) val from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c48,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'ret':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c151,0) val from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c151,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'impp':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c91,0) val from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c91,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'recref':
-                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c504,0) val from f29 where id_emp = :emp order by 1 ';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c504,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 
                 default:

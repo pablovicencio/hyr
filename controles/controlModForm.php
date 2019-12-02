@@ -462,6 +462,7 @@
         $c726 = str_replace(".","",$c726);
         $c313 = str_replace(".","",$c313);
         $c314 = str_replace(".","",$c314);
+        $fecha      = $_POST['fecha'];
         
               
         $func = new Funciones();
@@ -672,7 +673,7 @@
         $c44,
         $c726,
         $c313,
-        $c314,'',$ivapost,$ivanop);
+        $c314,$fecha,$ivapost,$ivanop);
         
         
         
