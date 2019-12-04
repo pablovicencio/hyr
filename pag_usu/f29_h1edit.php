@@ -1454,7 +1454,7 @@
         <div class="input-group-prepend">   
             <span class="input-group-text f29" id="basic-addon4" >43 - Recuperación del Impuesto Especíﬁco al Petróleo Diesel soportado por Transportistas de Carga</span>
             <span class="input-group-text f29 f29span  text-center" id="basic-addon4">729 </span>
-            <input type="number" value="0" class="form-control f29 f29inp" id="C729" name="C729" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
+            <input type="number" value="0" class="form-control f29 f29inp" id="C729" name="C729" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" step="any">
             <span class="input-group-text f29 f29span  text-center" id="basic-addon4">Base </span>
             <span class="input-group-text f29 f29span  text-center" id="basic-addon4">744 </span>
             <input type="number" value="0" class="form-control f29 f29inp" id="C744" name="C744" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)" onclick="modcont(this.id)" >
