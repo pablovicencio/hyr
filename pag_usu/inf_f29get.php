@@ -45,9 +45,6 @@
     <div class="row">
         <div class="col-12">
      <button  class="btn btn-outline-danger" style="color: inherit;" id="btnimp" onclick="imp()"><i class="fa fa-print" aria-hidden="true"></i></button>
-     <h5><span class="badge badge-warning" id="reg_trib"></span>
-         <span class="badge badge-success" id="val_uf"></span></h5>
-
 
      <?php
       $re = $fun ->cargar_datos_emp2($emp,2);
@@ -108,11 +105,7 @@
 
 
 </div>
-<br>
 
-<div id="alerta_ven_anual" style="display: none">
-  <strong><span id="men_ven_anual"></span></strong>
-</div>
 
 <hr>
 <br>

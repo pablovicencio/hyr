@@ -351,7 +351,7 @@
         $c742 = str_replace(".","",$c742);
         $c743 = str_replace(".","",$c743);
         $c127 = str_replace(".","",$c127);
-        //$c729 = str_replace(".","",$c729);
+        $c729 = str_replace(".","",$c729);
         $c744 = str_replace(".","",$c744);
         $c745 = str_replace(".","",$c745);
         $c544 = str_replace(".","",$c544);

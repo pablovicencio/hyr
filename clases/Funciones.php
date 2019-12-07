@@ -20,32 +20,6 @@ class Funciones
 {
 
 
-    /*///////////////////////////////////////
-    Cargar reg_tributarios
-    //////////////////////////////////////*/
-    public function cargar_reg_trib(){
-        try{
-           
-           
-           $pdo = AccesoDB::getCon();
-                   
-
-               $sql = '
-                         select id_reg_trib, desc_reg_trib from reg_trib';
- 
-                  
-           
-           $stmt = $pdo->prepare($sql);
-           $stmt->execute();
-           $response = $stmt->fetchAll();
-           return $response;
-       } catch (Exception $e) {
-           echo"-1";
-            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
-       }
-   }
-
-
 
 
     /*///////////////////////////////////////
@@ -58,25 +32,10 @@ class Funciones
            $pdo = AccesoDB::getCon();
                    
 
-               $sql = 'select IFNULL(sum(a.c538),0) deb, IFNULL(sum(a.c537),0) cred,            
-                         case
-              when b.reg_trib_emp = 3 then (IFNULL(sum(a.c502),0)*100)/19
-                            when b.reg_trib_emp = 4 then (IFNULL(sum(a.c142),0)*100)/19
-              else IFNULL(sum(a.c563),0)
-            end ven,
-            case
-            when reg_trib_emp = 3 then IFNULL(sum(a.c66),0)
-                              when reg_trib_emp = 4 then IFNULL(sum(a.c66),0)
-                                else IFNULL(sum(a.c62),0) end ppm, 
-                        IFNULL(sum(a.c48),0) impu, IFNULL(sum(a.c151),0) ret, IFNULL(sum(a.c91),0) impp,IFNULL(sum(a.c504),0) credfis,
-                        b.reg_trib_emp, c.max_mon_reg_trib,
-                                                (select case
-              when b.reg_trib_emp = 3 then (IFNULL(sum(d.c502),0)*100)/19
-                            when b.reg_trib_emp = 4 then (IFNULL(sum(d.c142),0)*100)/19
-              else IFNULL(sum(a.c563),0)
-            end from f29 d where d.id_emp = :emp and DATE_FORMAT(a.fecha_form, "%Y")=DATE_FORMAT(now(), "%Y")) ven_anual, c.desc_reg_trib
-                        from f29 a inner join empresa b on a.id_emp = b.id_emp inner join reg_trib c on b.reg_trib_emp = c.id_reg_trib
-                        where a.id_emp = :emp';
+               $sql = '
+                         select IFNULL(sum(c538),0) deb, IFNULL(sum(c537),0) cred,IFNULL(sum(c563),0) ven,IFNULL(sum(c62),0) ppm, 
+                        IFNULL(sum(c48),0) impu, IFNULL(sum(c151),0) ret, IFNULL(sum(c91),0) impp,IFNULL(sum(c504),0) credfis 
+                        from f29 where id_emp = :emp';
  
                   
            
@@ -150,26 +109,10 @@ class Funciones
                     $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c538,0) val1,  IFNULL(c537,0) val2 from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'ven':
-                    $sql = 'select DATE_FORMAT(a.fecha_form, "%Y-%m") periodo, 
-                            case
-                              when reg_trib_emp = 3 then (IFNULL(a.c502,0)*100)/19
-                              when reg_trib_emp = 4 then (IFNULL(a.c142,0)*100)/19
-                                else IFNULL(a.c563,0)
-                            end
-
-                             val 
-                            from f29 a inner join empresa b on a.id_emp = b.id_emp 
-                            where a.id_emp = :emp order by 1 limit 12';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c563,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'ppm':
-                    $sql = 'select DATE_FORMAT(a.fecha_form, "%Y-%m") periodo, 
-                            case
-                                                          when reg_trib_emp = 3 then IFNULL(a.c66,0)
-                                                          when reg_trib_emp = 4 then IFNULL(a.c66,0)
-                                                            else IFNULL(a.c62,0)
-                                                        end val 
-                            from f29 a inner join empresa b on a.id_emp = b.id_emp 
-                             where a.id_emp = :emp order by 1 limit 12';
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c62,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
                 case 'impu':
                     $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c48,0) val from f29 where id_emp = :emp order by 1 limit 12';

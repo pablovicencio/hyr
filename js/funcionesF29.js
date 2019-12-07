@@ -694,9 +694,6 @@ $(document).ready(function() {
                 case '1':
                     swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
                     break;
-                case '4':
-                    swal("Seleccionar Tipo Pago", "Recuerde Seleccionar el Tipo de Pago IVA ( Pagado, Postergado, No Pagado).", "warning");
-                    break;
                 default:
                     swal("Formulario Modificado Correctamente", msg, "success");
                     
