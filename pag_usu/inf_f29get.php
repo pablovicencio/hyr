@@ -113,17 +113,17 @@
 
 <div class="row">
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Relacion Débito/Crédito</h5>
 <div id="relgraf" class="graf"></div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Débito y Crédito</h5>
 <div id="debcredgraf" class="graf"></div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Ventas</h5>
 <div id="vengraf" class="graf"></div>
 </div>
@@ -132,17 +132,17 @@
 <br>
 <div class="row">
   
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>PPM Pagado</h5>
 <div id="ppmgraf" class="graf"></div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Impuesto Unico Pagado</h5>
 <div id="impugraf" class="graf"></div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Retención</h5>
 <div id="retgraf" class="graf"></div>
 </div>
@@ -151,17 +151,17 @@
 <br>
 <div class="row">
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Impuesto Pagado</h5>
 <div id="imppgraf" class="graf"></div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Remanente Cred. Fiscal</h5>
 <div id="recrefgraf" class="graf"></div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-12 col-md-6 col-lg-4">
 <h5>Resumen de IVA</h5>
 <table id="resiva" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
