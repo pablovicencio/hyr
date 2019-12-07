@@ -228,7 +228,7 @@ class EmpresaDAO
                 $stmt->bindParam(":mail_emp",$this->mail_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":patente_comer_emp",$this->patente_comer_emp , PDO::PARAM_INT);
                 $stmt->bindParam(":evaluacion_emp",$this->evaluacion_emp , PDO::PARAM_INT);
-                $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_STR);
                 $stmt->bindParam(":monto_mensual_emp",$this->monto_mensual_emp, PDO::PARAM_INT);
                 $stmt->bindParam(":monto_renta_emp",$this->monto_renta_emp, PDO::PARAM_INT);
                 $stmt->bindParam(":ciudad_emp",$this->ciudad_emp, PDO::PARAM_INT);

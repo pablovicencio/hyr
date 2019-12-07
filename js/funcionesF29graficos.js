@@ -5,7 +5,6 @@ var emp = idemp[0].split("=");
 
 
 
-
 function imp() {
 
                 $('#menu').css("display","none");
@@ -332,8 +331,26 @@ var graf = "recref";
 
 
 
-$(document).ready(function () {
 
+
+
+
+
+
+
+
+
+
+
+
+
+$.getJSON('https://mindicador.cl/api', function(data) {
+          var dailyIndicators = data;
+          uf = parseInt(dailyIndicators.uf.valor);
+          $("#val_uf").text(" UF Hoy $"+Number(parseInt(uf)).toLocaleString()+" ");
+          console.log(uf);
+
+  
 
 
   $.ajax({
@@ -352,10 +369,80 @@ $(document).ready(function () {
       $("#totimpp").text(Number(parseInt(result[0].impp)).toLocaleString());
       $("#totcredfis").text(Number(parseInt(result[0].credfis)).toLocaleString());
 
+      $("#reg_trib").text(" Reg. Tributario: "+result[0].desc_reg_trib+" ");
+      max_ven = parseInt(result[0].max_mon_reg_trib);
+
+
+
+
+      switch(result[0].reg_trib_emp){
+        case "3":
+
+          max_ven = parseInt(max_ven) * parseInt(uf);
+          dif = parseInt(max_ven) - parseInt(result[0].ven);
+
+          if (parseInt(max_ven) < parseInt(result[0].ven)) {
+            $('#alerta_ven_anual').addClass('alert alert-danger');
+            $("#men_ven_anual").text("La venta anual ha excedido el monto maximo en $"+Number(parseInt(dif)).toLocaleString());
+            $('#alerta_ven_anual').css("display","block");
+          }else{
+            $('#alerta_ven_anual').addClass('alert alert-info');
+            $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
+            $('#alerta_ven_anual').css("display","block");
+          } break;
+          case "4":
+
+          max_ven = parseInt(max_ven) * parseInt(uf);
+          dif = parseInt(max_ven) - parseInt(result[0].ven);
+
+          if (parseInt(max_ven) < parseInt(result[0].ven)) {
+            $('#alerta_ven_anual').addClass('alert alert-danger');
+            $("#men_ven_anual").text("La venta anual ha excedido el monto maximo en $"+Number(parseInt(dif)).toLocaleString());
+            $('#alerta_ven_anual').css("display","block");
+          }else{
+            $('#alerta_ven_anual').addClass('alert alert-info');
+            $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
+            $('#alerta_ven_anual').css("display","block");
+          } break;
+          case "5":
+
+          max_ven = parseInt(max_ven) * parseInt(uf);
+          dif = parseInt(max_ven) - parseInt(result[0].ven);
+
+          if (parseInt(max_ven) < parseInt(result[0].ven)) {
+            $('#alerta_ven_anual').addClass('alert alert-danger');
+            $("#men_ven_anual").text("La venta anual ha excedido el monto maximo en $"+Number(parseInt(dif)).toLocaleString());
+            $('#alerta_ven_anual').css("display","block");
+          }else{
+            $('#alerta_ven_anual').addClass('alert alert-info');
+            $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
+            $('#alerta_ven_anual').css("display","block");
+          } break;
+          case "6":
+
+          max_ven = parseInt(max_ven) * parseInt(uf);
+          dif = parseInt(max_ven) - parseInt(result[0].ven);
+
+          if (parseInt(max_ven) < parseInt(result[0].ven)) {
+            $('#alerta_ven_anual').addClass('alert alert-danger');
+            $("#men_ven_anual").text("La venta anual ha excedido el monto maximo en $"+Number(parseInt(dif)).toLocaleString());
+            $('#alerta_ven_anual').css("display","block");
+          }else{
+            $('#alerta_ven_anual').addClass('alert alert-info');
+            $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
+            $('#alerta_ven_anual').css("display","block");
+          } break;
+      }
+
+
+
+
   },
   error: function(){
               swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
       }
 });
   });
+
+
 
