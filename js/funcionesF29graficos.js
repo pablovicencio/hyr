@@ -350,7 +350,7 @@ $.getJSON('https://mindicador.cl/api', function(data) {
           $("#val_uf").text(" UF Hoy $"+Number(parseInt(uf)).toLocaleString()+" ");
           console.log(uf);
 
-  
+  var colores = ['Red', 'Green'];
 
 
   $.ajax({
@@ -389,7 +389,32 @@ $.getJSON('https://mindicador.cl/api', function(data) {
             $('#alerta_ven_anual').addClass('alert alert-info');
             $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
             $('#alerta_ven_anual').css("display","block");
-          } break;
+          } 
+
+
+        
+              new Morris.Donut({
+                  // ID of the element in which to draw the chart.
+                  element: 'venmgraf',
+                  // Chart data records -- each entry in this array corresponds to a point on
+                  // the chart.
+                  data: [
+                           { label: 'Venta Máxima', value: parseInt(max_ven) },
+                           { label: 'Venta Anual', value: parseInt(result[0].ven) }],
+                  // The name of the data record attribute that contains x-values.
+                  //xkey: 'label',
+                  // A list of names of data record attributes that contain y-values.
+                  //ykeys: ['value'],
+                  // Labels for the ykeys -- will be displayed when you hover over the
+                  // chart.
+                  //labels: ['$'],
+                  colors: colores
+                });
+
+
+            
+
+          break;
           case "4":
 
           max_ven = parseInt(max_ven) * parseInt(uf);
@@ -403,7 +428,34 @@ $.getJSON('https://mindicador.cl/api', function(data) {
             $('#alerta_ven_anual').addClass('alert alert-info');
             $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
             $('#alerta_ven_anual').css("display","block");
-          } break;
+          } 
+
+                new Morris.Bar({
+                  // ID of the element in which to draw the chart.
+                  element: 'venmgraf',
+                  // Chart data records -- each entry in this array corresponds to a point on
+                  // the chart.
+                  data: [
+                           { label: 'Venta Máxima', value: parseInt(max_ven) },
+                           { label: 'Venta Anual', value: parseInt(result[0].ven) }],
+                  // The name of the data record attribute that contains x-values.
+                  xkey: 'label',
+                  // A list of names of data record attributes that contain y-values.
+                  ykeys: ['value'],
+                  // Labels for the ykeys -- will be displayed when you hover over the
+                  // chart.
+                  labels: ['$'],
+                  barColors: function (row, series, type) {
+                            return $arrColors[row.x];
+                            }, 
+                            hideHover: 'auto',
+                            resize: true
+                });
+
+
+            
+
+          break;
           case "5":
 
           max_ven = parseInt(max_ven) * parseInt(uf);
@@ -417,7 +469,34 @@ $.getJSON('https://mindicador.cl/api', function(data) {
             $('#alerta_ven_anual').addClass('alert alert-info');
             $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
             $('#alerta_ven_anual').css("display","block");
-          } break;
+          } 
+
+          new Morris.Bar({
+                  // ID of the element in which to draw the chart.
+                  element: 'venmgraf',
+                  // Chart data records -- each entry in this array corresponds to a point on
+                  // the chart.
+                  data: [
+                           { label: 'Venta Máxima', value: parseInt(max_ven) },
+                           { label: 'Venta Anual', value: parseInt(result[0].ven) }],
+                  // The name of the data record attribute that contains x-values.
+                  xkey: 'label',
+                  // A list of names of data record attributes that contain y-values.
+                  ykeys: ['value'],
+                  // Labels for the ykeys -- will be displayed when you hover over the
+                  // chart.
+                  labels: ['$'],
+                  barColors: function (row, series, type) {
+                            return $arrColors[row.x];
+                            }, 
+                            hideHover: 'auto',
+                            resize: true
+                });
+
+
+            
+
+          break;
           case "6":
 
           max_ven = parseInt(max_ven) * parseInt(uf);
@@ -431,7 +510,36 @@ $.getJSON('https://mindicador.cl/api', function(data) {
             $('#alerta_ven_anual').addClass('alert alert-info');
             $("#men_ven_anual").text("Faltan $"+Number(parseInt(dif)).toLocaleString()+" para superar el monto maximo de la venta anual");
             $('#alerta_ven_anual').css("display","block");
-          } break;
+          } 
+
+          new Morris.Bar({
+                  // ID of the element in which to draw the chart.
+                  element: 'venmgraf',
+                  // Chart data records -- each entry in this array corresponds to a point on
+                  // the chart.
+                  data: [
+                           { label: 'Venta Máxima', value: parseInt(max_ven) },
+                           { label: 'Venta Anual', value: parseInt(result[0].ven) }],
+                  // The name of the data record attribute that contains x-values.
+                  xkey: 'label',
+                  // A list of names of data record attributes that contain y-values.
+                  ykeys: ['value'],
+                  // Labels for the ykeys -- will be displayed when you hover over the
+                  // chart.
+                  labels: ['$'],
+                  barColors: function (row, series, type) {
+                            return $arrColors[row.x];
+                            }, 
+                            hideHover: 'auto',
+                            resize: true
+                });
+
+
+            
+
+          break;
+          default:
+          $('#divvenmgraf').css("display","none");
       }
 
 

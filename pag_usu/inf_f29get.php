@@ -168,7 +168,15 @@
 <div id="recrefgraf" class="graf"></div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-4" id="divvenmgraf">
+<h5>Venta Máxima anual</h5>
+<div id="venmgraf" class="graf"></div>
+</div>
+</div>
+<br>
+<div class="row">
+
+  <div class="col-sm-4">
 <h5>Resumen de IVA</h5>
 <table id="resiva" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -195,8 +203,6 @@
 </table>
 
 </div>
-
-
 
 </div>
 
