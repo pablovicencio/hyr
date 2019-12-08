@@ -118,19 +118,7 @@
         </div>
         <div class="form-group">
           <label for="rte">Reg. Trib. Emp.:</label>
-            <select class="form-control" name="rte" id="rte" required>
-              <option value="" selected disabled>Seleccione Regimen Tributario</option>
-                  <?php 
-                  $re = $fun->cargar_reg_trib();   
-                  foreach($re as $row)      
-                  {
-                  ?>
-                  <option value="<?php echo $row['id_reg_trib'] ?>"><?php echo $row['desc_reg_trib'] ?></option>
-
-                  <?php
-                  }    
-                  ?>       
-            </select>
+          <input type="text" class="form-control" id="rte" name="rte" maxlength="25"  placeholder="Reg. Trib. Emp." required>
         </div>
 
 

@@ -5,6 +5,7 @@ var emp = idemp[0].split("=");
 
 
 
+
 function imp() {
 
                 $('#menu').css("display","none");
@@ -331,6 +332,7 @@ var graf = "recref";
 
 
 
+$(document).ready(function () {
 
 
 
@@ -353,6 +355,7 @@ $.getJSON('https://mindicador.cl/api', function(data) {
   var colores = ['Red', 'Green'];
 
 
+
   $.ajax({
      url: '../controles/controlCargarF29Tot.php', 
      type: 'POST',
@@ -368,6 +371,7 @@ $.getJSON('https://mindicador.cl/api', function(data) {
       $("#totret").text(Number(parseInt(result[0].ret)).toLocaleString());
       $("#totimpp").text(Number(parseInt(result[0].impp)).toLocaleString());
       $("#totcredfis").text(Number(parseInt(result[0].credfis)).toLocaleString());
+
 
       $("#reg_trib").text(" Reg. Tributario: "+result[0].desc_reg_trib+" ");
       max_ven = parseInt(result[0].max_mon_reg_trib);
@@ -551,6 +555,4 @@ $.getJSON('https://mindicador.cl/api', function(data) {
       }
 });
   });
-
-
 
