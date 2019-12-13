@@ -73,6 +73,13 @@ $(document).ready(function() {
                             //console.log(dominio+carpeta+"pag_usu/inicio.php");
                             window.location= carpeta+"pag_usu/inicio.php";
                             break;
+                        case '1':
+                            //REVISAR ESTA RUTA CUANDO PASE A PRODUCCION
+                            var dominio = window.location.hostname;
+                            var carpeta = window.location.pathname;
+                            //console.log(dominio+carpeta+"pag_usu/inicio.php");
+                            window.location= carpeta+"pag_cli/inicio.php";
+                            break;
                         case '-1':
                             swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
                             break;
