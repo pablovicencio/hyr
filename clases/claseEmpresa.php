@@ -308,7 +308,33 @@ class EmpresaDAO
 
 
 
+    /*///////////////////////////////////////
+    //////////Actualizar Contraseña /////////
+    ///////////////////////////////////////*/
+    public static function actualizar_contraseña($id,$pwd){
 
+        try{
+
+                
+                $pdo = AccesoDB::getCon();
+
+                $sql_pwd = "update empresa
+                set pass_emp = :pwd
+                where id_emp = :id";
+
+
+                
+                $stmt = $pdo->prepare($sql_pwd);
+                $stmt->bindParam(":pwd", $pwd, PDO::PARAM_STR);
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+           
+                $stmt->execute();
+        
+
+        } catch (Exception $e) {
+                echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>"; 
+        }
+    }
 
 
 

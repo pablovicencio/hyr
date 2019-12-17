@@ -9,7 +9,7 @@
               <div class="navbar-collapse collapse" id="navb" >
               <ul class="navbar-nav" >
                 <li class="nav-item "><a class="nav-link" href="inicio.php"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Inicio </a></li> 
-                <li class="nav-item "><a class="nav-link" href="mis_datos.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Mis Datos
+                <li class="nav-item "><a class="nav-link" href="mis_datos_cli.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Mis Datos
                 </a></li> 
               </ul>
             </div>

@@ -19,7 +19,14 @@ function imp() {
 
 
 
-
+  //CARGA DE GIF CARGA
+  $(document).ajaxStart(function() {
+    $("#main").hide();
+    $("#loading").show();
+       }).ajaxStop(function() {
+    $("#loading").hide();
+    $("#main").show();
+    }); 
 
 
 

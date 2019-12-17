@@ -1,5 +1,5 @@
 
-  <nav class="navbar navbar-expand-sm" style="background-color: #0a4f90;">
+  <nav class="navbar navbar-expand-sm infolog" style="background-color: #0a4f90;">
                 <img class="img-fluid" src="../recursos/img/images1.jpg" alt="hyr" style="width: 250px;height: auto;">
                 
                 <ul class="navbar-nav ml-auto" >

@@ -129,6 +129,8 @@ function imp() {
 $(document).ready(function () {
 
 
+
+
 var graf = "rel";
 
 

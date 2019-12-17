@@ -18,40 +18,48 @@
                                     <tbody>
 
 
-                                      <?php
+                        <?php
+
+                                    $val_cli = $fun->validar_cliente($id_emp,$id,$perfil);
+                                    echo $id_emp."-".$id."-".$perfil;
+
+                                    if ($val_cli['val'] == 1) {
+
+
+
+
                                         $re = $fun->cargar_docs_emp($id_emp,2);
 
-                                       foreach($re as $row)
-                                          {
+                                                   foreach($re as $row)
+                                                      {
+                                                        echo ' <tr>
+                                                                <td style="display: none">'. $row['id_doc'].'</td>
+                                                                <td>'.$row['nro_doc'].'</td>
+                                                                <td>'.$row['est'].'</td>
+                                                                <td><script>var string = numeral('. $row['monto_total_doc'].').format("000,000,000,000");document.write(string)</script></td>
+
+                                                                <td>'. $row['fec_emi_doc'].'</td>
+                                                                <td>'. $row['fec_ven_doc'].'</td>
+                                                                <td>'. $row['tipo_doc'].'</td>
+                                                                <td>'. $row['obs_doc'].'</td>
+
+
+
+                                                                <td><a id="btn_modal_consulta" class="link-modal btn btn-outline-info" data-id="'.$row['id_doc'].'" data-doc="'.$row['nro_doc'].'" data-total="'.$row['monto_total_doc'].'" data-afecto="'.$row['monto_afecto_doc'].'" data-exento="'.$row['monto_exento_doc'].'" data-iva="'.$row['monto_iva_doc'].'" data-fec_ven="'.$row['fec_ven_doc'].'" data-tipo="'.$row['tipo_doc'].'" data-toggle="modal" >Ver</a></td>
+
+                                                              
+                                                               
+                                                              
+
+                                                
+                                                    </tr>';
+                                                  }
+                                    }
+
 
                                           
-                                        ?>
+                        ?>
                                       
-                                      <tr>
-                                                    <td style="display: none"><?php echo $row['id_doc']?></td>
-                                                    <td><?php echo $row['nro_doc']?></td>
-                                                    <td><?php echo $row['est']?></td>
-                                                    <td><?php echo "<script>var string = numeral(". $row['monto_total_doc'].").format('000,000,000,000');document.write(string)</script>"?></td>
-
-                                                    <td><?php echo $row['fec_emi_doc']?></td>
-                                                    <td><?php echo $row['fec_ven_doc']?></td>
-                                                    <td><?php echo $row['tipo_doc']?></td>
-                                                    <td><?php echo $row['obs_doc']?></td>
-
-
-
-                                                    <td><?php echo'<a id="btn_modal_consulta" class="link-modal btn btn-outline-info" data-id="'.$row['id_doc'].'" data-doc="'.$row['nro_doc'].'" data-total="'.$row['monto_total_doc'].'" data-afecto="'.$row['monto_afecto_doc'].'" data-exento="'.$row['monto_exento_doc'].'" data-iva="'.$row['monto_iva_doc'].'" data-fec_ven="'.$row['fec_ven_doc'].'" data-tipo="'.$row['tipo_doc'].'" data-toggle="modal" >Ver</a>';?></td>
-
-                                                  
-                                                   
-                                                  
-
-                                    
-                                        </tr>
-
-                                                </tr>
-
-                                  <?php } ?>  
 
 
 
@@ -59,5 +67,3 @@
                                     </tbody>
                                   </table>
                               </div>
-                            </div>
-</div>

@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>HYR - Empresas</title>
 <!--Quitar al pasar a prod, no guarda cache-->
   <meta http-equiv="Expires" content="0">
   <meta http-equiv="Last-Modified" content="0">
@@ -17,6 +16,7 @@
   $id_emp = $_GET['id'];
   $emp = $_GET['emp'];
 ?>
+<title>HYR - <?php echo $emp; ?></title>
 
 
 <!--recursos para graficos-->
@@ -37,7 +37,9 @@
   
 
 ?>
-
+<div id="loading" style="display: none;">
+        <center><img src="../recursos/img/load.gif"></center>
+</div>
 
 <div class="container" id="main">
 
@@ -48,12 +50,12 @@
 
 <ul class="nav nav-pills" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="ctacte-tab" data-toggle="tab" href="#ctacte" role="tab" aria-controls="ctacte"
-      aria-selected="true"><i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;&nbsp;Cuenta Corriente</a>
+    <a class="nav-link active" id="f29-tab" data-toggle="tab" href="#f29" role="tab" aria-controls="f29"
+      aria-selected="true"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp;Formularios 29</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="f29-tab" data-toggle="tab" href="#f29" role="tab" aria-controls="f29"
-      aria-selected="true"><i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;&nbsp;Formularios 29</a>
+    <a class="nav-link" id="ctacte-tab" data-toggle="tab" href="#ctacte" role="tab" aria-controls="ctacte"
+      aria-selected="true"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;&nbsp;Cuenta Corriente</a>
   </li>
          
 </ul>
@@ -61,18 +63,19 @@
 <hr>
 <div class="tab-content" id="myTabContent">
 
-    <div class="tab-pane fade show active" id="ctacte" role="tabpanel" aria-labelledby="ctacte-tab">
+    <div class="tab-pane fade show active" id="f29" role="tabpanel" aria-labelledby="f29-tab">
          <!-- CONTENIDO 1 -->
         <?php
-          include("cta_cte.php");
-        ?>               
+          include("graficos_cli.php");
+        ?> 
+
     </div>
  
 
-    <div class="tab-pane fade" id="f29" role="tabpanel" aria-labelledby="f29-tab">
-       <!-- CONTENIDO 2 -->
+    <div class="tab-pane fade" id="ctacte" role="tabpanel" aria-labelledby="ctacte-tab">
+        <!-- CONTENIDO 2 -->
         <?php
-          include("graficos_cli.php");
+          include("cta_cte.php");
         ?> 
 
     </div>

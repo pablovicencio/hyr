@@ -20,6 +20,99 @@ class Funciones
 {
 
 
+
+    /*///////////////////////////////////////
+    Cargar datos cliente (MIS DATOS)
+    //////////////////////////////////////*/
+    public function cargar_datos_cli($id,$perfil){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+
+           switch ($perfil) {
+             case '3':
+                $sql = 'select  a.rut_emp rut, a.razon_social_emp nom, a.mail_emp mail
+                        from empresa a
+                        where a.id_emp =  :id';
+               break;
+             
+             case '4':
+                $sql = 'select a.rut_per rut, a.nom_per nom, a.mail_per mail
+                        from persona a
+                        where a.id_per = :id';
+               break;
+           }
+                   
+
+              
+ 
+                  
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+
+
+    /*///////////////////////////////////////
+    Validar usuarios clientes
+    //////////////////////////////////////*/
+    public function validar_cliente($emp,$id_usu,$perfil){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+
+           switch ($perfil) {
+             case '3':
+                $sql = 'select count(1) val from empresa where id_emp =  :id and id_emp = :emp';
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":id", $id_usu, PDO::PARAM_INT);
+                $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                $stmt->execute();
+                $response = $stmt->fetch(PDO::FETCH_ASSOC);
+               break;
+             
+             case '4':
+                $sql = 'select count(1) val from empresa a inner join sociedad c on a.id_emp = c.id_emp_soc where c.vig_soc and c.id_per_soc = :id and a.id_emp = :emp';
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":id", $id_usu, PDO::PARAM_INT);
+                $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+                $stmt->execute();
+                $response = $stmt->fetch(PDO::FETCH_ASSOC);
+               break;
+           }
+                   
+
+              
+ 
+                  
+           
+           
+           
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+
+
+
+
     /*///////////////////////////////////////
     Cargar datos resumen cliente (tabla principal)
     //////////////////////////////////////*/
@@ -780,13 +873,16 @@ empresa a";
                 
                 
                 $pdo = AccesoDB::getCon();
-                            if ($ident == 0) {
-                                $sql = "select pass_cli pass
-                                        from clientes where id_cli = :id";
-                            
-                            }else if ($ident == 1) {
-                                $sql = "select pass_usu pass
+                            if ($ident == 1 or $ident == 2) {
+                                $sql = $sql = "select pass_usu pass
                                         from usuarios where id_usu = :id";
+                            
+                            }else if ($ident == 3) {
+                                $sql = "select pass_emp pass
+                                        from empresa where id_emp = :id";
+                            }else if ($ident == 4) {
+                                $sql = "select pass_per pass
+                                        from persona where id_per = :id";
                             }
         
                        
