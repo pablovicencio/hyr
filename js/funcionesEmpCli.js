@@ -5,6 +5,107 @@ var emp = idemp[0].split("=");
 
 
 
+
+
+//INSTANCIAS DE DATATABLE
+
+$(document).ready(function () {
+    $('#tabla_docs_cli').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+      }
+    });
+    $('.dataTables_length').addClass('bs-select');
+  });
+
+
+//////////funcion cargar movimientos documentos Modal
+$(document).on("click", "#btn_modal_consulta", function () {
+  $('#tabla_mov_doc tbody').empty();
+     var nro_doc = $(this).data('doc');
+     var id_doc = $(this).data('id');
+     var total = $(this).data('total');
+     var afecto = $(this).data('afecto');
+     var exento = $(this).data('exento');
+     var iva = $(this).data('iva');
+     var fec_ven = new Date($(this).data('fec_ven'));
+     var fec = Date.now();
+     $("#nro_doc").text(nro_doc);
+     $("#id_doc").val(id_doc);
+     $("#monto_total").val(Number(parseInt(total)).toLocaleString());
+     $("#monto_afecto").val(Number(parseInt(afecto)).toLocaleString());
+     $("#monto_exento").val(Number(parseInt(exento)).toLocaleString());
+     $("#monto_iva").val(Number(parseInt(iva)).toLocaleString());
+     $("#tipo_modal").text($(this).data('tipo'));
+     $("#fec_ven").val($(this).data('fec_ven'));
+
+     if ($(this).data('tipo') == 'BOLETA') {
+        $("#lblAfecto").text("Monto Liquido");
+        $("#lblIva").text("Monto Retención");
+        $("#lblExento").css("display","none");
+        $("#monto_exento").css("display","none");
+     }else if($(this).data('tipo') == 'FACTURA'){
+        $("#lblAfecto").text("Monto Afecto");
+        $("#lblIva").text("Monto IVA");
+        $("#lblExento").css("display","block");
+        $("#monto_exento").css("display","block");
+     }
+
+     fec_ven < fec ? $('#ven_doc').css("display","block") : $('#ven_doc').css("display","none");
+
+    $.ajax({
+      url: '../controles/controlDatosDoc.php',
+      type: 'POST',
+      data: {"doc":id_doc},
+      dataType:'json',
+      success:function(result){
+        $('#est_doc').val(result[0].est);
+        $('#monto_pagado').val(Number(parseInt(result[0].suma)).toLocaleString());
+      }
+    })
+
+    $.ajax({
+      url: '../controles/controlMovDoc.php',
+      type: 'POST',
+      data: {"doc":id_doc},
+      dataType:'json',
+      success:function(result){
+        var filas = Object.keys(result).length;
+     
+        for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
+    
+
+          var nuevafila= "<tr><td>" +
+          result[i].fec_reg_mov + "</td><td>" +
+          Number(parseInt(result[i].monto_mov)).toLocaleString() + "</td><td>" +
+          result[i].usu + "</td><td>" +
+          result[i].obs_mov + "</td><td>" +
+          result[i].est + "</td><tr>"
+
+           $("#tabla_mov_doc").append(nuevafila);
+
+        }
+        
+      }
+    })
+
+
+
+
+
+    $('#modal_consulta').modal('show');
+});
+
+
+
+
+/////Funciones graficos
+
+
+
+
+
+
 function imp() {
 
                 $('#menu').css("display","none");
@@ -554,6 +655,14 @@ $.getJSON('https://mindicador.cl/api', function(data) {
       }
 });
   });
+
+
+
+
+
+  
+
+
 
 
 

@@ -4,6 +4,12 @@
   	  background-color: white;
       height: 200px;
     }
+.graf_cli{    
+      border: 1px solid black;
+      border-radius: 5px;
+      background-color: white;
+      height: 200px;
+    }
 
 .tit{  text-align: center;  
   	  border-radius: 5px;

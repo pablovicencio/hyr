@@ -65,16 +65,17 @@ class UsuarioDAO
                 $pdo = AccesoDB::getCon();
 
                 $sql_login = "select id_usu id, concat(nom_usu,' ',apepat_usu) nom,mail_usu,id_perfil,pass_usu,cargo_usu
-                from usuarios where vig_usu = 1 and rut_usu = :rut
+                from usuarios where vig_usu = 1 and rut_usu = :rut and pass_usu = :pass
                 union all
                 select id_emp id, razon_social_emp nom, mail_emp mail, 3 id_perfil, pass_emp,0
-                from empresa  where vig_emp = 1 and rut_emp = :rut
+                from empresa  where vig_emp = 1 and rut_emp = :rut and pass_emp = :pass
                 union all
                 select id_per id, nom_per nom, mail_per mail, 4 id_perfil,pass_per,0
-                from persona where vig_per = 1 and rut_per = :rut";
+                from persona where vig_per = 1 and rut_per = :rut and pass_per = :pass";
 
                 $stmt = $pdo->prepare($sql_login);
                 $stmt->bindParam(":rut", $this->rut, PDO::PARAM_STR);
+                $stmt->bindParam(":pass", $this->pass, PDO::PARAM_STR);
            
                 $stmt->execute();
 
@@ -94,9 +95,9 @@ class UsuarioDAO
                         
                         //echo"<script type=\"text/javascript\">       window.location='../pag_usu/inicio.php';</script>";
                         //diferenciacion entre usuarios y clientes
-                        if ($row['id_perfil'] = 1 or $row['id_perfil'] = 2) {
+                        if ($row['id_perfil'] == 1 or $row['id_perfil'] == 2) {
                             echo"0";
-                        }else if ($row['id_perfil'] = 3 or $row['id_perfil'] = 4) {
+                        }else if ($row['id_perfil'] == 3 or $row['id_perfil'] == 4) {
                             echo"1";
                         }
                         

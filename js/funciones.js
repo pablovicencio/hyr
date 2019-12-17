@@ -64,7 +64,7 @@ $(document).ready(function() {
               data:{"rut":rut, "pwd":pwd},
               success: function (result) { 
               var msg = result.trim();
-
+              console.log(msg);
                 switch(msg) {
                         case '0':
                             //REVISAR ESTA RUTA CUANDO PASE A PRODUCCION
