@@ -1,54 +1,54 @@
 
 <div class="container" class="main">
     <div class="row">
-        <div class="col-12">
-     <button  class="btn btn-outline-danger" style="color: inherit;" id="btnimp" onclick="imp()"><i class="fa fa-print" aria-hidden="true"></i></button>
-     <h5><span class="badge badge-warning" id="reg_trib"></span>
-         <span class="badge badge-success" id="val_uf"></span></h5>
-        
+        <div class="col-12 text-center">
+            <button  class="btn btn-primary menubtns" id="btnimp" onclick="imp()"><i class="fa fa-print" aria-hidden="true"></i>&nbsp;Imprimir Información</button>
         </div>
+ 
+        
+        
     </div>
                                   <hr>
                                
 
                               <div class="row">
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total Débito <br>
                                 <span id="totdeb" class="num"></span>
                               </div>
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total Crédito <br>
                                 <span id="totcred" class="num"></span>
                               </div>
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total Ventas Netas <br>
                                 <span id="totven" class="num"></span>
                               </div>
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total PPM <br>
                                 <span id="totppm" class="num"></span>
                               </div>
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total Imp. Único <br>
                                 <span id="totimpu" class="num"></span>
                               </div>
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total Retención <br>
                                 <span id="totret" class="num"></span>
                               </div>
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total Imp. Pagado <br>
                                 <span id="totimpp" class="num"></span>
                               </div>
 
-                              <div  class="tit">
+                              <div  class="iconosant tit">
                                  Total Cred. Fiscal <br>
                                 <span id="totcredfis" class="num"></span>
                               </div>
@@ -64,37 +64,39 @@
 
                               <div class="row">
 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Relacion Débito/Crédito</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv">Relacion Débito/Crédito</h5>
                               <div id="relgraf" class="graf"></div>
                               </div>
 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Débito y Crédito</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv" >Débito y Crédito</h5>
                               <div id="debcredgraf" class="graf"></div>
                               </div>
 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Ventas</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv">Ventas</h5>
                               <div id="vengraf" class="graf"></div>
                               </div>
+
+                              
 
                               </div>
                               <br>
                               <div class="row">
                                 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>PPM Pagado</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv">PPM Pagado</h5>
                               <div id="ppmgraf" class="graf"></div>
                               </div>
 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Impuesto Unico Pagado</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv">Impuesto Unico Pagado</h5>
                               <div id="impugraf" class="graf"></div>
                               </div>
 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Retención</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv">Retención</h5>
                               <div id="retgraf" class="graf"></div>
                               </div>
 
@@ -102,19 +104,19 @@
                               <br>
                               <div class="row">
 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Impuesto Pagado</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv">Impuesto Pagado</h5>
                               <div id="imppgraf" class="graf"></div>
                               </div>
 
-                              <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Remanente Cred. Fiscal</h5>
+                              <div class="col-md-12 col-lg-4">
+                              <h5 class="titulodiv">Remanente Cred. Fiscal</h5>
                               <div id="recrefgraf" class="graf"></div>
                               </div>
 
 
-                              <div class="col-sm-4" id="divvenmgraf">
-                              <h5>Venta Máxima anual</h5>
+                              <div class="col-md-12 col-lg-4 col-lg-4" id="divvenmgraf">
+                              <h5 class="titulodiv">Venta Máxima anual</h5>
                               <div id="venmgraf" class="graf"></div>
                               </div>
                               </div>
@@ -124,8 +126,9 @@
                               <div class="col-sm-4">
 
                               <div class="col-sm-12 col-md-6 col-lg-4">
-                              <h5>Resumen de IVA</h5>
-                              <table id="resiva" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                              <h5 class="titulodiv">Resumen de IVA</h5>
+                              <br>
+                              <table id="resiva" class="table table-striped table-bordered" cellspacing="0" style="width:100%;">
                                   <thead>
                                     <tr>
                                           <th class="">Periodo                             <i class="" aria-hidden="true"></i></th>
@@ -154,6 +157,6 @@
                               </div>
 
                               </div>  
-                            
+                             
                           </div>
 
