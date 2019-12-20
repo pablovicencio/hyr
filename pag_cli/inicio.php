@@ -25,7 +25,8 @@
     <div class="row">
         <div class="col-12 text-center">
         
-        <h3><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Resúmen General</h3>
+        <h3 class="titulodiv">
+          <i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Resúmen General</h3>
         <hr>
         </div>
 
@@ -33,15 +34,15 @@
         <div class="col-12 ">
         <br>
     <div class="table-responsive">
-    <table id="main_cli" class="table table-striped table-bordered" cellspacing="0" style="font-size: 0.8rem;" width="100%">
+    <table id="main_cli" class="table table-striped table-bordered" cellspacing="0" >
     <thead >
       <tr>
                                         
-                                        <th scope="col">Rut</th>
-                                        <th scope="col">Empresa</th>
-                                        <th scope="col">Doc. Pendientes de Pago</th>
-                                        <th scope="col">F29 Ingresados</th>
-                                        <th scope="col">Ver Más</th>
+                                        <th class="topheaders" style="vertical-align: top;" scope="col">Rut</th>
+                                        <th class="topheaders" style="vertical-align: top;" scope="col">Empresa</th>
+                                        <th class="topheaders" style="vertical-align: top;" scope="col">Doc. Pendientes de Pago</th>
+                                        <th class="topheaders" style="vertical-align: top;" scope="col">F29 Ingresados</th>
+                                        <th class="topheaders" style="vertical-align: top;" scope="col">Ver Más</th>
                                       </tr>
     </thead>
     <tbody>
@@ -74,16 +75,7 @@
 
 <?php } ?>  
 
-    </tbody>
-    <tfoot>
-      <tr>
-                                        <th scope="col">Rut</th>
-                                        <th scope="col">Empresa</th>
-                                        <th scope="col">Doc. Pendientes de Pago</th>
-                                        <th scope="col">F29 Ingresados</th>
-                                        <th scope="col">Ver Más</th>
-      </tr>
-    </tfoot> 
+    </tbody> 
   </table>
 </div>
         </div>

@@ -11,6 +11,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
   <meta http-equiv="Pragma" content="no-cache">
 
+  <link rel="stylesheet" href="../css/f29.css">
 <?php
   include("../includes/recursosExternos.php");
   $id_emp = $_GET['id'];
@@ -44,18 +45,23 @@
 <div class="container" id="main">
 
 <div class="col-12 text-center">
-  <h3><?php echo $emp; ?>&nbsp;&nbsp;<i class="fa fa-building" aria-hidden="true"></i></h3>
+  <h3 class="titulodiv"><?php echo $emp; ?>&nbsp;&nbsp;<i class="fa fa-building" aria-hidden="true"></i></h3>
   <hr>
 </div>
 
+<div class="col-12 text-center">
+  <span class="badge badge-warning" id="reg_trib"></span>
+  <span class="badge badge-success" id="val_uf"></span>
+</div>
+<hr>
 <ul class="nav nav-pills" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="f29-tab" data-toggle="tab" href="#f29" role="tab" aria-controls="f29"
+    <a class="nav-link active menubtns" id="f29-tab" data-toggle="tab" href="#f29" role="tab" aria-controls="f29"
       aria-selected="true"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;&nbsp;Formularios 29</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="ctacte-tab" data-toggle="tab" href="#ctacte" role="tab" aria-controls="ctacte"
-      aria-selected="true"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;&nbsp;Cuenta Corriente</a>
+    <a class="nav-link menubtns" id="ctacte-tab" data-toggle="tab" href="#ctacte" role="tab" aria-controls="ctacte"
+      aria-selected="true"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;&nbsp;Cta. Cte.</a>
   </li>
          
 </ul>
@@ -86,6 +92,7 @@
 <?php
           include("modal_cta_cte.php");
 ?> 
+
 
 
 </body>
