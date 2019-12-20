@@ -21,7 +21,6 @@
                         <?php
 
                                     $val_cli = $fun->validar_cliente($id_emp,$id,$perfil);
-                                    echo $id_emp."-".$id."-".$perfil;
 
                                     if ($val_cli['val'] == 1) {
 

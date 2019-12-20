@@ -17,7 +17,7 @@
 <?php
   include("../includes/recursosExternos.php");
 ?>
-<title>HYR - <?php echo $emp; ?></title>
+<title>HYR - Mis Datos</title>
 
 <script  src="../js/funcionesDat.js"></script>
 </head>

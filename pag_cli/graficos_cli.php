@@ -56,7 +56,11 @@
 
 
                               </div>
+                              <br>
 
+                              <div id="alerta_ven_anual" style="display: none">
+                                <strong><span id="men_ven_anual"></span></strong>
+                              </div>
 
                               <hr>
                               <br>
