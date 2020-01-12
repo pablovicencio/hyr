@@ -172,9 +172,26 @@
 <h5>Venta Máxima anual</h5>
 <div id="venmgraf" class="graf"></div>
 </div>
+
+
 </div>
+
+
+
+
+
 <br>
 <div class="row">
+  
+<div class="col-sm-12 col-md-12 col-lg-4" id="divconactfijo">
+<h5>Control Activo Fijo</h5>
+<div id="conactfijograf" class="graf"></div>
+</div>
+
+<div class="col-sm-12 col-md-12 col-lg-4" id="divcondinactfijo">
+<h5>Control DIN Activo Fijo</h5>
+<div id="condinactfijograf" class="graf"></div>
+</div>
 
   <div class="col-sm-4">
 <h5>Resumen de IVA</h5>

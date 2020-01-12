@@ -658,6 +658,95 @@ $.getJSON('https://mindicador.cl/api', function(data) {
 });
   });
 
+$(document).ready(function () {
+
+
+var graf = "conactfijo";
+
+
+  $.ajax({
+     url: '../controles/controlCargarF29Graf2.php', 
+     type: 'POST',
+     data: {"emp":emp[1], "graf":graf},
+     dataType:'json',
+     success:function(result)
+     {
+
+        new Morris.Line({
+        // ID of the element in which to draw the chart.
+        element: 'conactfijograf',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: result,
+        // The name of the data record attribute that contains x-values.
+        xkey: 'periodo',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['value1', 'value2'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Monto','Cantidad'],
+        hideHover: 'auto',
+        pointStrokeColors: ['white'],
+        lineWidth: '6px',
+        parseTime: false,
+        lineColors: ['Blue', 'Grey'],
+        xLabelAngle: 60,
+
+      });
+  },
+  error: function(){
+              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+      }
+});
+  });
+
+
+$(document).ready(function () {
+
+
+var graf = "condinactfijo";
+
+
+  $.ajax({
+     url: '../controles/controlCargarF29Graf2.php', 
+     type: 'POST',
+     data: {"emp":emp[1], "graf":graf},
+     dataType:'json',
+     success:function(result)
+     {
+
+        new Morris.Line({
+        // ID of the element in which to draw the chart.
+        element: 'condinactfijograf',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: result,
+        // The name of the data record attribute that contains x-values.
+        xkey: 'periodo',
+        // A list of names of data record attributes that contain y-values.
+        ykeys: ['value1', 'value2'],
+        // Labels for the ykeys -- will be displayed when you hover over the
+        // chart.
+        labels: ['Monto','Cantidad'],
+        hideHover: 'auto',
+        pointStrokeColors: ['white'],
+        lineWidth: '6px',
+        parseTime: false,
+        lineColors: ['Blue', 'Gray'],
+        xLabelAngle: 60,
+
+      });
+  },
+  error: function(){
+              swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
+      }
+});
+  });
+
+
+
+
+
 
 
 

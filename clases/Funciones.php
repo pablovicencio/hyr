@@ -326,6 +326,12 @@ class Funciones
                 case 'recref':
                     $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c504,0) val from f29 where id_emp = :emp order by 1 limit 12';
                     break;
+                case 'conactfijo':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c525,0) val1,  IFNULL(c524,0) val2 from f29 where id_emp = :emp order by 1 limit 12';
+                    break;
+                case 'condinactfijo':
+                    $sql = 'select DATE_FORMAT(fecha_form, "%Y-%m") periodo, IFNULL(c553,0) val1,  IFNULL(c536,0) val2 from f29 where id_emp = :emp order by 1 limit 12';
+                    break;
                 
                 default:
                     # code...
