@@ -1,7 +1,7 @@
 <div class="modal fade" id="modal_consulta" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <form id="formIngPago" name="formIngPago" onsubmit="return false;">
-    <div class="modal-content">
+
+    <div class="modal-content" class="contenimodal">
       <div class="modal-header">
         <h5 class="modal-title"><span id="tipo_modal" name="tipo_modal"></span> Nro: <span id="nro_doc" name="nro_doc"></span></h5>
         <input type="hidden" id="id_doc" name="id_doc" >
@@ -13,7 +13,7 @@
                 <div class="row">
                   <div class="col-6">
                               <div class="form-group">
-                                    <label for="fec_ven">Fecha Vencimiento:</label>
+                                    <label for="fec_ven" >Fecha Vencimiento:</label>
                                     <input type="date" class="form-control" id="fec_ven" name="fec_ven" readonly required>
                               </div>
                   </div>
@@ -69,7 +69,7 @@
                                   </div>
                   </div>
                 </div>
-
+                     <div class="table-responsive">
                         <table id="tabla_mov_doc" class="table table-striped table-bordered" cellspacing="0" width="100%">
                               <thead>
                                 <tr>
@@ -83,12 +83,12 @@
                               <tbody>
                               </tbody>
                           </table>
-
+                    </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-outline-secondary num" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
-    </form>
+
   </div>
 </div>

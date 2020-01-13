@@ -46,6 +46,15 @@
     input[type="search"]{
         font-size: 1em;
     }
+    input[type="text"]{
+        font-size: 1.5em;
+    }
+    input[type="date"]{
+        font-size: 1.5em;
+    }
+    label{
+        font-size: 1.5em;
+    }
     .dataTables_filter > label{
         font-size: 3em;
         text-align: left;
@@ -72,6 +81,10 @@
         font-size: 2rem;
         height: 3rem;
     }
+    #reg_trib{
+        font-size: 2rem;
+        height: 3rem;
+    }
 
   }
 
@@ -82,5 +95,3 @@
         height: auto;
     }
   }
-
-

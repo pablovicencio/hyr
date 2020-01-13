@@ -28,9 +28,8 @@
         <h3><i class="fa fa-pie-chart" aria-hidden="true"></i>&nbsp;Resúmen General</h3>
         <hr>
         </div>
-
-        <?php if($_SESSION['perfil']==1){echo'<a id="btn_modal_ult_doc" class="link-modal btn btn-outline-success" data-target="#modal_ult_doc" data-toggle="modal" >Infome Ultimo Doc. Emitido</a>';}?>
-
+        
+                <?php if($_SESSION['perfil']==1){echo'<a id="btn_modal_ult_doc" class="link-modal btn btn-outline-success" data-target="#modal_ult_doc" data-toggle="modal" >Infome Ultimo Doc. Emitido</a>';}?>
 
         
         <div class="col-12 ">
@@ -91,9 +90,10 @@
                   <td><?php echo $row['obs_doc']?></td>
                   <td><?php echo $row['suma']?></td>
 
-                  <td><?php if($_SESSION['perfil']==1){echo'<button id="not_doc" name="not_doc" onclick="not_doc('.$row["id_doc"].')" class="btn btn-warning" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>';}?></td>
-
-                
+                  <td><?php //if($_SESSION['perfil']==1){ --PVICENCIO  se quita la restriccion de perfil a pedido de Raul 26/12/2019
+                    echo'<button id="not_doc" name="not_doc" onclick="not_doc('.$row["id_doc"].')" class="btn btn-warning" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>';
+                  //}
+                  ?></td>
                  
                 
 
@@ -138,6 +138,7 @@
 
 
 </div>
+
 
 <div class="modal fade" id="modal_ult_doc" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" id="modal_ult_doc_content" role="document">
@@ -194,5 +195,7 @@
     </div>
   </div>
 </div>
+
+
 </body>
 </html>

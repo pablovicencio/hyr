@@ -1,20 +1,20 @@
 .graf{    
       border: 1px solid black;
-  	  border-radius: 5px;
-  	  background-color: white;
+      border-radius: 5px;
+      background-color: white;
       height: 200px;
     }
 
 .tit{  text-align: center;  
-  	  border-radius: 5px;
-  	  background-color: white;
-  	 /* font-size: 14px;*/
-  	  padding-right: 10px;
-  	  padding-left: 10px;
+      border-radius: 5px;
+      background-color: white;
+     /* font-size: 14px;*/
+      padding-right: 10px;
+      padding-left: 10px;
     }
 
 .num{    
-  	 
-  	  font-size: 18px;
-  	  font-weight: bold;
+     
+      font-size: 2rem;
+      font-weight: bold;
     }
