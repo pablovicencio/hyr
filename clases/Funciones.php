@@ -22,6 +22,91 @@ class Funciones
 
 
     /*///////////////////////////////////////
+    Calcular GC Pro Renta
+    //////////////////////////////////////*/
+    public function cargar_gc_pro($atrib){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+
+           
+                $sql = 'select (:atrib * factor_gc)-cant_reb_gc gc  from global_comp where :atrib between desde_gc and hasta;';
+              
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":atrib", $atrib, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+    /*///////////////////////////////////////
+    Cargar datos Sociedades Pro Renta
+    //////////////////////////////////////*/
+    public function cargar_soc_pro_renta($emp){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+
+           
+                $sql = 'select a.id_soc, b.id_per, b.nom_per, a.porc_part_soc
+                        from sociedad a inner join persona b on a.id_per_soc = b.id_per 
+                        where a.id_emp_soc = :emp and a.vig_soc = 1;';
+              
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+    /*///////////////////////////////////////
+    Cargar datos Pro Renta
+    //////////////////////////////////////*/
+    public function cargar_dato_pro_renta($emp,$per){
+        try{
+           
+           
+           $pdo = AccesoDB::getCon();
+
+           
+                $sql = 'SELECT IFNULL(SUM(c62), 0) ppmo,IFNULL(SUM(c152), 0) ppmv 
+                        FROM f29 
+                        WHERE id_emp = :emp AND YEAR(fecha_form) = YEAR(:per);';
+              
+           
+           $stmt = $pdo->prepare($sql);
+           $stmt->bindParam(":emp", $emp, PDO::PARAM_INT);
+           $stmt->bindParam(":per", $per, PDO::PARAM_STR);
+           $stmt->execute();
+           $response = $stmt->fetchAll();
+           return $response;
+       } catch (Exception $e) {
+           echo"-1";
+            //echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>";
+       }
+   }
+
+
+
+
+
+
+    /*///////////////////////////////////////
     Cargar datos cliente (MIS DATOS)
     //////////////////////////////////////*/
     public function cargar_datos_cli($id,$perfil){
@@ -1338,7 +1423,7 @@ and c.cod_grupo = 1";
                     if ($opcion == 0) {
                         $sql = "select id_emp, razon_social_emp from empresa order by 2";
                     }else if ($opcion == 1){
-                        $sql = "select id_emp, razon_social_emp from empresa where vig_emp = 1 order by 2";
+                        $sql = "select id_emp, razon_social_emp, rut_emp, reg_trib_emp from empresa where vig_emp = 1 order by 2";
                     }else if($opcion == 2 ){
                         $sql = "select id_emp,razon_social_emp,rut_emp,ciudad_emp,comuna_emp,dir_emp,mail_emp,fec_cre_emp,u.nick_usu
                         from empresa,usuarios as u
