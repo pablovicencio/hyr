@@ -39,7 +39,7 @@
               <label for="rut">Rut:</label>
               <div class="row">
                 <div class="col-12">
-                  <input type="text" class="form-control" id="rut" name="rut"  maxlength="10" placeholder="xxxxxxxx-x" required>
+                  <input type="text" class="form-control" id="rut" name="rut"  maxlength="10" placeholder="xxxxxxxx-x" pattern="\d{3,8}-[\d|kK]{1}" required>
                 </div>
               </div>
           </div>
@@ -85,11 +85,17 @@
               </div>
 
               <div class="form-group">
-              <label for="comuna">Comuna:</label>
-              <select class="form-control" name="comuna" id="comuna" required>
-              <option value="" selected disabled>Seleccione la Comuna</option>
-            </select>
+                  <label for="comuna">Comuna:</label>
+                  <select class="form-control" name="comuna" id="comuna" required>
+                        <option value="" selected disabled>Seleccione la Comuna</option>
+                  </select>
               </div>
+              
+              
+                <div class="form-group">
+                  <br>
+                      <a id="btn_modal_obs" class="link-modal btn btn-outline-warning" data-toggle="modal" data-target="#modal_obs">Observaciones</a>
+                </div>
 
 
 
@@ -118,7 +124,19 @@
         </div>
         <div class="form-group">
           <label for="rte">Reg. Trib. Emp.:</label>
-          <input type="text" class="form-control" id="rte" name="rte" maxlength="25"  placeholder="Reg. Trib. Emp." required>
+          <select class="form-control" name="rte" id="rte" required>
+              <option value="" selected disabled>Seleccione Regimen Tributario</option>
+                  <?php 
+                  $re = $fun->cargar_reg_trib();   
+                  foreach($re as $row)      
+                  {
+                  ?>
+                  <option value="<?php echo $row['id_reg_trib'] ?>"><?php echo $row['desc_reg_trib'] ?></option>
+
+                  <?php
+                  }    
+                  ?>       
+            </select>
         </div>
 
 
@@ -157,7 +175,7 @@
           <label for="rae">Rta. At. Emp.:</label>
           <div class="row">
             <div class="col-12">
-              <input type="number" class="form-control" id="rae" name="rae"  maxlength="10" placeholder="Rta. At. Emp." required>
+              <input type="text" class="form-control" id="rae" name="rae"  maxlength="50" placeholder="Rta. At. Emp." required>
             </div>
           </div>
       </div>  
@@ -181,7 +199,7 @@
         <label for="fre">Fac. Rea. Emp.:</label>
         <div class="row">
           <div class="col-12">
-            <input type="number" class="form-control" id="fre" name="fre" placeholder="Fac. Rea. Emp.">
+            <input type="number" class="form-control" id="fre" name="fre" placeholder="Fac. Rea. Emp." required>
           </div>
         </div>
         </div> 
@@ -195,6 +213,32 @@
     <input type="submit" class="btn btn-outline-success" id="btnAc" name="btnAc" value="Crear Empresa" >                                         
   </div>
   <!-- Fin Row --> 
+  <!-- Modal obs --> 
+  <div class="modal fade" id="modal_obs" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Observaciones de empresa <span id="cre_emp_obs" name="cre_emp_obs"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                    <textarea class="form-control" id="obs_emp" name="obs_emp" rows="20" maxlength="15000"></textarea>
+                  </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+        <div class="container-login100-form-btn">
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
    </form> 
 
 <!-- Modal giros --> 
@@ -240,4 +284,9 @@
    
   </div>
 </div>
+
+
+
+
+
 </form>

@@ -36,5 +36,3 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
-
-

@@ -17,6 +17,7 @@ class PersonaDAO
     private $vigencia;
     private $clave_previred;
     private $clave_sii;
+    private $obs_per;
 
 
 
@@ -33,7 +34,8 @@ class PersonaDAO
                                 $pass=null,
                                 $vigencia=null,
                                 $clave_previred=null,
-                                $clave_sii=null) 
+                                $clave_sii=null,
+                                $obs_per=null) 
                                 {
 
 
@@ -47,6 +49,7 @@ class PersonaDAO
     $this->vigencia     = $vigencia;
     $this->clave_previred  = $clave_previred;
     $this->clave_sii    = $clave_sii;
+    $this->obs_per    = $obs_per;
     }
 
     public function getPer() {
@@ -78,10 +81,11 @@ class PersonaDAO
                                     `pass_per`,
                                     `vig_per`,
                                     `clave_previred_per`,
-                                    `clave_sii_per`)
+                                    `clave_sii_per`,
+                                    `obs_per`)
                                     VALUES
                                     (
-                                    :rut,:nom,:mail,:fec_cre,:usu_cre,'',:vig,:clave_previred,:clave_sii)";
+                                    :rut,:nom,:mail,:fec_cre,:usu_cre,'',:vig,:clave_previred,:clave_sii, :obs)";
 
 
                 $stmt = $pdo->prepare($sql_crear_per);
@@ -94,6 +98,7 @@ class PersonaDAO
                 $stmt->bindParam(":vig", $this->vigencia, PDO::PARAM_INT);
                 $stmt->bindParam(":clave_previred", $this->clave_previred, PDO::PARAM_STR);
                 $stmt->bindParam(":clave_sii", $this->clave_sii, PDO::PARAM_STR);
+                $stmt->bindParam(":obs", $this->obs_per, PDO::PARAM_STR);
                 $stmt->execute();
 
 
@@ -121,9 +126,9 @@ class PersonaDAO
                 echo"-1";
             }
     }
-
-
-
+    
+    
+    
     /*///////////////////////////////////////
     //////////Modificar persona//////////////
     ///////////////////////////////////////*/
@@ -140,7 +145,8 @@ class PersonaDAO
                                         `mail_per` = :mail,
                                         `vig_per` = :vig_per,
                                         `clave_previred_per` = :clave_previred,
-                                        `clave_sii_per` = :clave_sii
+                                        `clave_sii_per` = :clave_sii,
+                                        `obs_per` = :obs
                                         WHERE `id_per` = :id";
 
 
@@ -151,6 +157,8 @@ class PersonaDAO
                 $stmt->bindParam(":clave_previred", $this->clave_previred, PDO::PARAM_STR);
                 $stmt->bindParam(":clave_sii", $this->clave_sii, PDO::PARAM_STR);
                 $stmt->bindParam(":id", $this->id_per, PDO::PARAM_INT);
+                $stmt->bindParam(":obs", $this->obs_per, PDO::PARAM_STR);
+                
 
                 $stmt->execute();
 
@@ -256,7 +264,6 @@ class PersonaDAO
 
 
 
-
     /*///////////////////////////////////////
     //////////Actualizar Contraseña /////////
     ///////////////////////////////////////*/
@@ -316,54 +323,6 @@ class PersonaDAO
 
 
 
-
-
-//sin uso, no actualizadas
-
-
-
-
-
-
-    /*///////////////////////////////////////
-    //////////Modificar Usuario//////////////
-    ///////////////////////////////////////*/
-    public function modificar_usuario() {
-
-
-        try{
-             
-                $pdo = AccesoDB::getCon();
-
-                $sql_mod_usu = "UPDATE `usuarios`
-                                    SET
-                                    `nom_usu` = :nombre,
-                                    `apepat_usu` = :ape_pat,
-                                    `apemat_usu` = :ape_mat,
-                                    `mail_usu` = :mail,
-                                    `id_perfil` = :perfil,
-                                    `cargo_usu` = :cargo,
-                                    `vig_usu` = :vigencia
-                                    WHERE `id_usu` = :id ";
-
-
-                $stmt = $pdo->prepare($sql_mod_usu);
-                $stmt->bindParam(":nombre", $this->nombre, PDO::PARAM_STR);
-                $stmt->bindParam(":ape_pat", $this->ape_pat, PDO::PARAM_STR);
-                $stmt->bindParam(":ape_mat", $this->ape_mat, PDO::PARAM_STR);
-                $stmt->bindParam(":mail", $this->mail, PDO::PARAM_STR);
-                $stmt->bindParam(":perfil", $this->perfil, PDO::PARAM_INT);
-                $stmt->bindParam(":cargo", $this->cargo, PDO::PARAM_INT);
-                $stmt->bindParam(":vigencia", $this->vigencia, PDO::PARAM_BOOL);
-                $stmt->bindParam(":id", $this->id_usu, PDO::PARAM_INT);
-
-                $stmt->execute();
-        
-
-            } catch (Exception $e) {
-                echo"Error, comuniquese con el administrador".  $e->getMessage()."";
-            }
-    }
 
 
 

@@ -37,6 +37,14 @@ session_start();
         $mcsii = $_POST['mcsii'];       //Clave SII
         $mcprev = $_POST['mcprev'];     //Clave Previred
         $mfre = $_POST['mfre'];         //Fac. Rea. Emp.
+        
+        
+        
+        if (isset($_POST['mobs_emp'])) {
+          $obs = ($_POST['mobs_emp']);
+        }else{
+          $obs = ' ';
+        }
 
 
 		
@@ -61,7 +69,8 @@ session_start();
                                $mcprev,
                                $mcsii,
                                $mfre,
-                               $mrae);
+                               $mrae,
+                               $obs);
 		
 
 		$mod_emp = $dao->modificar_empresa();		
@@ -70,7 +79,7 @@ session_start();
 			if (count($mod_emp)>0){
 				echo "1";    
 			} else {
-				echo"Empresa Modificada Correctamente!. El sistema se actualizara";  
+				echo"Empresa Modificada Correctamente!. El sistema se actualizara"; 
 			}
 	salir:
 	} catch (Exception $e) {

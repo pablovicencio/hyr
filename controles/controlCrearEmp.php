@@ -47,6 +47,12 @@
           $giros = '';
         }
         
+        if (isset($_POST['obs_emp'])) {
+          $obs = stripcslashes ($_POST['obs_emp']);
+        }else{
+          $obs = ' ';
+        }
+        
 
       
         $func = new Funciones();
@@ -58,7 +64,7 @@
 
                 $password = $func->generaPass();
 
-                $dao = new EmpresaDAO('',$rsocial,$rut,$cse,$mme,$mre,$ciudad,$comuna,$direc,$rte,$fia,$mail,$cem,$pce,$evem,$vig,'',$id_usu,$cprev,$csii,$fre,$rae);
+                $dao = new EmpresaDAO('',$rsocial,$rut,$cse,$mme,$mre,$ciudad,$comuna,$direc,$rte,$fia,$mail,$cem,$pce,$evem,$vig,'',$id_usu,$cprev,$csii,$fre,$rae,$obs);
                                
                 $crearEmp = $dao->crear_empresa($giros);
 

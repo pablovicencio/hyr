@@ -88,7 +88,7 @@ $(document).on("click", "#btn_modal_hist_mod_lab", function () {
 
         }
              $('#tabla_hist_mod_lab').DataTable({
-              "order": [[ 3, "desc" ]],
+                 "order": [[ 3, "desc" ]],
       buttons: [
         {
             extend: 'excelHtml5',
@@ -98,7 +98,6 @@ $(document).on("click", "#btn_modal_hist_mod_lab", function () {
       "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
       },
-
         dom: 'Bfrtip'
     });
     $('.dataTables_length').addClass('bs-select');
@@ -115,44 +114,7 @@ $(document).on("click", "#btn_modal_hist_mod_lab", function () {
 
 
 
-//////////funcion notificar documentos pendiente
-function not_doc(id_doc){
-  swal({
-                  title: "Advertencia de Notificación",
-                  text: "Se enviara un correo al cliente, informando acerca de la deuda ¿Estas seguro que deseas notificarlo?",
-                  icon: "warning",
-                  buttons: ["Cancelar", "Aceptar"],
-                  dangerMode: true,
-                })
-                .then((willDelete) => {
-                  if (willDelete) {
 
-    $.ajax({
-      url: '../controles/controlNotificarDoc.php',
-      type: 'POST',
-      data:{ id_doc: id_doc},
-      success:function(result){
-        var msg = result.trim();
-
-        switch(msg) {
-                case '-2':
-                    swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");
-                    break;
-                default :
-                    swal("Documento Notificado", msg, "success");
-
-                    //$('#obs_doc').val('');
-                    break;
-            }
-    },
-    error: function(){
-                swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
-        }
-        });
-      return false;
-    }
-    });
-  }
 
 
 

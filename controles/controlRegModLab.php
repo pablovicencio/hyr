@@ -40,6 +40,7 @@
 		 $reg_mod = $fun->reg_mod_lab($emp,$cot_lab,$nro_trab,$cargas_lab,$fec_reg,$fec_act_lab,$tasa_acc_lab,$id_usu,$periodo_lab);
 		 
 		 
+		 
 			if ($reg_mod>0){
 
 			echo"Registro Ingresado";    

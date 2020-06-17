@@ -13,8 +13,7 @@
 	require_once '../clases/Funciones.php';
 
 	try{
-
-		if (isset($_POST['fec_desde'])) {
+        if (isset($_POST['fec_desde'])) {
 			$desde = stripcslashes ($_POST['fec_desde']);
 		}else{
 			$desde = 0;
@@ -25,7 +24,6 @@
 		}else{
 			$hasta = 0;
 		}
-
 		
 		$emp = stripcslashes ($_POST['emp']);
 		$tipo = stripcslashes ($_POST['tipo']);
@@ -36,7 +34,6 @@
 		 }elseif ($tipo == 2) {
 		 	$re = $fun->inf_doc_pen($emp,$desde,$hasta);
 		 }
-		 
 		 
 		 if (!empty($re)) {
 		 	          $datos = array();

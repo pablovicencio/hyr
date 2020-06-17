@@ -21,6 +21,13 @@ session_start();
 		$mail = $_POST['mmail_per'];
 		$clave_sii = $_POST['mcsii'];
  		$clave_previred = $_POST['mcprev'];
+ 		
+ 		
+ 		if (isset($_POST['mobs_per'])) {
+          $obs = ($_POST['mobs_per']);
+        }else{
+          $obs = ' ';
+        }
 
 
 		if (isset($_POST['vigcheck'])) {
@@ -29,7 +36,7 @@ session_start();
 			$vig = 0;
 		}
 		
-		$dao = new PersonaDAO($per,'',$nom,$mail,'','','',$vig,$clave_previred,$clave_sii);
+		$dao = new PersonaDAO($per,'',$nom,$mail,'','','',$vig,$clave_previred,$clave_sii,$obs);
 
 				
 		$mod_per = $dao->modificar_persona();

@@ -16,7 +16,7 @@
                       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-handshake-o" aria-hidden="true"></i>&nbsp;Clientes</a>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="empresas.php">Empresas &nbsp;<i class="fa fa-building" aria-hidden="true"></i></a>
-                        <a class="dropdown-item" href="#">Personas &nbsp;<i class="fa fa-user" aria-hidden="true"></i></a>
+                        <a class="dropdown-item" href="personas.php">Personas &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i></a>
                         <a class="dropdown-item" href="#">Sociedades &nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
                       </div>
                     </li>  
@@ -39,7 +39,8 @@
 
                 
                 <?php if($_SESSION['perfil']==1){echo '<li class="nav-item "><a class="nav-link" href="usuarios.php"><i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Usuarios</a></li> ';}?>
-                  <!-- Dropdown -->
+              
+                <!-- Dropdown -->
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Formulario 29</a>
                       <div class="dropdown-menu">
@@ -50,9 +51,13 @@
                       </div>
                     </li>  
                      <!-- Dropdown -->
-
-                <li class="nav-item "><a class="nav-link" href="mod_lab.php"><i class="fa fa-black-tie" aria-hidden="true"></i>&nbsp;Modulo Laboral
+              
+              
+              
+                <li class="nav-item "><a class="nav-link" href="mod_lab.php"><i class="fa fa-black-tie" aria-hidden="true"></i>&nbsp;Módulo Laboral
                 </a></li> 
+                <li class="nav-item "><a class="nav-link" href="pro_renta.php"><i class="fa fa-book" aria-hidden="true"></i> Proyección Renta
+                </a></li>
               </ul>
             </div>
       </nav> 

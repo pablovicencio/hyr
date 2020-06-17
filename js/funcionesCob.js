@@ -2,9 +2,10 @@
 //id del perfil session enviado por src
 var session = document.getElementById("funCob").src.match(/\w+=\w+/g);
 var perfil = session[0].split("=");
-
-
-
+//inicializar popovers
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
 
 //////////funcion cargar detalle informe cobranza modal
 $(document).on("click", "#btn_modal_det_inf_cob", function () {
@@ -13,36 +14,33 @@ $(document).on("click", "#btn_modal_det_inf_cob", function () {
      var rut_emp = $(this).data('rut');
      var emp = $(this).data('emp');
      var prom = $(this).data('prom');
-
+     
      var desde = $('#fec_desde').val();
      var hasta = $('#fec_hasta').val();
-
+     
      $("#Remp_det_inf_cob").text(rut_emp);
      $("#emp_det_inf_cob").text(emp);
      $("#prom_dias_pago").text(prom);
-
+     
      if (tipo == 1) {
-      console.log(1);
       $("#tit_det_inf_cob").text("Detalle de Docs. ");
      }else if (tipo == 2) {
-      console.log(2);
       $("#tit_det_inf_cob").text("Docs. Pendientes ");
      }
-
-     $("#tabla_det_inf").dataTable().fnDestroy();
-     $('#tabla_det_inf tbody').empty();
-     $('#totalCargos').text('');
-     $('#totalPagos').text('');
-
+        $("#tabla_det_inf").dataTable().fnDestroy();
+        $('#tabla_det_inf tbody').empty();
+        $('#totalCargos').text('');
+        $('#totalPagos').text('');
      
     $.ajax({
       url: '../controles/controlDetInfCob.php',
       type: 'POST',
-      data: {"emp":id_emp, "fec_desde":desde, "fec_hasta":hasta , "tipo":tipo},
+      data: {"emp":id_emp, "fec_desde":desde, "fec_hasta":hasta, "tipo":tipo},
       dataType:'json',
       success:function(result){
+
         var filas = Object.keys(result).length;
-        //console.log (filas);
+        console.log (filas);
      
         for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
           var nuevafila= "<tr><td>" +
@@ -69,8 +67,7 @@ $(document).on("click", "#btn_modal_det_inf_cob", function () {
         "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
       },
         dom: 'Bfrtip',
-
-        "footerCallback": function ( row, data, start, end, display ) {
+                 "footerCallback": function ( row, data, start, end, display ) {
                     var api = this.api(), data;  
                     // Remove the formatting to get integer data for summation
                     var intVal = function ( i ) {
@@ -94,7 +91,6 @@ $(document).on("click", "#btn_modal_det_inf_cob", function () {
                     $('#totalCargos').html(numeral(total_cargos).format('$000,000,000,000'));
                     $('#totalPagos').html(numeral(total_pagos).format('$000,000,000,000'));              
                 }
-
     });
     $('.dataTables_length').addClass('bs-select');
 
@@ -122,14 +118,14 @@ $(document).ready(function() {
         $('#tabla_inf_cob tbody').empty();
 
         var filas = Object.keys(result).length;
-        //console.log (filas);
+        console.log (filas);
      
         for (  i = 0 ; i < filas; i++){ //cuenta la cantidad de registros
           var nuevafila= "<tr><td>" +
           result[i].rut_emp + "</td><td>" +
           result[i].razon_social_emp + "</td><td>" +
           numeral(result[i].cant_docs).format('000,000,000,000') + "</td><td>" +
-          numeral(result[i].cant_docs_ing).format('000,000,000,000') + "</td><td>" +
+           numeral(result[i].cant_docs_ing).format('000,000,000,000') + "</td><td>" +
           numeral(result[i].cant_docs_pagop).format('000,000,000,000') + "</td><td>" +
           numeral(result[i].cant_docs_pagoc).format('000,000,000,000') + "</td><td>" +
           numeral(result[i].cargos).format('$000,000,000,000') + "</td><td>" +
@@ -188,8 +184,7 @@ $(document).ready(function () {
     $('.dataTables_length').addClass('bs-select');
   });
 
-
-
+ 
 //////////funcion separador de miles inputs number
     $(document).on('keyup', '.nro', function (e) {
      element = e.target;
@@ -305,7 +300,7 @@ $(document).on("click", "#btn_modal_consulta", function () {
      $("#monto_iva").val(Number(parseInt(iva)).toLocaleString());
      $("#tipo_modal").text($(this).data('tipo'));
      $("#fec_ven").val($(this).data('fec_ven'));
-
+     
      if ($(this).data('tipo') == 'BOLETA') {
         $("#lblAfecto").text("Monto Liquido");
         $("#lblIva").text("Monto Retención");
@@ -449,19 +444,18 @@ $(document).on("click", "#atras_emp_consulta", function () {
 /////////funcion cargar documentos empresa consulta
 $(document).ready(function() {
   $("#formEmpConsulta").submit(function() { 
-
     $('#tabla_docs').DataTable().destroy();
     $('#tabla_docs tbody').empty();
-
     $.ajax({
-      url: '../controles/controlCargarEmp.php',
+      url: '../controles/controlCargarEmpSV.php',
       type: 'POST',
       data:$("#formEmpConsulta").serialize(),
       dataType:'json',
       success:function(result){
         $('#nom_emp').val(result[0].razon_social_emp);
   },
-  error: function(){
+  error: function(jqXHR, textStatus, errorThrown){
+              console.log(textStatus, errorThrown);
               swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
       }
     });
@@ -717,7 +711,7 @@ $(document).ready(function() {
                                     swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
                             }
                           });
-                       } 
+                  } 
                 });
     }
 
@@ -742,6 +736,7 @@ $(document).on("click", "#btn_modal_pago", function () {
      $("#nro_doc").text(nro_doc);
      $("#id_doc").val(id_doc);
      
+
      fec_ven < fec ? $('#ven_doc').css("display","block") : $('#ven_doc').css("display","none");
 
     $.ajax({
@@ -866,7 +861,7 @@ $(document).ready(function() {
       url: '../controles/controlCargarEmp.php',
       type: 'POST',
       data:$("#formEmpDoc").serialize(),
-      dataType:'json',
+      dataType:'Json',
       success:function(result){
         $('#nom_emp').val(result[0].razon_social_emp);
         $('#emp').val(result[0].id_emp);
@@ -876,7 +871,8 @@ $(document).ready(function() {
         $('#val_emp').css("display","none");
         $('#atras_emp_doc').css("display","block");
   },
-  error: function(){
+  error: function(jqXHR, textStatus, errorThrown){
+              console.log(textStatus, errorThrown);
               swal("Error", "favor verifique sus datos e intente nuevamente o comuniquese con su Administrador de Sistema", "warning");      
       }
     });

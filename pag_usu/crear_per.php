@@ -46,6 +46,11 @@
              <label for="cprev">Clave Previred:</label>
              <input type="text" class="form-control" id="cprev" name="cprev" maxlength="45" placeholder="Clave Previred" required>
           </div>
+          
+          <div class="form-group">
+              <br>
+              <a id="btn_modal_obs" class="link-modal btn btn-outline-warning" data-toggle="modal" data-target="#modal_obs">Observaciones</a>
+          </div>
 
 
           <div class="form-group">
@@ -67,6 +72,35 @@
     <button id="btn_reset" class="btn btn-outline-warning"  style="display: none;">Crear Nueva Persona</button>                                   
   </div>
   <!-- Fin Row --> 
+  
+  
+  <!-- Modal obs --> 
+  <div class="modal fade" id="modal_obs" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Observaciones de <span id="cre_per_obs" name="cre_per_obs"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                    <textarea class="form-control" id="obs_per" name="obs_per" rows="20" maxlength="15000"></textarea>
+                  </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+        <div class="container-login100-form-btn">
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
+
    </form> 
 
 <!-- Modal Sociedades --> 

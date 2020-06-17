@@ -562,8 +562,6 @@ $.getJSON('https://mindicador.cl/api', function(data) {
 });
   });
 
-
-
 $(document).ready(function () {
 
 
@@ -648,6 +646,9 @@ var graf = "condinactfijo";
       }
 });
   });
+
+
+
 
 
 

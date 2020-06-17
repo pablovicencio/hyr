@@ -42,14 +42,15 @@
       aria-selected="true"><i class="fa fa-list-ol" aria-hidden="true"></i>&nbsp;&nbsp;Listado</a>
   </li>
   <?php if($_SESSION['perfil']==1){
-  echo '<li class="nav-item">
+  echo '
+  <li class="nav-item">
     <a class="nav-link" id="agrega-tab" data-toggle="tab" href="#agrega" role="tab" aria-controls="agrega"
       aria-selected="false"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Agregar</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="modifica-tab" data-toggle="tab" href="#modifica" role="tab" aria-controls="modifica"
       aria-selected="false"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Modificar</a>
-  </li>';}?>       
+  </li>';}?>   
 </ul>
 
 <hr>

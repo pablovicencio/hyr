@@ -1,6 +1,6 @@
 <?php 
 session_start(); 
-if( isset($_SESSION['id']) and ($_SESSION['perfil'] = 1 or $_SESSION['perfil'] = 2) ){
+if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0) ){
     //Si la sesión esta seteada no hace nada
     $id = $_SESSION['id'];
   }

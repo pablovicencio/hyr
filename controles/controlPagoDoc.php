@@ -24,10 +24,10 @@
  		$suma_pago = str_replace(".","",$_POST['monto_pagado']);
  		$suma_pago = str_replace(",","",$suma_pago);
  		$monto_mov = str_replace(",","",$monto_mov);
+ 		$fec_pago = $_POST['fec_pago'];
  		
  		$fun = new Funciones(); 
 
- 		$fec_pago = $_POST['fec_pago'];
 
  		$re = $fun->cargar_datos_doc($id_doc);  
  	
@@ -54,7 +54,7 @@
 			if ($pago_doc>0){
 
 				$datos_mail = $fun->datos_mail($id_doc,2);
-				$mail = $fun->mail_pago_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$datos_mail[0]['nro_doc'],$monto_mov, $est_msg,$fec_pago);	
+				$mail = $fun->mail_pago_doc($datos_mail[0]['nom_emp'],$datos_mail[0]['mail_emp'],$datos_mail[0]['tipo'],$datos_mail[0]['nro_doc'],$monto_mov,$est_msg,$fec_pago);	
 			
 			echo"Documento pagado ".$est_msg;    
 			} else {

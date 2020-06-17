@@ -147,7 +147,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-6">
+                       <div class="col-6">
                     <br>
                               <div class="form-group">
                                                 <div class="input-group mb-3">
@@ -169,6 +169,11 @@
                               </div>
                               </div>
                   </div>
+                  <div class="col-6">
+                              <div class="form-group">
+                                    
+                              </div>
+                  </div>
                 </div>
                 <div class="row" >
                             
@@ -180,7 +185,7 @@
                               </div>
                             <div class="col-6">
                               <div class="form-group">
-                                    <label for="tasa">Periodo:</label>
+                                    <label for="periodo">Periodo:</label>
                                     <input type="number" class="form-control" id="periodo" name="periodo"  maxlength="6" minlength="6" placeholder="MMAAAA" required>
                               </div>
                             </div>

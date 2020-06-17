@@ -129,6 +129,7 @@
                      <form id="formRegProRenta" name="formRegProRenta" onsubmit="return false;" autocomplete="off">
                           <input type="hidden" class="form-control" id="emp" name="emp" min="0" required readonly>
                           <input type="hidden" class="form-control" id="trib" name="trib" min="0" required readonly>
+                          <input type="hidden" class="form-control" id="idgc" name="idgc" min="0" required readonly>
                             <div class="row">
                                       <div class="col-4">
                                                   <div class="form-group">
@@ -171,12 +172,141 @@
                                       </div>
                                     </div>
 
+                                    <div class="row">
+                                      <div class="col-4">
+                                                  <div class="form-group">
+                                                        <label for="pr">Proyeccion de renta: </label>
+                                                        <input type="text" class="form-control nro" id="pr" name="pr"  readonly required>
+                                                  </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+
                                     <div class="col-12">
                                       <div class="table-responsive">
                                          <table class="table table-striped table-bordered" id="tabla_per" name="tabla_per">
                                             <thead>
                                               <tr>
                                                 <th scope="col" style="display: none">Id_per</th>
+                                                <th scope="col">Socios</th>
+                                                <th scope="col">Participacion</th>
+                                                <th scope="col">Atribuciones</th>
+                                                <th scope="col">Créditos</th>
+                                                <th scope="col" style="display: none">Idgc</th>
+                                                <th scope="col">IGC</th>
+                                                <th scope="col">IGC Total</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                          </table>
+                                      </div>
+                                    </div>
+ 
+    
+                                            <div class="row" >
+                                                <div class="col">
+                                                  <div class="form-group">
+                                                        <button class="btn btn-outline-info" type="button" id="btn_calc" name="btn_calc">
+                                                          Calcular
+                                                        </button>
+                                                        <button class="btn btn-outline-success" type="submit" >
+                                                          Registrar
+                                                        </button>
+                                                  </div>
+                                                </div>
+                                                <div class="col">
+                                                  <div class="form-group">
+                                                        
+                                                  </div>
+                                                </div>
+                                           </div>
+                                </form>
+                            </div>
+                      
+              <div id="pro_renta_ver" class="container tab-pane fade"><br>
+                            <div class="row">
+                              <div class="col-4">
+                                    <label for="periodo_renta">Periodo:</label>
+                                    <select class="form-control" id="ver_per" name="ver_per">
+                                        <option value="" selected disabled>Seleccione Periodo</option>
+                                    </select>
+                              </div>
+
+                              <div class="col-4">
+                                    <br>
+                                    <button class="btn btn-outline-success" name="btn_bus_pr" id="btn_bus_pr" disabled>
+                                      Buscar
+                                    </button>
+                              </div>
+                                        
+                            </div>
+                
+                            <hr>
+                            <div id="det_pr" name="det_pr" style="display: none">
+                            <form id="formVerAnuPr" name="formVerAnuPr">
+                            <div class="row">
+
+                                      
+                                      <input type="hidden" class="form-control" id="idpr" name="idpr" readonly>
+                                      <div class="col-4">                                      
+                                                  <div class="form-group">
+                                                        <label for="periodo_renta">Periodo:</label>
+                                                        <input type="text" class="form-control" id="per_pr_ver" name="per_pr_ver" readonly>
+                                                  </div>
+                                      </div>
+                                      <div class="col-4">
+                                                  <div class="form-group">
+                                                        <label for="util_ejer">Utilidad Ejercicio</label>
+                                                        <input type="text" class="form-control nro" id="util_ejer_ver" name="util_ejer_ver" min="0" readonly>
+                                                  </div>
+                                      </div>
+                                      <div class="col-4">
+                                                  <div class="form-group">
+                                                        <label for="base_idpc">Base IDPC: <span id="val_base_idpc_ver"></span></label>
+                                                        <input type="number" class="form-control" id="base_idpc_ver" name="base_idpc_ver" min="0" max="100" readonly>
+                                                  </div>
+                                      </div>
+                                    </div>
+
+                                  <div class="row">
+                                      <div class="col-4">
+                                                  <div class="form-group">
+                                                        <label for="idpc">IDPC (%): <span id="val_idpc_ver"></span></label>
+                                                        <input type="number" class="form-control" id="idpc_ver" name="idpc_ver" min="0" max="100" readonly>
+                                                  </div>
+                                      </div>
+                                      <div class="col-4">
+                                                  <div class="form-group">
+                                                        <label for="ppmo">PPMO:</label>
+                                                        <input type="text" class="form-control nro" id="ppmo_ver" name="ppmo_ver" min="0" readonly>
+                                                  </div>
+                                      </div>
+                                      <div class="col-4">
+                                                  <div class="form-group">
+                                                        <label for="ppmv">PPMV:</label>
+                                                        <input type="number" class="form-control" id="ppmv_ver" name="ppmv_ver" min="0" readonly>
+                                                  </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-4">
+                                                  <div class="form-group">
+                                                        <label for="pr">Proyeccion de renta: </label>
+                                                        <input type="text" class="form-control nro" id="pr_ver" name="pr_ver"  readonly>
+                                                  </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+
+                                    <div class="col-12">
+                                      <div class="table-responsive">
+                                         <table class="table table-striped table-bordered" id="tabla_ver_per" name="tabla_ver_per">
+                                            <thead>
+                                              <tr>
                                                 <th scope="col">Socios</th>
                                                 <th scope="col">Participacion</th>
                                                 <th scope="col">Atribuciones</th>
@@ -195,11 +325,8 @@
                                             <div class="row" >
                                                 <div class="col">
                                                   <div class="form-group">
-                                                        <button class="btn btn-outline-info" type="button" id="btn_calc" name="btn_calc">
-                                                          Calcular
-                                                        </button>
-                                                        <button class="btn btn-outline-success" type="submit" disabled>
-                                                          Registrar
+                                                        <button class="btn btn-outline-danger"  id="btn_anu" name="btn_anu" type="submit">
+                                                          Anular
                                                         </button>
                                                   </div>
                                                 </div>
@@ -209,12 +336,9 @@
                                                   </div>
                                                 </div>
                                            </div>
-                                </form>
-                            </div>
-                      
-              <div id="pro_renta_ver" class="container tab-pane fade"><br>
-                <h3>Ver</h3>
-                
+                              
+                    </form>
+                </div>
               </div>
             </div>
 

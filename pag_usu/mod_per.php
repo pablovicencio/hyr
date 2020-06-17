@@ -63,6 +63,11 @@
              <label for="cprev">Clave Previred:</label>
              <input type="text" class="form-control" id="mcprev" name="mcprev" maxlength="45" placeholder="Clave Previred" required>
           </div>
+          
+          <div class="form-group">
+              <br>
+              <a id="btn_mmodal_obs" class="link-modal btn btn-outline-warning" data-toggle="modal" data-target="#mmodal_obs">Observaciones</a>
+          </div>
 
 
           <div class="form-group">
@@ -104,8 +109,36 @@
 
 
 
-
+ 
   <!-- Fin Row -->  
+  
+  
+  <!-- Modal obs --> 
+  <div class="modal fade" id="mmodal_obs" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Observaciones de <span id="mod_per_obs" name="mod_per_obs"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                    <textarea class="form-control" id="mobs_per" name="mobs_per" rows="20" maxlength="15000"></textarea>
+                  </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+        <div class="container-login100-form-btn">
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
 </form>
 
 
@@ -143,14 +176,14 @@
                   </div>
                   <div class="col-6">
                               <label for="porc_soc">Porcentaje Sociedad:</label>
-                              <input type="number" class="form-control" id="porc_soc" name="porc_soc" min="0" max="100" step="any" required>
+                              <input type="text" class="form-control" id="porc_soc" name="porc_soc" min="0" max="100" step="any" required>
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="col-6">
                    <label for="mon_soc">Monto Participación:</label>
-                              <input type="text" class="form-control nro" id="mon_soc" name="mon_soc" min="0" required>
+                              <input type="number" class="form-control nro" id="mon_soc" name="mon_soc" min="0" required>
                     </select>
                   </div>
                   <div class="col-6">

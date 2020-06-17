@@ -31,7 +31,7 @@
 <body>
 <div id="loading" style="display: none;">
   <center><img src="../recursos/img/load.gif"></center>
-</div>
+</div>    
 <div class="container" id="main">
     <div class="row">
         <div class="col-12">
@@ -128,7 +128,7 @@
                                                 <input type="checkbox" id="impbolcheck" name="impbolcheck" aria-label="Checkbox for following text input" onclick="calculoIva()">
                                               </div>
                                             </div>
-                                            <input type="text" class="form-control" id="impboltext" name="impboltext" aria-label="Text input with checkbox" value="Retener 10%" readonly>
+                                            <input type="text" class="form-control" id="impboltext" name="impboltext" aria-label="Text input with checkbox" value="Retener 10,75%" readonly>
                                           </div>
                               </div>
 

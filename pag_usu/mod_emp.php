@@ -106,6 +106,11 @@
               <option value="" selected disabled>Seleccione la Comuna</option>
             </select>
               </div>
+              
+              <div class="form-group">
+                  <br>
+                      <a id="btn_mmodal_obs" class="link-modal btn btn-outline-warning" data-toggle="modal" data-target="#mmodal_obs">Observaciones</a>  
+              </div>
 
 
 
@@ -134,7 +139,19 @@
         </div>
         <div class="form-group">
           <label for="mrte">Reg. Trib. Emp.:</label>
-          <input type="text" class="form-control" id="mrte" name="mrte" maxlength="25"  placeholder="Reg. Trib. Emp." required>
+          <select class="form-control" name="mrte" id="mrte" required>
+              <option value="" selected disabled>Seleccione Regimen Tributario</option>
+                  <?php 
+                  $re = $fun->cargar_reg_trib();   
+                  foreach($re as $row)      
+                  {
+                  ?>
+                  <option value="<?php echo $row['id_reg_trib'] ?>"><?php echo $row['desc_reg_trib'] ?></option>
+
+                  <?php
+                  }    
+                  ?>       
+            </select>
         </div>
 
 
@@ -173,7 +190,7 @@
           <label for="mrae">Rta. At. Emp.:</label>
           <div class="row">
             <div class="col-12">
-              <input type="number" class="form-control" id="mrae" name="mrae"  maxlength="10" placeholder="Rta. At. Emp." required>
+              <input type="text" class="form-control" id="mrae" name="mrae"  maxlength="50" placeholder="Rta. At. Emp." required>
             </div>
           </div>
       </div>  
@@ -223,4 +240,31 @@
     <input type="submit" class="btn btn-outline-success" id="btnAc" name="btnAc" value="Modificar Datos Empresa" >                                         
   </div>
   <!-- Fin Row -->  
+  
+  <!-- Modal obs --> 
+  <div class="modal fade" id="mmodal_obs" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Observaciones de empresa <span id="mod_emp_obs" name="mod_emp_obs"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                    <textarea class="form-control" id="mobs_emp" name="mobs_emp" rows="20" maxlength="15000"></textarea>
+                  </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+        <div class="container-login100-form-btn">
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
 </form>

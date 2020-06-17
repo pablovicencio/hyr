@@ -74,7 +74,6 @@
                                         <th scope="col">Ivas Postergados</th>
                                         <th scope="col">Ivas No Pagados</th>
                                         <th scope="col">Detalle</th>
-                                        
                                       </tr>
     </thead>
     <tbody>
@@ -105,8 +104,6 @@
 
                   
                 
-                 
-                
 
   
       </tr>
@@ -128,7 +125,6 @@
                                         <th scope="col">Ivas Postergados</th>
                                         <th scope="col">Ivas No Pagados</th>
                                         <th scope="col">Detalle</th>
-                                       
       </tr>
     </tfoot> 
   </table>

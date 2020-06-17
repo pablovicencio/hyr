@@ -30,6 +30,7 @@ class EmpresaDAO
     private $clave_sii_emp;
     private $fac_rea_emp;
     private $rta_at_emp;
+    private $obs_emp;
 
 
 
@@ -57,7 +58,8 @@ class EmpresaDAO
                                 $clave_previred_emp=null,
                                 $clave_sii_emp=null,
                                 $fac_rea_emp=null,
-                                $rta_at_emp=null) 
+                                $rta_at_emp=null,
+                                $obs_emp=null)  
                                 {
 
 
@@ -83,6 +85,7 @@ class EmpresaDAO
     $this->clave_sii_emp       = $clave_sii_emp;
     $this->fac_rea_emp         = $fac_rea_emp;
     $this->rta_at_emp          = $rta_at_emp;
+    $this->obs_emp             = $obs_emp;
 
     }
 
@@ -121,18 +124,19 @@ class EmpresaDAO
                                                         `clave_previred_emp`,
                                                         `clave_sii_emp`,
                                                         `fac_rea_emp`,
-                                                        `rta_at_emp`)
+                                                        `rta_at_emp`,
+                                                        `obs_emp`)
 
                                                 VALUES ( :razon_social_emp, :rut_emp, :cons_soc_emp, :monto_mensual_emp,:monto_renta_emp,
                     :ciudad_emp, :comuna_emp, :dir_emp, :reg_trib_emp, :fec_ini_act_emp, :mail_emp,
                     :nom_contacto_emp,:patente_comer_emp, :evaluacion_emp, :vig_emp,CURDATE(),:usu_cre_emp, :clave_previred_emp, :clave_sii_emp,
-                    :fac_rea_emp, :rta_at_emp)";
+                    :fac_rea_emp, :rta_at_emp, :obs)";
 
                 $stmt = $pdo->prepare($sql_crear_emp);
              /*   
         /*N°1*/ $stmt->bindParam(":razon_social_emp",$this->razon_social_emp, PDO::PARAM_STR);
         /*N°2*/ $stmt->bindParam(":rut_emp",$this->rut_emp, PDO::PARAM_STR);
-        /*N°3*/ $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_INT);
+        /*N°3*/ $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_STR);
         /*N°4*/ $stmt->bindParam(":monto_mensual_emp",$this->monto_mensual_emp, PDO::PARAM_INT);
         /*N°5*/ $stmt->bindParam(":monto_renta_emp",$this->monto_renta_emp, PDO::PARAM_INT);
         /*N°6*/ $stmt->bindParam(":ciudad_emp",$this->ciudad_emp, PDO::PARAM_INT);
@@ -151,6 +155,7 @@ class EmpresaDAO
         /*N°19*/$stmt->bindParam(":clave_sii_emp",$this->clave_sii_emp , PDO::PARAM_STR);
         /*N°20*/$stmt->bindParam(":fac_rea_emp",$this->fac_rea_emp , PDO::PARAM_INT);
         /*N°21*/$stmt->bindParam(":rta_at_emp",$this->rta_at_emp, PDO::PARAM_INT);
+        /*N°22*/$stmt->bindParam(":obs",$this->obs_emp, PDO::PARAM_STR);
                 $stmt->execute();
 
 
@@ -188,7 +193,7 @@ class EmpresaDAO
             }
     }
 
-    /*///////////////////////////////////////
+        /*///////////////////////////////////////
     //////////Modificar Empresa//////////////
     ///////////////////////////////////////*/
     public function modificar_empresa() {
@@ -217,18 +222,20 @@ class EmpresaDAO
                                     `clave_sii_emp` = :clave_sii_emp,
                                     `clave_previred_emp` = :clave_previred_emp,
                                     `fac_rea_emp` = :fac_rea_emp,
-                                    `fec_ini_act_emp` = :fec_ini_emp
+                                    `fec_ini_act_emp` = :fec_ini_emp,
+                                    `obs_emp` = :obs
                                     WHERE `id_emp` = :id ";
 
 
                 $stmt = $pdo->prepare($sql_mod_emp);
+                
                 $stmt->bindParam(":razon_emp",$this->razon_social_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":vig_emp",$this->vig_emp , PDO::PARAM_INT);  
                 $stmt->bindParam(":nom_contacto_emp",$this->nom_contacto_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":mail_emp",$this->mail_emp , PDO::PARAM_STR);
                 $stmt->bindParam(":patente_comer_emp",$this->patente_comer_emp , PDO::PARAM_INT);
                 $stmt->bindParam(":evaluacion_emp",$this->evaluacion_emp , PDO::PARAM_INT);
-                $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_INT);
+                $stmt->bindParam(":cons_soc_emp",$this->cons_soc_emp, PDO::PARAM_STR);
                 $stmt->bindParam(":monto_mensual_emp",$this->monto_mensual_emp, PDO::PARAM_INT);
                 $stmt->bindParam(":monto_renta_emp",$this->monto_renta_emp, PDO::PARAM_INT);
                 $stmt->bindParam(":ciudad_emp",$this->ciudad_emp, PDO::PARAM_INT);
@@ -240,6 +247,7 @@ class EmpresaDAO
                 $stmt->bindParam(":fac_rea_emp",$this->fac_rea_emp , PDO::PARAM_INT);
                 $stmt->bindParam(":rta_at_emp",$this->rta_at_emp, PDO::PARAM_INT);
                 $stmt->bindParam(":fec_ini_emp",$this->fec_ini_act_emp, PDO::PARAM_STR);
+                $stmt->bindParam(":obs",$this->obs_emp, PDO::PARAM_STR);
                 $stmt->bindParam(":id", $this->id_emp, PDO::PARAM_INT);
 
                 $stmt->execute();
@@ -249,6 +257,7 @@ class EmpresaDAO
                 echo"Error, comuniquese con el administrador".  $e->getMessage()."";
             }
     }
+
 
 
 
@@ -286,7 +295,7 @@ class EmpresaDAO
                                     :fec_act)";
 
 
-                $stmt = $pdo->prepare($sql_reg_mod);
+               $stmt = $pdo->prepare($sql_reg_mod);
                 $stmt->bindParam(":cot",$cot_lab , PDO::PARAM_INT);
                 $stmt->bindParam(":ntrab",$nro_trab , PDO::PARAM_INT);  
                 $stmt->bindParam(":cargas",$cargas_lab , PDO::PARAM_INT);
@@ -305,6 +314,8 @@ class EmpresaDAO
                 echo"Error, comuniquese con el administrador".  $e->getMessage()."";
             }
     }
+
+
 
 
 
@@ -335,9 +346,6 @@ class EmpresaDAO
                 echo"<script type=\"text/javascript\">alert('Error, comuniquese con el administrador".  $e->getMessage()." '); window.location='../../index.html';</script>"; 
         }
     }
-
-
-
   
 
 

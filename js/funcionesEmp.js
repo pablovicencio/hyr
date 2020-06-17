@@ -1,3 +1,18 @@
+//////////funcion carga nom empresa modal obs mod empresa
+$(document).ready(function(){
+  $("#btn_mmodal_obs").click(function(){
+    $("#mod_emp_obs").text($("#rsoc").val());
+  });
+});
+
+//////////funcion carga nom empresa modal obs crear empresa
+$(document).ready(function(){
+  $("#btn_modal_obs").click(function(){
+    $("#cre_emp_obs").text($("#rsocial").val());
+  });
+});
+
+
 //////////funcion separador de miles inputs number
     $(document).on('keyup', '.nro', function (e) {
      element = e.target;
@@ -173,6 +188,7 @@ $(document).ready(function() {
         $('#mrae').val(result[0].rta_at_emp);
         $('#mevem').val(result[0].evaluacion_emp);
         $('#mcem').val(result[0].nom_contacto_emp);
+        $('#mobs_emp').val(result[0].obs_emp);
         if((result[0].vig_emp)=="1") {  
           $('#vigcheck').prop('checked', true);
           $('#vigtext').prop('value',"Actualmente Vigente");

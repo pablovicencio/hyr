@@ -24,6 +24,12 @@
         $clave_previred = $_POST['cprev'];
         $clave_sii = $_POST['csii'];
         
+        if (isset($_POST['obs_per'])) {
+          $obs = stripcslashes ($_POST['obs_per']);
+        }else{
+          $obs = ' ';
+        }
+        
       
         $func = new Funciones();
 
@@ -34,7 +40,7 @@
 
                 //$password = $func->generaPass();
 
-                $dao = new PersonaDAO('',$rut,$nom_per,$mail_per,$fec_cre_per,$id_usu,'',$vig,$clave_previred,$clave_sii);
+                $dao = new PersonaDAO('',$rut,$nom_per,$mail_per,$fec_cre_per,$id_usu,'',$vig,$clave_previred,$clave_sii, $obs);
                                
                 $crearPer = $dao->crear_persona();
 

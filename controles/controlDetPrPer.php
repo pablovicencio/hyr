@@ -2,7 +2,7 @@
  session_start();
 
  if( isset($_SESSION['id']) and ($_SESSION['perfil'] <> 0)  ){
-    //Si la sesi¨®n esta seteada no hace nada
+    //Si la sesiÃ³n esta seteada no hace nada
     $id = $_SESSION['id'];
   }
   else{
@@ -14,18 +14,19 @@
 
 	try{
 
-		$atrib = stripcslashes ($_POST['atrib']);
+		$id_pr = stripcslashes ($_POST['id']);
 
 		 $fun = new Funciones();
-		 $re = $fun->cargar_gc_pro($atrib);
+		 $re = $fun->cargar_det_pr_per($id_pr);
 		 
 
-		  $datos = array();
+
+          $datos = array();
 
 
           foreach($re as $row){
 
-               echo $datos[] = $row;
+                $datos[] = $row;
     
               }
 		ob_end_clean();

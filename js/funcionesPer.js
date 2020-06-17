@@ -1,3 +1,18 @@
+ //////////funcion carga nom persona modal obs mod persona
+$(document).ready(function(){
+  $("#btn_mmodal_obs").click(function(){
+    $("#mod_per_obs").text($("#mnom_per").val());
+  });
+});
+
+
+//////////funcion carga nom persona modal obs crear persona
+$(document).ready(function(){
+  $("#btn_modal_obs").click(function(){
+    $("#cre_per_obs").text($("#nom_per").val());
+  });
+});
+
  //////////funcion separador de miles inputs number
     $(document).on('keyup', '.nro', function (e) {
      element = e.target;
@@ -7,7 +22,6 @@
     n = '' ? n : Number(n).toLocaleString();  
     element.value = n;
   });
-
 
  //CONTROL MODIFICAR PERSONA
 $(document).ready(function() {
@@ -40,10 +54,6 @@ $(document).ready(function() {
     return false;
   });
 });
-
-
-
-
 
 
  //ELIMINAR SOCIEDAD
@@ -144,6 +154,7 @@ $(document).ready(function() {
         $('#mciudad').val(result[0].ciudad_emp);
         //$('#mcomuna').val(result[0].comuna_emp);
         $('#mcprev').val(result[0].clave_previred_per);
+        $('#mobs_per').val(result[0].obs_per);
         
         if((result[0].vig_per)=="1") {  
           $('#vigcheck').prop('checked', true);
@@ -274,7 +285,7 @@ $(document).ready(function() {
             }
       },
       error: function(){
-              swal("Error", "favor verifique los datos", "warning");      
+              alert('Verifique los datos');      
       }
     });
     return false;

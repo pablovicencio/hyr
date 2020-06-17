@@ -431,24 +431,9 @@ input.input100 {
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
-
-@media (max-width: 800px) {
-  .login100-form {
-    padding: 43px 15px 57px 117px;
-  }
-  .navbar{
-        padding: 1.8rem 1rem !important;
-  }
-}
-
-
-
 @media (max-width: 576px) {
   .login100-form {
     padding: 43px 15px 57px 117px;
-  }
-  .navbar{
-        padding: 1.8rem 1rem !important;
   }
 }
 

@@ -6,7 +6,6 @@ function modiva(id_iva){
   }
 }
 
-
 //INSTANCIAS DE DATATABLE informe
 
 $(document).ready(function () {
@@ -30,7 +29,6 @@ $(document).ready(function () {
     });
     $('.dataTables_length').addClass('bs-select');
   });
-
 
 //RELLENO DE DATOS DEL DOCUMENTO
 function mod(id_form) {
@@ -694,6 +692,9 @@ $(document).ready(function() {
                 case '1':
                     swal("Error Base de Datos", "Error de base de datos, comuniquese con el administrador", "warning");
                     break;
+                case '4':
+                     swal("Seleccionar Tipo Pago", "Recuerde Seleccionar el Tipo de Pago IVA ( Pagado, Postergado, No Pagado).", "warning");
+                     break;
                 default:
                     swal("Formulario Modificado Correctamente", msg, "success");
                     

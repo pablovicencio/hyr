@@ -34,9 +34,6 @@
     </div>
     <hr>
 
-    <div id="loading" style="display: none;">
-        <center><img src="../recursos/img/load.gif"></center>
-    </div>
 
                         
     <form id="formEmpPago" name="formEmpPago">
@@ -185,7 +182,6 @@
                               </div>
                             </div>
                         </div>
-
                         <textarea class="form-control" rows="5" id="obs_pago" name="obs_pago" placeholder="Observación"></textarea><br><br>
       </div>
       <div class="modal-footer">

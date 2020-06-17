@@ -28,16 +28,17 @@
 
 
 <body>
+<div class="container" id="main">
 <div id="loading" style="display: none;">
   <center><img src="../recursos/img/load.gif"></center>
 </div>
-<div class="container" id="main">
     <div class="row">
         <div class="col-12">
         <h3>Consulta de Documento  <i class="fa fa-search" aria-hidden="true"></i></h3>
         </div>
     </div>
     <hr>
+
 
 
                         

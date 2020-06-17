@@ -16,9 +16,9 @@
  
 
  	try{ 
-
-        if (isset($_POST['emp'])) {
-          
+        
+    if (isset($_POST['emp'])) {
+        
         if (isset($_POST['soc_per'])) {
           $per = $_POST['soc_per'];
         }else if (isset($_POST['mod_soc_per'])) {
@@ -57,10 +57,9 @@
                 //rut duplicado
                 echo "-2";
             }
-        }else{
+    }else{
           echo "-5";
-        }
-
+    }
         
 	
 	

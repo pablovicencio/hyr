@@ -1461,7 +1461,7 @@
         <div class="input-group-prepend">
                 
                 <span class="input-group-text f29x2 f29x2num f29span  text-center" id="basic-addon4">729 </span>
-                <input type="number" value="0" class="form-control f29x2 f29inp" id="C729" name="C729" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)" >
+                <input type="number" value="0" class="form-control f29x2 f29inp" id="C729" name="C729" aria-describedby="basic-addon4" OnBlur="green(this.id,this.value)"  onclick="modcont(this.id)"  step="any">
             
         </div>                 
     </div>
